@@ -1,8 +1,31 @@
+export type ValorantAgentRole = {
+  displayName: string;
+  displayIcon: string | null;
+};
+
 export type ValorantAgentAsset = {
   uuid: string;
   displayName: string;
   displayIcon: string | null;
   fullPortrait: string | null;
+  role: ValorantAgentRole | null;
 };
 
 export type AgentAssetMap = Record<string, ValorantAgentAsset>;
+
+export type ValorantMapAsset = {
+  uuid: string;
+  displayName: string;
+  splash: string | null;
+};
+
+export type MapAssetMap = Record<string, ValorantMapAsset>;
+
+export type ValorantRankAsset = {
+  tier: number;
+  tierName: string;
+  largeIcon: string | null;
+  smallIcon: string | null;
+};
+
+export type RankAssetMap = Record<string, ValorantRankAsset>;

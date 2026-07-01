@@ -11,6 +11,13 @@ export type RecentMatch = {
   deaths: number;
   assists: number;
   acs: number;
+  playedAt: string | null;
+  score: {
+    ally: number;
+    enemy: number;
+  };
+  isMatchMvp: boolean;
+  isTeamMvp: boolean;
 };
 
 export type PlayerData = {

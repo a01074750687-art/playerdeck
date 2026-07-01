@@ -42,6 +42,8 @@ type HenrikMatch = {
     map?: string;
     mode?: string;
     mode_id?: string;
+    started_at?: string;
+    game_start?: number;
   };
   players?: {
     all_players?: HenrikMatchPlayer[];
@@ -49,9 +51,11 @@ type HenrikMatch = {
   teams?: {
     red?: {
       has_won?: boolean;
+      rounds_won?: number;
     };
     blue?: {
       has_won?: boolean;
+      rounds_won?: number;
     };
   };
 };
@@ -95,10 +99,6 @@ async function fetchWithAuth<T>(url: string): Promise<T> {
 
   const result = await response.json().catch(() => null);
 
-  console.log("API URL:", url);
-  console.log("API STATUS:", response.status);
-  console.log("API RESULT:", result);
-
   if (!response.ok) {
     throw new Error(`API 요청 실패: ${response.status}`);
   }
@@ -135,11 +135,90 @@ function getMatchMode(match: HenrikMatch): GameMode {
 }
 
 function filterMatchesByMode(matches: HenrikMatch[], selectedMode: GameMode) {
-  if (selectedMode === "all") {
-    return matches;
-  }
+  if (selectedMode === "all") return matches;
 
   return matches.filter((match) => getMatchMode(match) === selectedMode);
+}
+
+function getPlayedAt(match: HenrikMatch) {
+  if (match.metadata?.started_at) {
+    return match.metadata.started_at;
+  }
+
+  if (match.metadata?.game_start) {
+    return new Date(match.metadata.game_start * 1000).toISOString();
+  }
+
+  return null;
+}
+
+function getMatchScore(match: HenrikMatch, playerTeam: string | undefined) {
+  const redScore = match.teams?.red?.rounds_won ?? 0;
+  const blueScore = match.teams?.blue?.rounds_won ?? 0;
+
+  const isRedTeam = playerTeam?.toLowerCase() === "red";
+
+  return {
+    ally: isRedTeam ? redScore : blueScore,
+    enemy: isRedTeam ? blueScore : redScore,
+  };
+}
+
+function getRoundCount(match: HenrikMatch) {
+  const redScore = match.teams?.red?.rounds_won ?? 0;
+  const blueScore = match.teams?.blue?.rounds_won ?? 0;
+
+  return Math.max(redScore + blueScore, 1);
+}
+
+function getPlayerAcs(player: HenrikMatchPlayer, rounds: number) {
+  const score = player.stats?.score ?? 0;
+  return Math.round(score / rounds);
+}
+
+function getMvpInfo(match: HenrikMatch, targetPlayer: HenrikMatchPlayer) {
+  const players = match.players?.all_players ?? [];
+  const rounds = getRoundCount(match);
+
+  if (players.length === 0) {
+    return {
+      isMatchMvp: false,
+      isTeamMvp: false,
+    };
+  }
+
+  const playersWithAcs = players.map((player) => ({
+    player,
+    acs: getPlayerAcs(player, rounds),
+  }));
+
+  const matchMvp = playersWithAcs.reduce((best, current) => {
+    return current.acs > best.acs ? current : best;
+  });
+
+  const sameTeamPlayers = playersWithAcs.filter(
+    (item) =>
+      item.player.team?.toLowerCase() === targetPlayer.team?.toLowerCase()
+  );
+
+  const teamMvp = sameTeamPlayers.reduce((best, current) => {
+    return current.acs > best.acs ? current : best;
+  }, sameTeamPlayers[0]);
+
+  const targetName = targetPlayer.name?.toLowerCase();
+  const targetTag = targetPlayer.tag?.toLowerCase();
+
+  const isSamePlayer = (player: HenrikMatchPlayer | undefined) => {
+    return (
+      player?.name?.toLowerCase() === targetName &&
+      player?.tag?.toLowerCase() === targetTag
+    );
+  };
+
+  return {
+    isMatchMvp: isSamePlayer(matchMvp.player),
+    isTeamMvp: isSamePlayer(teamMvp?.player),
+  };
 }
 
 function calculatePlayerStats(
@@ -170,13 +249,12 @@ function calculatePlayerStats(
 
     if (!targetPlayer) return;
 
+    const rounds = getRoundCount(match);
+
     const playerKills = targetPlayer.stats?.kills ?? 0;
     const playerDeaths = targetPlayer.stats?.deaths ?? 0;
     const playerAssists = targetPlayer.stats?.assists ?? 0;
-    const playerScore = targetPlayer.stats?.score ?? 0;
-
-    const rounds = 24;
-    const acs = Math.round(playerScore / rounds);
+    const acs = getPlayerAcs(targetPlayer, rounds);
 
     const isRedTeam = targetPlayer.team?.toLowerCase() === "red";
     const hasWon = isRedTeam
@@ -188,6 +266,8 @@ function calculatePlayerStats(
     const agent = targetPlayer.character ?? "Unknown";
     const map = match.metadata?.map ?? "Unknown Map";
     const mode = getMatchMode(match);
+    const score = getMatchScore(match, targetPlayer.team);
+    const mvpInfo = getMvpInfo(match, targetPlayer);
 
     kills.push(playerKills);
     deaths.push(playerDeaths);
@@ -211,6 +291,10 @@ function calculatePlayerStats(
       deaths: playerDeaths,
       assists: playerAssists,
       acs,
+      playedAt: getPlayedAt(match),
+      score,
+      isMatchMvp: mvpInfo.isMatchMvp,
+      isTeamMvp: mvpInfo.isTeamMvp,
     });
   });
 

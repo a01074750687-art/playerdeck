@@ -31,6 +31,13 @@ export const mockPlayer: PlayerData = {
       deaths: 15,
       assists: 6,
       acs: 278,
+      playedAt: null,
+      score: {
+        ally: 13,
+        enemy: 8,
+      },
+      isMatchMvp: false,
+      isTeamMvp: true,
     },
     {
       result: "Lose",
@@ -41,6 +48,13 @@ export const mockPlayer: PlayerData = {
       deaths: 17,
       assists: 5,
       acs: 231,
+      playedAt: null,
+      score: {
+        ally: 10,
+        enemy: 13,
+      },
+      isMatchMvp: false,
+      isTeamMvp: false,
     },
     {
       result: "Win",
@@ -51,6 +65,13 @@ export const mockPlayer: PlayerData = {
       deaths: 14,
       assists: 9,
       acs: 244,
+      playedAt: null,
+      score: {
+        ally: 5,
+        enemy: 3,
+      },
+      isMatchMvp: false,
+      isTeamMvp: false,
     },
   ],
 };

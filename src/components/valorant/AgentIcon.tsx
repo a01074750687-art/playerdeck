@@ -25,8 +25,6 @@ export default function AgentIcon({
     async function loadAgent() {
       const result = await getAgentAssetByName(agentName);
 
-      console.log("AGENT:", agentName, result);
-
       if (!ignore) {
         setAgent(result);
       }
@@ -42,7 +40,7 @@ export default function AgentIcon({
   if (!agent?.displayIcon) {
     return (
       <div
-        className={`${sizeClasses[size]} rounded-full bg-slate-700 flex items-center justify-center text-xs text-slate-300 shrink-0`}
+        className={`${sizeClasses[size]} aspect-square shrink-0 rounded-full bg-slate-700 flex items-center justify-center text-xs text-slate-300`}
       >
         {agentName.slice(0, 1)}
       </div>
@@ -50,10 +48,14 @@ export default function AgentIcon({
   }
 
   return (
-    <img
-      src={agent.displayIcon}
-      alt={agent.displayName}
-      className={`${sizeClasses[size]} rounded-full bg-slate-800 object-cover shrink-0`}
-    />
+    <div
+      className={`${sizeClasses[size]} aspect-square shrink-0 rounded-full bg-slate-950 border border-white/10 overflow-hidden flex items-center justify-center`}
+    >
+      <img
+        src={agent.displayIcon}
+        alt={agent.displayName}
+        className="w-full h-full object-contain"
+      />
+    </div>
   );
 }
