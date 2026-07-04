@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { getValorantActs } from "../api/valorantAssetsApi";
@@ -13,6 +13,8 @@ import { getPlayerProfile } from "../services/valorantService";
 
 import type { PlayerData } from "../types/valorant";
 import type { ValorantActAsset } from "../types/valorantAssets";
+
+const REFRESH_COOLDOWN_SECONDS = 30;
 
 export default function PlayerProfile() {
   const { playerName } = useParams();
@@ -35,11 +37,15 @@ export default function PlayerProfile() {
 
   const [loading, setLoading] = useState(true);
   const [actLoading, setActLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [matchLoading, setMatchLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
+  const [refreshCooldown, setRefreshCooldown] = useState(0);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const [error, setError] = useState("");
+
+  const requestIdRef = useRef(0);
 
   const updateSearchParams = (
     nextParams: Record<string, string | null>
@@ -69,55 +75,94 @@ export default function PlayerProfile() {
     });
   };
 
-  const fetchPlayerProfile = useCallback(
-    async (showLoading: boolean) => {
-      try {
-        if (showLoading) {
-          setLoading(true);
-        }
+  const fetchPlayerData = async ({
+    showPageLoading = false,
+    showMatchLoading = false,
+    showRefreshLoading = false,
+  }: {
+    showPageLoading?: boolean;
+    showMatchLoading?: boolean;
+    showRefreshLoading?: boolean;
+  } = {}) => {
+    const requestId = ++requestIdRef.current;
 
-        setError("");
+    try {
+      if (showPageLoading) {
+        setLoading(true);
+      }
 
-        const data = await getPlayerProfile(
-          decodedPlayerName,
-          selectedMode,
-          selectedAct,
-          acts
-        );
+      if (showMatchLoading) {
+        setMatchLoading(true);
+      }
 
-        setPlayer(data);
-        setLastUpdated(new Date());
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError("알 수 없는 오류가 발생했습니다.");
-        }
+      if (showRefreshLoading) {
+        setRefreshing(true);
+      }
 
-        if (showLoading) {
-          setPlayer(null);
-        }
-      } finally {
-        if (showLoading) {
+      setError("");
+
+      const data = await getPlayerProfile(
+        decodedPlayerName,
+        selectedMode,
+        selectedAct,
+        acts
+      );
+
+      if (requestId !== requestIdRef.current) {
+        return false;
+      }
+
+      setPlayer(data);
+      setLastUpdated(new Date());
+
+      return true;
+    } catch (error) {
+      if (requestId !== requestIdRef.current) {
+        return false;
+      }
+
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("알 수 없는 오류가 발생했습니다.");
+      }
+
+      if (showPageLoading) {
+        setPlayer(null);
+      }
+
+      return false;
+    } finally {
+      if (requestId === requestIdRef.current) {
+        if (showPageLoading) {
           setLoading(false);
         }
+
+        if (showMatchLoading) {
+          setMatchLoading(false);
+        }
+
+        if (showRefreshLoading) {
+          setRefreshing(false);
+        }
       }
-    },
-    [decodedPlayerName, selectedMode, selectedAct, acts]
-  );
+    }
+  };
 
   const refreshPlayer = async () => {
-    if (isRefreshing) {
+    if (refreshing || refreshCooldown > 0) {
       return;
     }
 
-    try {
-      setIsRefreshing(true);
+    const success = await fetchPlayerData({
+      showRefreshLoading: true,
+    });
 
-      await fetchPlayerProfile(false);
-    } finally {
-      setIsRefreshing(false);
+    if (!success) {
+      return;
     }
+
+    setRefreshCooldown(REFRESH_COOLDOWN_SECONDS);
   };
 
   useEffect(() => {
@@ -145,8 +190,42 @@ export default function PlayerProfile() {
       return;
     }
 
-    fetchPlayerProfile(true);
-  }, [actLoading, fetchPlayerProfile]);
+    const isInitialLoading = player === null;
+
+    fetchPlayerData({
+      showPageLoading: isInitialLoading,
+      showMatchLoading: !isInitialLoading,
+    });
+  }, [
+    decodedPlayerName,
+    selectedMode,
+    selectedAct,
+    acts,
+    actLoading,
+  ]);
+
+  useEffect(() => {
+    if (refreshCooldown <= 0) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setRefreshCooldown((current) => {
+        if (current <= 1) {
+          return 0;
+        }
+
+        return current - 1;
+      });
+    }, 1000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [refreshCooldown]);
+
+  const hasMatchData =
+    (player?.recentMatches.length ?? 0) > 0;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white px-6 py-10">
@@ -162,13 +241,17 @@ export default function PlayerProfile() {
 
         {!loading && error && !player && (
           <div className="mt-8 bg-slate-900 border border-red-500/30 rounded-3xl p-8">
-            <p className="text-red-400 font-bold mb-3">ERROR</p>
+            <p className="text-red-400 font-bold mb-3">
+              ERROR
+            </p>
 
             <h1 className="text-3xl font-black mb-4">
               검색 실패
             </h1>
 
-            <p className="text-slate-400">{error}</p>
+            <p className="text-slate-400">
+              {error}
+            </p>
           </div>
         )}
 
@@ -176,53 +259,59 @@ export default function PlayerProfile() {
           <>
             <PlayerHeader
               player={player}
-              isRefreshing={isRefreshing}
+              isRefreshing={refreshing}
+              refreshCooldown={refreshCooldown}
               lastUpdated={lastUpdated}
               onRefresh={refreshPlayer}
             />
 
-            {error && (
-              <div className="mt-4 rounded-2xl border border-red-500/30 bg-red-500/10 px-5 py-4">
-                <p className="text-sm font-bold text-red-300">
-                  전적 갱신 중 오류가 발생했습니다.
-                </p>
-
-                <p className="mt-1 text-sm text-slate-400">
-                  {error}
-                </p>
-              </div>
-            )}
-
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-              <StatCard title="K/D" value={player.kd} />
+              <StatCard
+                title="K/D"
+                value={hasMatchData ? player.kd : "-"}
+              />
 
               <StatCard
                 title="Win Rate"
-                value={player.winRate}
+                value={hasMatchData ? player.winRate : "-"}
               />
 
-              <StatCard title="HS%" value={player.hsRate} />
+              <StatCard
+                title="HS%"
+                value={hasMatchData ? player.hsRate : "-"}
+              />
 
-              <StatCard title="ACS" value={player.acs} />
+              <StatCard
+                title="ACS"
+                value={hasMatchData ? player.acs : "-"}
+              />
 
-              <StatCard title="ADR" value={player.adr} />
+              <StatCard
+                title="ADR"
+                value={hasMatchData ? player.adr : "-"}
+              />
 
-              <StatCard title="Kills" value={player.kills} />
+              <StatCard
+                title="Kills"
+                value={hasMatchData ? player.kills : "-"}
+              />
 
               <StatCard
                 title="Deaths"
-                value={player.deaths}
+                value={hasMatchData ? player.deaths : "-"}
               />
 
               <StatCard
                 title="Assists"
-                value={player.assists}
+                value={hasMatchData ? player.assists : "-"}
               />
             </div>
 
             <div className="grid md:grid-cols-[0.9fr_1.4fr] gap-6 mt-6">
               <div className="space-y-6">
-                <TopAgents agents={player.topAgents} />
+                <TopAgents
+                  agents={player.topAgents}
+                />
 
                 <WeaponStats
                   weaponKills={player.weaponKills}
@@ -240,6 +329,14 @@ export default function PlayerProfile() {
               />
             </div>
           </>
+        )}
+
+        {matchLoading && (
+          <div className="fixed bottom-6 right-6 z-50 rounded-2xl border border-white/10 bg-slate-900/95 px-5 py-3 shadow-2xl backdrop-blur">
+            <p className="text-sm font-bold text-slate-300">
+              전적을 불러오는 중...
+            </p>
+          </div>
         )}
       </section>
     </main>

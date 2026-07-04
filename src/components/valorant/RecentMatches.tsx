@@ -23,6 +23,68 @@ type RecentMatchesProps = {
   actLoading?: boolean;
 };
 
+function getSelectedActLabel(
+  acts: ValorantActAsset[],
+  selectedAct: string
+) {
+  if (selectedAct === "current") {
+    const activeAct = acts.find((act) => act.isActive);
+
+    return activeAct
+      ? `Current · ${activeAct.shortLabel}`
+      : "Current Act";
+  }
+
+  const act = acts.find((item) => item.uuid === selectedAct);
+
+  return act?.shortLabel ?? "Selected Act";
+}
+
+function EmptyMatchState({
+  selectedMode,
+  selectedActLabel,
+}: {
+  selectedMode: GameMode;
+  selectedActLabel: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-slate-800/70 p-8 text-center">
+      <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-red-500/30 bg-red-500/10 text-2xl">
+        !
+      </div>
+
+      <p className="text-lg font-black text-white">
+        조회 가능한 전적이 없습니다.
+      </p>
+
+      <p className="mt-3 text-sm leading-6 text-slate-400">
+        선택한 조건의 최근 경기 데이터를 찾지 못했습니다.
+        <br />
+        현재 조건:{" "}
+        <span className="font-bold text-slate-200">
+          {selectedActLabel}
+        </span>{" "}
+        /{" "}
+        <span className="font-bold text-slate-200">
+          {selectedMode}
+        </span>
+      </p>
+
+      <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/50 px-5 py-4 text-left">
+        <p className="text-sm font-bold text-slate-300">
+          지난 Act를 선택한 경우
+        </p>
+
+        <p className="mt-2 text-sm leading-6 text-slate-500">
+          Henrik API에서 제공되는 최근 경기 범위 안에 해당 Act 경기가
+          없으면 전적이 표시되지 않을 수 있습니다. Current Act 또는 All
+          모드로 다시 확인해보세요.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function RecentMatches({
   matches,
   selectedMode,
@@ -33,6 +95,7 @@ export default function RecentMatches({
   actLoading = false,
 }: RecentMatchesProps) {
   const [openedIndex, setOpenedIndex] = useState<number | null>(null);
+  const selectedActLabel = getSelectedActLabel(acts, selectedAct);
 
   return (
     <section className="bg-slate-900 border border-white/10 rounded-3xl p-6">
@@ -184,14 +247,10 @@ export default function RecentMatches({
               );
             })
           ) : (
-            <div className="bg-slate-800 rounded-2xl p-8 text-center">
-              <p className="text-slate-400 font-bold">
-                해당 조건의 최근 경기가 없습니다.
-              </p>
-              <p className="text-slate-500 text-sm mt-2">
-                다른 모드나 Act를 선택해보세요.
-              </p>
-            </div>
+            <EmptyMatchState
+              selectedMode={selectedMode}
+              selectedActLabel={selectedActLabel}
+            />
           )}
         </div>
       </div>
