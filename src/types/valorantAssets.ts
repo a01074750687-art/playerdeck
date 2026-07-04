@@ -29,3 +29,22 @@ export type ValorantRankAsset = {
 };
 
 export type RankAssetMap = Record<string, ValorantRankAsset>;
+
+export type ValorantWeaponAsset = {
+  uuid: string;
+  displayName: string;
+  displayIcon: string | null;
+};
+
+export type WeaponAssetMap = Record<string, ValorantWeaponAsset>;
+
+export type ValorantActAsset = {
+  uuid: string;
+  displayName: string;
+  episodeName: string;
+  shortLabel: string;
+  fullLabel: string;
+  startTime: string | null;
+  endTime: string | null;
+  isActive: boolean;
+};

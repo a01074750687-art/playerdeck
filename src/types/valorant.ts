@@ -2,6 +2,35 @@ import type { GameMode } from "../constants/valorantModes";
 
 export type MatchResult = "Win" | "Lose";
 
+export type WeaponKill = {
+  weapon: string;
+  kills: number;
+};
+
+export type TopAgentStat = {
+  agent: string;
+  matches: number;
+  kd: number;
+};
+
+export type ActPeakRank = {
+  actId: string;
+  actLabel: string;
+  rank: string;
+};
+
+export type MatchPlayer = {
+  name: string;
+  tag: string;
+  team: string;
+  agent: string;
+  kills: number;
+  deaths: number;
+  assists: number;
+  acs: number;
+  isCurrentPlayer: boolean;
+};
+
 export type RecentMatch = {
   result: MatchResult;
   mode: GameMode;
@@ -12,12 +41,19 @@ export type RecentMatch = {
   assists: number;
   acs: number;
   playedAt: string | null;
+
   score: {
     ally: number;
     enemy: number;
   };
+
   isMatchMvp: boolean;
   isTeamMvp: boolean;
+
+  allyTeam: MatchPlayer[];
+  enemyTeam: MatchPlayer[];
+
+  weaponKills?: WeaponKill[];
 };
 
 export type PlayerData = {
@@ -39,6 +75,8 @@ export type PlayerData = {
   deaths: number;
   assists: number;
 
-  topAgents: string[];
+  topAgents: TopAgentStat[];
+  weaponKills: WeaponKill[];
+  actPeakRanks: ActPeakRank[];
   recentMatches: RecentMatch[];
 };

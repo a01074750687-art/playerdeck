@@ -1,32 +1,79 @@
 import AgentIcon from "./AgentIcon";
 
-type TopAgentsProps = {
-  agents: string[];
+import type {
+  TopAgentStat,
+} from "../../types/valorant";
+
+type Props = {
+  agents: TopAgentStat[];
 };
 
-export default function TopAgents({ agents }: TopAgentsProps) {
+export default function TopAgents({
+  agents,
+}: Props) {
   return (
     <section className="bg-slate-900 border border-white/10 rounded-3xl p-6">
-      <h2 className="text-xl font-bold mb-4">Top Agents</h2>
+      <div className="mb-5">
+        <h2 className="text-xl font-black">
+          Top Agents
+        </h2>
+
+        <p className="text-sm text-slate-500 mt-1">
+          K/D 기준 요원 순위
+        </p>
+      </div>
 
       <div className="space-y-3">
-        {agents.map((agent, index) => (
-          <div
-            key={agent}
-            className="flex items-center justify-between bg-slate-800 rounded-2xl px-4 py-3 hover:bg-slate-700/70 transition"
-          >
-            <div className="flex items-center gap-3">
-              <AgentIcon agentName={agent} size="md" />
+        {agents.map(
+          (agentStat, index) => (
+            <div
+              key={agentStat.agent}
+              className="flex items-center justify-between bg-slate-800 border border-white/5 rounded-2xl p-4"
+            >
+              <div className="flex items-center gap-4 min-w-0">
+                <div className="w-7 text-center shrink-0">
+                  <span className="text-sm font-black text-slate-500">
+                    {index + 1}
+                  </span>
+                </div>
 
-              <div>
-                <p className="font-bold">{agent}</p>
-                <p className="text-xs text-slate-400">Top #{index + 1}</p>
+                <div className="rounded-xl bg-slate-950/70 border border-white/10 p-1 shrink-0">
+                  <AgentIcon
+                    agentName={
+                      agentStat.agent
+                    }
+                    size="sm"
+                  />
+                </div>
+
+                <div className="min-w-0">
+                  <p className="font-black text-white truncate">
+                    {agentStat.agent}
+                  </p>
+
+                  <p className="text-xs text-slate-500 mt-1">
+                    {agentStat.matches}{" "}
+                    {agentStat.matches === 1
+                      ? "Match"
+                      : "Matches"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-right shrink-0">
+                <p className="text-xl font-black text-white">
+                  {agentStat.kd.toFixed(
+                    2
+                  )}
+                </p>
+
+                <p className="text-[10px] font-black tracking-wider text-slate-500">
+                  K/D
+                </p>
               </div>
             </div>
-
-            <span className="text-sm text-slate-400">Agent</span>
-          </div>
-        ))}
+          )
+        )}
       </div>
     </section>
   );
