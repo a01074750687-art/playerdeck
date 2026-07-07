@@ -62,10 +62,10 @@ export default function PlayerHeader({
           <img
             src={playerCardImage}
             alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-35 sm:opacity-45"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40 sm:opacity-50"
           />
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/35" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/50 to-slate-900/10" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-slate-900/40" />
         </>
       )}
