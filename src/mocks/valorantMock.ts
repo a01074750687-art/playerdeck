@@ -5,6 +5,8 @@ export const mockPlayer: PlayerData = {
   level: 421,
   region: "KR",
 
+  playerCard: null,
+
   rank: "Radiant",
   rr: 865,
   peakRank: "Radiant",

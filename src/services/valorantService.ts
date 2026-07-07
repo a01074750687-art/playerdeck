@@ -1,4 +1,5 @@
 import type { GameMode } from "../constants/valorantModes";
+import { getPlayerCardAssetByUuid } from "../api/valorantAssetsApi";
 
 import type {
   ActPeakRank,
@@ -23,6 +24,7 @@ type HenrikAccountResponse = {
     tag: string;
     region?: string;
     account_level?: number;
+    card?: string;
   };
 };
 
@@ -224,9 +226,7 @@ function normalizeModeName(value: string | undefined): GameMode {
 }
 
 function getMatchMode(match: HenrikMatch): GameMode {
-  return normalizeModeName(
-    match.metadata?.mode ?? match.metadata?.mode_id
-  );
+  return normalizeModeName(match.metadata?.mode ?? match.metadata?.mode_id);
 }
 
 function getPlayedAt(match: HenrikMatch) {
@@ -268,10 +268,7 @@ function resolveSelectedAct(
   return acts.find((act) => act.uuid === selectedAct) ?? null;
 }
 
-function isMatchInAct(
-  match: HenrikMatch,
-  act: ValorantActAsset | null
-) {
+function isMatchInAct(match: HenrikMatch, act: ValorantActAsset | null) {
   if (!act) {
     return true;
   }
@@ -310,10 +307,7 @@ function filterMatches(
   });
 }
 
-function getMatchScore(
-  match: HenrikMatch,
-  playerTeam: string | undefined
-) {
+function getMatchScore(match: HenrikMatch, playerTeam: string | undefined) {
   const redScore = match.teams?.red?.rounds_won ?? 0;
   const blueScore = match.teams?.blue?.rounds_won ?? 0;
 
@@ -332,10 +326,7 @@ function getRoundCount(match: HenrikMatch) {
   return Math.max(redScore + blueScore, 1);
 }
 
-function getPlayerAcs(
-  player: HenrikMatchPlayer,
-  rounds: number
-) {
+function getPlayerAcs(player: HenrikMatchPlayer, rounds: number) {
   const score = player.stats?.score ?? 0;
 
   return Math.round(score / rounds);
@@ -373,14 +364,8 @@ function getStringValue(value: unknown) {
   return typeof value === "string" ? value : null;
 }
 
-function getNestedObject(
-  value: unknown
-): Record<string, unknown> | null {
-  if (
-    typeof value === "object" &&
-    value !== null &&
-    !Array.isArray(value)
-  ) {
+function getNestedObject(value: unknown): Record<string, unknown> | null {
+  if (typeof value === "object" && value !== null && !Array.isArray(value)) {
     return value as Record<string, unknown>;
   }
 
@@ -490,19 +475,14 @@ function getWeaponKills(
     .sort((a, b) => b.kills - a.kills);
 }
 
-function mergeWeaponKills(
-  matches: RecentMatch[]
-): WeaponKill[] {
-  const weaponCounts = matches.reduce<Record<string, number>>(
-    (acc, match) => {
-      match.weaponKills?.forEach((item) => {
-        acc[item.weapon] = (acc[item.weapon] ?? 0) + item.kills;
-      });
+function mergeWeaponKills(matches: RecentMatch[]): WeaponKill[] {
+  const weaponCounts = matches.reduce<Record<string, number>>((acc, match) => {
+    match.weaponKills?.forEach((item) => {
+      acc[item.weapon] = (acc[item.weapon] ?? 0) + item.kills;
+    });
 
-      return acc;
-    },
-    {}
-  );
+    return acc;
+  }, {});
 
   return Object.entries(weaponCounts)
     .map(([weapon, kills]) => ({
@@ -513,9 +493,7 @@ function mergeWeaponKills(
     .slice(0, 5);
 }
 
-function getTopAgents(
-  matches: RecentMatch[]
-): TopAgentStat[] {
+function getTopAgents(matches: RecentMatch[]): TopAgentStat[] {
   const agentStats = matches.reduce<Record<string, AgentAccumulator>>(
     (acc, match) => {
       if (!acc[match.agent]) {
@@ -549,10 +527,7 @@ function getTopAgents(
 
   return Object.entries(agentStats)
     .map(([agent, { matches, kills, deaths }]) => {
-      const kd = Number(
-        (kills / Math.max(deaths, 1)).toFixed(2)
-      );
-
+      const kd = Number((kills / Math.max(deaths, 1)).toFixed(2));
       const score = kd * getMatchWeight(matches);
 
       return {
@@ -599,25 +574,17 @@ function getMatchPlayers(
     deaths: player.stats?.deaths ?? 0,
     assists: player.stats?.assists ?? 0,
     acs: getPlayerAcs(player, rounds),
-    isCurrentPlayer: isSamePlayer(
-      player,
-      playerName,
-      playerTag
-    ),
+    isCurrentPlayer: isSamePlayer(player, playerName, playerTag),
   }));
 
   const targetTeam = targetPlayer.team?.toLowerCase();
 
   const allyTeam = mappedPlayers
-    .filter(
-      (player) => player.team.toLowerCase() === targetTeam
-    )
+    .filter((player) => player.team.toLowerCase() === targetTeam)
     .sort((a, b) => b.acs - a.acs);
 
   const enemyTeam = mappedPlayers
-    .filter(
-      (player) => player.team.toLowerCase() !== targetTeam
-    )
+    .filter((player) => player.team.toLowerCase() !== targetTeam)
     .sort((a, b) => b.acs - a.acs);
 
   return {
@@ -626,10 +593,7 @@ function getMatchPlayers(
   };
 }
 
-function getMvpInfo(
-  match: HenrikMatch,
-  targetPlayer: HenrikMatchPlayer
-) {
+function getMvpInfo(match: HenrikMatch, targetPlayer: HenrikMatchPlayer) {
   const players = match.players?.all_players ?? [];
   const rounds = getRoundCount(match);
 
@@ -645,15 +609,13 @@ function getMvpInfo(
     acs: getPlayerAcs(player, rounds),
   }));
 
-  const matchMvp = playersWithAcs.reduce(
-    (best, current) =>
-      current.acs > best.acs ? current : best
+  const matchMvp = playersWithAcs.reduce((best, current) =>
+    current.acs > best.acs ? current : best
   );
 
   const sameTeamPlayers = playersWithAcs.filter(
     (item) =>
-      item.player.team?.toLowerCase() ===
-      targetPlayer.team?.toLowerCase()
+      item.player.team?.toLowerCase() === targetPlayer.team?.toLowerCase()
   );
 
   if (sameTeamPlayers.length === 0) {
@@ -663,24 +625,19 @@ function getMvpInfo(
     };
   }
 
-  const teamMvp = sameTeamPlayers.reduce(
-    (best, current) =>
-      current.acs > best.acs ? current : best
+  const teamMvp = sameTeamPlayers.reduce((best, current) =>
+    current.acs > best.acs ? current : best
   );
 
   const targetName = targetPlayer.name?.toLowerCase();
   const targetTag = targetPlayer.tag?.toLowerCase();
 
-  const matchesTarget = (
-    player: HenrikMatchPlayer | undefined
-  ) =>
+  const matchesTarget = (player: HenrikMatchPlayer | undefined) =>
     player?.name?.toLowerCase() === targetName &&
     player?.tag?.toLowerCase() === targetTag;
 
   const isMatchMvp = matchesTarget(matchMvp.player);
-
-  const isTeamMvp =
-    !isMatchMvp && matchesTarget(teamMvp.player);
+  const isTeamMvp = !isMatchMvp && matchesTarget(teamMvp.player);
 
   return {
     isMatchMvp,
@@ -693,10 +650,9 @@ function parseMatch(
   playerName: string,
   playerTag: string
 ): ParsedMatch | null {
-  const targetPlayer =
-    match.players?.all_players?.find((player) =>
-      isSamePlayer(player, playerName, playerTag)
-    );
+  const targetPlayer = match.players?.all_players?.find((player) =>
+    isSamePlayer(player, playerName, playerTag)
+  );
 
   if (!targetPlayer) {
     return null;
@@ -711,13 +667,10 @@ function parseMatch(
   const acs = getPlayerAcs(targetPlayer, rounds);
   const damageDealt = getPlayerDamage(targetPlayer);
 
-  const isRedTeam =
-    targetPlayer.team?.toLowerCase() === "red";
+  const isRedTeam = targetPlayer.team?.toLowerCase() === "red";
 
   const hasWon = Boolean(
-    isRedTeam
-      ? match.teams?.red?.has_won
-      : match.teams?.blue?.has_won
+    isRedTeam ? match.teams?.red?.has_won : match.teams?.blue?.has_won
   );
 
   const headshots = targetPlayer.stats?.headshots ?? 0;
@@ -726,12 +679,7 @@ function parseMatch(
 
   const mvpInfo = getMvpInfo(match, targetPlayer);
 
-  const teams = getMatchPlayers(
-    match,
-    targetPlayer,
-    playerName,
-    playerTag
-  );
+  const teams = getMatchPlayers(match, targetPlayer, playerName, playerTag);
 
   const recentMatch: RecentMatch = {
     result: hasWon ? "Win" : "Lose",
@@ -752,11 +700,7 @@ function parseMatch(
     allyTeam: teams.allyTeam,
     enemyTeam: teams.enemyTeam,
 
-    weaponKills: getWeaponKills(
-      match,
-      playerName,
-      playerTag
-    ),
+    weaponKills: getWeaponKills(match, playerName, playerTag),
   };
 
   return {
@@ -801,60 +745,30 @@ function calculatePlayerStats(
   );
 
   const parsedMatches = filteredMatches
-    .map((match) =>
-      parseMatch(match, playerName, playerTag)
-    )
-    .filter(
-      (match): match is ParsedMatch =>
-        match !== null
-    );
+    .map((match) => parseMatch(match, playerName, playerTag))
+    .filter((match): match is ParsedMatch => match !== null);
 
   if (parsedMatches.length === 0) {
     return createEmptyPlayerStats();
   }
 
-  const statMatches = parsedMatches.slice(
-    0,
-    STAT_MATCH_LIMIT
-  );
+  const statMatches = parsedMatches.slice(0, STAT_MATCH_LIMIT);
 
   const recentMatches = parsedMatches
     .slice(0, RECENT_MATCH_LIMIT)
     .map((match) => match.recentMatch);
 
-  const statRecentMatches = statMatches.map(
-    (match) => match.recentMatch
-  );
+  const statRecentMatches = statMatches.map((match) => match.recentMatch);
 
-  const kills = statRecentMatches.map(
-    (match) => match.kills
-  );
+  const kills = statRecentMatches.map((match) => match.kills);
+  const deaths = statRecentMatches.map((match) => match.deaths);
+  const assists = statRecentMatches.map((match) => match.assists);
+  const acsList = statRecentMatches.map((match) => match.acs);
 
-  const deaths = statRecentMatches.map(
-    (match) => match.deaths
-  );
+  const wins = statMatches.filter((match) => match.hasWon).length;
 
-  const assists = statRecentMatches.map(
-    (match) => match.assists
-  );
-
-  const acsList = statRecentMatches.map(
-    (match) => match.acs
-  );
-
-  const wins = statMatches.filter(
-    (match) => match.hasWon
-  ).length;
-
-  const totalKills = kills.reduce(
-    (sum, value) => sum + value,
-    0
-  );
-
-  const totalDeaths = deaths.reduce(
-    (sum, value) => sum + value,
-    0
-  );
+  const totalKills = kills.reduce((sum, value) => sum + value, 0);
+  const totalDeaths = deaths.reduce((sum, value) => sum + value, 0);
 
   const totalHeadshots = statMatches.reduce(
     (sum, match) => sum + match.headshots,
@@ -871,45 +785,26 @@ function calculatePlayerStats(
     0
   );
 
-  const totalRounds = statMatches.reduce(
-    (sum, match) => sum + match.rounds,
-    0
-  );
+  const totalRounds = statMatches.reduce((sum, match) => sum + match.rounds, 0);
 
-  const topAgents = getTopAgents(
-    statRecentMatches
-  );
-
-  const weaponKills = mergeWeaponKills(
-    statRecentMatches
-  );
+  const topAgents = getTopAgents(statRecentMatches);
+  const weaponKills = mergeWeaponKills(statRecentMatches);
 
   return {
-    kd: Number(
-      (
-        totalKills /
-        Math.max(totalDeaths, 1)
-      ).toFixed(2)
-    ),
+    kd: Number((totalKills / Math.max(totalDeaths, 1)).toFixed(2)),
 
-    winRate: `${Math.round(
-      (wins / statMatches.length) * 100
-    )}%`,
+    winRate: `${Math.round((wins / statMatches.length) * 100)}%`,
 
     hsRate:
       totalShotCount > 0
-        ? `${Math.round(
-            (totalHeadshots / totalShotCount) * 100
-          )}%`
+        ? `${Math.round((totalHeadshots / totalShotCount) * 100)}%`
         : "0%",
 
     acs: Math.round(average(acsList)),
 
     adr:
       totalRounds > 0
-        ? Number(
-            (totalDamage / totalRounds).toFixed(1)
-          )
+        ? Number((totalDamage / totalRounds).toFixed(1))
         : 0,
 
     kills: average(kills),
@@ -927,22 +822,16 @@ function getHighestTierFromActWins(
   fallbackTier: HenrikRankTier | undefined
 ) {
   const validActWins = (actWins ?? []).filter(
-    (tier) =>
-      typeof tier.id === "number" &&
-      tier.name
+    (tier) => typeof tier.id === "number" && tier.name
   );
 
   if (validActWins.length > 0) {
-    return validActWins.reduce(
-      (best, current) => {
-        const bestId = best.id ?? 0;
-        const currentId = current.id ?? 0;
+    return validActWins.reduce((best, current) => {
+      const bestId = best.id ?? 0;
+      const currentId = current.id ?? 0;
 
-        return currentId > bestId
-          ? current
-          : best;
-      }
-    );
+      return currentId > bestId ? current : best;
+    });
   }
 
   if (fallbackTier?.name) {
@@ -952,20 +841,14 @@ function getHighestTierFromActWins(
   return null;
 }
 
-function getActSortTime(
-  act: ValorantActAsset | undefined
-) {
+function getActSortTime(act: ValorantActAsset | undefined) {
   if (!act?.startTime) {
     return 0;
   }
 
-  const time = new Date(
-    act.startTime
-  ).getTime();
+  const time = new Date(act.startTime).getTime();
 
-  return Number.isNaN(time)
-    ? 0
-    : time;
+  return Number.isNaN(time) ? 0 : time;
 }
 
 function buildActPeakRanks(
@@ -984,19 +867,16 @@ function buildActPeakRanks(
         return null;
       }
 
-      const matchedAct = acts.find(
-        (act) => act.uuid === actId
-      );
+      const matchedAct = acts.find((act) => act.uuid === actId);
 
       if (!matchedAct) {
         return null;
       }
 
-      const highestTier =
-        getHighestTierFromActWins(
-          season.act_wins,
-          season.end_tier
-        );
+      const highestTier = getHighestTierFromActWins(
+        season.act_wins,
+        season.end_tier
+      );
 
       if (!highestTier?.name) {
         return null;
@@ -1016,22 +896,13 @@ function buildActPeakRanks(
         sortTime: number;
       } => item !== null
     )
-    .sort(
-      (a, b) =>
-        b.sortTime - a.sortTime
-    )
+    .sort((a, b) => b.sortTime - a.sortTime)
     .slice(0, ACT_PEAK_LIMIT)
-    .map(
-      ({
-        actId,
-        actLabel,
-        rank,
-      }) => ({
-        actId,
-        actLabel,
-        rank,
-      })
-    );
+    .map(({ actId, actLabel, rank }) => ({
+      actId,
+      actLabel,
+      rank,
+    }));
 }
 
 export async function getPlayerProfile(
@@ -1040,122 +911,96 @@ export async function getPlayerProfile(
   selectedAct: string = "current",
   acts: ValorantActAsset[] = []
 ): Promise<PlayerData> {
-  const { name, tag } =
-    splitPlayer(playerName);
+  const { name, tag } = splitPlayer(playerName);
 
   if (!API_KEY) {
-    throw new Error(
-      "Henrik API Key가 설정되지 않았습니다."
-    );
+    throw new Error("Henrik API Key가 설정되지 않았습니다.");
   }
 
-  const accountResult =
-    await fetchWithAuth<HenrikAccountResponse>(
-      `https://api.henrikdev.xyz/valorant/v2/account/${encodeURIComponent(
-        name
-      )}/${encodeURIComponent(tag)}`
-    );
+  const accountResult = await fetchWithAuth<HenrikAccountResponse>(
+    `https://api.henrikdev.xyz/valorant/v2/account/${encodeURIComponent(
+      name
+    )}/${encodeURIComponent(tag)}`
+  );
 
   if (!accountResult.data) {
-    throw new Error(
-      "플레이어 계정 정보를 찾을 수 없습니다."
-    );
+    throw new Error("플레이어 계정 정보를 찾을 수 없습니다.");
   }
 
-  const region =
-    accountResult.data.region ??
-    "Unknown";
+  let playerCard: PlayerData["playerCard"] = null;
 
-  let mmrResult:
-    | HenrikMmrV3Response
-    | null = null;
+if (accountResult.data.card) {
+  try {
+    playerCard = await getPlayerCardAssetByUuid(
+      accountResult.data.card
+    );
+  } catch (error) {
+    console.log("PLAYER CARD ASSET ERROR:", error);
+  }
+}
 
-  let matchesResult:
-    | HenrikMatchesResponse
-    | null = null;
+  const region = accountResult.data.region ?? "Unknown";
+
+  let mmrResult: HenrikMmrV3Response | null = null;
+  let matchesResult: HenrikMatchesResponse | null = null;
 
   try {
-    mmrResult =
-      await fetchWithAuth<HenrikMmrV3Response>(
-        `https://api.henrikdev.xyz/valorant/v3/mmr/${encodeURIComponent(
-          region
-        )}/pc/${encodeURIComponent(
-          name
-        )}/${encodeURIComponent(tag)}`
-      );
-  } catch (error) {
-    console.log(
-      "MMR API ERROR:",
-      error
+    mmrResult = await fetchWithAuth<HenrikMmrV3Response>(
+      `https://api.henrikdev.xyz/valorant/v3/mmr/${encodeURIComponent(
+        region
+      )}/pc/${encodeURIComponent(name)}/${encodeURIComponent(tag)}`
     );
+  } catch (error) {
+    console.log("MMR API ERROR:", error);
   }
 
   try {
-    matchesResult =
-      await fetchWithAuth<HenrikMatchesResponse>(
-        `https://api.henrikdev.xyz/valorant/v3/matches/${encodeURIComponent(
-          region
-        )}/${encodeURIComponent(
-          name
-        )}/${encodeURIComponent(
-          tag
-        )}?size=${STAT_MATCH_LIMIT}`
-      );
-  } catch (error) {
-    console.log(
-      "MATCH API ERROR:",
-      error
+    matchesResult = await fetchWithAuth<HenrikMatchesResponse>(
+      `https://api.henrikdev.xyz/valorant/v3/matches/${encodeURIComponent(
+        region
+      )}/${encodeURIComponent(name)}/${encodeURIComponent(
+        tag
+      )}?size=${STAT_MATCH_LIMIT}`
     );
+  } catch (error) {
+    console.log("MATCH API ERROR:", error);
   }
 
-  const matchStats =
-    calculatePlayerStats(
-      name,
-      tag,
-      matchesResult?.data ?? [],
-      selectedMode,
-      selectedAct,
-      acts
-    );
+  const matchStats = calculatePlayerStats(
+    name,
+    tag,
+    matchesResult?.data ?? [],
+    selectedMode,
+    selectedAct,
+    acts
+  );
 
-  const actPeakRanks =
-    buildActPeakRanks(
-      mmrResult?.data?.seasonal,
-      acts
-    );
+  const actPeakRanks = buildActPeakRanks(mmrResult?.data?.seasonal, acts);
 
   return {
-    name: `${
-      accountResult.data.name ?? name
-    }#${
+    name: `${accountResult.data.name ?? name}#${
       accountResult.data.tag ?? tag
     }`,
 
-    level:
-      accountResult.data.account_level ??
-      0,
+    level: accountResult.data.account_level ?? 0,
 
     region,
 
-    rank:
-      mmrResult?.data?.current?.tier
-        ?.name ?? "Unrated",
+    playerCard,
+
+    rank: mmrResult?.data?.current?.tier?.name ?? "Unrated",
 
     rr:
       mmrResult?.data?.current?.rr ??
-      mmrResult?.data?.current
-        ?.ranking_in_tier ??
+      mmrResult?.data?.current?.ranking_in_tier ??
       0,
 
-    peakRank:
-      mmrResult?.data?.peak?.tier
-        ?.name ?? "Unrated",
+    peakRank: mmrResult?.data?.peak?.tier?.name ?? "Unrated",
 
     ...matchStats,
 
     actPeakRanks,
 
-    recentMatches:
-      matchStats.recentMatches,
+    recentMatches: matchStats.recentMatches,
   };
 }

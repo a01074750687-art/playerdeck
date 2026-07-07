@@ -19,6 +19,14 @@ export type ActPeakRank = {
   rank: string;
 };
 
+export type PlayerCard = {
+  uuid: string;
+  displayName: string;
+  smallArt: string | null;
+  largeArt: string | null;
+  wideArt: string | null;
+};
+
 export type MatchPlayer = {
   name: string;
   tag: string;
@@ -60,6 +68,8 @@ export type PlayerData = {
   name: string;
   level: number;
   region: string;
+
+  playerCard: PlayerCard | null;
 
   rank: string;
   rr: number;

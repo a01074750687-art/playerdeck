@@ -1,10 +1,12 @@
 import type {
   AgentAssetMap,
   MapAssetMap,
+  PlayerCardAssetMap,
   RankAssetMap,
   ValorantActAsset,
   ValorantAgentAsset,
   ValorantMapAsset,
+  ValorantPlayerCardAsset,
   ValorantRankAsset,
   ValorantWeaponAsset,
   WeaponAssetMap,
@@ -58,6 +60,17 @@ type ValorantWeaponApiResponse = {
   }[];
 };
 
+type ValorantPlayerCardApiResponse = {
+  status: number;
+  data: {
+    uuid: string;
+    displayName: string;
+    smallArt: string | null;
+    largeArt: string | null;
+    wideArt: string | null;
+  }[];
+};
+
 type ValorantSeason = {
   uuid: string;
   displayName: string;
@@ -75,6 +88,7 @@ let cachedAgentMap: AgentAssetMap | null = null;
 let cachedMapAsset: MapAssetMap | null = null;
 let cachedRankAsset: RankAssetMap | null = null;
 let cachedWeaponAsset: WeaponAssetMap | null = null;
+let cachedPlayerCardAsset: PlayerCardAssetMap | null = null;
 let cachedActs: ValorantActAsset[] | null = null;
 
 export async function getAgentAssetMap(): Promise<AgentAssetMap> {
@@ -115,6 +129,7 @@ export async function getAgentAssetByName(
   agentName: string
 ): Promise<ValorantAgentAsset | null> {
   const agentMap = await getAgentAssetMap();
+
   return agentMap[normalizeText(agentName)] ?? null;
 }
 
@@ -146,19 +161,23 @@ export async function getMapAssetByName(
   mapName: string
 ): Promise<ValorantMapAsset | null> {
   const mapMap = await getMapAssetMap();
+
   return mapMap[normalizeText(mapName)] ?? null;
 }
 
 export async function getRankAssetMap(): Promise<RankAssetMap> {
   if (cachedRankAsset) return cachedRankAsset;
 
-  const response = await fetch("https://valorant-api.com/v1/competitivetiers");
+  const response = await fetch(
+    "https://valorant-api.com/v1/competitivetiers"
+  );
 
   if (!response.ok) {
     throw new Error("티어 정보를 불러오지 못했습니다.");
   }
 
   const result: ValorantCompetitiveTierApiResponse = await response.json();
+
   const latestTierSet = result.data[result.data.length - 1];
 
   if (!latestTierSet) return {};
@@ -174,6 +193,7 @@ export async function getRankAssetMap(): Promise<RankAssetMap> {
 
   cachedRankAsset = ranks.reduce<RankAssetMap>((acc, rank) => {
     acc[normalizeText(rank.tierName)] = rank;
+
     return acc;
   }, {});
 
@@ -184,6 +204,7 @@ export async function getRankAssetByName(
   rankName: string
 ): Promise<ValorantRankAsset | null> {
   const rankMap = await getRankAssetMap();
+
   return rankMap[normalizeText(rankName)] ?? null;
 }
 
@@ -215,7 +236,49 @@ export async function getWeaponAssetByName(
   weaponName: string
 ): Promise<ValorantWeaponAsset | null> {
   const weaponMap = await getWeaponAssetMap();
+
   return weaponMap[normalizeText(weaponName)] ?? null;
+}
+
+export async function getPlayerCardAssetMap(): Promise<PlayerCardAssetMap> {
+  if (cachedPlayerCardAsset) {
+    return cachedPlayerCardAsset;
+  }
+
+  const response = await fetch(
+    "https://valorant-api.com/v1/playercards"
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      "플레이어 카드 정보를 불러오지 못했습니다."
+    );
+  }
+
+  const result: ValorantPlayerCardApiResponse = await response.json();
+
+  cachedPlayerCardAsset =
+    result.data.reduce<PlayerCardAssetMap>((acc, card) => {
+      acc[card.uuid.toLowerCase()] = {
+        uuid: card.uuid,
+        displayName: card.displayName,
+        smallArt: card.smallArt,
+        largeArt: card.largeArt,
+        wideArt: card.wideArt,
+      };
+
+      return acc;
+    }, {});
+
+  return cachedPlayerCardAsset;
+}
+
+export async function getPlayerCardAssetByUuid(
+  cardUuid: string
+): Promise<ValorantPlayerCardAsset | null> {
+  const playerCardMap = await getPlayerCardAssetMap();
+
+  return playerCardMap[cardUuid.toLowerCase()] ?? null;
 }
 
 function isActSeason(season: ValorantSeason) {
@@ -242,7 +305,10 @@ function getDateValue(dateString: string | null) {
   return date;
 }
 
-function findEpisodeForAct(act: ValorantSeason, episodes: ValorantSeason[]) {
+function findEpisodeForAct(
+  act: ValorantSeason,
+  episodes: ValorantSeason[]
+) {
   const actStart = getDateValue(act.startTime);
 
   if (!actStart) return null;
@@ -261,6 +327,7 @@ function findEpisodeForAct(act: ValorantSeason, episodes: ValorantSeason[]) {
 
 function getEpisodeNumber(episodeName: string) {
   const match = episodeName.match(/\d+/);
+
   return match ? match[0] : "";
 }
 
@@ -285,10 +352,17 @@ function isEpisodeNineActThreeOrBefore(
   act: ValorantSeason,
   episode: ValorantSeason | null
 ) {
-  const episodeNumber = getEpisodeNumber(episode?.displayName ?? "");
-  const actNumber = getActNumberFromRoman(getActRoman(act.displayName));
+  const episodeNumber = getEpisodeNumber(
+    episode?.displayName ?? ""
+  );
 
-  if (episodeNumber !== "9") return false;
+  const actNumber = getActNumberFromRoman(
+    getActRoman(act.displayName)
+  );
+
+  if (episodeNumber !== "9") {
+    return false;
+  }
 
   return Number(actNumber) <= 3;
 }
@@ -312,9 +386,15 @@ function createOldEpisodeLabel(
   };
 }
 
-function createVersionLabel(act: ValorantSeason, version: "V25" | "V26", actIndex: number) {
+function createVersionLabel(
+  act: ValorantSeason,
+  version: "V25" | "V26",
+  actIndex: number
+) {
   const actRomans = ["I", "II", "III", "IV", "V", "VI"];
-  const actRoman = actRomans[actIndex] ?? getActRoman(act.displayName);
+
+  const actRoman =
+    actRomans[actIndex] ?? getActRoman(act.displayName);
 
   return {
     episodeName: version,
@@ -326,13 +406,16 @@ function createVersionLabel(act: ValorantSeason, version: "V25" | "V26", actInde
 export async function getValorantActs(): Promise<ValorantActAsset[]> {
   if (cachedActs) return cachedActs;
 
-  const response = await fetch("https://valorant-api.com/v1/seasons");
+  const response = await fetch(
+    "https://valorant-api.com/v1/seasons"
+  );
 
   if (!response.ok) {
     throw new Error("액트 정보를 불러오지 못했습니다.");
   }
 
   const result: ValorantSeasonApiResponse = await response.json();
+
   const now = new Date();
 
   const episodes = result.data.filter(isEpisodeSeason);
@@ -340,8 +423,13 @@ export async function getValorantActs(): Promise<ValorantActAsset[]> {
   const actsAsc = result.data
     .filter(isActSeason)
     .sort((a, b) => {
-      const aTime = a.startTime ? new Date(a.startTime).getTime() : 0;
-      const bTime = b.startTime ? new Date(b.startTime).getTime() : 0;
+      const aTime = a.startTime
+        ? new Date(a.startTime).getTime()
+        : 0;
+
+      const bTime = b.startTime
+        ? new Date(b.startTime).getTime()
+        : 0;
 
       return aTime - bTime;
     });
@@ -362,10 +450,17 @@ export async function getValorantActs(): Promise<ValorantActAsset[]> {
     if (isEpisodeNineActThreeOrBefore(act, episode)) {
       labels = createOldEpisodeLabel(act, episode);
     } else {
-      const version = postEpisodeNineActIndex < 6 ? "V25" : "V26";
+      const version =
+        postEpisodeNineActIndex < 6 ? "V25" : "V26";
+
       const actIndex = postEpisodeNineActIndex % 6;
 
-      labels = createVersionLabel(act, version, actIndex);
+      labels = createVersionLabel(
+        act,
+        version,
+        actIndex
+      );
+
       postEpisodeNineActIndex += 1;
     }
 
@@ -377,13 +472,23 @@ export async function getValorantActs(): Promise<ValorantActAsset[]> {
       fullLabel: labels.fullLabel,
       startTime: act.startTime,
       endTime: act.endTime,
-      isActive: Boolean(start && end && start <= now && now <= end),
+      isActive: Boolean(
+        start &&
+          end &&
+          start <= now &&
+          now <= end
+      ),
     };
   });
 
   cachedActs = mappedActs.sort((a, b) => {
-    const aTime = a.startTime ? new Date(a.startTime).getTime() : 0;
-    const bTime = b.startTime ? new Date(b.startTime).getTime() : 0;
+    const aTime = a.startTime
+      ? new Date(a.startTime).getTime()
+      : 0;
+
+    const bTime = b.startTime
+      ? new Date(b.startTime).getTime()
+      : 0;
 
     return bTime - aTime;
   });

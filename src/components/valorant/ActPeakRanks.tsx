@@ -20,17 +20,17 @@ export default function ActPeakRanks({ actPeakRanks }: Props) {
       </div>
 
       {actPeakRanks.length > 0 ? (
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
           {actPeakRanks.map((item) => (
             <div
               key={item.actId}
-              className="rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3"
+              className="rounded-2xl border border-white/10 bg-slate-950/50 px-3 py-3 sm:px-4"
             >
-              <p className="text-[11px] font-black tracking-wider text-slate-500">
+              <p className="truncate text-[11px] font-black tracking-wider text-slate-500">
                 {item.actLabel}
               </p>
 
-              <div className="mt-3 flex items-center gap-3">
+              <div className="mt-3 flex min-w-0 items-center gap-2 sm:gap-3">
                 <RankIcon rankName={item.rank} size="sm" />
 
                 <p className="min-w-0 truncate text-sm font-black text-white">

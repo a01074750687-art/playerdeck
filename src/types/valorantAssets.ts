@@ -38,6 +38,16 @@ export type ValorantWeaponAsset = {
 
 export type WeaponAssetMap = Record<string, ValorantWeaponAsset>;
 
+export type ValorantPlayerCardAsset = {
+  uuid: string;
+  displayName: string;
+  smallArt: string | null;
+  largeArt: string | null;
+  wideArt: string | null;
+};
+
+export type PlayerCardAssetMap = Record<string, ValorantPlayerCardAsset>;
+
 export type ValorantActAsset = {
   uuid: string;
   displayName: string;
@@ -48,3 +58,4 @@ export type ValorantActAsset = {
   endTime: string | null;
   isActive: boolean;
 };
+
