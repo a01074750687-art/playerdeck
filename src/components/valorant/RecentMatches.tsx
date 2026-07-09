@@ -48,7 +48,7 @@ function EmptyMatchState({
   selectedActLabel: string;
 }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-slate-800/70 p-8 text-center">
+    <div className="rounded-3xl border border-white/10 bg-slate-800/70 p-6 text-center sm:p-8">
       <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-red-500/30 bg-red-500/10 text-2xl">
         !
       </div>
@@ -70,7 +70,7 @@ function EmptyMatchState({
         </span>
       </p>
 
-      <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/50 px-5 py-4 text-left">
+      <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-4 text-left sm:px-5">
         <p className="text-sm font-bold text-slate-300">
           지난 Act를 선택한 경우
         </p>
@@ -98,16 +98,17 @@ export default function RecentMatches({
   const selectedActLabel = getSelectedActLabel(acts, selectedAct);
 
   return (
-    <section className="bg-slate-900 border border-white/10 rounded-3xl p-6">
-      <div className="flex items-start justify-between gap-4 mb-5">
+    <section className="rounded-3xl border border-white/10 bg-slate-900 p-4 sm:p-6">
+      <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-xl font-black">Recent Matches</h2>
-          <p className="text-sm text-slate-500 mt-1">
+
+          <p className="mt-1 text-sm text-slate-500">
             최근 경기와 모드별 전적을 확인하세요.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-end gap-3">
+        <div className="flex flex-wrap items-center gap-3 sm:justify-end">
           <ActFilter
             acts={acts}
             selectedAct={selectedAct}
@@ -115,19 +116,19 @@ export default function RecentMatches({
             loading={actLoading}
           />
 
-          <p className="text-sm text-slate-500 whitespace-nowrap">
+          <p className="whitespace-nowrap text-sm text-slate-500">
             {matches.length} matches
           </p>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-[180px_1fr] gap-5">
-        <aside className="bg-slate-950/60 border border-white/10 rounded-2xl p-3 h-fit">
-          <p className="text-xs text-slate-500 font-bold mb-3 px-2">
+      <div className="grid gap-5 lg:grid-cols-[180px_1fr]">
+        <aside className="rounded-2xl border border-white/10 bg-slate-950/60 p-3 lg:h-fit">
+          <p className="mb-3 px-2 text-xs font-bold text-slate-500">
             GAME MODE
           </p>
 
-          <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1">
+          <div className="flex gap-2 overflow-x-auto pb-1 pr-1 lg:block lg:max-h-[360px] lg:space-y-2 lg:overflow-y-auto lg:pb-0">
             {GAME_MODES.map((mode) => {
               const isSelected = selectedMode === mode.value;
 
@@ -137,8 +138,8 @@ export default function RecentMatches({
                   onClick={() => onChangeMode(mode.value)}
                   className={
                     isSelected
-                      ? "w-full text-left bg-red-500 text-white border border-red-400 px-3 py-2 rounded-xl text-sm font-bold transition shadow-lg shadow-red-500/20"
-                      : "w-full text-left bg-slate-800/70 text-slate-400 border border-white/10 hover:border-red-400 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl text-sm font-bold transition"
+                      ? "shrink-0 rounded-xl border border-red-400 bg-red-500 px-2.5 py-2 text-left text-xs font-bold text-white shadow-lg shadow-red-500/20 transition lg:w-full lg:px-3 lg:text-sm"
+                      : "shrink-0 rounded-xl border border-white/10 bg-slate-800/70 px-2.5 py-2 text-left text-xs font-bold text-slate-400 transition hover:border-red-400 hover:bg-slate-800 hover:text-white lg:w-full lg:px-3 lg:text-sm"
                   }
                 >
                   {mode.label}
@@ -156,53 +157,55 @@ export default function RecentMatches({
               return (
                 <article
                   key={`${match.agent}-${match.map}-${match.playedAt}-${index}`}
-                  className="group overflow-hidden rounded-3xl bg-slate-800 border border-white/10 hover:border-red-400/70 hover:-translate-y-1 transition duration-300"
+                  className="group overflow-hidden rounded-3xl border border-white/10 bg-slate-800 transition duration-300 hover:border-red-400/70 hover:-translate-y-1"
                 >
-                  <div className="relative h-40 overflow-hidden">
+                  <div className="relative h-36 overflow-hidden sm:h-40">
                     <MapThumbnail mapName={match.map} />
 
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-slate-950/10" />
 
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-slate-950/70 border border-white/10 backdrop-blur px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-slate-300">
+                    <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
+                      <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-slate-300 backdrop-blur sm:text-xs">
                         {match.mode} • {formatTimeAgo(match.playedAt)}
                       </span>
                     </div>
 
-                    <div className="absolute right-4 top-4">
+                    <div className="absolute right-3 top-3 sm:right-4 sm:top-4">
                       <div
                         className={
                           match.result === "Win"
-                            ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 px-4 py-2 rounded-2xl text-sm font-black backdrop-blur text-right"
-                            : "bg-red-500/20 text-red-300 border border-red-400/40 px-4 py-2 rounded-2xl text-sm font-black backdrop-blur text-right"
+                            ? "rounded-2xl border border-emerald-400/40 bg-emerald-500/20 px-3 py-2 text-right text-xs font-black text-emerald-300 backdrop-blur sm:px-4 sm:text-sm"
+                            : "rounded-2xl border border-red-400/40 bg-red-500/20 px-3 py-2 text-right text-xs font-black text-red-300 backdrop-blur sm:px-4 sm:text-sm"
                         }
                       >
                         <p>{match.result === "Win" ? "VICTORY" : "DEFEAT"}</p>
-                        <p className="text-xs mt-1 opacity-80">
+
+                        <p className="mt-1 text-[11px] opacity-80 sm:text-xs">
                           {match.score.ally} : {match.score.enemy}
                         </p>
                       </div>
                     </div>
 
-                    <div className="absolute left-4 right-4 bottom-4">
-                      <p className="text-sm text-slate-300 font-bold uppercase tracking-wider">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-300 sm:text-sm">
                         Map
                       </p>
-                      <h3 className="text-3xl font-black leading-tight">
+
+                      <h3 className="text-2xl font-black leading-tight sm:text-3xl">
                         {match.map}
                       </h3>
                     </div>
                   </div>
 
-                  <div className="p-5">
-                    <div className="flex items-start justify-between gap-5">
+                  <div className="p-4 sm:p-5">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                       <div className="flex items-start gap-4">
-                        <div className="rounded-2xl bg-slate-950/80 border border-white/10 p-2 shrink-0">
+                        <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950/80 p-2">
                           <AgentIcon agentName={match.agent} size="lg" />
                         </div>
 
-                        <div>
-                          <h4 className="text-2xl font-black">
+                        <div className="min-w-0">
+                          <h4 className="truncate text-2xl font-black">
                             {match.agent}
                           </h4>
 
@@ -225,7 +228,7 @@ export default function RecentMatches({
                         </div>
                       </div>
 
-                      <div className="shrink-0">
+                      <div className="shrink-0 sm:text-right">
                         <PerformanceBadge match={match} />
                       </div>
                     </div>
@@ -234,12 +237,12 @@ export default function RecentMatches({
 
                     <div className="mt-5 h-px bg-white/10" />
 
-                    <div className="mt-4 flex items-center justify-end text-sm">
+                    <div className="mt-3 flex items-center justify-end text-sm">
                       <button
                         onClick={() => setOpenedIndex(isOpen ? null : index)}
-                        className="text-red-400 hover:text-red-300 font-bold transition group-hover:translate-x-1"
+                        className="rounded-xl px-3 py-2 font-bold text-red-400 transition hover:bg-red-500/10 hover:text-red-300 group-hover:translate-x-1"
                       >
-                        {isOpen ? "Close Match ↑" : "View Match →"}
+                        {isOpen ? "상세 닫기 ↑" : "상세 보기 →"}
                       </button>
                     </div>
                   </div>

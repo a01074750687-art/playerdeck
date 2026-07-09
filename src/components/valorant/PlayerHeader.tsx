@@ -22,25 +22,11 @@ function formatLastUpdated(lastUpdated: Date | null | undefined) {
   const diffHours = Math.floor(diffMinutes / 60);
   const diffDays = Math.floor(diffHours / 24);
 
-  if (diffSeconds < 10) {
-    return "방금 전";
-  }
-
-  if (diffSeconds < 60) {
-    return `${diffSeconds}초 전`;
-  }
-
-  if (diffMinutes < 60) {
-    return `${diffMinutes}분 전`;
-  }
-
-  if (diffHours < 24) {
-    return `${diffHours}시간 전`;
-  }
-
-  if (diffDays < 7) {
-    return `${diffDays}일 전`;
-  }
+  if (diffSeconds < 10) return "방금 전";
+  if (diffSeconds < 60) return `${diffSeconds}초 전`;
+  if (diffMinutes < 60) return `${diffMinutes}분 전`;
+  if (diffHours < 24) return `${diffHours}시간 전`;
+  if (diffDays < 7) return `${diffDays}일 전`;
 
   return lastUpdated.toLocaleDateString("ko-KR");
 }
@@ -52,7 +38,9 @@ export default function PlayerHeader({
   lastUpdated = null,
   onRefresh,
 }: Props) {
-  const isRefreshDisabled = isRefreshing || refreshCooldown > 0 || !onRefresh;
+  const isRefreshDisabled =
+    isRefreshing || refreshCooldown > 0 || !onRefresh;
+
   const playerCardImage = player.playerCard?.wideArt ?? null;
 
   return (
@@ -66,6 +54,7 @@ export default function PlayerHeader({
           />
 
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/50 to-slate-900/10" />
+
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-slate-900/40" />
         </>
       )}
@@ -83,7 +72,9 @@ export default function PlayerHeader({
                   {player.name}
                 </h1>
 
-                <p className="text-slate-400">Level {player.level}</p>
+                <p className="text-slate-400">
+                  Level {player.level}
+                </p>
 
                 <p className="mt-1 text-slate-500">
                   Region : {player.region}
@@ -101,42 +92,102 @@ export default function PlayerHeader({
                   disabled={isRefreshDisabled}
                   className="w-full min-w-[150px] rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-2.5 text-sm font-black text-red-300 transition hover:border-red-400/60 hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50 xl:w-auto"
                 >
-                  {isRefreshing ? "↻ 갱신 중..." : "↻ 전적 갱신"}
+                  {isRefreshing
+                    ? "↻ 갱신 중..."
+                    : "↻ 전적 갱신"}
                 </button>
 
                 {refreshCooldown > 0 && (
                   <p className="mt-2 text-xs text-red-400/70 xl:text-right">
-                    30초 후에 다시 시도하세요.
+                    {refreshCooldown}초 후에 다시 시도하세요.
                   </p>
                 )}
               </div>
             </div>
 
-            <ActPeakRanks actPeakRanks={player.actPeakRanks} />
+            <ActPeakRanks
+              actPeakRanks={player.actPeakRanks}
+            />
+
+            {/* 모바일 Current Rank */}
+            <div className="mt-5 rounded-3xl border border-red-500/30 bg-red-500/10 p-4 backdrop-blur-sm lg:hidden">
+              <div className="flex items-center gap-4">
+                <RankIcon
+                  rankName={player.rank}
+                  size="lg"
+                />
+
+                <div className="min-w-0 flex-1">
+                  <p className="mb-1 text-xs text-red-300">
+                    Current Rank
+                  </p>
+
+                  <h2 className="break-words text-2xl font-black leading-tight">
+                    {player.rank}
+                  </h2>
+
+                  <p className="mt-1 text-sm font-bold text-red-300">
+                    RR : {player.rr}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 h-px bg-white/10" />
+
+              <div className="mt-4">
+                <p className="mb-2 text-xs text-slate-400">
+                  Peak Rank
+                </p>
+
+                <div className="flex items-center gap-3">
+                  <RankIcon
+                    rankName={player.peakRank}
+                    size="sm"
+                  />
+
+                  <p className="text-sm font-black text-slate-100">
+                    {player.peakRank}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="h-fit w-full rounded-3xl border border-red-500/30 bg-red-500/10 p-5 backdrop-blur-sm sm:p-6 lg:w-auto lg:min-w-[280px]">
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-              <RankIcon rankName={player.rank} size="lg" />
+          {/* 데스크톱 Current Rank */}
+          <div className="hidden h-fit min-w-[280px] rounded-3xl border border-red-500/30 bg-red-500/10 p-6 backdrop-blur-sm lg:block">
+            <div className="flex items-center gap-5">
+              <RankIcon
+                rankName={player.rank}
+                size="lg"
+              />
 
-              <div className="min-w-0">
-                <p className="mb-1 text-sm text-red-300">Current Rank</p>
+              <div>
+                <p className="mb-1 text-sm text-red-300">
+                  Current Rank
+                </p>
 
-                <h2 className="break-words text-2xl font-black leading-tight sm:text-3xl">
+                <h2 className="text-3xl font-black leading-tight">
                   {player.rank}
                 </h2>
 
-                <p className="mt-2 text-red-300">RR : {player.rr}</p>
+                <p className="mt-2 text-red-300">
+                  RR : {player.rr}
+                </p>
               </div>
             </div>
 
             <div className="mt-5 h-px bg-white/10" />
 
             <div className="mt-4">
-              <p className="mb-2 text-sm text-slate-400">Peak Rank</p>
+              <p className="mb-2 text-sm text-slate-400">
+                Peak Rank
+              </p>
 
               <div className="flex items-center gap-3">
-                <RankIcon rankName={player.peakRank} size="sm" />
+                <RankIcon
+                  rankName={player.peakRank}
+                  size="sm"
+                />
 
                 <p className="font-semibold text-slate-100">
                   {player.peakRank}

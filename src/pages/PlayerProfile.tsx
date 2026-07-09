@@ -228,11 +228,11 @@ export default function PlayerProfile() {
     (player?.recentMatches.length ?? 0) > 0;
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white px-6 py-10">
-      <section className="max-w-6xl mx-auto">
+    <main className="min-h-screen w-full bg-slate-950 px-3 py-10 text-white sm:px-6">
+      <section className="mx-auto w-full max-w-6xl">
         <Link
           to="/valorant"
-          className="text-red-400 hover:text-red-300 text-sm"
+          className="text-sm text-red-400 hover:text-red-300"
         >
           ← Back to Valorant
         </Link>
@@ -240,12 +240,12 @@ export default function PlayerProfile() {
         {loading && <ProfileSkeleton />}
 
         {!loading && error && !player && (
-          <div className="mt-8 bg-slate-900 border border-red-500/30 rounded-3xl p-8">
-            <p className="text-red-400 font-bold mb-3">
+          <div className="mt-8 rounded-3xl border border-red-500/30 bg-slate-900 p-8">
+            <p className="mb-3 font-bold text-red-400">
               ERROR
             </p>
 
-            <h1 className="text-3xl font-black mb-4">
+            <h1 className="mb-4 text-3xl font-black">
               검색 실패
             </h1>
 
@@ -265,7 +265,7 @@ export default function PlayerProfile() {
               onRefresh={refreshPlayer}
             />
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               <StatCard
                 title="K/D"
                 value={hasMatchData ? player.kd : "-"}
@@ -307,7 +307,7 @@ export default function PlayerProfile() {
               />
             </div>
 
-            <div className="grid md:grid-cols-[0.9fr_1.4fr] gap-6 mt-6">
+            <div className="mt-6 grid gap-6 md:grid-cols-[0.9fr_1.4fr]">
               <div className="space-y-6">
                 <TopAgents
                   agents={player.topAgents}
@@ -332,7 +332,7 @@ export default function PlayerProfile() {
         )}
 
         {matchLoading && (
-          <div className="fixed bottom-6 right-6 z-50 rounded-2xl border border-white/10 bg-slate-900/95 px-5 py-3 shadow-2xl backdrop-blur">
+          <div className="fixed bottom-6 left-3 right-3 z-50 rounded-2xl border border-white/10 bg-slate-900/95 px-5 py-3 text-center shadow-2xl backdrop-blur sm:left-auto sm:right-6 sm:text-left">
             <p className="text-sm font-bold text-slate-300">
               전적을 불러오는 중...
             </p>
