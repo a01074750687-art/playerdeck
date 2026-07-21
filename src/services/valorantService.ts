@@ -1,5 +1,5 @@
-import type { GameMode } from "../constants/valorantModes";
 import { getPlayerCardAssetByUuid } from "../api/valorantAssetsApi";
+import type { GameMode } from "../constants/valorantModes";
 
 import type {
   ActPeakRank,
@@ -9,6 +9,7 @@ import type {
   TopAgentStat,
   WeaponKill,
 } from "../types/valorant";
+
 import type { ValorantActAsset } from "../types/valorantAssets";
 
 const API_KEY = import.meta.env.VITE_HENRIK_API_KEY;
@@ -19,6 +20,7 @@ const ACT_PEAK_LIMIT = 4;
 
 type HenrikAccountResponse = {
   status: number;
+
   data?: {
     name: string;
     tag: string;
@@ -38,29 +40,36 @@ type HenrikSeasonalMmr = {
     id?: string;
     short?: string;
   };
+
   wins?: number;
   games?: number;
+
   end_tier?: HenrikRankTier;
   end_rr?: number;
+
   ranking_schema?: string;
   act_wins?: HenrikRankTier[];
 };
 
 type HenrikMmrV3Response = {
   status: number;
+
   data?: {
     current?: {
       tier?: {
         name?: string;
       };
+
       rr?: number;
       ranking_in_tier?: number;
     };
+
     peak?: {
       tier?: {
         name?: string;
       };
     };
+
     seasonal?: HenrikSeasonalMmr[];
   };
 };
@@ -85,19 +94,23 @@ type HenrikMatch = {
     started_at?: string;
     game_start?: number;
   };
+
   players?: {
     all_players?: HenrikMatchPlayer[];
   };
+
   teams?: {
     red?: {
       has_won?: boolean;
       rounds_won?: number;
     };
+
     blue?: {
       has_won?: boolean;
       rounds_won?: number;
     };
   };
+
   kills?: HenrikKillEvent[];
 };
 
@@ -106,16 +119,20 @@ type HenrikMatchPlayer = {
   tag?: string;
   team?: "Red" | "Blue" | string;
   character?: string;
+
   damage_made?: number;
   damage?: HenrikDamageData;
+
   stats?: {
     kills?: number;
     deaths?: number;
     assists?: number;
     score?: number;
+
     bodyshots?: number;
     headshots?: number;
     legshots?: number;
+
     damage_made?: number;
     damage?: HenrikDamageData;
   };
@@ -129,9 +146,12 @@ type AgentAccumulator = {
 
 type ParsedMatch = {
   recentMatch: RecentMatch;
+
   headshots: number;
   totalShots: number;
+
   hasWon: boolean;
+
   damageDealt: number;
   rounds: number;
 };
@@ -142,9 +162,11 @@ type CalculatedPlayerStats = {
   hsRate: string;
   acs: number;
   adr: number;
+
   kills: number;
   deaths: number;
   assists: number;
+
   topAgents: TopAgentStat[];
   weaponKills: WeaponKill[];
   recentMatches: RecentMatch[];
@@ -164,6 +186,10 @@ function splitPlayer(player: string) {
 }
 
 async function fetchWithAuth<T>(url: string): Promise<T> {
+  if (!API_KEY) {
+    throw new Error("Henrik API Key가 설정되지 않았습니다.");
+  }
+
   const response = await fetch(url, {
     headers: {
       Authorization: API_KEY,
@@ -171,7 +197,7 @@ async function fetchWithAuth<T>(url: string): Promise<T> {
     },
   });
 
-  const result = await response.json().catch(() => null);
+  const result: unknown = await response.json().catch(() => null);
 
   if (!response.ok) {
     throw new Error(`API 요청 실패: ${response.status}`);
@@ -191,34 +217,40 @@ function average(numbers: number[]) {
 }
 
 function normalizeModeName(value: string | undefined): GameMode {
-  const mode = value
+  const normalizedMode = value
     ?.toLowerCase()
     .replace(/\s/g, "")
-    .replace(/-/g, "");
+    .replace(/-/g, "")
+    .replace(/_/g, "");
 
-  if (!mode) return "all";
+  if (!normalizedMode) {
+    return "all";
+  }
 
-  if (mode.includes("competitive")) {
+  if (normalizedMode.includes("competitive")) {
     return "competitive";
   }
 
-  if (mode.includes("unrated")) {
+  if (normalizedMode.includes("unrated")) {
     return "unrated";
   }
 
-  if (mode.includes("swiftplay")) {
+  if (normalizedMode.includes("swiftplay")) {
     return "swiftplay";
   }
 
-  if (mode.includes("deathmatch") && mode.includes("team")) {
+  if (
+    normalizedMode.includes("deathmatch") &&
+    normalizedMode.includes("team")
+  ) {
     return "teamdeathmatch";
   }
 
-  if (mode.includes("deathmatch")) {
+  if (normalizedMode.includes("deathmatch")) {
     return "deathmatch";
   }
 
-  if (mode.includes("spikerush")) {
+  if (normalizedMode.includes("spikerush")) {
     return "spikerush";
   }
 
@@ -226,10 +258,12 @@ function normalizeModeName(value: string | undefined): GameMode {
 }
 
 function getMatchMode(match: HenrikMatch): GameMode {
-  return normalizeModeName(match.metadata?.mode ?? match.metadata?.mode_id);
+  return normalizeModeName(
+    match.metadata?.mode ?? match.metadata?.mode_id
+  );
 }
 
-function getPlayedAt(match: HenrikMatch) {
+function getPlayedAt(match: HenrikMatch): string | null {
   if (match.metadata?.started_at) {
     return match.metadata.started_at;
   }
@@ -241,7 +275,7 @@ function getPlayedAt(match: HenrikMatch) {
   return null;
 }
 
-function getMatchDate(match: HenrikMatch) {
+function getMatchDate(match: HenrikMatch): Date | null {
   const playedAt = getPlayedAt(match);
 
   if (!playedAt) {
@@ -268,7 +302,10 @@ function resolveSelectedAct(
   return acts.find((act) => act.uuid === selectedAct) ?? null;
 }
 
-function isMatchInAct(match: HenrikMatch, act: ValorantActAsset | null) {
+function isMatchInAct(
+  match: HenrikMatch,
+  act: ValorantActAsset | null
+): boolean {
   if (!act) {
     return true;
   }
@@ -279,14 +316,26 @@ function isMatchInAct(match: HenrikMatch, act: ValorantActAsset | null) {
     return false;
   }
 
-  const start = act.startTime ? new Date(act.startTime) : null;
-  const end = act.endTime ? new Date(act.endTime) : null;
+  const startDate = act.startTime
+    ? new Date(act.startTime)
+    : null;
 
-  if (!start || !end) {
+  const endDate = act.endTime
+    ? new Date(act.endTime)
+    : null;
+
+  if (!startDate || !endDate) {
     return true;
   }
 
-  return start <= matchDate && matchDate <= end;
+  if (
+    Number.isNaN(startDate.getTime()) ||
+    Number.isNaN(endDate.getTime())
+  ) {
+    return true;
+  }
+
+  return matchDate >= startDate && matchDate <= endDate;
 }
 
 function filterMatches(
@@ -294,20 +343,25 @@ function filterMatches(
   selectedMode: GameMode,
   selectedAct: string,
   acts: ValorantActAsset[]
-) {
-  const act = resolveSelectedAct(selectedAct, acts);
+): HenrikMatch[] {
+  const selectedActAsset = resolveSelectedAct(selectedAct, acts);
 
   return matches.filter((match) => {
-    const modeMatches =
-      selectedMode === "all" || getMatchMode(match) === selectedMode;
+    const matchMode = getMatchMode(match);
 
-    const actMatches = isMatchInAct(match, act);
+    const modeMatches =
+      selectedMode === "all" || matchMode === selectedMode;
+
+    const actMatches = isMatchInAct(match, selectedActAsset);
 
     return modeMatches && actMatches;
   });
 }
 
-function getMatchScore(match: HenrikMatch, playerTeam: string | undefined) {
+function getMatchScore(
+  match: HenrikMatch,
+  playerTeam: string | undefined
+) {
   const redScore = match.teams?.red?.rounds_won ?? 0;
   const blueScore = match.teams?.blue?.rounds_won ?? 0;
 
@@ -319,20 +373,23 @@ function getMatchScore(match: HenrikMatch, playerTeam: string | undefined) {
   };
 }
 
-function getRoundCount(match: HenrikMatch) {
+function getRoundCount(match: HenrikMatch): number {
   const redScore = match.teams?.red?.rounds_won ?? 0;
   const blueScore = match.teams?.blue?.rounds_won ?? 0;
 
   return Math.max(redScore + blueScore, 1);
 }
 
-function getPlayerAcs(player: HenrikMatchPlayer, rounds: number) {
+function getPlayerAcs(
+  player: HenrikMatchPlayer,
+  rounds: number
+): number {
   const score = player.stats?.score ?? 0;
 
-  return Math.round(score / rounds);
+  return Math.round(score / Math.max(rounds, 1));
 }
 
-function getPlayerDamage(player: HenrikMatchPlayer) {
+function getPlayerDamage(player: HenrikMatchPlayer): number {
   const damageCandidates = [
     player.damage_made,
     player.stats?.damage_made,
@@ -343,36 +400,57 @@ function getPlayerDamage(player: HenrikMatchPlayer) {
   ];
 
   const damage = damageCandidates.find(
-    (value) => typeof value === "number" && Number.isFinite(value)
+    (value): value is number =>
+      typeof value === "number" && Number.isFinite(value)
   );
 
   return damage ?? 0;
+}
+
+function getHeadshotRate(
+  headshots: number,
+  bodyshots: number,
+  legshots: number
+): number {
+  const totalShots = headshots + bodyshots + legshots;
+
+  if (totalShots <= 0) {
+    return 0;
+  }
+
+  return Math.round((headshots / totalShots) * 100);
 }
 
 function isSamePlayer(
   player: HenrikMatchPlayer,
   playerName: string,
   playerTag: string
-) {
+): boolean {
   return (
     player.name?.toLowerCase() === playerName.toLowerCase() &&
     player.tag?.toLowerCase() === playerTag.toLowerCase()
   );
 }
 
-function getStringValue(value: unknown) {
+function getStringValue(value: unknown): string | null {
   return typeof value === "string" ? value : null;
 }
 
-function getNestedObject(value: unknown): Record<string, unknown> | null {
-  if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+function getNestedObject(
+  value: unknown
+): Record<string, unknown> | null {
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value)
+  ) {
     return value as Record<string, unknown>;
   }
 
   return null;
 }
 
-function getWeaponName(kill: HenrikKillEvent) {
+function getWeaponName(kill: HenrikKillEvent): string {
   const directWeaponName =
     getStringValue(kill.damage_weapon_name) ??
     getStringValue(kill.weapon_name) ??
@@ -393,7 +471,9 @@ function getWeaponName(kill: HenrikKillEvent) {
     );
   }
 
-  const damageWeaponObject = getNestedObject(kill.damage_weapon);
+  const damageWeaponObject = getNestedObject(
+    kill.damage_weapon
+  );
 
   if (damageWeaponObject) {
     return (
@@ -411,8 +491,9 @@ function isTargetKillEvent(
   kill: HenrikKillEvent,
   playerName: string,
   playerTag: string
-) {
-  const targetRiotId = `${playerName}#${playerTag}`.toLowerCase();
+): boolean {
+  const targetRiotId =
+    `${playerName}#${playerTag}`.toLowerCase();
 
   const directKillerName =
     getStringValue(kill.killer_display_name) ??
@@ -425,20 +506,21 @@ function isTargetKillEvent(
 
   const killerObject = getNestedObject(kill.killer);
 
-  if (killerObject) {
-    const killerName = getStringValue(killerObject.name);
-    const killerTag = getStringValue(killerObject.tag);
-
-    if (
-      killerName &&
-      killerTag &&
-      `${killerName}#${killerTag}`.toLowerCase() === targetRiotId
-    ) {
-      return true;
-    }
+  if (!killerObject) {
+    return false;
   }
 
-  return false;
+  const killerName = getStringValue(killerObject.name);
+  const killerTag = getStringValue(killerObject.tag);
+
+  if (!killerName || !killerTag) {
+    return false;
+  }
+
+  return (
+    `${killerName}#${killerTag}`.toLowerCase() ===
+    targetRiotId
+  );
 }
 
 function getWeaponKills(
@@ -449,20 +531,24 @@ function getWeaponKills(
   const killEvents = match.kills ?? [];
 
   const weaponCounts = killEvents.reduce<Record<string, number>>(
-    (acc, kill) => {
+    (accumulator, kill) => {
       if (!isTargetKillEvent(kill, playerName, playerTag)) {
-        return acc;
+        return accumulator;
       }
 
       const weaponName = getWeaponName(kill);
 
-      if (!weaponName || weaponName.toLowerCase() === "unknown") {
-        return acc;
+      if (
+        !weaponName ||
+        weaponName.toLowerCase() === "unknown"
+      ) {
+        return accumulator;
       }
 
-      acc[weaponName] = (acc[weaponName] ?? 0) + 1;
+      accumulator[weaponName] =
+        (accumulator[weaponName] ?? 0) + 1;
 
-      return acc;
+      return accumulator;
     },
     {}
   );
@@ -472,53 +558,61 @@ function getWeaponKills(
       weapon,
       kills,
     }))
-    .sort((a, b) => b.kills - a.kills);
+    .sort((first, second) => second.kills - first.kills);
 }
 
-function mergeWeaponKills(matches: RecentMatch[]): WeaponKill[] {
-  const weaponCounts = matches.reduce<Record<string, number>>((acc, match) => {
-    match.weaponKills?.forEach((item) => {
-      acc[item.weapon] = (acc[item.weapon] ?? 0) + item.kills;
-    });
+function mergeWeaponKills(
+  matches: RecentMatch[]
+): WeaponKill[] {
+  const weaponCounts = matches.reduce<Record<string, number>>(
+    (accumulator, match) => {
+      match.weaponKills?.forEach((weaponKill) => {
+        accumulator[weaponKill.weapon] =
+          (accumulator[weaponKill.weapon] ?? 0) +
+          weaponKill.kills;
+      });
 
-    return acc;
-  }, {});
+      return accumulator;
+    },
+    {}
+  );
 
   return Object.entries(weaponCounts)
     .map(([weapon, kills]) => ({
       weapon,
       kills,
     }))
-    .sort((a, b) => b.kills - a.kills)
+    .sort((first, second) => second.kills - first.kills)
     .slice(0, 5);
 }
 
-function getTopAgents(matches: RecentMatch[]): TopAgentStat[] {
-  const agentStats = matches.reduce<Record<string, AgentAccumulator>>(
-    (acc, match) => {
-      if (!acc[match.agent]) {
-        acc[match.agent] = {
-          matches: 0,
-          kills: 0,
-          deaths: 0,
-        };
-      }
+function getTopAgents(
+  matches: RecentMatch[]
+): TopAgentStat[] {
+  const agentStats = matches.reduce<
+    Record<string, AgentAccumulator>
+  >((accumulator, match) => {
+    if (!accumulator[match.agent]) {
+      accumulator[match.agent] = {
+        matches: 0,
+        kills: 0,
+        deaths: 0,
+      };
+    }
 
-      acc[match.agent].matches += 1;
-      acc[match.agent].kills += match.kills;
-      acc[match.agent].deaths += match.deaths;
+    accumulator[match.agent].matches += 1;
+    accumulator[match.agent].kills += match.kills;
+    accumulator[match.agent].deaths += match.deaths;
 
-      return acc;
-    },
-    {}
-  );
+    return accumulator;
+  }, {});
 
-  const getMatchWeight = (matches: number) => {
-    if (matches === 1) {
+  const getMatchWeight = (matchCount: number) => {
+    if (matchCount === 1) {
       return 0.85;
     }
 
-    if (matches === 2) {
+    if (matchCount === 2) {
       return 0.95;
     }
 
@@ -526,32 +620,35 @@ function getTopAgents(matches: RecentMatch[]): TopAgentStat[] {
   };
 
   return Object.entries(agentStats)
-    .map(([agent, { matches, kills, deaths }]) => {
-      const kd = Number((kills / Math.max(deaths, 1)).toFixed(2));
-      const score = kd * getMatchWeight(matches);
+    .map(([agent, stats]) => {
+      const kd = Number(
+        (
+          stats.kills / Math.max(stats.deaths, 1)
+        ).toFixed(2)
+      );
 
       return {
         agent,
-        matches,
+        matches: stats.matches,
         kd,
-        score,
+        score: kd * getMatchWeight(stats.matches),
       };
     })
-    .sort((a, b) => {
-      if (b.score !== a.score) {
-        return b.score - a.score;
+    .sort((first, second) => {
+      if (second.score !== first.score) {
+        return second.score - first.score;
       }
 
-      if (b.kd !== a.kd) {
-        return b.kd - a.kd;
+      if (second.kd !== first.kd) {
+        return second.kd - first.kd;
       }
 
-      return b.matches - a.matches;
+      return second.matches - first.matches;
     })
     .slice(0, 3)
-    .map(({ agent, matches, kd }) => ({
+    .map(({ agent, matches: matchCount, kd }) => ({
       agent,
-      matches,
+      matches: matchCount,
       kd,
     }));
 }
@@ -561,31 +658,49 @@ function getMatchPlayers(
   targetPlayer: HenrikMatchPlayer,
   playerName: string,
   playerTag: string
-) {
+): {
+  allyTeam: MatchPlayer[];
+  enemyTeam: MatchPlayer[];
+} {
   const players = match.players?.all_players ?? [];
   const rounds = getRoundCount(match);
 
-  const mappedPlayers: MatchPlayer[] = players.map((player) => ({
-    name: player.name ?? "Unknown",
-    tag: player.tag ?? "",
-    team: player.team ?? "Unknown",
-    agent: player.character ?? "Unknown",
-    kills: player.stats?.kills ?? 0,
-    deaths: player.stats?.deaths ?? 0,
-    assists: player.stats?.assists ?? 0,
-    acs: getPlayerAcs(player, rounds),
-    isCurrentPlayer: isSamePlayer(player, playerName, playerTag),
-  }));
+  const mappedPlayers: MatchPlayer[] = players.map(
+    (player) => ({
+      name: player.name ?? "Unknown",
+      tag: player.tag ?? "",
+      team: player.team ?? "Unknown",
+      agent: player.character ?? "Unknown",
+
+      kills: player.stats?.kills ?? 0,
+      deaths: player.stats?.deaths ?? 0,
+      assists: player.stats?.assists ?? 0,
+
+      acs: getPlayerAcs(player, rounds),
+
+      isCurrentPlayer: isSamePlayer(
+        player,
+        playerName,
+        playerTag
+      ),
+    })
+  );
 
   const targetTeam = targetPlayer.team?.toLowerCase();
 
   const allyTeam = mappedPlayers
-    .filter((player) => player.team.toLowerCase() === targetTeam)
-    .sort((a, b) => b.acs - a.acs);
+    .filter(
+      (player) =>
+        player.team.toLowerCase() === targetTeam
+    )
+    .sort((first, second) => second.acs - first.acs);
 
   const enemyTeam = mappedPlayers
-    .filter((player) => player.team.toLowerCase() !== targetTeam)
-    .sort((a, b) => b.acs - a.acs);
+    .filter(
+      (player) =>
+        player.team.toLowerCase() !== targetTeam
+    )
+    .sort((first, second) => second.acs - first.acs);
 
   return {
     allyTeam,
@@ -593,7 +708,13 @@ function getMatchPlayers(
   };
 }
 
-function getMvpInfo(match: HenrikMatch, targetPlayer: HenrikMatchPlayer) {
+function getMvpInfo(
+  match: HenrikMatch,
+  targetPlayer: HenrikMatchPlayer
+): {
+  isMatchMvp: boolean;
+  isTeamMvp: boolean;
+} {
   const players = match.players?.all_players ?? [];
   const rounds = getRoundCount(match);
 
@@ -609,13 +730,17 @@ function getMvpInfo(match: HenrikMatch, targetPlayer: HenrikMatchPlayer) {
     acs: getPlayerAcs(player, rounds),
   }));
 
-  const matchMvp = playersWithAcs.reduce((best, current) =>
-    current.acs > best.acs ? current : best
+  const matchMvp = playersWithAcs.reduce(
+    (bestPlayer, currentPlayer) =>
+      currentPlayer.acs > bestPlayer.acs
+        ? currentPlayer
+        : bestPlayer
   );
 
   const sameTeamPlayers = playersWithAcs.filter(
-    (item) =>
-      item.player.team?.toLowerCase() === targetPlayer.team?.toLowerCase()
+    ({ player }) =>
+      player.team?.toLowerCase() ===
+      targetPlayer.team?.toLowerCase()
   );
 
   if (sameTeamPlayers.length === 0) {
@@ -625,19 +750,30 @@ function getMvpInfo(match: HenrikMatch, targetPlayer: HenrikMatchPlayer) {
     };
   }
 
-  const teamMvp = sameTeamPlayers.reduce((best, current) =>
-    current.acs > best.acs ? current : best
+  const teamMvp = sameTeamPlayers.reduce(
+    (bestPlayer, currentPlayer) =>
+      currentPlayer.acs > bestPlayer.acs
+        ? currentPlayer
+        : bestPlayer
   );
 
   const targetName = targetPlayer.name?.toLowerCase();
   const targetTag = targetPlayer.tag?.toLowerCase();
 
-  const matchesTarget = (player: HenrikMatchPlayer | undefined) =>
-    player?.name?.toLowerCase() === targetName &&
-    player?.tag?.toLowerCase() === targetTag;
+  const matchesTargetPlayer = (
+    player: HenrikMatchPlayer | undefined
+  ) => {
+    return (
+      player?.name?.toLowerCase() === targetName &&
+      player?.tag?.toLowerCase() === targetTag
+    );
+  };
 
-  const isMatchMvp = matchesTarget(matchMvp.player);
-  const isTeamMvp = !isMatchMvp && matchesTarget(teamMvp.player);
+  const isMatchMvp = matchesTargetPlayer(matchMvp.player);
+
+  const isTeamMvp =
+    !isMatchMvp &&
+    matchesTargetPlayer(teamMvp.player);
 
   return {
     isMatchMvp,
@@ -650,9 +786,10 @@ function parseMatch(
   playerName: string,
   playerTag: string
 ): ParsedMatch | null {
-  const targetPlayer = match.players?.all_players?.find((player) =>
-    isSamePlayer(player, playerName, playerTag)
-  );
+  const targetPlayer =
+    match.players?.all_players?.find((player) =>
+      isSamePlayer(player, playerName, playerTag)
+    );
 
   if (!targetPlayer) {
     return null;
@@ -667,32 +804,62 @@ function parseMatch(
   const acs = getPlayerAcs(targetPlayer, rounds);
   const damageDealt = getPlayerDamage(targetPlayer);
 
-  const isRedTeam = targetPlayer.team?.toLowerCase() === "red";
+  const isRedTeam =
+    targetPlayer.team?.toLowerCase() === "red";
 
   const hasWon = Boolean(
-    isRedTeam ? match.teams?.red?.has_won : match.teams?.blue?.has_won
+    isRedTeam
+      ? match.teams?.red?.has_won
+      : match.teams?.blue?.has_won
   );
 
-  const headshots = targetPlayer.stats?.headshots ?? 0;
-  const bodyshots = targetPlayer.stats?.bodyshots ?? 0;
-  const legshots = targetPlayer.stats?.legshots ?? 0;
+  const headshots =
+    targetPlayer.stats?.headshots ?? 0;
+
+  const bodyshots =
+    targetPlayer.stats?.bodyshots ?? 0;
+
+  const legshots =
+    targetPlayer.stats?.legshots ?? 0;
+
+  const totalShots =
+    headshots + bodyshots + legshots;
+
+  const hsRate = getHeadshotRate(
+    headshots,
+    bodyshots,
+    legshots
+  );
 
   const mvpInfo = getMvpInfo(match, targetPlayer);
 
-  const teams = getMatchPlayers(match, targetPlayer, playerName, playerTag);
+  const teams = getMatchPlayers(
+    match,
+    targetPlayer,
+    playerName,
+    playerTag
+  );
 
   const recentMatch: RecentMatch = {
     result: hasWon ? "Win" : "Lose",
     mode: getMatchMode(match),
+
     agent: targetPlayer.character ?? "Unknown",
     map: match.metadata?.map ?? "Unknown Map",
+
     kills: playerKills,
     deaths: playerDeaths,
     assists: playerAssists,
+
     acs,
+    hsRate,
+
     playedAt: getPlayedAt(match),
 
-    score: getMatchScore(match, targetPlayer.team),
+    score: getMatchScore(
+      match,
+      targetPlayer.team
+    ),
 
     isMatchMvp: mvpInfo.isMatchMvp,
     isTeamMvp: mvpInfo.isTeamMvp,
@@ -700,13 +867,17 @@ function parseMatch(
     allyTeam: teams.allyTeam,
     enemyTeam: teams.enemyTeam,
 
-    weaponKills: getWeaponKills(match, playerName, playerTag),
+    weaponKills: getWeaponKills(
+      match,
+      playerName,
+      playerTag
+    ),
   };
 
   return {
     recentMatch,
     headshots,
-    totalShots: headshots + bodyshots + legshots,
+    totalShots,
     hasWon,
     damageDealt,
     rounds,
@@ -720,9 +891,11 @@ function createEmptyPlayerStats(): CalculatedPlayerStats {
     hsRate: "0%",
     acs: 0,
     adr: 0,
+
     kills: 0,
     deaths: 0,
     assists: 0,
+
     topAgents: [],
     weaponKills: [],
     recentMatches: [],
@@ -745,30 +918,60 @@ function calculatePlayerStats(
   );
 
   const parsedMatches = filteredMatches
-    .map((match) => parseMatch(match, playerName, playerTag))
-    .filter((match): match is ParsedMatch => match !== null);
+    .map((match) =>
+      parseMatch(match, playerName, playerTag)
+    )
+    .filter(
+      (match): match is ParsedMatch =>
+        match !== null
+    );
 
   if (parsedMatches.length === 0) {
     return createEmptyPlayerStats();
   }
 
-  const statMatches = parsedMatches.slice(0, STAT_MATCH_LIMIT);
+  const statMatches = parsedMatches.slice(
+    0,
+    STAT_MATCH_LIMIT
+  );
 
   const recentMatches = parsedMatches
     .slice(0, RECENT_MATCH_LIMIT)
     .map((match) => match.recentMatch);
 
-  const statRecentMatches = statMatches.map((match) => match.recentMatch);
+  const statRecentMatches = statMatches.map(
+    (match) => match.recentMatch
+  );
 
-  const kills = statRecentMatches.map((match) => match.kills);
-  const deaths = statRecentMatches.map((match) => match.deaths);
-  const assists = statRecentMatches.map((match) => match.assists);
-  const acsList = statRecentMatches.map((match) => match.acs);
+  const kills = statRecentMatches.map(
+    (match) => match.kills
+  );
 
-  const wins = statMatches.filter((match) => match.hasWon).length;
+  const deaths = statRecentMatches.map(
+    (match) => match.deaths
+  );
 
-  const totalKills = kills.reduce((sum, value) => sum + value, 0);
-  const totalDeaths = deaths.reduce((sum, value) => sum + value, 0);
+  const assists = statRecentMatches.map(
+    (match) => match.assists
+  );
+
+  const acsList = statRecentMatches.map(
+    (match) => match.acs
+  );
+
+  const wins = statMatches.filter(
+    (match) => match.hasWon
+  ).length;
+
+  const totalKills = kills.reduce(
+    (sum, value) => sum + value,
+    0
+  );
+
+  const totalDeaths = deaths.reduce(
+    (sum, value) => sum + value,
+    0
+  );
 
   const totalHeadshots = statMatches.reduce(
     (sum, match) => sum + match.headshots,
@@ -785,34 +988,50 @@ function calculatePlayerStats(
     0
   );
 
-  const totalRounds = statMatches.reduce((sum, match) => sum + match.rounds, 0);
-
-  const topAgents = getTopAgents(statRecentMatches);
-  const weaponKills = mergeWeaponKills(statRecentMatches);
+  const totalRounds = statMatches.reduce(
+    (sum, match) => sum + match.rounds,
+    0
+  );
 
   return {
-    kd: Number((totalKills / Math.max(totalDeaths, 1)).toFixed(2)),
+    kd: Number(
+      (
+        totalKills / Math.max(totalDeaths, 1)
+      ).toFixed(2)
+    ),
 
-    winRate: `${Math.round((wins / statMatches.length) * 100)}%`,
+    winRate: `${Math.round(
+      (wins / statMatches.length) * 100
+    )}%`,
 
     hsRate:
       totalShotCount > 0
-        ? `${Math.round((totalHeadshots / totalShotCount) * 100)}%`
+        ? `${Math.round(
+            (totalHeadshots / totalShotCount) * 100
+          )}%`
         : "0%",
 
     acs: Math.round(average(acsList)),
 
     adr:
       totalRounds > 0
-        ? Number((totalDamage / totalRounds).toFixed(1))
+        ? Number(
+            (
+              totalDamage / totalRounds
+            ).toFixed(1)
+          )
         : 0,
 
     kills: average(kills),
     deaths: average(deaths),
     assists: average(assists),
 
-    topAgents,
-    weaponKills,
+    topAgents: getTopAgents(statRecentMatches),
+
+    weaponKills: mergeWeaponKills(
+      statRecentMatches
+    ),
+
     recentMatches,
   };
 }
@@ -820,18 +1039,25 @@ function calculatePlayerStats(
 function getHighestTierFromActWins(
   actWins: HenrikRankTier[] | undefined,
   fallbackTier: HenrikRankTier | undefined
-) {
+): HenrikRankTier | null {
   const validActWins = (actWins ?? []).filter(
-    (tier) => typeof tier.id === "number" && tier.name
+    (
+      tier
+    ): tier is HenrikRankTier & {
+      id: number;
+      name: string;
+    } =>
+      typeof tier.id === "number" &&
+      typeof tier.name === "string"
   );
 
   if (validActWins.length > 0) {
-    return validActWins.reduce((best, current) => {
-      const bestId = best.id ?? 0;
-      const currentId = current.id ?? 0;
-
-      return currentId > bestId ? current : best;
-    });
+    return validActWins.reduce(
+      (bestTier, currentTier) =>
+        currentTier.id > bestTier.id
+          ? currentTier
+          : bestTier
+    );
   }
 
   if (fallbackTier?.name) {
@@ -841,12 +1067,16 @@ function getHighestTierFromActWins(
   return null;
 }
 
-function getActSortTime(act: ValorantActAsset | undefined) {
+function getActSortTime(
+  act: ValorantActAsset | undefined
+): number {
   if (!act?.startTime) {
     return 0;
   }
 
-  const time = new Date(act.startTime).getTime();
+  const time = new Date(
+    act.startTime
+  ).getTime();
 
   return Number.isNaN(time) ? 0 : time;
 }
@@ -867,16 +1097,19 @@ function buildActPeakRanks(
         return null;
       }
 
-      const matchedAct = acts.find((act) => act.uuid === actId);
+      const matchedAct = acts.find(
+        (act) => act.uuid === actId
+      );
 
       if (!matchedAct) {
         return null;
       }
 
-      const highestTier = getHighestTierFromActWins(
-        season.act_wins,
-        season.end_tier
-      );
+      const highestTier =
+        getHighestTierFromActWins(
+          season.act_wins,
+          season.end_tier
+        );
 
       if (!highestTier?.name) {
         return null;
@@ -896,13 +1129,22 @@ function buildActPeakRanks(
         sortTime: number;
       } => item !== null
     )
-    .sort((a, b) => b.sortTime - a.sortTime)
+    .sort(
+      (first, second) =>
+        second.sortTime - first.sortTime
+    )
     .slice(0, ACT_PEAK_LIMIT)
-    .map(({ actId, actLabel, rank }) => ({
-      actId,
-      actLabel,
-      rank,
-    }));
+    .map(
+      ({
+        actId,
+        actLabel,
+        rank,
+      }) => ({
+        actId,
+        actLabel,
+        rank,
+      })
+    );
 }
 
 export async function getPlayerProfile(
@@ -911,59 +1153,74 @@ export async function getPlayerProfile(
   selectedAct: string = "current",
   acts: ValorantActAsset[] = []
 ): Promise<PlayerData> {
-  const { name, tag } = splitPlayer(playerName);
+  const { name, tag } =
+    splitPlayer(playerName);
 
-  if (!API_KEY) {
-    throw new Error("Henrik API Key가 설정되지 않았습니다.");
-  }
-
-  const accountResult = await fetchWithAuth<HenrikAccountResponse>(
-    `https://api.henrikdev.xyz/valorant/v2/account/${encodeURIComponent(
-      name
-    )}/${encodeURIComponent(tag)}`
-  );
+  const accountResult =
+    await fetchWithAuth<HenrikAccountResponse>(
+      `https://api.henrikdev.xyz/valorant/v2/account/${encodeURIComponent(
+        name
+      )}/${encodeURIComponent(tag)}`
+    );
 
   if (!accountResult.data) {
-    throw new Error("플레이어 계정 정보를 찾을 수 없습니다.");
+    throw new Error(
+      "플레이어 계정 정보를 찾을 수 없습니다."
+    );
   }
 
   let playerCard: PlayerData["playerCard"] = null;
 
-if (accountResult.data.card) {
-  try {
-    playerCard = await getPlayerCardAssetByUuid(
-      accountResult.data.card
-    );
-  } catch (error) {
-    console.log("PLAYER CARD ASSET ERROR:", error);
-  }
-}
-
-  const region = accountResult.data.region ?? "Unknown";
-
-  let mmrResult: HenrikMmrV3Response | null = null;
-  let matchesResult: HenrikMatchesResponse | null = null;
-
-  try {
-    mmrResult = await fetchWithAuth<HenrikMmrV3Response>(
-      `https://api.henrikdev.xyz/valorant/v3/mmr/${encodeURIComponent(
-        region
-      )}/pc/${encodeURIComponent(name)}/${encodeURIComponent(tag)}`
-    );
-  } catch (error) {
-    console.log("MMR API ERROR:", error);
+  if (accountResult.data.card) {
+    try {
+      playerCard =
+        await getPlayerCardAssetByUuid(
+          accountResult.data.card
+        );
+    } catch (error) {
+      console.error(
+        "PLAYER CARD ASSET ERROR:",
+        error
+      );
+    }
   }
 
+  const region =
+    accountResult.data.region ?? "Unknown";
+
+  let mmrResult: HenrikMmrV3Response | null =
+    null;
+
+  let matchesResult:
+    | HenrikMatchesResponse
+    | null = null;
+
   try {
-    matchesResult = await fetchWithAuth<HenrikMatchesResponse>(
-      `https://api.henrikdev.xyz/valorant/v3/matches/${encodeURIComponent(
-        region
-      )}/${encodeURIComponent(name)}/${encodeURIComponent(
-        tag
-      )}?size=${STAT_MATCH_LIMIT}`
-    );
+    mmrResult =
+      await fetchWithAuth<HenrikMmrV3Response>(
+        `https://api.henrikdev.xyz/valorant/v3/mmr/${encodeURIComponent(
+          region
+        )}/pc/${encodeURIComponent(
+          name
+        )}/${encodeURIComponent(tag)}`
+      );
   } catch (error) {
-    console.log("MATCH API ERROR:", error);
+    console.error("MMR API ERROR:", error);
+  }
+
+  try {
+    matchesResult =
+      await fetchWithAuth<HenrikMatchesResponse>(
+        `https://api.henrikdev.xyz/valorant/v3/matches/${encodeURIComponent(
+          region
+        )}/${encodeURIComponent(
+          name
+        )}/${encodeURIComponent(
+          tag
+        )}?size=${STAT_MATCH_LIMIT}`
+      );
+  } catch (error) {
+    console.error("MATCH API ERROR:", error);
   }
 
   const matchStats = calculatePlayerStats(
@@ -975,32 +1232,52 @@ if (accountResult.data.card) {
     acts
   );
 
-  const actPeakRanks = buildActPeakRanks(mmrResult?.data?.seasonal, acts);
+  const actPeakRanks = buildActPeakRanks(
+    mmrResult?.data?.seasonal,
+    acts
+  );
 
   return {
-    name: `${accountResult.data.name ?? name}#${
+    name: `${
+      accountResult.data.name ?? name
+    }#${
       accountResult.data.tag ?? tag
     }`,
 
-    level: accountResult.data.account_level ?? 0,
+    level:
+      accountResult.data.account_level ?? 0,
 
     region,
 
     playerCard,
 
-    rank: mmrResult?.data?.current?.tier?.name ?? "Unrated",
+    rank:
+      mmrResult?.data?.current?.tier?.name ??
+      "Unrated",
 
     rr:
       mmrResult?.data?.current?.rr ??
-      mmrResult?.data?.current?.ranking_in_tier ??
+      mmrResult?.data?.current
+        ?.ranking_in_tier ??
       0,
 
-    peakRank: mmrResult?.data?.peak?.tier?.name ?? "Unrated",
+    peakRank:
+      mmrResult?.data?.peak?.tier?.name ??
+      "Unrated",
 
-    ...matchStats,
+    kd: matchStats.kd,
+    winRate: matchStats.winRate,
+    hsRate: matchStats.hsRate,
+    acs: matchStats.acs,
 
+    adr: matchStats.adr,
+    kills: matchStats.kills,
+    deaths: matchStats.deaths,
+    assists: matchStats.assists,
+
+    topAgents: matchStats.topAgents,
+    weaponKills: matchStats.weaponKills,
     actPeakRanks,
-
     recentMatches: matchStats.recentMatches,
   };
 }

@@ -1,47 +1,74 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Header from "../components/common/Header";
+
+const RECENT_SEARCHES_STORAGE_KEY = "valorant_recent_searches";
+
 const DEFAULT_RECENT_SEARCHES = ["TenZ#NA1", "aspas#BR1", "Meteor#KR1"];
+
+function loadRecentSearches(): string[] {
+  try {
+    const saved = localStorage.getItem(RECENT_SEARCHES_STORAGE_KEY);
+
+    if (!saved) {
+      return DEFAULT_RECENT_SEARCHES;
+    }
+
+    const parsed: unknown = JSON.parse(saved);
+
+    if (
+      Array.isArray(parsed) &&
+      parsed.every((item) => typeof item === "string")
+    ) {
+      return parsed;
+    }
+
+    return DEFAULT_RECENT_SEARCHES;
+  } catch {
+    return DEFAULT_RECENT_SEARCHES;
+  }
+}
 
 export default function Valorant() {
   const navigate = useNavigate();
 
   const [playerName, setPlayerName] = useState("");
-  const [recentSearches, setRecentSearches] = useState<string[]>(() => {
-    const saved = localStorage.getItem("valorant_recent_searches");
-
-    if (saved) {
-      return JSON.parse(saved);
-    }
-
-    return DEFAULT_RECENT_SEARCHES;
-  });
+  const [recentSearches, setRecentSearches] =
+    useState<string[]>(loadRecentSearches);
 
   useEffect(() => {
     localStorage.setItem(
-      "valorant_recent_searches",
+      RECENT_SEARCHES_STORAGE_KEY,
       JSON.stringify(recentSearches)
     );
   }, [recentSearches]);
 
-  const searchPlayer = () => {
-    const name = playerName.trim();
+  const addRecentSearch = (name: string) => {
+    setRecentSearches((previousSearches) => {
+      const filteredSearches = previousSearches.filter(
+        (item) => item.toLowerCase() !== name.toLowerCase()
+      );
 
-    if (!name) {
-      alert("플레이어 이름을 입력해 주세요.");
+      return [name, ...filteredSearches].slice(0, 5);
+    });
+  };
+
+  const searchPlayer = () => {
+    const trimmedPlayerName = playerName.trim();
+
+    if (!trimmedPlayerName) {
+      alert("라이엇 ID를 입력해 주세요.");
       return;
     }
 
-    addRecentSearch(name);
-    navigate(`/valorant/player/${encodeURIComponent(name)}`);
-    setPlayerName("");
-  };
+    addRecentSearch(trimmedPlayerName);
 
-  const addRecentSearch = (name: string) => {
-    setRecentSearches((prev) => {
-      const filtered = prev.filter((item) => item !== name);
-      return [name, ...filtered].slice(0, 5);
-    });
+    navigate(
+      `/valorant/player/${encodeURIComponent(trimmedPlayerName)}`
+    );
+
+    setPlayerName("");
   };
 
   const moveToPlayerProfile = (name: string) => {
@@ -51,78 +78,120 @@ export default function Valorant() {
 
   const clearRecentSearches = () => {
     setRecentSearches([]);
-    localStorage.removeItem("valorant_recent_searches");
+    localStorage.removeItem(RECENT_SEARCHES_STORAGE_KEY);
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white px-6 py-10">
-      <section className="max-w-4xl mx-auto">
-        <p className="text-red-400 font-bold mb-3">VALORANT</p>
+    <div className="min-h-screen bg-slate-950 text-white">
+      <Header />
 
-        <h1 className="text-5xl font-black mb-4">Valorant Tracker</h1>
+      <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden px-5 py-12 sm:px-8 sm:py-16">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[-320px] h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-red-500/10 blur-[140px]"
+        />
 
-        <p className="text-slate-400 text-lg mb-10">
-          플레이어 이름을 검색하고 전적 정보를 확인해보세요.
-        </p>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-[-360px] right-[-240px] h-[600px] w-[600px] rounded-full bg-slate-700/10 blur-[150px]"
+        />
 
-        <div className="bg-slate-900 border border-white/10 rounded-2xl p-6">
-          <label className="block text-sm text-slate-400 mb-3">
-            Player Name
-          </label>
+        <section className="relative mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-3xl flex-col justify-center">
+          <header className="mb-12 text-center sm:mb-14">
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-red-400 sm:text-sm">
+              Competitive Stats Platform
+            </p>
 
-          <div className="flex flex-col md:flex-row gap-3">
-            <input
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  searchPlayer();
-                }
-              }}
-              placeholder="예: TenZ#NA1"
-              className="flex-1 bg-slate-950 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-red-400"
-            />
+            <h1 className="text-5xl font-black tracking-[-0.06em] sm:text-6xl md:text-7xl">
+              <span className="text-white">Deck</span>
+              <span className="text-red-400">.GG</span>
+            </h1>
 
-            <button
-              onClick={searchPlayer}
-              className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-xl font-bold transition"
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">
+              라이엇 ID를 검색하고
+              <br className="sm:hidden" /> 상세한 전적을 확인해보세요.
+            </p>
+          </header>
+
+          <div className="rounded-3xl border border-white/10 bg-slate-900/80 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:border-red-400/30 sm:p-7">
+            <label
+              htmlFor="riot-id"
+              className="mb-3 block text-sm font-bold text-slate-300"
             >
-              Search
-            </button>
-          </div>
-        </div>
+              라이엇 ID
+            </label>
 
-        <div className="mt-8">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold">Recent Search</h2>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <input
+                id="riot-id"
+                type="text"
+                autoComplete="off"
+                spellCheck={false}
+                value={playerName}
+                onChange={(event) => setPlayerName(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    searchPlayer();
+                  }
+                }}
+                placeholder="라이엇 ID를 입력하세요"
+                className="h-14 min-w-0 flex-1 rounded-2xl border border-white/10 bg-slate-950/90 px-5 text-base text-white outline-none transition-all duration-300 placeholder:text-slate-600 focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
+              />
 
-            {recentSearches.length > 0 && (
               <button
-                onClick={clearRecentSearches}
-                className="text-sm text-slate-500 hover:text-red-400 transition"
+                type="button"
+                onClick={searchPlayer}
+                className="h-14 shrink-0 rounded-2xl bg-red-500 px-8 text-sm font-black text-white shadow-lg shadow-red-950/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-400 active:translate-y-0 sm:min-w-40"
               >
-                Clear
+                전적 검색
               </button>
-            )}
+            </div>
+
+            <p className="mt-3 text-xs text-slate-600">
+              게임 이름과 태그를 함께 입력해 주세요. 예: TenZ#NA1
+            </p>
           </div>
 
-          {recentSearches.length > 0 ? (
-            <div className="flex flex-wrap gap-3">
-              {recentSearches.map((name) => (
+          <section className="mt-6 rounded-3xl border border-white/10 bg-slate-900/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-red-400/20 sm:p-7">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <h2 className="text-lg font-black tracking-tight text-white">
+                최근 검색
+              </h2>
+
+              {recentSearches.length > 0 && (
                 <button
-                  key={name}
-                  onClick={() => moveToPlayerProfile(name)}
-                  className="bg-slate-900 border border-white/10 hover:border-red-400 text-slate-300 px-4 py-2 rounded-full transition"
+                  type="button"
+                  onClick={clearRecentSearches}
+                  className="rounded-lg px-2 py-1 text-xs font-bold text-slate-500 transition-colors duration-300 hover:text-red-400"
                 >
-                  {name}
+                  전체 삭제
                 </button>
-              ))}
+              )}
             </div>
-          ) : (
-            <p className="text-slate-500 text-sm">최근 검색 기록이 없습니다.</p>
-          )}
-        </div>
-      </section>
-    </main>
+
+            {recentSearches.length > 0 ? (
+              <div className="flex flex-wrap gap-3">
+                {recentSearches.map((name) => (
+                  <button
+                    type="button"
+                    key={name}
+                    onClick={() => moveToPlayerProfile(name)}
+                    className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2.5 text-sm font-bold text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-400/60 hover:text-white"
+                  >
+                    {name}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-dashed border-white/10 bg-slate-950/40 px-5 py-8 text-center">
+                <p className="text-sm text-slate-500">
+                  최근 검색 기록이 없습니다.
+                </p>
+              </div>
+            )}
+          </section>
+        </section>
+      </main>
+    </div>
   );
 }

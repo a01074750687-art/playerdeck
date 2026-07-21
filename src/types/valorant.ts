@@ -44,10 +44,14 @@ export type RecentMatch = {
   mode: GameMode;
   agent: string;
   map: string;
+
   kills: number;
   deaths: number;
   assists: number;
+
   acs: number;
+  hsRate: number;
+
   playedAt: string | null;
 
   score: {

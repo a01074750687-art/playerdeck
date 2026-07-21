@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { getValorantActs } from "../api/valorantAssetsApi";
+import Header from "../components/common/Header";
 import PlayerHeader from "../components/valorant/PlayerHeader";
 import ProfileSkeleton from "../components/valorant/ProfileSkeleton";
 import RecentMatches from "../components/valorant/RecentMatches";
@@ -228,117 +229,125 @@ export default function PlayerProfile() {
     (player?.recentMatches.length ?? 0) > 0;
 
   return (
-    <main className="min-h-screen w-full bg-slate-950 px-3 py-10 text-white sm:px-6">
-      <section className="mx-auto w-full max-w-6xl">
-        <Link
-          to="/valorant"
-          className="text-sm text-red-400 hover:text-red-300"
-        >
-          ← Back to Valorant
-        </Link>
+    <div className="min-h-screen bg-slate-950 text-white">
+      <Header />
 
-        {loading && <ProfileSkeleton />}
+      <main className="w-full px-3 py-8 sm:px-6 sm:py-10">
+        <section className="mx-auto w-full max-w-6xl">
+          <Link
+            to="/valorant"
+            className="inline-flex items-center rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm font-bold text-slate-400 transition-all duration-200 hover:border-red-400/40 hover:text-red-300"
+          >
+            ← 발로란트 검색으로
+          </Link>
 
-        {!loading && error && !player && (
-          <div className="mt-8 rounded-3xl border border-red-500/30 bg-slate-900 p-8">
-            <p className="mb-3 font-bold text-red-400">
-              ERROR
-            </p>
-
-            <h1 className="mb-4 text-3xl font-black">
-              검색 실패
-            </h1>
-
-            <p className="text-slate-400">
-              {error}
-            </p>
-          </div>
-        )}
-
-        {!loading && player && (
-          <>
-            <PlayerHeader
-              player={player}
-              isRefreshing={refreshing}
-              refreshCooldown={refreshCooldown}
-              lastUpdated={lastUpdated}
-              onRefresh={refreshPlayer}
-            />
-
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-              <StatCard
-                title="K/D"
-                value={hasMatchData ? player.kd : "-"}
-              />
-
-              <StatCard
-                title="Win Rate"
-                value={hasMatchData ? player.winRate : "-"}
-              />
-
-              <StatCard
-                title="HS%"
-                value={hasMatchData ? player.hsRate : "-"}
-              />
-
-              <StatCard
-                title="ACS"
-                value={hasMatchData ? player.acs : "-"}
-              />
-
-              <StatCard
-                title="ADR"
-                value={hasMatchData ? player.adr : "-"}
-              />
-
-              <StatCard
-                title="Kills"
-                value={hasMatchData ? player.kills : "-"}
-              />
-
-              <StatCard
-                title="Deaths"
-                value={hasMatchData ? player.deaths : "-"}
-              />
-
-              <StatCard
-                title="Assists"
-                value={hasMatchData ? player.assists : "-"}
-              />
+          {loading && (
+            <div className="mt-6">
+              <ProfileSkeleton />
             </div>
+          )}
 
-            <div className="mt-6 grid gap-6 md:grid-cols-[0.9fr_1.4fr]">
-              <div className="space-y-6">
-                <TopAgents
-                  agents={player.topAgents}
+          {!loading && error && !player && (
+            <div className="mt-6 rounded-3xl border border-red-500/30 bg-slate-900 p-8">
+              <p className="mb-3 font-bold text-red-400">
+                ERROR
+              </p>
+
+              <h1 className="mb-4 text-3xl font-black">
+                검색 실패
+              </h1>
+
+              <p className="text-slate-400">
+                {error}
+              </p>
+            </div>
+          )}
+
+          {!loading && player && (
+            <div className="mt-6">
+              <PlayerHeader
+                player={player}
+                isRefreshing={refreshing}
+                refreshCooldown={refreshCooldown}
+                lastUpdated={lastUpdated}
+                onRefresh={refreshPlayer}
+              />
+
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+                <StatCard
+                  title="K/D"
+                  value={hasMatchData ? player.kd : "-"}
                 />
 
-                <WeaponStats
-                  weaponKills={player.weaponKills}
+                <StatCard
+                  title="Win Rate"
+                  value={hasMatchData ? player.winRate : "-"}
+                />
+
+                <StatCard
+                  title="HS%"
+                  value={hasMatchData ? player.hsRate : "-"}
+                />
+
+                <StatCard
+                  title="ACS"
+                  value={hasMatchData ? player.acs : "-"}
+                />
+
+                <StatCard
+                  title="ADR"
+                  value={hasMatchData ? player.adr : "-"}
+                />
+
+                <StatCard
+                  title="Kills"
+                  value={hasMatchData ? player.kills : "-"}
+                />
+
+                <StatCard
+                  title="Deaths"
+                  value={hasMatchData ? player.deaths : "-"}
+                />
+
+                <StatCard
+                  title="Assists"
+                  value={hasMatchData ? player.assists : "-"}
                 />
               </div>
 
-              <RecentMatches
-                matches={player.recentMatches}
-                selectedMode={selectedMode}
-                onChangeMode={changeMode}
-                acts={acts}
-                selectedAct={selectedAct}
-                onChangeAct={changeAct}
-                actLoading={actLoading}
-              />
-            </div>
-          </>
-        )}
+              <div className="mt-6 grid gap-6 md:grid-cols-[0.9fr_1.4fr]">
+                <div className="space-y-6">
+                  <TopAgents
+                    agents={player.topAgents}
+                  />
 
-        {matchLoading && (
-          <div className="fixed bottom-6 left-3 right-3 z-50 rounded-2xl border border-white/10 bg-slate-900/95 px-5 py-3 text-center shadow-2xl backdrop-blur sm:left-auto sm:right-6 sm:text-left">
-            <p className="text-sm font-bold text-slate-300">
-              전적을 불러오는 중...
-            </p>
-          </div>
-        )}
-      </section>
-    </main>
+                  <WeaponStats
+                    weaponKills={player.weaponKills}
+                  />
+                </div>
+
+                <RecentMatches
+                  matches={player.recentMatches}
+                  selectedMode={selectedMode}
+                  onChangeMode={changeMode}
+                  acts={acts}
+                  selectedAct={selectedAct}
+                  onChangeAct={changeAct}
+                  actLoading={actLoading}
+                />
+              </div>
+            </div>
+          )}
+
+          {matchLoading && (
+            <div className="fixed bottom-6 left-3 right-3 z-50 rounded-2xl border border-white/10 bg-slate-900/95 px-5 py-3 text-center shadow-2xl backdrop-blur sm:left-auto sm:right-6 sm:text-left">
+              <p className="text-sm font-bold text-slate-300">
+                전적을 불러오는 중...
+              </p>
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
   );
 }

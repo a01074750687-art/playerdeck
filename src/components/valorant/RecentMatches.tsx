@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ActFilter from "./ActFilter";
 import AgentIcon from "./AgentIcon";
 import AgentRoleBadge from "./AgentRoleBadge";
 import MapThumbnail from "./MapThumbnail";
 import MatchDetailPanel from "./MatchDetailPanel";
-import PerformanceBadge from "./PerformanceBadge";
 
 import {
   GAME_MODES,
@@ -33,103 +32,31 @@ type MatchStatItemProps = {
   highlight?: "default" | "good" | "great" | "danger";
 };
 
+const INITIAL_MATCH_COUNT = 5;
+
 function getSelectedActLabel(
   acts: ValorantActAsset[],
   selectedAct: string
 ) {
   if (selectedAct === "current") {
-    const activeAct = acts.find(
-      (act) => act.isActive
-    );
+    const activeAct = acts.find((act) => act.isActive);
 
     return activeAct
       ? `Current · ${activeAct.shortLabel}`
       : "Current Act";
   }
 
-  const act = acts.find(
-    (item) => item.uuid === selectedAct
-  );
+  const act = acts.find((item) => item.uuid === selectedAct);
 
   return act?.shortLabel ?? "Selected Act";
 }
 
-function getKdRatio(
-  kills: number,
-  deaths: number
-) {
+function getKdRatio(kills: number, deaths: number) {
   if (deaths === 0) {
     return kills.toFixed(2);
   }
 
   return (kills / deaths).toFixed(2);
-}
-
-function getKdaRatio(
-  kills: number,
-  deaths: number,
-  assists: number
-) {
-  if (deaths === 0) {
-    return (kills + assists).toFixed(2);
-  }
-
-  return (
-    (kills + assists) /
-    deaths
-  ).toFixed(2);
-}
-
-function getKillParticipation(
-  kills: number,
-  assists: number,
-  allyScore: number
-) {
-  const estimatedTeamKills = Math.max(
-    allyScore * 5,
-    1
-  );
-
-  const participation =
-    ((kills + assists) /
-      estimatedTeamKills) *
-    100;
-
-  return Math.min(
-    Math.round(participation),
-    100
-  );
-}
-
-function getPerformanceText(
-  match: RecentMatch
-) {
-  const kd =
-    match.deaths === 0
-      ? match.kills
-      : match.kills / match.deaths;
-
-  if (
-    match.isMatchMvp ||
-    kd >= 1.6 ||
-    match.acs >= 300
-  ) {
-    return "압도적인 경기";
-  }
-
-  if (
-    match.isTeamMvp ||
-    kd >= 1.2 ||
-    match.acs >= 240
-  ) {
-    return "좋은 활약";
-  }
-
-  if (kd >= 0.9) {
-    return "안정적인 경기";
-  }
-
-  return "아쉬운 경기";
 }
 
 function getStatHighlight(
@@ -217,14 +144,10 @@ function MatchStatItem({
   }[highlight];
 
   const borderClassName = {
-    default:
-      "border-white/5 bg-slate-950/45",
-    good:
-      "border-sky-400/15 bg-sky-500/5",
-    great:
-      "border-emerald-400/15 bg-emerald-500/5",
-    danger:
-      "border-red-400/15 bg-red-500/5",
+    default: "border-white/5 bg-slate-950/45",
+    good: "border-sky-400/15 bg-sky-500/5",
+    great: "border-emerald-400/15 bg-emerald-500/5",
+    danger: "border-red-400/15 bg-red-500/5",
   }[highlight];
 
   return (
@@ -262,11 +185,44 @@ export default function RecentMatches({
   const [openedIndex, setOpenedIndex] =
     useState<number | null>(null);
 
-  const selectedActLabel =
-    getSelectedActLabel(
-      acts,
-      selectedAct
-    );
+  const [showAllMatches, setShowAllMatches] =
+    useState(false);
+
+  useEffect(() => {
+    setOpenedIndex(null);
+    setShowAllMatches(false);
+  }, [selectedMode, selectedAct]);
+
+  const selectedActLabel = getSelectedActLabel(
+    acts,
+    selectedAct
+  );
+
+  const visibleMatches = showAllMatches
+    ? matches
+    : matches.slice(0, INITIAL_MATCH_COUNT);
+
+  const hiddenMatchCount = Math.max(
+    matches.length - INITIAL_MATCH_COUNT,
+    0
+  );
+
+  const toggleVisibleMatches = () => {
+    if (showAllMatches) {
+      setShowAllMatches(false);
+
+      if (
+        openedIndex !== null &&
+        openedIndex >= INITIAL_MATCH_COUNT
+      ) {
+        setOpenedIndex(null);
+      }
+
+      return;
+    }
+
+    setShowAllMatches(true);
+  };
 
   return (
     <section className="rounded-3xl border border-white/10 bg-slate-900 p-4 sm:p-6">
@@ -311,9 +267,7 @@ export default function RecentMatches({
                   key={mode.value}
                   type="button"
                   onClick={() =>
-                    onChangeMode(
-                      mode.value
-                    )
+                    onChangeMode(mode.value)
                   }
                   className={
                     isSelected
@@ -330,40 +284,21 @@ export default function RecentMatches({
 
         <div className="space-y-5">
           {matches.length > 0 ? (
-            matches.map(
-              (match, index) => {
-                const isOpen =
-                  openedIndex === index;
+            <>
+              {visibleMatches.map((match, index) => {
+                const isOpen = openedIndex === index;
 
-                const kdRatio =
-                  Number(
-                    getKdRatio(
-                      match.kills,
-                      match.deaths
-                    )
-                  );
-
-                const kdaRatio =
-                  Number(
-                    getKdaRatio(
-                      match.kills,
-                      match.deaths,
-                      match.assists
-                    )
-                  );
-
-                const killParticipation =
-                  getKillParticipation(
+                const kdRatio = Number(
+                  getKdRatio(
                     match.kills,
-                    match.assists,
-                    match.score.ally
-                  );
+                    match.deaths
+                  )
+                );
 
-                const scoreDifference =
-                  Math.abs(
-                    match.score.ally -
-                      match.score.enemy
-                  );
+                const scoreDifference = Math.abs(
+                  match.score.ally -
+                    match.score.enemy
+                );
 
                 const isWin =
                   match.result === "Win";
@@ -380,9 +315,7 @@ export default function RecentMatches({
                     <div className="relative h-40 overflow-hidden sm:h-44">
                       <div className="h-full w-full transition duration-700 group-hover:scale-105">
                         <MapThumbnail
-                          mapName={
-                            match.map
-                          }
+                          mapName={match.map}
                         />
                       </div>
 
@@ -427,20 +360,13 @@ export default function RecentMatches({
                           </p>
 
                           <p className="mt-1 text-lg font-black leading-none text-white sm:text-xl">
-                            {
-                              match.score
-                                .ally
-                            }{" "}
-                            :{" "}
-                            {
-                              match.score
-                                .enemy
-                            }
+                            {match.score.ally} :{" "}
+                            {match.score.enemy}
                           </p>
                         </div>
                       </div>
 
-                      <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+                      <div className="absolute bottom-4 left-4 right-4">
                         <div className="min-w-0">
                           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-xs">
                             Map
@@ -450,34 +376,15 @@ export default function RecentMatches({
                             {match.map}
                           </h3>
                         </div>
-
-                        <div className="hidden shrink-0 text-right sm:block">
-                          <p className="text-xs font-black text-slate-300">
-                            {
-                              getPerformanceText(
-                                match
-                              )
-                            }
-                          </p>
-
-                          <p className="mt-1 text-[10px] text-slate-500">
-                            점수 차이{" "}
-                            {
-                              scoreDifference
-                            }
-                          </p>
-                        </div>
                       </div>
                     </div>
 
                     <div className="p-4 sm:p-5">
-                      <div className="grid gap-5 xl:grid-cols-[minmax(220px,0.85fr)_minmax(360px,1.25fr)_auto] xl:items-start">
+                      <div className="grid gap-5 xl:grid-cols-[minmax(220px,0.9fr)_minmax(330px,1.1fr)] xl:items-start">
                         <div className="flex min-w-0 items-start gap-4">
                           <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950/80 p-2 shadow-inner shadow-black/30">
                             <AgentIcon
-                              agentName={
-                                match.agent
-                              }
+                              agentName={match.agent}
                               size="lg"
                             />
                           </div>
@@ -488,16 +395,12 @@ export default function RecentMatches({
                             </p>
 
                             <h4 className="mt-1 truncate text-2xl font-black text-white">
-                              {
-                                match.agent
-                              }
+                              {match.agent}
                             </h4>
 
                             <div className="mt-2">
                               <AgentRoleBadge
-                                agentName={
-                                  match.agent
-                                }
+                                agentName={match.agent}
                               />
                             </div>
 
@@ -507,28 +410,18 @@ export default function RecentMatches({
                               </p>
 
                               <p className="mt-1 whitespace-nowrap text-xl font-black tracking-tight text-white sm:text-2xl">
-                                {
-                                  match.kills
-                                }{" "}
-                                /{" "}
-                                {
-                                  match.deaths
-                                }{" "}
-                                /{" "}
-                                {
-                                  match.assists
-                                }
+                                {match.kills} /{" "}
+                                {match.deaths} /{" "}
+                                {match.assists}
                               </p>
                             </div>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                        <div className="grid grid-cols-3 gap-2">
                           <MatchStatItem
                             label="K/D"
-                            value={kdRatio.toFixed(
-                              2
-                            )}
+                            value={kdRatio.toFixed(2)}
                             description="킬 / 데스"
                             highlight={getStatHighlight(
                               kdRatio,
@@ -536,22 +429,6 @@ export default function RecentMatches({
                                 great: 1.5,
                                 good: 1.1,
                                 danger: 0.8,
-                              }
-                            )}
-                          />
-
-                          <MatchStatItem
-                            label="KDA"
-                            value={kdaRatio.toFixed(
-                              2
-                            )}
-                            description="킬 + 어시스트"
-                            highlight={getStatHighlight(
-                              kdaRatio,
-                              {
-                                great: 2.2,
-                                good: 1.5,
-                                danger: 1,
                               }
                             )}
                           />
@@ -571,65 +448,47 @@ export default function RecentMatches({
                           />
 
                           <MatchStatItem
-                            label="KP"
-                            value={`${killParticipation}%`}
-                            description="추정 킬 관여"
+                            label="HS%"
+                            value={`${match.hsRate}%`}
+                            description="헤드샷 비율"
                             highlight={getStatHighlight(
-                              killParticipation,
+                              match.hsRate,
                               {
-                                great: 60,
-                                good: 40,
-                                danger: 25,
+                                great: 30,
+                                good: 20,
+                                danger: 10,
                               }
                             )}
                           />
                         </div>
-
-                        <div className="flex min-w-[120px] justify-start xl:justify-end">
-                          <PerformanceBadge
-                            match={match}
-                          />
-                        </div>
                       </div>
 
-                      <div className="mt-5 rounded-2xl border border-white/5 bg-slate-950/35 px-4 py-3 sm:flex sm:items-center sm:justify-between">
-                        <div>
-                          <p className="text-xs font-black text-slate-300">
-                            {
-                              getPerformanceText(
-                                match
-                              )
-                            }
-                          </p>
+                      <div className="mt-5 flex flex-col gap-3 rounded-2xl border border-white/5 bg-slate-950/35 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                        <p className="text-[11px] font-medium text-slate-500">
+                          {isWin
+                            ? `${scoreDifference}라운드 차이 승리`
+                            : `${scoreDifference}라운드 차이 패배`}
+                        </p>
 
-                          <p className="mt-1 text-[11px] text-slate-500">
-                            {isWin
-                              ? `${scoreDifference}라운드 차이로 승리했습니다.`
-                              : `${scoreDifference}라운드 차이로 패배했습니다.`}
-                          </p>
-                        </div>
-
-                        <div className="mt-3 flex items-center justify-end sm:mt-0">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setOpenedIndex(
-                                isOpen
-                                  ? null
-                                  : index
-                              )
-                            }
-                            className={
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setOpenedIndex(
                               isOpen
-                                ? "inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-black text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
-                                : "inline-flex items-center justify-center rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-2.5 text-sm font-black text-red-300 transition hover:border-red-400/60 hover:bg-red-500/20 hover:text-white"
-                            }
-                          >
-                            {isOpen
-                              ? "상세 닫기 ↑"
-                              : "상세 보기 →"}
-                          </button>
-                        </div>
+                                ? null
+                                : index
+                            )
+                          }
+                          className={
+                            isOpen
+                              ? "inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-black text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
+                              : "inline-flex items-center justify-center rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-2.5 text-sm font-black text-red-300 transition hover:border-red-400/60 hover:bg-red-500/20 hover:text-white"
+                          }
+                        >
+                          {isOpen
+                            ? "상세 닫기 ↑"
+                            : "상세 보기 →"}
+                        </button>
                       </div>
 
                       {isOpen && (
@@ -640,16 +499,27 @@ export default function RecentMatches({
                     </div>
                   </article>
                 );
-              }
-            )
+              })}
+
+              {matches.length >
+                INITIAL_MATCH_COUNT && (
+                <div className="flex justify-center pt-1">
+                  <button
+                    type="button"
+                    onClick={toggleVisibleMatches}
+                    className="inline-flex min-h-12 min-w-[180px] items-center justify-center rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-3 text-sm font-black text-slate-300 transition hover:border-red-400/40 hover:bg-slate-800 hover:text-white"
+                  >
+                    {showAllMatches
+                      ? "접기 ↑"
+                      : `${hiddenMatchCount}경기 더 보기 ↓`}
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <EmptyMatchState
-              selectedMode={
-                selectedMode
-              }
-              selectedActLabel={
-                selectedActLabel
-              }
+              selectedMode={selectedMode}
+              selectedActLabel={selectedActLabel}
             />
           )}
         </div>
