@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Link,
-  createSearchParams,
   useParams,
   useSearchParams,
 } from "react-router-dom";
@@ -33,6 +32,15 @@ type DetailStatCardProps = {
   description: string;
 };
 
+type MatchNavigationProps = {
+  currentIndex: number;
+  totalMatches: number;
+  previousPath: string;
+  nextPath: string;
+  hasPreviousMatch: boolean;
+  hasNextMatch: boolean;
+};
+
 function DetailStatCard({
   label,
   value,
@@ -52,6 +60,67 @@ function DetailStatCard({
         {description}
       </p>
     </div>
+  );
+}
+
+function MatchNavigation({
+  currentIndex,
+  totalMatches,
+  previousPath,
+  nextPath,
+  hasPreviousMatch,
+  hasNextMatch,
+}: MatchNavigationProps) {
+  return (
+    <nav className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/80 p-3 sm:p-4">
+      <div className="flex justify-start">
+        {hasPreviousMatch ? (
+          <Link
+            to={previousPath}
+            className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2 text-xs font-black text-slate-300 transition hover:border-red-400/40 hover:bg-slate-800 hover:text-white sm:px-4 sm:text-sm"
+          >
+            ← 이전 경기
+          </Link>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-xl border border-white/5 bg-slate-950/30 px-3 py-2 text-xs font-black text-slate-700 sm:px-4 sm:text-sm"
+          >
+            ← 이전 경기
+          </button>
+        )}
+      </div>
+
+      <div className="text-center">
+        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-slate-600 sm:text-[10px]">
+          Recent Match
+        </p>
+
+        <p className="mt-1 whitespace-nowrap text-xs font-black text-slate-300 sm:text-sm">
+          {currentIndex + 1} / {totalMatches}
+        </p>
+      </div>
+
+      <div className="flex justify-end">
+        {hasNextMatch ? (
+          <Link
+            to={nextPath}
+            className="inline-flex min-h-11 items-center justify-center rounded-xl border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs font-black text-red-300 transition hover:border-red-400/60 hover:bg-red-500/20 hover:text-white sm:px-4 sm:text-sm"
+          >
+            다음 경기 →
+          </Link>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-xl border border-white/5 bg-slate-950/30 px-3 py-2 text-xs font-black text-slate-700 sm:px-4 sm:text-sm"
+          >
+            다음 경기 →
+          </button>
+        )}
+      </div>
+    </nav>
   );
 }
 
@@ -108,7 +177,7 @@ export default function MatchDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const profileSearch = useMemo(() => {
+  const navigationSearch = useMemo(() => {
     const params = new URLSearchParams();
 
     if (selectedMode !== "all") {
@@ -124,15 +193,43 @@ export default function MatchDetailPage() {
     return queryString ? `?${queryString}` : "";
   }, [selectedMode, selectedAct]);
 
-  const profilePath = `/valorant/player/${encodeURIComponent(
+  const encodedPlayerName = encodeURIComponent(
     decodedPlayerName
-  )}${profileSearch}`;
+  );
+
+  const profilePath =
+    `/valorant/player/${encodedPlayerName}` +
+    navigationSearch;
 
   const selectedMatch =
     Number.isInteger(parsedMatchIndex) &&
     parsedMatchIndex >= 0
       ? player?.recentMatches[parsedMatchIndex] ?? null
       : null;
+
+  const totalMatches =
+    player?.recentMatches.length ?? 0;
+
+  const hasPreviousMatch =
+    Number.isInteger(parsedMatchIndex) &&
+    parsedMatchIndex > 0;
+
+  const hasNextMatch =
+    Number.isInteger(parsedMatchIndex) &&
+    parsedMatchIndex >= 0 &&
+    parsedMatchIndex < totalMatches - 1;
+
+  const previousMatchPath =
+    `/valorant/player/${encodedPlayerName}/match/${Math.max(
+      parsedMatchIndex - 1,
+      0
+    )}` + navigationSearch;
+
+  const nextMatchPath =
+    `/valorant/player/${encodedPlayerName}/match/${Math.min(
+      parsedMatchIndex + 1,
+      Math.max(totalMatches - 1, 0)
+    )}` + navigationSearch;
 
   const selectedActLabel = getSelectedActLabel(
     acts,
@@ -289,6 +386,15 @@ export default function MatchDetailPage() {
             player &&
             selectedMatch && (
               <div className="mt-6 space-y-6">
+                <MatchNavigation
+                  currentIndex={parsedMatchIndex}
+                  totalMatches={totalMatches}
+                  previousPath={previousMatchPath}
+                  nextPath={nextMatchPath}
+                  hasPreviousMatch={hasPreviousMatch}
+                  hasNextMatch={hasNextMatch}
+                />
+
                 <section
                   className={
                     selectedMatch.result === "Win"
@@ -357,9 +463,11 @@ export default function MatchDetailPage() {
 
                         <p className="mt-2 text-3xl font-black text-white">
                           {selectedMatch.score.ally}
+
                           <span className="mx-2 text-slate-500">
                             :
                           </span>
+
                           {selectedMatch.score.enemy}
                         </p>
                       </div>
@@ -372,9 +480,7 @@ export default function MatchDetailPage() {
                         <div className="flex items-start gap-4">
                           <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950 p-2">
                             <AgentIcon
-                              agentName={
-                                selectedMatch.agent
-                              }
+                              agentName={selectedMatch.agent}
                               size="lg"
                             />
                           </div>
@@ -390,9 +496,7 @@ export default function MatchDetailPage() {
 
                             <div className="mt-2">
                               <AgentRoleBadge
-                                agentName={
-                                  selectedMatch.agent
-                                }
+                                agentName={selectedMatch.agent}
                               />
                             </div>
                           </div>
@@ -405,13 +509,17 @@ export default function MatchDetailPage() {
 
                           <p className="mt-2 text-3xl font-black tracking-tight text-white">
                             {selectedMatch.kills}
+
                             <span className="mx-2 text-slate-600">
                               /
                             </span>
+
                             {selectedMatch.deaths}
+
                             <span className="mx-2 text-slate-600">
                               /
                             </span>
+
                             {selectedMatch.assists}
                           </p>
                         </div>
@@ -431,9 +539,7 @@ export default function MatchDetailPage() {
                       <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
                         <DetailStatCard
                           label="K/D"
-                          value={getKdRatio(
-                            selectedMatch
-                          )}
+                          value={getKdRatio(selectedMatch)}
                           description="킬 대비 데스 비율"
                         />
 
@@ -490,6 +596,15 @@ export default function MatchDetailPage() {
                     match={selectedMatch}
                   />
                 </section>
+
+                <MatchNavigation
+                  currentIndex={parsedMatchIndex}
+                  totalMatches={totalMatches}
+                  previousPath={previousMatchPath}
+                  nextPath={nextMatchPath}
+                  hasPreviousMatch={hasPreviousMatch}
+                  hasNextMatch={hasNextMatch}
+                />
               </div>
             )}
         </section>
