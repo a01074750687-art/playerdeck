@@ -327,6 +327,7 @@ export default function PlayerProfile() {
                 </div>
 
                 <RecentMatches
+                  playerName={player.name}
                   matches={player.recentMatches}
                   selectedMode={selectedMode}
                   onChangeMode={changeMode}
