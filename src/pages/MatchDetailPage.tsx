@@ -11,6 +11,7 @@ import AgentIcon from "../components/valorant/AgentIcon";
 import AgentRoleBadge from "../components/valorant/AgentRoleBadge";
 import MapThumbnail from "../components/valorant/MapThumbnail";
 import MatchDetailPanel from "../components/valorant/MatchDetailPanel";
+import MatchWeaponBreakdown from "../components/valorant/MatchWeaponsBreakdown";
 import ProfileSkeleton from "../components/valorant/ProfileSkeleton";
 
 import {
@@ -576,6 +577,11 @@ export default function MatchDetailPage() {
                     </div>
                   </div>
                 </section>
+
+                <MatchWeaponBreakdown
+                  weaponKills={selectedMatch.weaponKills}
+                  totalKills={selectedMatch.kills}
+                />
 
                 <section className="rounded-3xl border border-white/10 bg-slate-900 p-4 sm:p-6">
                   <div className="mb-5">
