@@ -86,6 +86,13 @@ type HenrikDamageData = {
   dealt_amount?: number;
 };
 
+type HenrikRound = {
+  winning_team?: string;
+  end_type?: string;
+  bomb_planted?: boolean;
+  bomb_defused?: boolean;
+};
+
 type HenrikMatch = {
   metadata?: {
     map?: string;
@@ -112,6 +119,7 @@ type HenrikMatch = {
   };
 
   kills?: HenrikKillEvent[];
+  rounds?: HenrikRound[];
 };
 
 type HenrikMatchPlayer = {
@@ -872,6 +880,14 @@ function parseMatch(
       playerName,
       playerTag
     ),
+
+    rounds:
+      match.rounds?.map((round) => ({
+        winningTeam: round.winning_team ?? "",
+        endType: round.end_type ?? "",
+        bombPlanted: Boolean(round.bomb_planted),
+        bombDefused: Boolean(round.bomb_defused),
+      })) ?? [],
   };
 
   return {

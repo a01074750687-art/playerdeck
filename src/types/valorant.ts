@@ -7,6 +7,13 @@ export type WeaponKill = {
   kills: number;
 };
 
+export type RoundResult = {
+  winningTeam: string;
+  endType: string;
+  bombPlanted: boolean;
+  bombDefused: boolean;
+};
+
 export type TopAgentStat = {
   agent: string;
   matches: number;
@@ -66,6 +73,7 @@ export type RecentMatch = {
   enemyTeam: MatchPlayer[];
 
   weaponKills?: WeaponKill[];
+  rounds: RoundResult[];
 };
 
 export type PlayerData = {

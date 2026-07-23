@@ -5,6 +5,9 @@ import MatchDetailPage from "./pages/MatchDetailPage";
 import NotFound from "./pages/NotFound";
 import PlayerProfile from "./pages/PlayerProfile";
 import Valorant from "./pages/Valorant";
+import ProPlayers from "./pages/ProPlayers";
+import ProPlayerDetail from "./pages/ProPlayerDetail";
+import PacificTeams from "./pages/PacificTeams";
 
 export default function App() {
   return (
@@ -26,7 +29,25 @@ export default function App() {
         element={<MatchDetailPage />}
       />
 
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="/valorant/pacific"
+        element={<PacificTeams />}
+      />
+
+      <Route
+        path="/valorant/pros"
+        element={<ProPlayers />}
+      />
+
+      <Route
+        path="/valorant/pros/:slug"
+        element={<ProPlayerDetail />}
+      />
+
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
     </Routes>
   );
 }
