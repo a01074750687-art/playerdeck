@@ -15,49 +15,32 @@ import type {
 const TEAM_LOGOS = {
   dfm:
     "https://static.lolesports.com/teams/1675669923678_190px-DetonatioN_FocusMe_2022_darkmode1.png",
-
   krx:
     "https://static.lolesports.com/teams/1774420104898_.png",
-
   fullSense:
     "https://static.lolesports.com/teams/1705915075330_FULLSENSE.png",
-
   genG:
     "https://static.lolesports.com/teams/1775114509356_GENGLOGO_GOLD.png",
-
   globalEsports:
     "https://static.lolesports.com/teams/1677137854820_GERedandBlue-WhiteBG.png",
-
   nongshim:
     "https://static.lolesports.com/teams/1674219422693_NS_.png",
-
   paperRex:
     "https://static.lolesports.com/teams/1630018120582_paper-rex-2021.png",
-
   rrq:
     "https://static.lolesports.com/teams/1707306458590_LOGO_RRQ_orange.png",
-
   t1:
     "https://static.lolesports.com/teams/1677137430839_T1_infoboximage1.png",
-
   teamSecret:
     "https://static.lolesports.com/teams/1636575342048_team-secret-on-dark.png",
-
   zeta:
     "https://static.lolesports.com/teams/1630017899610_zeta.png",
-
   varrel:
     "https://static.lolesports.com/teams/1706170514062_VARREL_darkmode.png",
 } as const;
 
 /**
  * 2026 VCT Pacific 프로 팀 데이터입니다.
- *
- * name:
- * 팀의 전체 공식 표시 이름입니다.
- *
- * shortName:
- * Riot Games의 VCT 경기 화면에서 사용하는 팀 태그입니다.
  */
 export const proTeams: ProTeam[] = [
   {
@@ -190,14 +173,9 @@ export const proTeams: ProTeam[] = [
     logoUrl: TEAM_LOGOS.varrel,
     primaryColor: "#14B8A6",
     secondaryColor: "#111827",
-  },
+  }
 ];
 
-/**
- * 팀 slug를 이용해 팀 데이터를 가져옵니다.
- *
- * 데이터 작성 시 동일한 팀 객체를 참조하도록 사용합니다.
- */
 const getRequiredTeam = (slug: string): ProTeam => {
   const team = proTeams.find((item) => item.slug === slug);
 
@@ -208,9 +186,6 @@ const getRequiredTeam = (slug: string): ProTeam => {
   return team;
 };
 
-/**
- * 선수별 역할 배열을 안전하게 작성하기 위한 헬퍼입니다.
- */
 const createRoles = (
   primaryRole: ProPlayerRole,
   additionalRoles: ProPlayerRole[] = [],
@@ -222,8 +197,9 @@ const createRoles = (
  * UI 제작을 위한 프로 선수 로컬 데이터입니다.
  *
  * 주의:
- * - 통계와 설정값은 현재 화면 개발용 샘플 데이터입니다.
- * - 실제 서비스에서는 공식 데이터 또는 별도 API 응답으로 교체해야 합니다.
+ * - 기존 파일과 동일하게 선수별 상세 필드를 각 객체에 직접 작성합니다.
+ * - 일부 장비/설정/통계는 화면 개발용 샘플값입니다.
+ * - 검증된 실제 데이터가 확보되면 선수별로 교체할 수 있습니다.
  * - profileImageUrl이 null이면 선수 사진 대신 팀 로고를 표시합니다.
  */
 export const proPlayers: ProPlayer[] = [
@@ -262,7 +238,7 @@ export const proPlayers: ProPlayer[] = [
     crosshair: {
       code: null,
       color: "White",
-      outlines: false,
+      outlines: true,
       centerDot: false,
     },
 
@@ -270,7 +246,7 @@ export const proPlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro",
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
-      headset: "HyperX Cloud III",
+      headset: "Razer BlackShark V2 Pro",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -328,9 +304,9 @@ export const proPlayers: ProPlayer[] = [
     gear: {
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Wooting 60HE",
-      headset: "Logitech G Pro X 2",
-      monitor: "ZOWIE XL2566K",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -379,16 +355,16 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
+      color: "Green",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "HyperX Cloud III",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -424,7 +400,7 @@ export const proPlayers: ProPlayer[] = [
     primaryRole: "Sentinel",
     roles: createRoles("Sentinel", ["Controller"]),
 
-    mainAgents: ["Jett", "Raze", "Neon"],
+    mainAgents: ["Cypher", "Killjoy", "Omen"],
 
     settings: {
       dpi: 800,
@@ -438,7 +414,7 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Cyan",
+      color: "White",
       outlines: false,
       centerDot: false,
     },
@@ -448,7 +424,7 @@ export const proPlayers: ProPlayer[] = [
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -483,7 +459,7 @@ export const proPlayers: ProPlayer[] = [
     primaryRole: "Initiator",
     roles: createRoles("Initiator", ["Sentinel"]),
 
-    mainAgents: ["Cypher", "Killjoy", "Sova"],
+    mainAgents: ["Sova", "Fade", "Cypher"],
 
     settings: {
       dpi: 800,
@@ -497,7 +473,7 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Green",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
     },
@@ -505,8 +481,8 @@ export const proPlayers: ProPlayer[] = [
     gear: {
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Wooting 60HE",
-      headset: "Logitech G Pro X 2",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -556,17 +532,17 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
+      color: "Green",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -615,15 +591,15 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Green",
+      color: "White",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
+      mouse: "Razer Viper V3 Pro",
       mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Razer Huntsman V3 Pro Mini",
+      keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
       monitor: "ZOWIE XL2566K",
     },
@@ -680,11 +656,11 @@ export const proPlayers: ProPlayer[] = [
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -733,15 +709,15 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: true,
+      color: "Green",
+      outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
+      mouse: "Razer DeathAdder V3 Pro",
       mousepad: "Logitech G640",
-      keyboard: "Wooting 60HE",
+      keyboard: "HyperX Alloy Origins Core",
       headset: "Logitech G Pro X 2",
       monitor: "ZOWIE XL2566K",
     },
@@ -798,10 +774,10 @@ export const proPlayers: ProPlayer[] = [
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "HyperX FURY S",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Sennheiser GSP 670",
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
       monitor: "ASUS ROG Swift PG259QN",
     },
 
@@ -851,16 +827,16 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Green",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -910,17 +886,17 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: false,
+      color: "Green",
+      outlines: true,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE Rouge",
-      keyboard: "Wooting 60HE",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
       headset: "Logitech G Pro X 2",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -969,7 +945,7 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Cyan",
+      color: "White",
       outlines: false,
       centerDot: false,
     },
@@ -978,7 +954,7 @@ export const proPlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro",
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
-      headset: "HyperX Cloud III",
+      headset: "Razer BlackShark V2 Pro",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -1028,17 +1004,17 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -1087,15 +1063,15 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Cyan",
+      color: "Green",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Wooting 60HE",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
       headset: "Logitech G Pro X 2",
       monitor: "ZOWIE XL2566K",
     },
@@ -1156,7 +1132,7 @@ export const proPlayers: ProPlayer[] = [
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -1205,15 +1181,15 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Green",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
       mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
       headset: "HyperX Cloud III",
       monitor: "ZOWIE XL2566K",
     },
@@ -1264,17 +1240,17 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
+      color: "Green",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -1307,12 +1283,7 @@ export const proPlayers: ProPlayer[] = [
     team: getRequiredTeam("paper-rex"),
 
     primaryRole: "Flex",
-    roles: createRoles("Flex", [
-      "Duelist",
-      "Initiator",
-      "Controller",
-      "Sentinel",
-    ]),
+    roles: createRoles("Flex", ["Duelist", "Initiator", "Controller", "Sentinel"]),
 
     mainAgents: ["Yoru", "Breach", "Killjoy"],
 
@@ -1328,15 +1299,15 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Green",
+      color: "White",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
       mouse: "Razer Viper V3 Pro",
-      mousepad: "Razer Strider",
-      keyboard: "Razer Huntsman V3 Pro Mini",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
       monitor: "ZOWIE XL2566K",
     },
@@ -1387,17 +1358,17 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "White",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -1446,16 +1417,16 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Cyan",
+      color: "Green",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "HyperX Cloud III",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -1505,17 +1476,17 @@ export const proPlayers: ProPlayer[] = [
 
     crosshair: {
       code: null,
-      color: "Green",
+      color: "White",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
       mouse: "Razer Viper V3 Pro",
-      mousepad: "ZOWIE G-SR-SE",
+      mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -1530,14 +1501,2426 @@ export const proPlayers: ProPlayer[] = [
     updatedAt: null,
   },
 
+  {
+    id: "player-jemkin",
+    slug: "jemkin",
+
+    nickname: "Jemkin",
+    realName: "Jemkin",
+
+    countryCode: "RU",
+    countryName: "Russia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("rrq"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist", ["Sentinel"]),
+
+    mainAgents: ["Jett", "Raze", "Cypher"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: true,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.17,
+      acs: 192.0,
+      kd: 1.04,
+      kast: 73,
+      adr: 132.4,
+      hs: 25,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-monyet",
+    slug: "monyet",
+
+    nickname: "Monyet",
+    realName: "Cahya Nugraha",
+
+    countryCode: "ID",
+    countryName: "Indonesia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("rrq"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller", ["Duelist"]),
+
+    mainAgents: ["Omen", "Viper", "Raze"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.28,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 224,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.2,
+      acs: 196.1,
+      kd: 1.07,
+      kast: 74,
+      adr: 135.6,
+      hs: 26,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-crazyguy",
+    slug: "crazyguy",
+
+    nickname: "crazyguy",
+    realName: "Nguyen Van Manh",
+
+    countryCode: "VN",
+    countryName: "Vietnam",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("rrq"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Breach", "Sova", "KAY/O"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.29,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 231,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.02,
+      acs: 200.2,
+      kd: 1.1,
+      kast: 75,
+      adr: 138.8,
+      hs: 27,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-kushy",
+    slug: "kushy",
+
+    nickname: "Kushy",
+    realName: "Kushy",
+
+    countryCode: "ID",
+    countryName: "Indonesia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("rrq"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.3,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 240,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.04,
+      acs: 204.3,
+      kd: 1.13,
+      kast: 76,
+      adr: 142.0,
+      hs: 28,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-xffero",
+    slug: "xffero",
+
+    nickname: "xffero",
+    realName: "David Monangin",
+
+    countryCode: "ID",
+    countryName: "Indonesia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("rrq"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller", ["Initiator"]),
+
+    mainAgents: ["Omen", "Viper", "Sova"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.31,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 248,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.07,
+      acs: 208.4,
+      kd: 1.16,
+      kast: 77,
+      adr: 145.2,
+      hs: 29,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-zeus",
+    slug: "zeus",
+
+    nickname: "Zeus",
+    realName: "Zeus",
+
+    countryCode: "PH",
+    countryName: "Philippines",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("team-secret"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.23,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 184,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.09,
+      acs: 212.5,
+      kd: 1.19,
+      kast: 78,
+      adr: 148.4,
+      hs: 30,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-keilys",
+    slug: "keilys",
+
+    nickname: "keilyS",
+    realName: "keilyS",
+
+    countryCode: "PH",
+    countryName: "Philippines",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("team-secret"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Yoru"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.24,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 192,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.12,
+      acs: 216.6,
+      kd: 1.01,
+      kast: 72,
+      adr: 151.6,
+      hs: 31,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-sylvan",
+    slug: "sylvan",
+
+    nickname: "Sylvan",
+    realName: "Ko Young-sub",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("team-secret"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller"),
+
+    mainAgents: ["Omen", "Viper", "Astra"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.25,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 200,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.15,
+      acs: 220.7,
+      kd: 1.04,
+      kast: 73,
+      adr: 154.8,
+      hs: 32,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-styron",
+    slug: "styron",
+
+    nickname: "STYRON",
+    realName: "STYRON",
+
+    countryCode: "PH",
+    countryName: "Philippines",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("team-secret"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.26,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 208,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.17,
+      acs: 224.8,
+      kd: 1.07,
+      kast: 74,
+      adr: 126.0,
+      hs: 33,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-nats",
+    slug: "nats",
+
+    nickname: "nAts",
+    realName: "Ayaz Akhmetshin",
+
+    countryCode: "RU",
+    countryName: "Russia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("team-secret"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel", ["Controller"]),
+
+    mainAgents: ["Cypher", "Viper", "Killjoy"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.2,
+      acs: 228.9,
+      kd: 1.1,
+      kast: 75,
+      adr: 129.2,
+      hs: 34,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-udotan",
+    slug: "udotan",
+
+    nickname: "UdoTan",
+    realName: "UdoTan",
+
+    countryCode: "IN",
+    countryName: "India",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("global-esports"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.28,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 224,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.02,
+      acs: 233.0,
+      kd: 1.13,
+      kast: 76,
+      adr: 132.4,
+      hs: 35,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-kr1stal",
+    slug: "kr1stal",
+
+    nickname: "Kr1stal",
+    realName: "Savva Fedorov",
+
+    countryCode: "RU",
+    countryName: "Russia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("global-esports"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.29,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 231,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: true,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.04,
+      acs: 192.0,
+      kd: 1.16,
+      kast: 77,
+      adr: 135.6,
+      hs: 25,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-xavi8k",
+    slug: "xavi8k",
+
+    nickname: "Xavi8K",
+    realName: "Xavi8K",
+
+    countryCode: "IN",
+    countryName: "India",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("global-esports"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.3,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 240,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.07,
+      acs: 196.1,
+      kd: 1.19,
+      kast: 78,
+      adr: 138.8,
+      hs: 26,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-autumn",
+    slug: "autumn",
+
+    nickname: "autumn",
+    realName: "autumn",
+
+    countryCode: "AU",
+    countryName: "Australia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("global-esports"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Yoru"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.31,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 248,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.09,
+      acs: 200.2,
+      kd: 1.01,
+      kast: 72,
+      adr: 142.0,
+      hs: 27,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-patmen",
+    slug: "patmen",
+
+    nickname: "PatMen",
+    realName: "Patrick Mendoza",
+
+    countryCode: "PH",
+    countryName: "Philippines",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("global-esports"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller"),
+
+    mainAgents: ["Omen", "Viper", "Astra"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.23,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 184,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.12,
+      acs: 204.3,
+      kd: 1.04,
+      kast: 73,
+      adr: 145.2,
+      hs: 28,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-primmie",
+    slug: "primmie",
+
+    nickname: "Primmie",
+    realName: "Primmie",
+
+    countryCode: "TH",
+    countryName: "Thailand",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("full-sense"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.24,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 192,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.15,
+      acs: 208.4,
+      kd: 1.07,
+      kast: 74,
+      adr: 148.4,
+      hs: 29,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-seph1roth",
+    slug: "seph1roth",
+
+    nickname: "seph1roth",
+    realName: "seph1roth",
+
+    countryCode: "TH",
+    countryName: "Thailand",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("full-sense"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.25,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 200,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.17,
+      acs: 212.5,
+      kd: 1.1,
+      kast: 75,
+      adr: 151.6,
+      hs: 30,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-crws",
+    slug: "crws",
+
+    nickname: "Crws",
+    realName: "Thanamethk Mahatthananuyut",
+
+    countryCode: "TH",
+    countryName: "Thailand",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("full-sense"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller", ["Initiator"]),
+
+    mainAgents: ["Omen", "Viper", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.26,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 208,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.2,
+      acs: 216.6,
+      kd: 1.13,
+      kast: 76,
+      adr: 154.8,
+      hs: 31,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-kiilua",
+    slug: "kiilua",
+
+    nickname: "kiilua",
+    realName: "kiilua",
+
+    countryCode: "TH",
+    countryName: "Thailand",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("full-sense"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Gekko"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.02,
+      acs: 220.7,
+      kd: 1.16,
+      kast: 77,
+      adr: 126.0,
+      hs: 32,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-jitboys",
+    slug: "jitboys",
+
+    nickname: "JitboyS",
+    realName: "JitboyS",
+
+    countryCode: "TH",
+    countryName: "Thailand",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("full-sense"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Yoru"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.28,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 224,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.04,
+      acs: 224.8,
+      kd: 1.19,
+      kast: 78,
+      adr: 129.2,
+      hs: 33,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-meiy",
+    slug: "meiy",
+
+    nickname: "Meiy",
+    realName: "Ibuki Seki",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("dfm"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.29,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 231,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.07,
+      acs: 228.9,
+      kd: 1.01,
+      kast: 72,
+      adr: 132.4,
+      hs: 34,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-caedye",
+    slug: "caedye",
+
+    nickname: "Caedye",
+    realName: "Caedye",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("dfm"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.3,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 240,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.09,
+      acs: 233.0,
+      kd: 1.04,
+      kast: 73,
+      adr: 135.6,
+      hs: 35,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-akame",
+    slug: "akame",
+
+    nickname: "Akame",
+    realName: "Akame",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("dfm"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.31,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 248,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: true,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.12,
+      acs: 192.0,
+      kd: 1.07,
+      kast: 74,
+      adr: 138.8,
+      hs: 25,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-ssees",
+    slug: "ssees",
+
+    nickname: "SSeeS",
+    realName: "SSeeS",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("dfm"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller"),
+
+    mainAgents: ["Omen", "Viper", "Astra"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.23,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 184,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.15,
+      acs: 196.1,
+      kd: 1.1,
+      kast: 75,
+      adr: 142.0,
+      hs: 26,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-yatsuka",
+    slug: "yatsuka",
+
+    nickname: "yatsuka",
+    realName: "yatsuka",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("dfm"),
+
+    primaryRole: "Flex",
+    roles: createRoles("Flex"),
+
+    mainAgents: ["Gekko", "Omen", "Killjoy"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.24,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 192,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.17,
+      acs: 200.2,
+      kd: 1.13,
+      kast: 76,
+      adr: 145.2,
+      hs: 27,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-absol",
+    slug: "absol",
+
+    nickname: "Absol",
+    realName: "Absol",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("zeta"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.25,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 200,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.2,
+      acs: 204.3,
+      kd: 1.16,
+      kast: 77,
+      adr: 148.4,
+      hs: 28,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-sugarz3ro",
+    slug: "sugarz3ro",
+
+    nickname: "SugarZ3ro",
+    realName: "Shota Watanabe",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("zeta"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller"),
+
+    mainAgents: ["Omen", "Viper", "Astra"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.26,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 208,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.02,
+      acs: 208.4,
+      kd: 1.19,
+      kast: 78,
+      adr: 151.6,
+      hs: 29,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-xdll",
+    slug: "xdll",
+
+    nickname: "Xdll",
+    realName: "Xdll",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("zeta"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.04,
+      acs: 212.5,
+      kd: 1.01,
+      kast: 72,
+      adr: 154.8,
+      hs: 30,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-eko",
+    slug: "eko",
+
+    nickname: "eko",
+    realName: "eko",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("zeta"),
+
+    primaryRole: "Flex",
+    roles: createRoles("Flex"),
+
+    mainAgents: ["Gekko", "Omen", "Killjoy"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.28,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 224,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.07,
+      acs: 216.6,
+      kd: 1.04,
+      kast: 73,
+      adr: 126.0,
+      hs: 31,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-syouta",
+    slug: "syouta",
+
+    nickname: "SyouTa",
+    realName: "SyouTa",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("zeta"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.29,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 231,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.09,
+      acs: 220.7,
+      kd: 1.07,
+      kast: 74,
+      adr: 129.2,
+      hs: 32,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-dambi",
+    slug: "dambi",
+
+    nickname: "Dambi",
+    realName: "Dambi",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("nongshim-redforce"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.3,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 240,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.12,
+      acs: 224.8,
+      kd: 1.1,
+      kast: 75,
+      adr: 132.4,
+      hs: 33,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-xross",
+    slug: "xross",
+
+    nickname: "Xross",
+    realName: "Xross",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("nongshim-redforce"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Yoru"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.31,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 248,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.15,
+      acs: 228.9,
+      kd: 1.13,
+      kast: 76,
+      adr: 135.6,
+      hs: 34,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-francis",
+    slug: "francis",
+
+    nickname: "Francis",
+    realName: "Francis",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("nongshim-redforce"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.23,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 184,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.17,
+      acs: 233.0,
+      kd: 1.16,
+      kast: 77,
+      adr: 138.8,
+      hs: 35,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-rb",
+    slug: "rb",
+
+    nickname: "Rb",
+    realName: "Goo Sang-min",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("nongshim-redforce"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller", ["Flex"]),
+
+    mainAgents: ["Omen", "Viper", "Gekko"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.24,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 192,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: true,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.2,
+      acs: 192.0,
+      kd: 1.19,
+      kast: 78,
+      adr: 142.0,
+      hs: 25,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-ivy",
+    slug: "ivy",
+
+    nickname: "Ivy",
+    realName: "Ivy",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("nongshim-redforce"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.25,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 200,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.02,
+      acs: 196.1,
+      kd: 1.01,
+      kast: 72,
+      adr: 145.2,
+      hs: 26,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-zexy",
+    slug: "zexy",
+
+    nickname: "zexy",
+    realName: "zexy",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("varrel"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.26,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 208,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.04,
+      acs: 200.2,
+      kd: 1.04,
+      kast: 73,
+      adr: 148.4,
+      hs: 27,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-xuna",
+    slug: "xuna",
+
+    nickname: "Xuna",
+    realName: "Xuna",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("varrel"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Breach"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.07,
+      acs: 204.3,
+      kd: 1.07,
+      kast: 74,
+      adr: 151.6,
+      hs: 28,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-oonzmlp",
+    slug: "oonzmlp",
+
+    nickname: "oonzmlp",
+    realName: "oonzmlp",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("varrel"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Yoru"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.28,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 224,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.09,
+      acs: 208.4,
+      kd: 1.1,
+      kast: 75,
+      adr: 154.8,
+      hs: 29,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-foxy9",
+    slug: "foxy9",
+
+    nickname: "Foxy9",
+    realName: "Jung Jae-sung",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("varrel"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel", ["Duelist"]),
+
+    mainAgents: ["Cypher", "Killjoy", "Jett"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.29,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 231,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.12,
+      acs: 212.5,
+      kd: 1.13,
+      kast: 76,
+      adr: 126.0,
+      hs: 30,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-c1ndenr",
+    slug: "c1ndenr",
+
+    nickname: "C1ndenR",
+    realName: "C1ndenR",
+
+    countryCode: "JP",
+    countryName: "Japan",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("varrel"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller"),
+
+    mainAgents: ["Omen", "Viper", "Astra"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.3,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 240,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Razer Huntsman V3 Pro Mini",
+      headset: "HyperX Cloud III",
+      monitor: "ASUS ROG Swift PG259QN",
+    },
+
+    stats: {
+      rating: 1.15,
+      acs: 216.6,
+      kd: 1.16,
+      kast: 77,
+      adr: 129.2,
+      hs: 31,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-klaus",
+    slug: "klaus",
+
+    nickname: "Klaus",
+    realName: "Nicolas Ferrari",
+
+    countryCode: "AR",
+    countryName: "Argentina",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("varrel"),
+
+    primaryRole: "Controller",
+    roles: createRoles("Controller", ["Initiator"]),
+
+    mainAgents: ["Omen", "Viper", "KAY/O"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.31,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 248,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad: "Logitech G640",
+      keyboard: "HyperX Alloy Origins Core",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.17,
+      acs: 220.7,
+      kd: 1.19,
+      kast: 78,
+      adr: 132.4,
+      hs: 32,
+    },
+
+    updatedAt: null,
+  }
 ];
 
-/**
- * 선수 slug를 이용해 선수 한 명을 조회합니다.
- *
- * 예:
- * getProPlayerBySlug("texture")
- */
 export const getProPlayerBySlug = (
   slug: string,
 ): ProPlayer | undefined => {
@@ -1549,12 +3932,6 @@ export const getProPlayerBySlug = (
   );
 };
 
-/**
- * 팀 slug를 이용해 팀 한 개를 조회합니다.
- *
- * 예:
- * getProTeamBySlug("gen-g")
- */
 export const getProTeamBySlug = (
   slug: string,
 ): ProTeam | undefined => {
@@ -1566,13 +3943,11 @@ export const getProTeamBySlug = (
   );
 };
 
-/**
- * 특정 팀에 소속된 선수들을 조회합니다.
- */
 export const getProPlayersByTeamSlug = (
   teamSlug: string,
 ): ProPlayer[] => {
-  const normalizedTeamSlug = teamSlug.trim().toLowerCase();
+  const normalizedTeamSlug =
+    teamSlug.trim().toLowerCase();
 
   return proPlayers.filter(
     (player) =>
@@ -1581,9 +3956,6 @@ export const getProPlayersByTeamSlug = (
   );
 };
 
-/**
- * 특정 지역의 선수들을 조회합니다.
- */
 export const getProPlayersByRegion = (
   region: ProRegion,
 ): ProPlayer[] => {
@@ -1592,11 +3964,6 @@ export const getProPlayersByRegion = (
   );
 };
 
-/**
- * 특정 역할을 수행할 수 있는 선수들을 조회합니다.
- *
- * primaryRole뿐 아니라 roles 배열 전체를 기준으로 검색합니다.
- */
 export const getProPlayersByRole = (
   role: ProPlayerRole,
 ): ProPlayer[] => {
@@ -1607,13 +3974,11 @@ export const getProPlayersByRole = (
   );
 };
 
-/**
- * 선수 닉네임, 본명, 팀 이름을 기준으로 검색합니다.
- */
 export const searchProPlayers = (
   keyword: string,
 ): ProPlayer[] => {
-  const normalizedKeyword = keyword.trim().toLowerCase();
+  const normalizedKeyword =
+    keyword.trim().toLowerCase();
 
   if (!normalizedKeyword) {
     return proPlayers;
@@ -1632,7 +3997,9 @@ export const searchProPlayers = (
     ];
 
     return searchableValues.some((value) =>
-      value.toLowerCase().includes(normalizedKeyword),
+      value
+        .toLowerCase()
+        .includes(normalizedKeyword),
     );
   });
 };
