@@ -953,7 +953,7 @@ export const proPlayers: ProPlayer[] = [
     team: getRequiredTeam("krx"),
 
     primaryRole: "Initiator",
-    roles: createRoles("Initiator", ["Flex"]),
+    roles: createRoles("Initiator", ["Controller"]),
 
     mainAgents: ["Sova", "Fade", "Gekko"],
 
@@ -989,6 +989,242 @@ export const proPlayers: ProPlayer[] = [
       kast: 76,
       adr: 132.1,
       hs: 29,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-yong",
+    slug: "yong",
+
+    nickname: "yong",
+    realName: "Kim Ho-yong",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("krx"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel"),
+
+    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.08,
+      acs: 199.4,
+      kd: 1.06,
+      kast: 75,
+      adr: 130.8,
+      hs: 31,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-free1ng",
+    slug: "free1ng",
+
+    nickname: "free1ng",
+    realName: "No Ha-jun",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("krx"),
+
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Initiator", "Sentinel"]),
+
+    mainAgents: ["Sova", "Gekko", "Killjoy"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.26,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 208,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Wooting 60HE",
+      headset: "Logitech G Pro X 2",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.1,
+      acs: 207.2,
+      kd: 1.09,
+      kast: 76,
+      adr: 136.1,
+      hs: 30,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-hyunmin",
+    slug: "hyunmin",
+
+    nickname: "HYUNMIN",
+    realName: "Song Hyun-min",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("krx"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
+
+    mainAgents: ["Jett", "Raze", "Neon"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.29,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 232,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.18,
+      acs: 239.6,
+      kd: 1.2,
+      kast: 74,
+      adr: 154.2,
+      hs: 28,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-flicker",
+    slug: "flicker",
+
+    nickname: "Flicker",
+    realName: "Kim Tae-hee",
+
+    countryCode: "KR",
+    countryName: "South Korea",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("krx"),
+
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Initiator", "Sentinel"]),
+
+    mainAgents: ["Breach", "Fade", "Cypher"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.25,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 200,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.07,
+      acs: 201.5,
+      kd: 1.05,
+      kast: 75,
+      adr: 131.6,
+      hs: 32,
     },
 
     updatedAt: null,
@@ -1116,6 +1352,184 @@ export const proPlayers: ProPlayer[] = [
 
     updatedAt: null,
   },
+
+  {
+    id: "player-jinggg",
+    slug: "jinggg",
+
+    nickname: "Jinggg",
+    realName: "Wang Jing Jie",
+
+    countryCode: "SG",
+    countryName: "Singapore",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("paper-rex"),
+
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist", ["Controller"]),
+
+    mainAgents: ["Raze", "Neon", "Omen"],
+
+    settings: {
+      dpi: 1600,
+      sensitivity: 0.2,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 320,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "White",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.22,
+      acs: 247.8,
+      kd: 1.24,
+      kast: 74,
+      adr: 159.6,
+      hs: 27,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-d4v41",
+    slug: "d4v41",
+
+    nickname: "d4v41",
+    realName: "Khalish Rusyaidee",
+
+    countryCode: "MY",
+    countryName: "Malaysia",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("paper-rex"),
+
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel", ["Initiator"]),
+
+    mainAgents: ["Cypher", "Killjoy", "Sova"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.25,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 200,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Cyan",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "Artisan Ninja FX Zero Soft",
+      keyboard: "Wooting 60HE",
+      headset: "HyperX Cloud III",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.1,
+      acs: 205.9,
+      kd: 1.09,
+      kast: 76,
+      adr: 134.4,
+      hs: 31,
+    },
+
+    updatedAt: null,
+  },
+
+  {
+    id: "player-invy",
+    slug: "invy",
+
+    nickname: "invy",
+    realName: "Adrian Reyes",
+
+    countryCode: "PH",
+    countryName: "Philippines",
+
+    region: "Pacific",
+    status: "Active",
+
+    profileImageUrl: null,
+
+    team: getRequiredTeam("paper-rex"),
+
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
+
+    mainAgents: ["Sova", "Fade", "Gekko"],
+
+    settings: {
+      dpi: 800,
+      sensitivity: 0.27,
+      scopedSensitivity: 1,
+      adsSensitivity: 1,
+      edpi: 216,
+      pollingRate: 1000,
+      resolution: "1920x1080",
+    },
+
+    crosshair: {
+      code: null,
+      color: "Green",
+      outlines: false,
+      centerDot: false,
+    },
+
+    gear: {
+      mouse: "Razer Viper V3 Pro",
+      mousepad: "ZOWIE G-SR-SE",
+      keyboard: "Wooting 60HE",
+      headset: "Razer BlackShark V2 Pro",
+      monitor: "ZOWIE XL2566K",
+    },
+
+    stats: {
+      rating: 1.13,
+      acs: 213.7,
+      kd: 1.12,
+      kast: 77,
+      adr: 139.1,
+      hs: 30,
+    },
+
+    updatedAt: null,
+  },
+
 ];
 
 /**
