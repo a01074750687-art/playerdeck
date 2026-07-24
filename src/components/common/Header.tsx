@@ -43,7 +43,11 @@ type GameLogoProps = {
   isActive: boolean;
 };
 
-function GameLogo({ src, alt, isActive }: GameLogoProps) {
+function GameLogo({
+  src,
+  alt,
+  isActive,
+}: GameLogoProps) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError) {
@@ -77,6 +81,73 @@ function GameLogo({ src, alt, isActive }: GameLogoProps) {
   );
 }
 
+function ProMenuIcon({
+  isActive,
+}: {
+  isActive: boolean;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={[
+        "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors",
+        isActive
+          ? "border-red-400/40 bg-red-500/10 text-red-300"
+          : "border-white/10 bg-white/[0.04] text-zinc-500 group-hover:border-white/20 group-hover:text-zinc-300",
+      ].join(" ")}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        className="h-3.5 w-3.5"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 5H6.5A2.5 2.5 0 0 0 4 7.5V8a4 4 0 0 0 4 4"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+
+        <path
+          d="M16 5h1.5A2.5 2.5 0 0 1 20 7.5V8a4 4 0 0 1-4 4"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+
+        <path
+          d="M8 4h8v4a4 4 0 0 1-8 0V4Z"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinejoin="round"
+        />
+
+        <path
+          d="M12 12v4"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+
+        <path
+          d="M9 20h6"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+
+        <path
+          d="M10 16h4v4h-4v-4Z"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
+  );
+}
+
 export default function Header() {
   const location = useLocation();
 
@@ -87,6 +158,10 @@ export default function Header() {
 
     return location.pathname.startsWith(game.path);
   };
+
+  const isProActive =
+    location.pathname === "/pro" ||
+    location.pathname.startsWith("/pro/");
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#090a0f]/90 backdrop-blur-xl">
@@ -105,7 +180,7 @@ export default function Header() {
         <div className="hidden h-6 w-px shrink-0 bg-white/10 sm:block" />
 
         <nav
-          aria-label="게임 선택"
+          aria-label="메인 메뉴"
           className="min-w-0 flex-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div className="flex min-w-max items-stretch gap-1">
@@ -148,7 +223,9 @@ export default function Header() {
                 <Link
                   key={game.id}
                   to={game.path}
-                  aria-current={isActive ? "page" : undefined}
+                  aria-current={
+                    isActive ? "page" : undefined
+                  }
                   className={[
                     "group relative flex h-16 items-center gap-2.5 px-3 transition-colors sm:px-4",
                     isActive
@@ -182,6 +259,44 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            <div
+              aria-hidden="true"
+              className="my-auto mx-1 h-6 w-px shrink-0 bg-white/10 sm:mx-2"
+            />
+
+            <Link
+              to="/pro"
+              aria-current={
+                isProActive ? "page" : undefined
+              }
+              className={[
+                "group relative flex h-16 items-center gap-2.5 px-3 transition-colors sm:px-4",
+                isProActive
+                  ? "text-white"
+                  : "text-zinc-500 hover:text-zinc-200",
+              ].join(" ")}
+            >
+              <ProMenuIcon isActive={isProActive} />
+
+              <span className="text-xs font-bold tracking-wide sm:hidden">
+                프로
+              </span>
+
+              <span className="hidden whitespace-nowrap text-sm font-semibold sm:inline">
+                프로 선수
+              </span>
+
+              <span
+                aria-hidden="true"
+                className={[
+                  "absolute inset-x-3 bottom-0 h-0.5 rounded-full transition-all duration-200 sm:inset-x-4",
+                  isProActive
+                    ? "scale-x-100 bg-red-500 opacity-100"
+                    : "scale-x-0 bg-transparent opacity-0",
+                ].join(" ")}
+              />
+            </Link>
           </div>
         </nav>
       </div>

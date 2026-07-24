@@ -33,6 +33,13 @@ export default function App() {
         element={<MatchDetailPage />}
       />
 
+      {/* 메인 네비게이션의 프로 메뉴 */}
+      <Route
+        path="/pro"
+        element={<PacificTeam />}
+      />
+
+      {/* 기존 Pacific 주소 유지 */}
       <Route
         path="/valorant/pacific"
         element={<PacificTeam />}
