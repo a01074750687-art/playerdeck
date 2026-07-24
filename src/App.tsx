@@ -3,16 +3,20 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import MatchDetailPage from "./pages/MatchDetailPage";
 import NotFound from "./pages/NotFound";
+import PacificTeam from "./pages/PacificTeam";
 import PlayerProfile from "./pages/PlayerProfile";
-import Valorant from "./pages/Valorant";
-import ProPlayers from "./pages/ProPlayers";
 import ProPlayerDetail from "./pages/ProPlayerDetail";
-import PacificTeams from "./pages/PacificTeams";
+import ProPlayers from "./pages/ProPlayers";
+import ProTeamDetail from "./pages/ProTeamDetail";
+import Valorant from "./pages/Valorant";
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={<Home />}
+      />
 
       <Route
         path="/valorant"
@@ -31,7 +35,12 @@ export default function App() {
 
       <Route
         path="/valorant/pacific"
-        element={<PacificTeams />}
+        element={<PacificTeam />}
+      />
+
+      <Route
+        path="/valorant/team/:teamSlug"
+        element={<ProTeamDetail />}
       />
 
       <Route

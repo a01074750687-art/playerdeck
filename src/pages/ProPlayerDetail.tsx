@@ -232,6 +232,40 @@ export default function ProPlayerDetail() {
   }
 
   const team = player.team;
+
+  if (!team) {
+    return (
+      <main className="min-h-screen bg-[#070b14] px-4 py-20 text-white sm:px-6">
+        <div className="mx-auto flex max-w-2xl flex-col items-center rounded-3xl border border-white/10 bg-slate-950/70 px-6 py-16 text-center shadow-2xl shadow-black/30">
+          <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-amber-400/20 bg-amber-400/10 text-amber-300">
+            <Shield size={30} />
+          </div>
+
+          <p className="mt-6 text-xs font-black uppercase tracking-[0.25em] text-amber-300">
+            Team information missing
+          </p>
+
+          <h1 className="mt-3 text-3xl font-black tracking-tight">
+            소속 팀 정보를 찾을 수 없습니다
+          </h1>
+
+          <p className="mt-4 max-w-md text-sm leading-7 text-slate-400">
+            {player.nickname} 선수는 등록되어 있지만 현재 소속 팀 정보가
+            연결되지 않았습니다. 선수 데이터의 team 값을 확인해 주세요.
+          </p>
+
+          <Link
+            to="/valorant/pros"
+            className="mt-8 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-200"
+          >
+            <ArrowLeft size={17} />
+            선수 목록으로
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
   const teamLogoUrl = team.logoUrl?.trim() || null;
   const teamInitials = createInitials(team.shortName || team.name);
 
@@ -250,51 +284,98 @@ export default function ProPlayerDetail() {
     "rating20",
     "averageRating",
   ]);
-  const acs = getRecordValue(statsRecord, ["acs", "averageCombatScore"]);
-  const kd = getRecordValue(statsRecord, ["kd", "killDeathRatio"]);
+
+  const acs = getRecordValue(statsRecord, [
+    "acs",
+    "averageCombatScore",
+  ]);
+
+  const kd = getRecordValue(statsRecord, [
+    "kd",
+    "killDeathRatio",
+  ]);
+
   const hsRate = getRecordValue(statsRecord, [
     "hsRate",
     "headshotRate",
     "headshotPercentage",
   ]);
-  const adr = getRecordValue(statsRecord, ["adr", "averageDamagePerRound"]);
-  const kast = getRecordValue(statsRecord, ["kast", "kastRate"]);
+
+  const adr = getRecordValue(statsRecord, [
+    "adr",
+    "averageDamagePerRound",
+  ]);
+
+  const kast = getRecordValue(statsRecord, [
+    "kast",
+    "kastRate",
+  ]);
 
   const dpi = getRecordValue(settingsRecord, ["dpi"]);
+
   const sensitivity = getRecordValue(settingsRecord, [
     "sensitivity",
     "sens",
   ]);
+
   const scopedSensitivity = getRecordValue(settingsRecord, [
     "scopedSensitivity",
     "scopeSensitivity",
   ]);
-  const adsSensitivity = getRecordValue(settingsRecord, ["adsSensitivity"]);
-  const edpi = getRecordValue(settingsRecord, ["edpi", "eDpi"]);
+
+  const adsSensitivity = getRecordValue(settingsRecord, [
+    "adsSensitivity",
+  ]);
+
+  const edpi = getRecordValue(settingsRecord, [
+    "edpi",
+    "eDpi",
+  ]);
+
   const pollingRate = getRecordValue(settingsRecord, [
     "pollingRate",
     "pollingRateHz",
   ]);
-  const resolution = getRecordValue(settingsRecord, ["resolution"]);
+
+  const resolution = getRecordValue(settingsRecord, [
+    "resolution",
+  ]);
 
   const crosshairCode = formatValue(
     getRecordValue(crosshairRecord, ["code"]),
   );
+
   const crosshairColor = formatValue(
     getRecordValue(crosshairRecord, ["color"]),
   );
+
   const outlines = formatValue(
     getRecordValue(crosshairRecord, ["outlines"]),
   );
+
   const centerDot = formatValue(
     getRecordValue(crosshairRecord, ["centerDot"]),
   );
 
   const mouse = getRecordValue(gearRecord, ["mouse"]);
-  const keyboard = getRecordValue(gearRecord, ["keyboard"]);
-  const headset = getRecordValue(gearRecord, ["headset", "headphones"]);
-  const monitor = getRecordValue(gearRecord, ["monitor"]);
-  const mousepad = getRecordValue(gearRecord, ["mousepad", "mousePad"]);
+
+  const keyboard = getRecordValue(gearRecord, [
+    "keyboard",
+  ]);
+
+  const headset = getRecordValue(gearRecord, [
+    "headset",
+    "headphones",
+  ]);
+
+  const monitor = getRecordValue(gearRecord, [
+    "monitor",
+  ]);
+
+  const mousepad = getRecordValue(gearRecord, [
+    "mousepad",
+    "mousePad",
+  ]);
 
   const heroStats: DetailItem[] = [
     {
@@ -510,8 +591,11 @@ export default function ProPlayerDetail() {
                 >
                   <span
                     className="h-2 w-2 rounded-full"
-                    style={{ backgroundColor: primaryColor }}
+                    style={{
+                      backgroundColor: primaryColor,
+                    }}
                   />
+
                   {team.name}
                 </span>
 
@@ -541,6 +625,7 @@ export default function ProPlayerDetail() {
                   <span className="text-lg">
                     {getCountryFlag(player.countryCode)}
                   </span>
+
                   {player.countryName}
                 </span>
 
@@ -574,16 +659,20 @@ export default function ProPlayerDetail() {
               <div
                 className="relative flex aspect-square w-full max-w-[260px] items-center justify-center overflow-hidden rounded-[2rem] border border-white/15 bg-black/25 p-8 shadow-2xl backdrop-blur-xl"
                 style={{
-                  boxShadow: `0 24px 80px ${hexToRgba(primaryColor, 0.18)}`,
+                  boxShadow: `0 24px 80px ${hexToRgba(
+                    primaryColor,
+                    0.18,
+                  )}`,
                 }}
               >
                 <div
                   className="absolute inset-0 opacity-50"
                   style={{
-                    background: `radial-gradient(circle, ${hexToRgba(
-                      primaryColor,
-                      0.24,
-                    )}, transparent 68%)`,
+                    background: `radial-gradient(
+                      circle,
+                      ${hexToRgba(primaryColor, 0.24)},
+                      transparent 68%
+                    )`,
                   }}
                 />
 
@@ -723,21 +812,30 @@ export default function ProPlayerDetail() {
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
                   Color
                 </p>
-                <p className="mt-3 font-black text-white">{crosshairColor}</p>
+
+                <p className="mt-3 font-black text-white">
+                  {crosshairColor}
+                </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
                   Outlines
                 </p>
-                <p className="mt-3 font-black text-white">{outlines}</p>
+
+                <p className="mt-3 font-black text-white">
+                  {outlines}
+                </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
                   Center dot
                 </p>
-                <p className="mt-3 font-black text-white">{centerDot}</p>
+
+                <p className="mt-3 font-black text-white">
+                  {centerDot}
+                </p>
               </div>
             </div>
           </SectionCard>
@@ -777,7 +875,9 @@ export default function ProPlayerDetail() {
                       className="h-full w-full object-contain"
                     />
                   ) : (
-                    <span className="text-2xl font-black">{teamInitials}</span>
+                    <span className="text-2xl font-black">
+                      {teamInitials}
+                    </span>
                   )}
                 </div>
 
