@@ -1,9 +1,12 @@
 import {
   ArrowLeft,
   ArrowUpRight,
+  CalendarDays,
   Globe2,
+  Medal,
   Shield,
   Target,
+  Trophy,
   UserRound,
   Users,
 } from "lucide-react";
@@ -15,6 +18,7 @@ import type {
   ProPlayer,
   ProPlayerRole,
   ProTeam,
+  ProTeamAchievement,
 } from "../types/proPlayer";
 
 interface RoleTheme {
@@ -22,33 +26,38 @@ interface RoleTheme {
   className: string;
 }
 
+interface AchievementTheme {
+  icon: string;
+  className: string;
+}
+
 const ROLE_THEME: Record<ProPlayerRole, RoleTheme> = {
   Duelist: {
-    label: "Duelist",
+    label: "타격대",
     className:
       "border-red-400/20 bg-red-400/10 text-red-200",
   },
 
   Initiator: {
-    label: "Initiator",
+    label: "척후대",
     className:
       "border-blue-400/20 bg-blue-400/10 text-blue-200",
   },
 
   Controller: {
-    label: "Controller",
+    label: "전략가",
     className:
       "border-violet-400/20 bg-violet-400/10 text-violet-200",
   },
 
   Sentinel: {
-    label: "Sentinel",
+    label: "감시자",
     className:
       "border-emerald-400/20 bg-emerald-400/10 text-emerald-200",
   },
 
   Flex: {
-    label: "Flex",
+    label: "유동 역할",
     className:
       "border-amber-400/20 bg-amber-400/10 text-amber-200",
   },
@@ -104,16 +113,16 @@ const getStatusLabel = (
 ): string => {
   switch (status) {
     case "Active":
-      return "Active";
+      return "활동";
 
     case "Substitute":
-      return "Substitute";
+      return "후보";
 
     case "Inactive":
-      return "Inactive";
+      return "비활동";
 
     case "Retired":
-      return "Retired";
+      return "은퇴";
 
     default:
       return status;
@@ -139,6 +148,121 @@ const getStatusClassName = (
     default:
       return "border-white/10 bg-white/[0.05] text-slate-300";
   }
+};
+
+const getAchievementTheme = (
+  achievement: ProTeamAchievement,
+): AchievementTheme => {
+  const normalizedResult =
+    achievement.result.toLowerCase();
+
+  if (
+    normalizedResult.includes("champion") ||
+    normalizedResult.includes("winner") ||
+    normalizedResult.includes("1st") ||
+    normalizedResult.includes("우승")
+  ) {
+    return {
+      icon: "🏆",
+      className:
+        "border-amber-400/20 bg-amber-400/10 text-amber-200",
+    };
+  }
+
+  if (
+    normalizedResult.includes("runner-up") ||
+    normalizedResult.includes("runner up") ||
+    normalizedResult.includes("2nd") ||
+    normalizedResult.includes("준우승")
+  ) {
+    return {
+      icon: "🥈",
+      className:
+        "border-slate-300/20 bg-slate-300/10 text-slate-200",
+    };
+  }
+
+  if (
+    normalizedResult.includes("3rd") ||
+    normalizedResult.includes("third") ||
+    normalizedResult.includes("3위")
+  ) {
+    return {
+      icon: "🥉",
+      className:
+        "border-orange-400/20 bg-orange-400/10 text-orange-200",
+    };
+  }
+
+  if (
+    normalizedResult.includes("top 4") ||
+    normalizedResult.includes("top4") ||
+    normalizedResult.includes("semifinal") ||
+    normalizedResult.includes("4강")
+  ) {
+    return {
+      icon: "⭐",
+      className:
+        "border-blue-400/20 bg-blue-400/10 text-blue-200",
+    };
+  }
+
+  return {
+    icon: "◆",
+    className:
+      "border-violet-400/20 bg-violet-400/10 text-violet-200",
+  };
+};
+
+const getAchievementResultLabel = (
+  result: string,
+): string => {
+  const normalizedResult = result.toLowerCase();
+
+  if (
+    normalizedResult.includes("champion") ||
+    normalizedResult.includes("winner") ||
+    normalizedResult.includes("1st") ||
+    normalizedResult.includes("우승")
+  ) {
+    return "우승";
+  }
+
+  if (
+    normalizedResult.includes("runner-up") ||
+    normalizedResult.includes("runner up") ||
+    normalizedResult.includes("2nd") ||
+    normalizedResult.includes("준우승")
+  ) {
+    return "준우승";
+  }
+
+  if (
+    normalizedResult.includes("3rd place") ||
+    normalizedResult.includes("3rd") ||
+    normalizedResult.includes("third") ||
+    normalizedResult.includes("3위")
+  ) {
+    return "3위";
+  }
+
+  if (
+    normalizedResult.includes("top 4") ||
+    normalizedResult.includes("top4") ||
+    normalizedResult.includes("semifinal") ||
+    normalizedResult.includes("4강")
+  ) {
+    return "4강";
+  }
+
+  if (
+    normalizedResult.includes("playoff") ||
+    normalizedResult.includes("플레이오프")
+  ) {
+    return "플레이오프 진출";
+  }
+
+  return result;
 };
 
 const ProTeamDetail = () => {
@@ -170,7 +294,7 @@ const ProTeamDetail = () => {
             </div>
 
             <p className="mt-6 text-xs font-black uppercase tracking-[0.22em] text-red-300">
-              Team Not Found
+              팀 정보 없음
             </p>
 
             <h1 className="mt-3 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
@@ -199,6 +323,17 @@ const ProTeamDetail = () => {
   const activeRosterCount = roster.filter(
     (player) => player.status === "Active",
   ).length;
+
+  const assistantCoaches =
+    team.assistantCoaches ?? [];
+
+  const achievements = [
+    ...(team.achievements ?? []),
+  ].sort(
+    (firstAchievement, secondAchievement) =>
+      secondAchievement.year -
+      firstAchievement.year,
+  );
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -286,8 +421,8 @@ const ProTeamDetail = () => {
                 </span>
               </div>
 
-              <p className="mt-7 text-xs font-black uppercase tracking-[0.24em] text-slate-500">
-                Official Team
+              <p className="mt-7 text-xs font-black tracking-[0.16em] text-slate-500">
+                프로 팀
               </p>
 
               <h1 className="mt-3 text-4xl font-black tracking-[-0.055em] text-white sm:text-5xl lg:text-7xl">
@@ -300,7 +435,7 @@ const ProTeamDetail = () => {
 
               <p className="mt-6 max-w-3xl text-sm leading-7 text-slate-400 sm:text-base">
                 {team.name}의 현재 등록 로스터입니다.
-                선수 카드를 선택하면 감도, 장비, 요원과
+                선수 카드를 선택하면 감도, 장비, 주 요원과
                 세부 경기 지표를 확인할 수 있습니다.
               </p>
 
@@ -309,8 +444,8 @@ const ProTeamDetail = () => {
                   <div className="flex items-center gap-2 text-slate-500">
                     <Users size={16} />
 
-                    <span className="text-[10px] font-black uppercase tracking-[0.16em]">
-                      Roster
+                    <span className="text-[10px] font-black tracking-[0.12em]">
+                      등록 선수
                     </span>
                   </div>
 
@@ -319,7 +454,7 @@ const ProTeamDetail = () => {
                   </p>
 
                   <p className="mt-1 text-xs text-slate-500">
-                    Registered players
+                    전체 등록 선수
                   </p>
                 </div>
 
@@ -327,8 +462,8 @@ const ProTeamDetail = () => {
                   <div className="flex items-center gap-2 text-slate-500">
                     <UserRound size={16} />
 
-                    <span className="text-[10px] font-black uppercase tracking-[0.16em]">
-                      Active
+                    <span className="text-[10px] font-black tracking-[0.12em]">
+                      활동 선수
                     </span>
                   </div>
 
@@ -337,7 +472,7 @@ const ProTeamDetail = () => {
                   </p>
 
                   <p className="mt-1 text-xs text-slate-500">
-                    Active players
+                    현재 활동 중
                   </p>
                 </div>
 
@@ -345,8 +480,8 @@ const ProTeamDetail = () => {
                   <div className="flex items-center gap-2 text-slate-500">
                     <Globe2 size={16} />
 
-                    <span className="text-[10px] font-black uppercase tracking-[0.16em]">
-                      Region
+                    <span className="text-[10px] font-black tracking-[0.12em]">
+                      참가 지역
                     </span>
                   </div>
 
@@ -355,7 +490,7 @@ const ProTeamDetail = () => {
                   </p>
 
                   <p className="mt-1 text-xs text-slate-500">
-                    Competition region
+                    대회 참가 지역
                   </p>
                 </div>
               </div>
@@ -401,11 +536,265 @@ const ProTeamDetail = () => {
           </div>
         </section>
 
+        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-stretch">
+          <article className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:p-7">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+            >
+              <div
+                className="absolute -right-24 -top-24 h-56 w-56 rounded-full opacity-10 blur-[90px]"
+                style={{
+                  backgroundColor: team.primaryColor,
+                }}
+              />
+
+              <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(255,255,255,0.025),transparent_45%)]" />
+            </div>
+
+            <div className="relative">
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]"
+                  style={{
+                    color: team.primaryColor,
+                  }}
+                >
+                  <Shield size={21} />
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-black tracking-[0.18em] text-slate-500">
+                    팀 정보
+                  </p>
+
+                  <h2 className="mt-1 text-2xl font-black tracking-[-0.035em] text-white">
+                    팀 기본 정보
+                  </h2>
+                </div>
+              </div>
+
+              <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025]">
+                <div className="flex items-center justify-between gap-5 border-b border-white/10 px-4 py-5 sm:px-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400">
+                      <CalendarDays size={18} />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-black text-slate-300">
+                        창단 연도
+                      </p>
+
+                      <p className="mt-1 text-xs font-medium text-slate-500">
+                        구단이 창단된 연도
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-right text-base font-black text-white sm:text-lg">
+                    {team.foundedYear
+                      ? `${team.foundedYear}년`
+                      : "미등록"}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between gap-5 border-b border-white/10 px-4 py-5 sm:px-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400">
+                      <UserRound size={18} />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-black text-slate-300">
+                        감독
+                      </p>
+
+                      <p className="mt-1 text-xs font-medium text-slate-500">
+                        현재 헤드 코치
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="min-w-0 text-right">
+                    <p className="truncate text-base font-black text-white sm:text-lg">
+                      {team.headCoach?.nickname ??
+                        "미등록"}
+                    </p>
+
+                    {team.headCoach?.realName ? (
+                      <p className="mt-1 truncate text-xs text-slate-500">
+                        {team.headCoach.realName}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="flex items-start justify-between gap-5 px-4 py-5 sm:px-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400">
+                      <Users size={18} />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-black text-slate-300">
+                        코치
+                      </p>
+
+                      <p className="mt-1 text-xs font-medium text-slate-500">
+                        어시스턴트 코치
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="min-w-0 text-right">
+                    {assistantCoaches.length > 0 ? (
+                      <div className="flex flex-col items-end gap-2">
+                        {assistantCoaches.map(
+                          (coach) => (
+                            <div
+                              key={`${coach.nickname}-${coach.realName ?? "unknown"}`}
+                            >
+                              <p className="text-base font-black text-white sm:text-lg">
+                                {coach.nickname}
+                              </p>
+
+                              {coach.realName ? (
+                                <p className="mt-1 text-xs text-slate-500">
+                                  {coach.realName}
+                                </p>
+                              ) : null}
+                            </div>
+                          ),
+                        )}
+                      </div>
+                    ) : (
+                      <p className="text-base font-black text-white sm:text-lg">
+                        미등록
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:p-7">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+            >
+              <div className="absolute -right-20 -top-24 h-60 w-60 rounded-full bg-amber-400/5 blur-[100px]" />
+
+              <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(255,255,255,0.025),transparent_45%)]" />
+            </div>
+
+            <div className="relative">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-400/20 bg-amber-400/10 text-amber-200">
+                    <Trophy size={21} />
+                  </div>
+
+                  <div>
+                    <p className="text-[10px] font-black tracking-[0.18em] text-slate-500">
+                      팀 기록
+                    </p>
+
+                    <h2 className="mt-1 text-2xl font-black tracking-[-0.035em] text-white">
+                      주요 성적
+                    </h2>
+                  </div>
+                </div>
+
+                {achievements.length > 0 ? (
+                  <span className="inline-flex shrink-0 items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[10px] font-black tracking-[0.12em] text-slate-400">
+                    총 {achievements.length}개
+                  </span>
+                ) : null}
+              </div>
+
+              {achievements.length > 0 ? (
+                <div className="mt-6 space-y-3">
+                  {achievements.map(
+                    (achievement, index) => {
+                      const achievementTheme =
+                        getAchievementTheme(
+                          achievement,
+                        );
+
+                      return (
+                        <div
+                          key={`${achievement.year}-${achievement.title}-${index}`}
+                          className="group flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.025] p-4 transition duration-200 hover:border-white/20 hover:bg-white/[0.04] sm:flex-row sm:items-center sm:justify-between sm:p-5"
+                        >
+                          <div className="flex min-w-0 items-start gap-4">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-xl">
+                              {achievementTheme.icon}
+                            </div>
+
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="inline-flex items-center gap-1.5 text-[10px] font-black tracking-[0.14em] text-slate-500">
+                                  <CalendarDays
+                                    size={12}
+                                  />
+
+                                  {achievement.year}년
+                                </span>
+
+                                <span className="h-1 w-1 rounded-full bg-slate-700" />
+
+                                <span className="text-[10px] font-black tracking-[0.14em] text-slate-600">
+                                  공식 대회 성적
+                                </span>
+                              </div>
+
+                              <h3 className="mt-2 text-base font-black leading-6 text-white sm:text-lg">
+                                {achievement.title}
+                              </h3>
+                            </div>
+                          </div>
+
+                          <span
+                            className={`inline-flex w-fit shrink-0 items-center gap-2 rounded-full border px-3 py-2 text-[10px] font-black tracking-[0.12em] ${achievementTheme.className}`}
+                          >
+                            <Medal size={14} />
+
+                            {getAchievementResultLabel(
+                              achievement.result,
+                            )}
+                          </span>
+                        </div>
+                      );
+                    },
+                  )}
+                </div>
+              ) : (
+                <div className="mt-6 flex min-h-[248px] flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/[0.02] px-6 text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-500">
+                    <Trophy size={24} />
+                  </div>
+
+                  <h3 className="mt-4 text-base font-black text-white">
+                    등록된 주요 성적이 없습니다
+                  </h3>
+
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-slate-500">
+                    팀 데이터에 주요 대회 성적을 추가하면
+                    이 영역에 자동으로 표시됩니다.
+                  </p>
+                </div>
+              )}
+            </div>
+          </article>
+        </section>
+
         <section className="mt-10 lg:mt-12">
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-red-300">
-                Team Roster
+              <p className="text-xs font-black tracking-[0.18em] text-red-300">
+                선수 명단
               </p>
 
               <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
@@ -414,7 +803,7 @@ const ProTeamDetail = () => {
             </div>
 
             <p className="text-sm font-medium text-slate-500">
-              총 {roster.length}명 · Active{" "}
+              총 {roster.length}명 · 활동{" "}
               {activeRosterCount}명
             </p>
           </div>
@@ -450,7 +839,9 @@ const ProTeamDetail = () => {
                           <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
                             {player.profileImageUrl ? (
                               <img
-                                src={player.profileImageUrl}
+                                src={
+                                  player.profileImageUrl
+                                }
                                 alt={`${player.nickname} 선수`}
                                 loading="lazy"
                                 className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
@@ -476,19 +867,21 @@ const ProTeamDetail = () => {
                               </div>
 
                               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-400 transition duration-300 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white">
-                                <ArrowUpRight size={18} />
+                                <ArrowUpRight
+                                  size={18}
+                                />
                               </div>
                             </div>
 
                             <div className="mt-3 flex flex-wrap gap-2">
                               <span
-                                className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.13em] ${roleTheme.className}`}
+                                className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-black tracking-[0.11em] ${roleTheme.className}`}
                               >
                                 {roleTheme.label}
                               </span>
 
                               <span
-                                className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.13em] ${getStatusClassName(
+                                className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-black tracking-[0.11em] ${getStatusClassName(
                                   player.status,
                                 )}`}
                               >
@@ -502,8 +895,8 @@ const ProTeamDetail = () => {
 
                         <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
                           <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-600">
-                              Country
+                            <p className="text-[10px] font-black tracking-[0.13em] text-slate-600">
+                              국가
                             </p>
 
                             <p className="mt-1 text-sm font-bold text-slate-300">
@@ -512,13 +905,16 @@ const ProTeamDetail = () => {
                           </div>
 
                           <div className="text-right">
-                            <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-600">
-                              Main Agents
+                            <p className="text-[10px] font-black tracking-[0.13em] text-slate-600">
+                              주 요원
                             </p>
 
                             <p className="mt-1 max-w-[180px] truncate text-sm font-bold text-slate-300">
-                              {player.mainAgents.length > 0
-                                ? player.mainAgents.join(", ")
+                              {player.mainAgents.length >
+                              0
+                                ? player.mainAgents.join(
+                                    ", ",
+                                  )
                                 : "미등록"}
                             </p>
                           </div>
@@ -526,18 +922,20 @@ const ProTeamDetail = () => {
 
                         <div className="mt-4 grid grid-cols-3 gap-2">
                           <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3">
-                            <p className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
-                              Rating
+                            <p className="text-[9px] font-black tracking-[0.12em] text-slate-600">
+                              평점
                             </p>
 
                             <p className="mt-1 text-lg font-black text-white">
-                              {player.stats.rating.toFixed(2)}
+                              {player.stats.rating.toFixed(
+                                2,
+                              )}
                             </p>
                           </div>
 
                           <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3">
-                            <p className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
-                              ACS
+                            <p className="text-[9px] font-black tracking-[0.12em] text-slate-600">
+                              평균 전투 점수
                             </p>
 
                             <p className="mt-1 text-lg font-black text-white">
@@ -546,12 +944,14 @@ const ProTeamDetail = () => {
                           </div>
 
                           <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3">
-                            <p className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
-                              K/D
+                            <p className="text-[9px] font-black tracking-[0.12em] text-slate-600">
+                              킬/데스
                             </p>
 
                             <p className="mt-1 text-lg font-black text-white">
-                              {player.stats.kd.toFixed(2)}
+                              {player.stats.kd.toFixed(
+                                2,
+                              )}
                             </p>
                           </div>
                         </div>
@@ -560,11 +960,11 @@ const ProTeamDetail = () => {
                           <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
                             <Target size={14} />
 
-                            HS {player.stats.hs}%
+                            헤드샷 {player.stats.hs}%
                           </div>
 
-                          <span className="text-xs font-black uppercase tracking-[0.12em] text-slate-500 transition-colors duration-300 group-hover:text-slate-200">
-                            View Player
+                          <span className="text-xs font-black tracking-[0.1em] text-slate-500 transition-colors duration-300 group-hover:text-slate-200">
+                            선수 정보 보기
                           </span>
                         </div>
                       </div>
@@ -584,8 +984,8 @@ const ProTeamDetail = () => {
               </h3>
 
               <p className="mt-2 max-w-md text-sm leading-6 text-slate-500">
-                proPlayers 데이터에 이 팀의 선수를
-                추가하면 로스터가 자동으로 표시됩니다.
+                선수 데이터에 이 팀의 선수를 추가하면
+                로스터가 자동으로 표시됩니다.
               </p>
             </div>
           )}
