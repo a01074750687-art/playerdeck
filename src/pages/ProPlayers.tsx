@@ -11,10 +11,12 @@ import {
 } from "react";
 
 import ProPlayerCard from "../components/valorant/ProPlayerCard";
+import WeeklyPick from "../components/valorant/WeeklyPick";
 import {
   proPlayers,
   searchProPlayers,
 } from "../data/proPlayers";
+import { weeklyPick } from "../data/weeklyPick";
 import type {
   ProPlayerRole,
   ProRegion,
@@ -41,7 +43,7 @@ const ROLE_FILTERS: RoleFilter[] = [
 ];
 
 const REGION_LABELS: Record<RegionFilter, string> = {
-  All: "All Regions",
+  All: "전체 지역",
   Pacific: "Pacific",
   Americas: "Americas",
   EMEA: "EMEA",
@@ -49,12 +51,12 @@ const REGION_LABELS: Record<RegionFilter, string> = {
 };
 
 const ROLE_LABELS: Record<RoleFilter, string> = {
-  All: "All Roles",
-  Duelist: "Duelist",
-  Initiator: "Initiator",
-  Controller: "Controller",
-  Sentinel: "Sentinel",
-  Flex: "Flex",
+  All: "전체 역할",
+  Duelist: "타격대",
+  Initiator: "척후대",
+  Controller: "전략가",
+  Sentinel: "감시자",
+  Flex: "플렉스",
 };
 
 const ProPlayers = () => {
@@ -106,7 +108,9 @@ const ProPlayers = () => {
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-[-120px] top-[-180px] h-[420px] w-[420px] rounded-full bg-red-500/10 blur-[130px]" />
+
           <div className="absolute right-[-100px] top-[-160px] h-[420px] w-[420px] rounded-full bg-indigo-500/10 blur-[140px]" />
+
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,23,42,0.2),rgba(2,6,23,0.95))]" />
         </div>
 
@@ -115,11 +119,12 @@ const ProPlayers = () => {
             <div className="max-w-3xl">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-red-400/20 bg-red-400/10 px-3 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-red-200">
                 <Trophy size={14} />
-                Valorant Esports
+
+                VALORANT Esports
               </div>
 
               <h1 className="text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
-                Pro Players
+                프로 선수
               </h1>
 
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
@@ -133,8 +138,8 @@ const ProPlayers = () => {
                 <div className="flex items-center gap-2 text-slate-500">
                   <Users size={15} />
 
-                  <p className="text-[11px] font-black uppercase tracking-[0.16em]">
-                    Players
+                  <p className="text-[11px] font-black tracking-[0.16em]">
+                    등록 선수
                   </p>
                 </div>
 
@@ -147,8 +152,8 @@ const ProPlayers = () => {
                 <div className="flex items-center gap-2 text-slate-500">
                   <SlidersHorizontal size={15} />
 
-                  <p className="text-[11px] font-black uppercase tracking-[0.16em]">
-                    Results
+                  <p className="text-[11px] font-black tracking-[0.16em]">
+                    검색 결과
                   </p>
                 </div>
 
@@ -162,6 +167,10 @@ const ProPlayers = () => {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-8">
+          <WeeklyPick pick={weeklyPick} />
+        </div>
+
         <div className="rounded-3xl border border-white/10 bg-slate-900/50 p-4 shadow-[0_20px_70px_rgba(0,0,0,0.22)] backdrop-blur-md sm:p-5">
           <div className="flex flex-col gap-4">
             <div className="relative">
@@ -198,8 +207,8 @@ const ProPlayers = () => {
 
             <div className="grid gap-4 lg:grid-cols-2">
               <div>
-                <p className="mb-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500">
-                  Region
+                <p className="mb-2 text-[11px] font-black tracking-[0.18em] text-slate-500">
+                  지역
                 </p>
 
                 <div className="flex flex-wrap gap-2">
@@ -228,8 +237,8 @@ const ProPlayers = () => {
               </div>
 
               <div>
-                <p className="mb-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500">
-                  Role
+                <p className="mb-2 text-[11px] font-black tracking-[0.18em] text-slate-500">
+                  역할
                 </p>
 
                 <div className="flex flex-wrap gap-2">
@@ -273,6 +282,7 @@ const ProPlayers = () => {
                   className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-bold text-slate-400 transition hover:bg-white/5 hover:text-white"
                 >
                   <X size={14} />
+
                   필터 초기화
                 </button>
               </div>
@@ -285,17 +295,17 @@ const ProPlayers = () => {
             <>
               <div className="mb-5 flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                    Player Directory
+                  <p className="text-xs font-black tracking-[0.18em] text-slate-500">
+                    프로 선수
                   </p>
 
                   <h2 className="mt-1 text-2xl font-black tracking-[-0.03em] text-white">
-                    프로 선수 목록
+                    선수 목록
                   </h2>
                 </div>
 
                 <p className="text-sm text-slate-500">
-                  {filteredPlayers.length} players
+                  총 {filteredPlayers.length}명
                 </p>
               </div>
 
@@ -319,7 +329,7 @@ const ProPlayers = () => {
               </h2>
 
               <p className="mt-2 max-w-md text-sm leading-6 text-slate-500">
-                검색어 또는 필터 조건을 변경한 뒤
+                검색어나 필터 조건을 변경한 뒤
                 다시 확인해 주세요.
               </p>
 

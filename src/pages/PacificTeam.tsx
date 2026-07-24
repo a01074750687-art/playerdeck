@@ -1,6 +1,7 @@
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   CalendarDays,
   Globe2,
   Shield,
@@ -13,11 +14,20 @@ import { Link } from "react-router-dom";
 import ProTeamCard from "../components/valorant/ProTeamCard";
 import { proPlayers } from "../data/proPlayers";
 import { proTeams } from "../data/proTeams";
-import type { ProTeam } from "../types/proPlayer";
+import { weeklyPick } from "../data/weeklyPick";
+import type {
+  ProPlayerRole,
+  ProTeam,
+} from "../types/proPlayer";
 
 interface GroupedTeam {
   team: ProTeam;
   rosterCount: number;
+}
+
+interface RoleTheme {
+  label: string;
+  className: string;
 }
 
 const PACIFIC_TEAM_ORDER = [
@@ -36,6 +46,38 @@ const PACIFIC_TEAM_ORDER = [
 ] as const;
 
 const FEATURED_TEAM_SHORT_NAME = "GEN";
+
+const ROLE_THEME: Record<ProPlayerRole, RoleTheme> = {
+  Duelist: {
+    label: "Duelist",
+    className:
+      "border-red-400/20 bg-red-400/10 text-red-200",
+  },
+
+  Initiator: {
+    label: "Initiator",
+    className:
+      "border-blue-400/20 bg-blue-400/10 text-blue-200",
+  },
+
+  Controller: {
+    label: "Controller",
+    className:
+      "border-violet-400/20 bg-violet-400/10 text-violet-200",
+  },
+
+  Sentinel: {
+    label: "Sentinel",
+    className:
+      "border-emerald-400/20 bg-emerald-400/10 text-emerald-200",
+  },
+
+  Flex: {
+    label: "Flex",
+    className:
+      "border-amber-400/20 bg-amber-400/10 text-amber-200",
+  },
+};
 
 const getTeamOrderIndex = (shortName: string): number => {
   const index = PACIFIC_TEAM_ORDER.findIndex(
@@ -92,6 +134,16 @@ const featuredTeam =
   ) ?? pacificTeams[0];
 
 const PacificTeam = () => {
+  const weeklyPlayer = weeklyPick.player;
+  const weeklyPlayerTeam = weeklyPlayer.team;
+  const weeklyPlayerRole =
+    ROLE_THEME[weeklyPlayer.primaryRole];
+
+  const weeklyPlayerImage =
+    weeklyPlayer.profileImageUrl ??
+    weeklyPlayerTeam?.logoUrl ??
+    null;
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
       <div
@@ -175,14 +227,14 @@ const PacificTeam = () => {
                     <ArrowRight size={17} />
                   </a>
 
-                  <a
-                    href="#rosters"
+                  <Link
+                    to="/valorant/pros"
                     className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-slate-200 transition duration-200 hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                   >
                     선수 로스터 보기
 
                     <Users size={17} />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -305,8 +357,8 @@ const PacificTeam = () => {
             </div>
           </a>
 
-          <a
-            href="#teams"
+          <Link
+            to="/valorant/pros"
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] p-6 transition duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-400/[0.05] sm:p-7"
           >
             <div
@@ -329,8 +381,8 @@ const PacificTeam = () => {
                 </h2>
 
                 <p className="mt-3 max-w-md text-sm leading-6 text-slate-500">
-                  각 팀 카드를 선택해 소속 선수와 팀
-                  상세 정보를 확인하세요.
+                  VCT Pacific 선수 전체 목록에서 팀,
+                  역할과 선수 프로필을 확인하세요.
                 </p>
               </div>
 
@@ -341,7 +393,133 @@ const PacificTeam = () => {
                 />
               </div>
             </div>
-          </a>
+          </Link>
+        </section>
+
+        <section className="mt-6">
+          <div className="group relative overflow-hidden rounded-3xl border border-red-300/15 bg-gradient-to-br from-red-500/[0.1] via-white/[0.035] to-orange-400/[0.06] transition duration-300 hover:-translate-y-1 hover:border-red-300/25 hover:shadow-[0_30px_90px_rgba(239,68,68,0.12)]">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+            >
+              <div className="absolute -left-16 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-red-500/10 blur-[90px]" />
+
+              <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-orange-400/10 blur-[120px]" />
+
+              <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.045),transparent_42%)]" />
+            </div>
+
+            <div className="relative grid min-h-[270px] lg:grid-cols-[250px_minmax(0,1fr)_auto] lg:items-center">
+              <div className="relative flex min-h-[240px] items-center justify-center overflow-hidden border-b border-white/10 bg-slate-950/30 p-8 lg:h-full lg:min-h-[270px] lg:border-b-0 lg:border-r">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.16),transparent_68%)]" />
+
+                {weeklyPlayerImage ? (
+                  <img
+                    src={weeklyPlayerImage}
+                    alt={`${weeklyPlayer.nickname} 프로필`}
+                    className={`relative z-10 max-h-[210px] max-w-[210px] object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.45)] transition duration-500 group-hover:scale-[1.04] ${
+                      weeklyPlayer.profileImageUrl
+                        ? "h-full w-full object-cover object-top"
+                        : ""
+                    }`}
+                  />
+                ) : (
+                  <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.05] text-4xl font-black text-white">
+                    {weeklyPlayer.nickname
+                      .slice(0, 2)
+                      .toUpperCase()}
+                  </div>
+                )}
+
+                <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-red-300/20 bg-slate-950/65 px-3 py-2 text-[10px] font-black tracking-[0.14em] text-red-200 backdrop-blur-md">
+                  <Sparkles size={13} />
+
+                  이번 주 선수
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-8 lg:px-10 lg:py-8">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-red-300/20 bg-red-400/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-red-200">
+                    {weeklyPick.label}
+                  </span>
+
+                  <span
+                    className={`rounded-full border px-3 py-1.5 text-[10px] font-black tracking-[0.12em] ${weeklyPlayerRole.className}`}
+                  >
+                    {weeklyPlayerRole.label}
+                  </span>
+
+                  {weeklyPlayerTeam && (
+                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[10px] font-black tracking-[0.12em] text-slate-300">
+                      {weeklyPlayerTeam.shortName}
+                    </span>
+                  )}
+                </div>
+
+                <p className="mt-5 text-xs font-black tracking-[0.16em] text-slate-500">
+                  DECK.GG WEEKLY PICK
+                </p>
+
+                <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1">
+                  <h2 className="text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl">
+                    {weeklyPlayer.nickname}
+                  </h2>
+
+                  {weeklyPlayerTeam && (
+                    <p className="pb-1 text-sm font-bold text-slate-500">
+                      {weeklyPlayerTeam.name}
+                    </p>
+                  )}
+                </div>
+
+                <h3 className="mt-4 text-lg font-black tracking-[-0.025em] text-slate-100 sm:text-xl">
+                  {weeklyPick.title}
+                </h3>
+
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400 sm:text-base">
+                  {weeklyPick.comment}
+                </p>
+
+                <div className="mt-5 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500">
+                  {weeklyPlayer.mainAgents
+                    .slice(0, 3)
+                    .map((agent) => (
+                      <span
+                        key={agent}
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5"
+                      >
+                        {agent}
+                      </span>
+                    ))}
+
+                  <span className="px-1">
+                    선정일 {weeklyPick.selectedAt}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 border-t border-white/10 p-6 sm:flex-row lg:min-w-[220px] lg:flex-col lg:border-l lg:border-t-0 lg:p-8">
+                <Link
+                  to={`/valorant/pros/${weeklyPlayer.slug}`}
+                  className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-black text-slate-950 transition duration-200 hover:bg-red-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-200"
+                >
+                  프로필 보기
+
+                  <ArrowUpRight size={17} />
+                </Link>
+
+                <Link
+                  to="/valorant/pros"
+                  className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-slate-200 transition duration-200 hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                >
+                  전체 선수 보기
+
+                  <ArrowRight size={17} />
+                </Link>
+              </div>
+            </div>
+          </div>
         </section>
 
         {featuredTeam && (
