@@ -3777,6 +3777,16 @@ export const proPlayers: ProPlayer[] = [
 
     mainAgents: ["Cypher", "Killjoy", "Jett"],
 
+    career: {
+      joinedAt: "2026",
+      previousTeams: [
+        {
+          teamName: "Gen.G",
+        },
+      ],
+      highlights: [],
+    },
+
     settings: {
       dpi: 800,
       sensitivity: 0.29,

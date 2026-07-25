@@ -144,6 +144,75 @@ export interface ProPlayerGear {
   monitor: string;
 }
 
+export interface ProPlayerCareerTeam {
+  /**
+   * 소속 팀 이름
+   *
+   * 예:
+   * - DRX
+   * - T1
+   * - Barrel
+   */
+  teamName: string;
+
+  /**
+   * 팀 활동 시작 시점
+   *
+   * YYYY 또는 YYYY-MM 형식 권장
+   */
+  joinedAt?: string;
+
+  /**
+   * 팀 활동 종료 시점
+   *
+   * 현재 소속 팀이라면 생략
+   */
+  leftAt?: string;
+}
+
+export interface ProPlayerCareerHighlight {
+  /**
+   * 주요 경력을 기록한 연도
+   */
+  year: number;
+
+  /**
+   * 대회 또는 주요 경력명
+   */
+  title: string;
+
+  /**
+   * 대회 성적이나 추가 설명
+   *
+   * 예:
+   * - Champion
+   * - Runner-up
+   * - Qualified
+   */
+  result?: string;
+}
+
+export interface ProPlayerCareer {
+  /**
+   * 현재 팀 합류 시점
+   *
+   * YYYY 또는 YYYY-MM 형식 권장
+   */
+  joinedAt?: string;
+
+  /**
+   * 이전 소속 팀 목록
+   *
+   * 오래된 팀부터 최근 팀 순서로 입력
+   */
+  previousTeams: ProPlayerCareerTeam[];
+
+  /**
+   * 우승, 국제대회 출전 등 주요 커리어
+   */
+  highlights: ProPlayerCareerHighlight[];
+}
+
 export interface ProPlayerStats {
   rating: number;
   acs: number;
@@ -195,6 +264,7 @@ export interface ProPlayer {
    */
   mainAgents: string[];
 
+  career?: ProPlayerCareer;
   settings: ProPlayerSettings;
   crosshair: ProPlayerCrosshair;
   gear: ProPlayerGear;
