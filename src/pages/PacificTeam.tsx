@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 
 import ProTeamCard from "../components/valorant/ProTeamCard";
-import { proPlayers } from "../data/proPlayers";
+import { proPlayers } from "../data/pro";
 import { proTeams } from "../data/proTeams";
 import { weeklyPick } from "../data/weeklyPick";
 import type {

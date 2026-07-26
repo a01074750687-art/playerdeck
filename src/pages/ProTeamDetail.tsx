@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
-import { proPlayers } from "../data/proPlayers";
+import { proPlayers } from "../data/pro";
 import { proTeams } from "../data/proTeams";
 import type {
   ProPlayer,

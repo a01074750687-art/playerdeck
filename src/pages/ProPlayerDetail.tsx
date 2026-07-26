@@ -20,7 +20,7 @@ import {
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { getProPlayerBySlug } from "../data/proPlayers";
+import { getProPlayerBySlug } from "../data/pro";
 
 type UnknownRecord = Record<string, unknown>;
 

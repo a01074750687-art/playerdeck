@@ -19,7 +19,7 @@ import WeeklyPick from "../components/valorant/WeeklyPick";
 import {
   proPlayers,
   searchProPlayers,
-} from "../data/proPlayers";
+} from "../data/pro";
 import { weeklyPick } from "../data/weeklyPick";
 import type {
   ProPlayerRole,
