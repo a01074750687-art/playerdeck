@@ -1,4 +1,6 @@
 import {
+  ChevronLeft,
+  ChevronRight,
   Search,
   SlidersHorizontal,
   Trophy,
@@ -9,6 +11,8 @@ import {
   useMemo,
   useState,
 } from "react";
+
+import { Link } from "react-router-dom";
 
 import ProPlayerCard from "../components/valorant/ProPlayerCard";
 import WeeklyPick from "../components/valorant/WeeklyPick";
@@ -105,6 +109,27 @@ const ProPlayers = () => {
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
+
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4">
+        <Link
+        to="/valorant"
+        className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-base font-semibold text-slate-300 transition hover:text-white"
+        >
+          <ChevronLeft size={20} />
+          Valorant
+        </Link>
+
+        <Link
+        to="/valorant/pacific"
+        className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-base font-semibold text-slate-300 transition hover:text-white"
+         >
+          Pacific Teams
+          <ChevronRight size={20} />
+         </Link>
+      </div>
+    </div>
+  
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-[-120px] top-[-180px] h-[420px] w-[420px] rounded-full bg-red-500/10 blur-[130px]" />
