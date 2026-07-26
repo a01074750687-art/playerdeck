@@ -98,18 +98,14 @@ export default function Valorant() {
 
         <section className="relative mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-3xl flex-col justify-center">
           <header className="mb-12 text-center sm:mb-14">
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-red-400 sm:text-sm">
-              Competitive Stats Platform
-            </p>
-
             <h1 className="text-5xl font-black tracking-[-0.06em] sm:text-6xl md:text-7xl">
               <span className="text-white">Deck</span>
               <span className="text-red-400">.GG</span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">
-              라이엇 ID를 검색하고
-              <br className="sm:hidden" /> 상세한 전적을 확인해보세요.
+            <p className="mx-auto mt-6 max-w-2xl text-lg font-bold leading-8 text-slate-200 sm:text-xl md:text-2xl">
+              전적 조회부터 내가 좋아하는{" "}
+              <span className="text-red-400">선수와 팀 정보까지.</span>
             </p>
           </header>
 
