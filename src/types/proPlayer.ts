@@ -165,7 +165,7 @@ export interface ProPlayerCareerTeam {
   /**
    * 팀 활동 종료 시점
    *
-   * 현재 소속 팀이라면 생략
+   * YYYY 또는 YYYY-MM 형식 권장
    */
   leftAt?: string;
 }
@@ -208,9 +208,35 @@ export interface ProPlayerCareer {
   previousTeams: ProPlayerCareerTeam[];
 
   /**
-   * 우승, 국제대회 출전 등 주요 커리어
+   * 우승, 준우승, 국제대회 출전 등 주요 팀 커리어
    */
   highlights: ProPlayerCareerHighlight[];
+}
+
+export interface ProPlayerAward {
+  /**
+   * 개인 수상을 기록한 연도
+   */
+  year: number;
+
+  /**
+   * 수상한 대회 또는 시상식 이름
+   *
+   * 예:
+   * - VCT Pacific Stage 2 2024
+   * - VCT Pacific Awards 2024
+   */
+  title: string;
+
+  /**
+   * 개인 수상명
+   *
+   * 예:
+   * - MVP
+   * - Finals MVP
+   * - Duelist of the Year
+   */
+  result: string;
 }
 
 export interface ProPlayerStats {
@@ -264,7 +290,18 @@ export interface ProPlayer {
    */
   mainAgents: string[];
 
+  /**
+   * 현재 팀 합류 시점, 이전 소속 팀과 주요 팀 커리어
+   */
   career?: ProPlayerCareer;
+
+  /**
+   * MVP, Finals MVP, 역할상 등 선수 개인 수상
+   *
+   * 개인 수상이 없는 선수는 생략
+   */
+  awards?: ProPlayerAward[];
+
   settings: ProPlayerSettings;
   crosshair: ProPlayerCrosshair;
   gear: ProPlayerGear;

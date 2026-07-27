@@ -1,5 +1,333 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerAward,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const buzzCareer: ProPlayerCareer = {
+  joinedAt: "2024-10",
+
+  previousTeams: [
+    {
+      teamName: "Cloud9 Korea",
+      joinedAt: "2020-10",
+      leftAt: "2020-12",
+    },
+    {
+      teamName: "Rio Company",
+      joinedAt: "2021-03",
+      leftAt: "2021-05",
+    },
+    {
+      teamName: "Vision Strikers",
+      joinedAt: "2021-05",
+      leftAt: "2022-01",
+    },
+    {
+      teamName: "DRX",
+      joinedAt: "2022-01",
+      leftAt: "2024-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2021,
+      title: "VCT Korea Stage 3 Challengers",
+      result: "우승",
+    },
+    {
+      year: 2022,
+      title: "Masters Reykjavík",
+      result: "5~6위",
+    },
+    {
+      year: 2022,
+      title: "Champions Istanbul",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Masters Bangkok",
+      result: "우승",
+    },
+  ],
+};
+
+const meteorCareer: ProPlayerCareer = {
+  joinedAt: "2024-10",
+
+  previousTeams: [
+    {
+      teamName: "TNL Esports",
+      joinedAt: "2021-05",
+      leftAt: "2022-01",
+    },
+    {
+      teamName: "NORTHEPTION",
+      joinedAt: "2022-02",
+      leftAt: "2022-10",
+    },
+    {
+      teamName: "Gen.G Esports",
+      joinedAt: "2022-10",
+      leftAt: "2024-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VCT Japan Stage 2 Challengers",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "Masters Madrid",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Masters Shanghai",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Masters Bangkok",
+      result: "우승",
+    },
+  ],
+};
+
+const meteorAwards: ProPlayerAward[] = [
+  {
+    year: 2025,
+    title: "Masters Bangkok",
+    result: "결승 MVP",
+  },
+];
+
+const dhCareer: ProPlayerCareer = {
+  joinedAt: "2026-07",
+
+  previousTeams: [
+    {
+      teamName: "REIGNITE",
+      joinedAt: "2024",
+      leftAt: "2024-04",
+    },
+    {
+      teamName: "CREST GAMING Zst",
+      joinedAt: "2024-04",
+      leftAt: "2024-09",
+    },
+    {
+      teamName: "T1 Academy",
+      joinedAt: "2024-09",
+      leftAt: "2025-05",
+    },
+    {
+      teamName: "T1",
+      joinedAt: "2025-05",
+      leftAt: "2025-11",
+    },
+    {
+      teamName: "T1 Academy",
+      joinedAt: "2025-11",
+      leftAt: "2026-07",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2025,
+      title: "Challengers Korea Stage 1",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "Champions Paris",
+      result: "9~12위",
+    },
+  ],
+};
+
+const izuCareer: ProPlayerCareer = {
+  joinedAt: "2023-09",
+
+  previousTeams: [
+    {
+      teamName: "Jadeite",
+      joinedAt: "2022-09",
+      leftAt: "2023-06",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "Challengers Japan Split 1",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Masters Bangkok",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "Champions Paris",
+      result: "9~12위",
+    },
+  ],
+};
+
+const munchkinCareer: ProPlayerCareer = {
+  joinedAt: "2025-11",
+
+  previousTeams: [
+    {
+      teamName: "Cloud9 Korea",
+      joinedAt: "2020-08",
+      leftAt: "2020-12",
+    },
+    {
+      teamName: "Crazy Raccoon",
+      joinedAt: "2021-01",
+      leftAt: "2022-04",
+    },
+    {
+      teamName: "T1",
+      joinedAt: "2022-05",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "Gen.G Esports",
+      joinedAt: "2023-11",
+      leftAt: "2025-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "Masters Madrid",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Masters Shanghai",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Pacific Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Esports World Cup",
+      result: "3위",
+    },
+  ],
+};
+
+const munchkinAwards: ProPlayerAward[] = [
+  {
+    year: 2024,
+    title: "VCT Pacific Stage 2",
+    result: "결승 MVP",
+  },
+  {
+    year: 2024,
+    title: "VCT Pacific Awards",
+    result: "올해의 인게임 리더",
+  },
+];
+
+const staxCareer: ProPlayerCareer = {
+  joinedAt: "2024-06",
+
+  previousTeams: [
+    {
+      teamName: "Vision Strikers",
+      joinedAt: "2020-06",
+      leftAt: "2022-01",
+    },
+    {
+      teamName: "DRX",
+      joinedAt: "2022-01",
+      leftAt: "2024-06",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2020,
+      title: "First Strike Korea",
+      result: "우승",
+    },
+    {
+      year: 2021,
+      title: "VCT Korea Stage 1 Masters",
+      result: "우승",
+    },
+    {
+      year: 2022,
+      title: "Champions Istanbul",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Masters Bangkok",
+      result: "우승",
+    },
+  ],
+};
+
+const staxAwards: ProPlayerAward[] = [
+  {
+    year: 2023,
+    title: "VCT 2023 End of Season Awards",
+    result: "올해의 MVP",
+  },
+];
 
 export const t1Players: ProPlayer[] = [
   {
@@ -23,6 +351,8 @@ export const t1Players: ProPlayer[] = [
     roles: createRoles("Duelist", ["Sentinel"]),
 
     mainAgents: ["Jett", "Raze", "Killjoy"],
+
+    career: buzzCareer,
 
     settings: {
       dpi: 400,
@@ -83,6 +413,9 @@ export const t1Players: ProPlayer[] = [
 
     mainAgents: ["Killjoy", "Cypher", "Jett"],
 
+    career: meteorCareer,
+    awards: meteorAwards,
+
     settings: {
       dpi: 800,
       sensitivity: 0.3,
@@ -141,6 +474,8 @@ export const t1Players: ProPlayer[] = [
     roles: createRoles("Controller", ["Initiator"]),
 
     mainAgents: ["Omen", "Viper", "Astra"],
+
+    career: dhCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +536,8 @@ export const t1Players: ProPlayer[] = [
 
     mainAgents: ["Gekko", "Omen", "Breach"],
 
+    career: izuCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.27,
@@ -260,6 +597,9 @@ export const t1Players: ProPlayer[] = [
 
     mainAgents: ["KAY/O", "Skye", "Viper"],
 
+    career: munchkinCareer,
+    awards: munchkinAwards,
+
     settings: {
       dpi: 800,
       sensitivity: 0.25,
@@ -318,6 +658,9 @@ export const t1Players: ProPlayer[] = [
     roles: createRoles("Initiator"),
 
     mainAgents: ["Breach", "KAY/O", "Skye"],
+
+    career: staxCareer,
+    awards: staxAwards,
 
     settings: {
       dpi: 400,

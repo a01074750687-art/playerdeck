@@ -1,5 +1,5 @@
 import type { ProPlayer } from "../types/proPlayer";
-import { proPlayers } from "./proPlayers";
+import { proPlayers } from "./pro";
 
 export interface WeeklyPick {
   player: ProPlayer;
