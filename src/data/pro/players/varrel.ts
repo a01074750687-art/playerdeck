@@ -1,5 +1,278 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const zexyCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "SLT Seongnam",
+      joinedAt: "2024-10",
+      leftAt: "2025-12",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 3",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Road to Ascension",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+  ],
+};
+
+const xunaCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "SLT Seongnam",
+      joinedAt: "2024-10",
+      leftAt: "2025-12",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 3",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Road to Ascension",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+  ],
+};
+
+const oonzmlpCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "SLT Seongnam",
+      joinedAt: "2024-10",
+      leftAt: "2025-12",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 3",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Road to Ascension",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+  ],
+};
+
+const foxy9Career: ProPlayerCareer = {
+  joinedAt: "2026-05",
+
+  previousTeams: [
+    {
+      teamName: "World Game Star",
+      joinedAt: "2021-02",
+      leftAt: "2021-05",
+    },
+    {
+      teamName: "REIGNITE",
+      joinedAt: "2021-11",
+      leftAt: "2022-09",
+    },
+    {
+      teamName: "DRX",
+      joinedAt: "2022-10",
+      leftAt: "2024-10",
+    },
+    {
+      teamName: "Gen.G Esports",
+      joinedAt: "2024-10",
+      leftAt: "2026-04",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "VCT LOCK//IN São Paulo",
+      result: "3~4위",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific League",
+      result: "준우승",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions 2023",
+      result: "5~6위",
+    },
+    {
+      year: 2024,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Champions 2024",
+      result: "5~6위",
+    },
+  ],
+};
+
+const c1nderCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "SCARZ",
+      joinedAt: "2021-04",
+      leftAt: "2022-05",
+    },
+    {
+      teamName: "Good 8 Squad",
+      joinedAt: "2022-05",
+      leftAt: "2023-03",
+    },
+    {
+      teamName: "REIGNITE",
+      joinedAt: "2023-09",
+      leftAt: "2024-02",
+    },
+    {
+      teamName: "SLT Seongnam",
+      joinedAt: "2024-10",
+      leftAt: "2025-12",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 3",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Road to Ascension",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+  ],
+};
+
+const klausCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "SLT Seongnam",
+      joinedAt: "2024-10",
+      leftAt: "2025-12",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 3",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Korea Road to Ascension",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+  ],
+};
 
 export const varrelPlayers: ProPlayer[] = [
   {
@@ -23,6 +296,8 @@ export const varrelPlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Raze", "Neon"],
+
+    career: zexyCareer,
 
     settings: {
       dpi: 800,
@@ -83,6 +358,8 @@ export const varrelPlayers: ProPlayer[] = [
 
     mainAgents: ["Sova", "Fade", "Breach"],
 
+    career: xunaCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.27,
@@ -105,7 +382,7 @@ export const varrelPlayers: ProPlayer[] = [
       mousepad: "ZOWIE G-SR-SE",
       keyboard: "Razer Huntsman V3 Pro Mini",
       headset: "HyperX Cloud III",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -141,6 +418,8 @@ export const varrelPlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Raze", "Yoru"],
+
+    career: oonzmlpCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +480,8 @@ export const varrelPlayers: ProPlayer[] = [
 
     mainAgents: ["Cypher", "Killjoy", "Jett"],
 
+    career: foxy9Career,
+
     settings: {
       dpi: 800,
       sensitivity: 0.29,
@@ -223,7 +504,7 @@ export const varrelPlayers: ProPlayer[] = [
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -259,6 +540,8 @@ export const varrelPlayers: ProPlayer[] = [
     roles: createRoles("Controller"),
 
     mainAgents: ["Omen", "Viper", "Astra"],
+
+    career: c1nderCareer,
 
     settings: {
       dpi: 800,
@@ -318,6 +601,8 @@ export const varrelPlayers: ProPlayer[] = [
     roles: createRoles("Controller", ["Initiator"]),
 
     mainAgents: ["Omen", "Viper", "KAY/O"],
+
+    career: klausCareer,
 
     settings: {
       dpi: 800,

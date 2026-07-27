@@ -1,5 +1,299 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerAward,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const makoCareer: ProPlayerCareer = {
+  joinedAt: "2022-01",
+
+  previousTeams: [
+    {
+      teamName: "TUBEPLE Gaming",
+      leftAt: "2021-04",
+    },
+    {
+      teamName: "Vision Strikers",
+      joinedAt: "2021-05",
+      leftAt: "2022-01",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2021,
+      title: "VCT Korea Stage 1 Masters",
+      result: "우승",
+    },
+    {
+      year: 2022,
+      title: "Champions Istanbul",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Champions Paris",
+      result: "3위",
+    },
+  ],
+};
+
+const makoAwards: ProPlayerAward[] = [
+  {
+    year: 2023,
+    title: "VCT Pacific Awards",
+    result: "올해의 연막",
+  },
+  {
+    year: 2025,
+    title: "VCT Pacific Awards",
+    result: "올해의 연막",
+  },
+];
+
+const beynCareer: ProPlayerCareer = {
+  joinedAt: "2025-01",
+
+  previousTeams: [
+    {
+      teamName: "F4Q",
+      joinedAt: "2022-04",
+      leftAt: "2022-10",
+    },
+    {
+      teamName: "DRX Academy",
+      joinedAt: "2022-10",
+      leftAt: "2023-01",
+    },
+    {
+      teamName: "Maru Gaming",
+      joinedAt: "2023-01",
+      leftAt: "2023-06",
+    },
+    {
+      teamName: "DRX Academy",
+      joinedAt: "2023-06",
+      leftAt: "2024-03",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "Challengers Korea Split 1",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "Challengers Korea Split 2",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Champions Paris",
+      result: "3위",
+    },
+  ],
+};
+
+const yongCareer: ProPlayerCareer = {
+  joinedAt: "2026-03",
+
+  previousTeams: [
+    {
+      teamName: "DRX Academy",
+      joinedAt: "2025-02",
+      leftAt: "2026-03",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2025,
+      title: "Global Esports Fight Night: Academy",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "GoNxt Asia Clash Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers Korea Stage 3",
+      result: "4위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "5~6위",
+    },
+    {
+      year: 2026,
+      title: "Esports World Cup Pacific Qualifier",
+      result: "5~6위",
+    },
+  ],
+};
+
+const free1ngCareer: ProPlayerCareer = {
+  joinedAt: "2024-10",
+
+  previousTeams: [
+    {
+      teamName: "Dplus Esports",
+      joinedAt: "2023-10",
+      leftAt: "2024-08",
+    },
+    {
+      teamName: "Rare Atom",
+      joinedAt: "2024-08",
+      leftAt: "2024-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "Challengers Korea Split 2",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "VCT China Ascension",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "HERO Esports Asian Champions League",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Champions Paris",
+      result: "3위",
+    },
+  ],
+};
+
+const hyunminCareer: ProPlayerCareer = {
+  joinedAt: "2024-10",
+
+  previousTeams: [
+    {
+      teamName: "CREST GAMING Zst",
+      joinedAt: "2023-09",
+      leftAt: "2024-08",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "Challengers Japan Split 1",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Masters Bangkok",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
+      title: "HERO Esports Asian Champions League",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Champions Paris",
+      result: "3위",
+    },
+  ],
+};
+
+const hyunminAwards: ProPlayerAward[] = [
+  {
+    year: 2025,
+    title: "VCT Pacific Awards",
+    result: "올해의 기량 발전 선수",
+  },
+];
+
+const flickerCareer: ProPlayerCareer = {
+  joinedAt: "2026-07",
+
+  previousTeams: [
+    {
+      teamName: "DRX Academy",
+      joinedAt: "2023-09",
+      leftAt: "2025-07",
+    },
+    {
+      teamName: "CREST GAMING Zst",
+      joinedAt: "2026-01",
+      leftAt: "2026-07",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2025,
+      title: "Global Esports Fight Night: Academy",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "GoNxt Asia Clash Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "TEN Global Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "Challengers Japan Split 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "Challengers Japan Split 2",
+      result: "5~6위",
+    },
+  ],
+};
 
 export const krxPlayers: ProPlayer[] = [
   {
@@ -23,6 +317,9 @@ export const krxPlayers: ProPlayer[] = [
     roles: createRoles("Controller"),
 
     mainAgents: ["Omen", "Viper", "Astra"],
+
+    career: makoCareer,
+    awards: makoAwards,
 
     settings: {
       dpi: 400,
@@ -83,6 +380,8 @@ export const krxPlayers: ProPlayer[] = [
 
     mainAgents: ["Sova", "Fade", "Gekko"],
 
+    career: beynCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.26,
@@ -141,6 +440,8 @@ export const krxPlayers: ProPlayer[] = [
     roles: createRoles("Sentinel"),
 
     mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    career: yongCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +502,8 @@ export const krxPlayers: ProPlayer[] = [
 
     mainAgents: ["Sova", "Gekko", "Killjoy"],
 
+    career: free1ngCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.26,
@@ -260,6 +563,9 @@ export const krxPlayers: ProPlayer[] = [
 
     mainAgents: ["Jett", "Raze", "Neon"],
 
+    career: hyunminCareer,
+    awards: hyunminAwards,
+
     settings: {
       dpi: 800,
       sensitivity: 0.29,
@@ -318,6 +624,8 @@ export const krxPlayers: ProPlayer[] = [
     roles: createRoles("Flex", ["Initiator", "Sentinel"]),
 
     mainAgents: ["Breach", "Fade", "Cypher"],
+
+    career: flickerCareer,
 
     settings: {
       dpi: 800,

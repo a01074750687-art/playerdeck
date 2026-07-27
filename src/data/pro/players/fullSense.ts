@@ -1,5 +1,240 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const primmieCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "TALON",
+      joinedAt: "2024-07",
+      leftAt: "2025-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "VCT Pacific Stage 2",
+      result: "4위",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Champions 2024",
+      result: "13~16위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "준우승",
+    },
+  ],
+};
+
+const seph1rothCareer: ProPlayerCareer = {
+  joinedAt: "2026-04",
+
+  previousTeams: [
+    {
+      teamName: "CRIT Esports",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "Made in Thailand",
+      joinedAt: "2023-09",
+      leftAt: "2025-01",
+    },
+    {
+      teamName: "Sharper Esports",
+      joinedAt: "2026-01",
+      leftAt: "2026-04",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "Challengers League 2024 Thailand Split 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers League 2024 Thailand Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers League 2024 Southeast Asia Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Southeast Asia Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "Challengers 2026 Southeast Asia Split 1",
+      result: "준우승",
+    },
+  ],
+};
+
+const crwsCareer: ProPlayerCareer = {
+  joinedAt: "2026-04",
+
+  previousTeams: [
+    {
+      teamName: "X10 Esports",
+      joinedAt: "2020-12",
+      leftAt: "2022-01",
+    },
+    {
+      teamName: "XERXIA Esports",
+      joinedAt: "2022-01",
+      leftAt: "2022-10",
+    },
+    {
+      teamName: "TALON",
+      joinedAt: "2022-10",
+      leftAt: "2025-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2021,
+      title: "VCT Southeast Asia Stage 1 Masters",
+      result: "우승",
+    },
+    {
+      year: 2021,
+      title: "VCT Southeast Asia Stage 2 Challengers Finals",
+      result: "우승",
+    },
+    {
+      year: 2021,
+      title: "VALORANT Champions 2021",
+      result: "5~8위",
+    },
+    {
+      year: 2022,
+      title: "VCT Asia Pacific Stage 2 Challengers",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "준우승",
+    },
+  ],
+};
+
+const killuaCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "FW Esports",
+      leftAt: "2022-12",
+    },
+    {
+      teamName: "Made in Thailand",
+      joinedAt: "2023-12",
+      leftAt: "2025-01",
+    },
+    {
+      teamName: "TALON",
+      joinedAt: "2025-02",
+      leftAt: "2025-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VCT Thailand Stage 2 Challengers",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers League 2024 Thailand Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers League 2024 Southeast Asia Stage 3",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers 2025 Southeast Asia Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "준우승",
+    },
+  ],
+};
+
+const jitboysCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "FW Esports",
+      leftAt: "2022-10",
+    },
+    {
+      teamName: "TALON",
+      joinedAt: "2022-10",
+      leftAt: "2025-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VCT Thailand Stage 2 Challengers",
+      result: "준우승",
+    },
+    {
+      year: 2023,
+      title: "VCT LOCK//IN São Paulo",
+      result: "5~8위",
+    },
+    {
+      year: 2024,
+      title: "VCT Pacific Stage 2",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "준우승",
+    },
+  ],
+};
 
 export const fullSensePlayers: ProPlayer[] = [
   {
@@ -23,6 +258,8 @@ export const fullSensePlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Raze", "Neon"],
+
+    career: primmieCareer,
 
     settings: {
       dpi: 800,
@@ -83,6 +320,8 @@ export const fullSensePlayers: ProPlayer[] = [
 
     mainAgents: ["Cypher", "Killjoy", "Vyse"],
 
+    career: seph1rothCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.25,
@@ -141,6 +380,8 @@ export const fullSensePlayers: ProPlayer[] = [
     roles: createRoles("Controller", ["Initiator"]),
 
     mainAgents: ["Omen", "Viper", "Breach"],
+
+    career: crwsCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +442,8 @@ export const fullSensePlayers: ProPlayer[] = [
 
     mainAgents: ["Sova", "Fade", "Gekko"],
 
+    career: killuaCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.27,
@@ -259,6 +502,8 @@ export const fullSensePlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Raze", "Yoru"],
+
+    career: jitboysCareer,
 
     settings: {
       dpi: 800,

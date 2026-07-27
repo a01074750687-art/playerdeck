@@ -1,5 +1,236 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const meiyCareer: ProPlayerCareer = {
+  joinedAt: "2023-11",
+
+  previousTeams: [
+    {
+      teamName: "NORTHEPTION",
+      joinedAt: "2021-02",
+      leftAt: "2021-12",
+    },
+    {
+      teamName: "Crazy Raccoon",
+      joinedAt: "2022-01",
+      leftAt: "2023-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2021,
+      title: "VCT Japan Stage 3 Challengers Playoffs",
+      result: "3위",
+    },
+    {
+      year: 2022,
+      title: "VCT Japan Stage 2 Challengers Playoffs",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "Challengers League Japan Split 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Radiant Asia Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "7~8위",
+    },
+  ],
+};
+
+const caedyeCareer: ProPlayerCareer = {
+  joinedAt: "2026-01",
+
+  previousTeams: [
+    {
+      teamName: "ZETA DIVISION Academy",
+      joinedAt: "2022-08",
+      leftAt: "2023-12",
+    },
+    {
+      teamName: "RIDDLE ORDER",
+      joinedAt: "2023-12",
+      leftAt: "2026-01",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "Challengers League Japan Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Ascension Pacific",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "Challengers Japan Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers Japan Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers League Japan Season Finals",
+      result: "우승",
+    },
+  ],
+};
+
+const akameCareer: ProPlayerCareer = {
+  joinedAt: "2024-10",
+
+  previousTeams: [
+    {
+      teamName: "Food Eat",
+      leftAt: "2021",
+    },
+    {
+      teamName: "Alpha Six Gaming",
+      joinedAt: "2021",
+      leftAt: "2021",
+    },
+    {
+      teamName: "K2 esports",
+      leftAt: "2022-04",
+    },
+    {
+      teamName: "Jadeite",
+      joinedAt: "2022-04",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "REJECT",
+      joinedAt: "2023-09",
+      leftAt: "2024-09",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "Challengers League Japan Split 2",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers League Japan Split 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Radiant Asia Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Kickoff",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "7~8위",
+    },
+  ],
+};
+
+const sseesCareer: ProPlayerCareer = {
+  joinedAt: "2023-11",
+
+  previousTeams: [
+    {
+      teamName: "DNG White",
+      joinedAt: "2021-10",
+      leftAt: "2022-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "VALORANT Radiant Asia Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "7~8위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "5위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "7~8위",
+    },
+  ],
+};
+
+const yatsukaCareer: ProPlayerCareer = {
+  joinedAt: "2026-01",
+
+  previousTeams: [
+    {
+      teamName: "ZETA DIVISION Academy",
+      joinedAt: "2022-03",
+      leftAt: "2023-12",
+    },
+    {
+      teamName: "RIDDLE ORDER",
+      joinedAt: "2023-12",
+      leftAt: "2026-01",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "Challengers League Japan Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Ascension Pacific",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "Challengers Japan Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers Japan Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers League Japan Season Finals",
+      result: "우승",
+    },
+  ],
+};
 
 export const dfmPlayers: ProPlayer[] = [
   {
@@ -23,6 +254,8 @@ export const dfmPlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Raze", "Neon"],
+
+    career: meiyCareer,
 
     settings: {
       dpi: 800,
@@ -83,6 +316,8 @@ export const dfmPlayers: ProPlayer[] = [
 
     mainAgents: ["Cypher", "Killjoy", "Vyse"],
 
+    career: caedyeCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.3,
@@ -141,6 +376,8 @@ export const dfmPlayers: ProPlayer[] = [
     roles: createRoles("Initiator"),
 
     mainAgents: ["Sova", "Fade", "Breach"],
+
+    career: akameCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +438,8 @@ export const dfmPlayers: ProPlayer[] = [
 
     mainAgents: ["Omen", "Viper", "Astra"],
 
+    career: sseesCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.23,
@@ -259,6 +498,8 @@ export const dfmPlayers: ProPlayer[] = [
     roles: createRoles("Flex"),
 
     mainAgents: ["Gekko", "Omen", "Killjoy"],
+
+    career: yatsukaCareer,
 
     settings: {
       dpi: 800,

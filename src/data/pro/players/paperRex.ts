@@ -1,8 +1,239 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerAward,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
 
-export const paperRexPlayers: ProPlayer[] = [
+const somethingCareer: ProPlayerCareer = {
+  joinedAt: "2023-03",
 
+  previousTeams: [
+    {
+      teamName: "Insomnia",
+      joinedAt: "2021-03",
+      leftAt: "2021-08",
+    },
+    {
+      teamName: "BLUE BEES.ESP",
+      joinedAt: "2021-09",
+      leftAt: "2022-05",
+    },
+    {
+      teamName: "Sengoku Gaming",
+      joinedAt: "2022-05",
+      leftAt: "2023-03",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions Los Angeles",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London",
+      result: "준우승",
+    },
+  ],
+};
+
+const forsakenCareer: ProPlayerCareer = {
+  joinedAt: "2021-02",
+
+  previousTeams: [],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VALORANT Masters Copenhagen",
+      result: "준우승",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions Los Angeles",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London",
+      result: "준우승",
+    },
+  ],
+};
+
+const forsakenAwards: ProPlayerAward[] = [
+  {
+    year: 2023,
+    title: "VCT Pacific Awards",
+    result: "올해의 감시자",
+  },
+  {
+    year: 2025,
+    title: "VALORANT Masters Toronto",
+    result: "결승 MVP",
+  },
+];
+
+const jingggCareer: ProPlayerCareer = {
+  joinedAt: "2021-09",
+
+  previousTeams: [
+    {
+      teamName: "Team SMG",
+      joinedAt: "2021-06",
+      leftAt: "2021-09",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VALORANT Masters Copenhagen",
+      result: "준우승",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions Los Angeles",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London",
+      result: "준우승",
+    },
+  ],
+};
+
+const d4v41Career: ProPlayerCareer = {
+  joinedAt: "2021-02",
+
+  previousTeams: [],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VALORANT Masters Copenhagen",
+      result: "준우승",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions Los Angeles",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London",
+      result: "준우승",
+    },
+  ],
+};
+
+const d4v41Awards: ProPlayerAward[] = [
+  {
+    year: 2023,
+    title: "VCT Pacific Awards",
+    result: "올해의 척후대",
+  },
+];
+
+const invyCareer: ProPlayerCareer = {
+  joinedAt: "2025-12",
+
+  previousTeams: [
+    {
+      teamName: "Hashira",
+    },
+    {
+      teamName: "SV Empire",
+    },
+    {
+      teamName: "Oasis Gaming",
+    },
+    {
+      teamName: "Team Secret",
+      joinedAt: "2022-11",
+      leftAt: "2025-12",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "VCT Pacific",
+      result: "5~6위",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions Los Angeles",
+      result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London",
+      result: "준우승",
+    },
+  ],
+};
+
+export const paperRexPlayers: ProPlayer[] = [
   {
     id: "player-something",
     slug: "something",
@@ -24,6 +255,8 @@ export const paperRexPlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Reyna", "Neon"],
+
+    career: somethingCareer,
 
     settings: {
       dpi: 800,
@@ -80,9 +313,17 @@ export const paperRexPlayers: ProPlayer[] = [
     team: getRequiredTeam("paper-rex"),
 
     primaryRole: "Flex",
-    roles: createRoles("Flex", ["Duelist", "Initiator", "Controller", "Sentinel"]),
+    roles: createRoles("Flex", [
+      "Duelist",
+      "Initiator",
+      "Controller",
+      "Sentinel",
+    ]),
 
     mainAgents: ["Yoru", "Breach", "Killjoy"],
+
+    career: forsakenCareer,
+    awards: forsakenAwards,
 
     settings: {
       dpi: 800,
@@ -143,6 +384,8 @@ export const paperRexPlayers: ProPlayer[] = [
 
     mainAgents: ["Raze", "Neon", "Omen"],
 
+    career: jingggCareer,
+
     settings: {
       dpi: 1600,
       sensitivity: 0.2,
@@ -201,6 +444,9 @@ export const paperRexPlayers: ProPlayer[] = [
     roles: createRoles("Sentinel", ["Initiator"]),
 
     mainAgents: ["Cypher", "Killjoy", "Sova"],
+
+    career: d4v41Career,
+    awards: d4v41Awards,
 
     settings: {
       dpi: 800,
@@ -261,6 +507,8 @@ export const paperRexPlayers: ProPlayer[] = [
 
     mainAgents: ["Sova", "Fade", "Gekko"],
 
+    career: invyCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.27,
@@ -283,7 +531,7 @@ export const paperRexPlayers: ProPlayer[] = [
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
       headset: "Razer BlackShark V2 Pro",
-      monitor: "ASUS ROG Swift PG259QN",
+      monitor: "ZOWIE XL2566K",
     },
 
     stats: {

@@ -1,5 +1,282 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const jemkinCareer: ProPlayerCareer = {
+  joinedAt: "2023-10",
+
+  previousTeams: [
+    {
+      teamName: "CREST GAMING Zst",
+      joinedAt: "2022-02",
+      leftAt: "2022-04",
+    },
+    {
+      teamName: "BLUE BEES.ESP",
+      joinedAt: "2022-05",
+      leftAt: "2022-08",
+    },
+    {
+      teamName: "SCARZ",
+      joinedAt: "2022-08",
+      leftAt: "2023-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "Challengers Japan Split 2",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VCT Ascension Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions Paris",
+      result: "9~12위",
+    },
+  ],
+};
+
+const monyetCareer: ProPlayerCareer = {
+  joinedAt: "2024-05",
+
+  previousTeams: [
+    {
+      teamName: "ONIC Esports",
+      joinedAt: "2021-07",
+      leftAt: "2022-09",
+    },
+    {
+      teamName: "Global Esports",
+      joinedAt: "2022-10",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "Paper Rex",
+      joinedAt: "2023-09",
+      leftAt: "2024-05",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VCT APAC Last Chance Qualifier",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Masters Madrid",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions Paris",
+      result: "9~12위",
+    },
+  ],
+};
+
+const crazyguyCareer: ProPlayerCareer = {
+  joinedAt: "2025-03",
+
+  previousTeams: [
+    {
+      teamName: "CERBERUS Esports",
+      joinedAt: "2020-07",
+      leftAt: "2021-02",
+    },
+    {
+      teamName: "Big BAAM",
+      joinedAt: "2021-03",
+      leftAt: "2022-01",
+    },
+    {
+      teamName: "Fancy United Esports",
+      joinedAt: "2022-01",
+      leftAt: "2022-10",
+    },
+    {
+      teamName: "BLEED Esports",
+      joinedAt: "2022-10",
+      leftAt: "2024-08",
+    },
+    {
+      teamName: "Disguised",
+      joinedAt: "2024-08",
+      leftAt: "2025-01",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "Challengers Malaysia & Singapore Split 2",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers Southeast Asia Stage 3",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+  ],
+};
+
+const kushyCareer: ProPlayerCareer = {
+  joinedAt: "2024-10",
+
+  previousTeams: [
+    {
+      teamName: "Alter Ego",
+      joinedAt: "2021-10",
+      leftAt: "2024-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2023,
+      title: "Challengers Indonesia Split 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Challengers Indonesia Split 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions Paris",
+      result: "9~12위",
+    },
+  ],
+};
+
+const xfferoCareer: ProPlayerCareer = {
+  joinedAt: "2022-10",
+
+  previousTeams: [
+    {
+      teamName: "Alter Ego",
+      joinedAt: "2020-07",
+      leftAt: "2021-12",
+    },
+    {
+      teamName: "BOOM Esports",
+      joinedAt: "2022-01",
+      leftAt: "2022-10",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2022,
+      title: "VCT APAC Last Chance Qualifier",
+      result: "우승",
+    },
+    {
+      year: 2022,
+      title: "VALORANT Champions Istanbul",
+      result: "9~12위",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions Paris",
+      result: "9~12위",
+    },
+  ],
+};
+
+const xanCareer: ProPlayerCareer = {
+  joinedAt: "2026-07",
+
+  previousTeams: [
+    {
+      teamName: "Team SMG",
+      leftAt: "2026-07",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "Predator League Malaysia",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers Malaysia & Singapore Split 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers Malaysia & Singapore Split 2",
+      result: "준우승",
+    },
+  ],
+};
 
 export const rrqPlayers: ProPlayer[] = [
   {
@@ -23,6 +300,8 @@ export const rrqPlayers: ProPlayer[] = [
     roles: createRoles("Duelist", ["Sentinel"]),
 
     mainAgents: ["Jett", "Raze", "Cypher"],
+
+    career: jemkinCareer,
 
     settings: {
       dpi: 800,
@@ -83,6 +362,8 @@ export const rrqPlayers: ProPlayer[] = [
 
     mainAgents: ["Omen", "Viper", "Raze"],
 
+    career: monyetCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.28,
@@ -141,6 +422,8 @@ export const rrqPlayers: ProPlayer[] = [
     roles: createRoles("Initiator"),
 
     mainAgents: ["Breach", "Sova", "KAY/O"],
+
+    career: crazyguyCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +484,8 @@ export const rrqPlayers: ProPlayer[] = [
 
     mainAgents: ["Cypher", "Killjoy", "Vyse"],
 
+    career: kushyCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.3,
@@ -260,6 +545,8 @@ export const rrqPlayers: ProPlayer[] = [
 
     mainAgents: ["Omen", "Viper", "Sova"],
 
+    career: xfferoCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.31,
@@ -282,7 +569,7 @@ export const rrqPlayers: ProPlayer[] = [
       mousepad: "Logitech G640",
       keyboard: "HyperX Alloy Origins Core",
       headset: "Logitech G Pro X 2",
-      monitor: "ZOWIE XL2566K",
+      monitor: "ASUS ROG Swift PG259QN",
     },
 
     stats: {
@@ -318,6 +605,8 @@ export const rrqPlayers: ProPlayer[] = [
     roles: createRoles("Flex", ["Duelist", "Initiator"]),
 
     mainAgents: ["Yoru", "Gekko", "Breach"],
+
+    career: xanCareer,
 
     settings: {
       dpi: 800,

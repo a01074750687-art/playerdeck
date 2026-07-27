@@ -1,5 +1,236 @@
-import type { ProPlayer } from "../../../types/proPlayer";
+import type {
+  ProPlayer,
+  ProPlayerAward,
+  ProPlayerCareer,
+} from "../../../types/proPlayer";
 import { createRoles, getRequiredTeam } from "../common/helpers";
+
+const dambiCareer: ProPlayerCareer = {
+  joinedAt: "2024-11",
+
+  previousTeams: [
+    {
+      teamName: "Gwangju Shadow",
+      joinedAt: "2023-09",
+      leftAt: "2023-12",
+    },
+    {
+      teamName: "Sin Prisa Gaming",
+      joinedAt: "2023-12",
+      leftAt: "2024-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "우승",
+    },
+  ],
+};
+
+const dambiAwards: ProPlayerAward[] = [
+  {
+    year: 2026,
+    title: "VALORANT Masters Santiago 2026",
+    result: "MVP",
+  },
+];
+
+const xrossCareer: ProPlayerCareer = {
+  joinedAt: "2024-02",
+
+  previousTeams: [],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 1",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 2",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 3",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "우승",
+    },
+  ],
+};
+
+const francisCareer: ProPlayerCareer = {
+  joinedAt: "2024-11",
+
+  previousTeams: [
+    {
+      teamName: "Gwangju Shadow",
+      joinedAt: "2023-09",
+      leftAt: "2023-12",
+    },
+    {
+      teamName: "Sin Prisa Gaming",
+      joinedAt: "2023-12",
+      leftAt: "2024-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "우승",
+    },
+  ],
+};
+
+const rbCareer: ProPlayerCareer = {
+  joinedAt: "2025-06",
+
+  previousTeams: [
+    {
+      teamName: "Vision Strikers",
+      joinedAt: "2020-06",
+      leftAt: "2022-01",
+    },
+    {
+      teamName: "DRX",
+      joinedAt: "2022-01",
+      leftAt: "2024-01",
+    },
+    {
+      teamName: "Titan Esports Club",
+      joinedAt: "2024-01",
+      leftAt: "2025-06",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2021,
+      title: "VALORANT Masters Berlin 2021",
+      result: "5~8위",
+    },
+    {
+      year: 2022,
+      title: "VALORANT Champions 2022",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VCT Pacific League",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "우승",
+    },
+  ],
+};
+
+const ivyCareer: ProPlayerCareer = {
+  joinedAt: "2024-11",
+
+  previousTeams: [
+    {
+      teamName: "Gwangju Shadow",
+      joinedAt: "2023-09",
+      leftAt: "2023-12",
+    },
+    {
+      teamName: "Sin Prisa Gaming",
+      joinedAt: "2023-12",
+      leftAt: "2024-11",
+    },
+  ],
+
+  highlights: [
+    {
+      year: 2024,
+      title: "WDG Challengers League 2024 Korea Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Ascension Pacific",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "우승",
+    },
+  ],
+};
 
 export const nongshimRedForcePlayers: ProPlayer[] = [
   {
@@ -23,6 +254,9 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     roles: createRoles("Duelist"),
 
     mainAgents: ["Jett", "Raze", "Neon"],
+
+    career: dambiCareer,
+    awards: dambiAwards,
 
     settings: {
       dpi: 800,
@@ -83,6 +317,8 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
 
     mainAgents: ["Jett", "Raze", "Yoru"],
 
+    career: xrossCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.31,
@@ -141,6 +377,8 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     roles: createRoles("Initiator"),
 
     mainAgents: ["Sova", "Fade", "Breach"],
+
+    career: francisCareer,
 
     settings: {
       dpi: 800,
@@ -201,6 +439,8 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
 
     mainAgents: ["Omen", "Viper", "Gekko"],
 
+    career: rbCareer,
+
     settings: {
       dpi: 800,
       sensitivity: 0.24,
@@ -259,6 +499,8 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     roles: createRoles("Sentinel"),
 
     mainAgents: ["Cypher", "Killjoy", "Vyse"],
+
+    career: ivyCareer,
 
     settings: {
       dpi: 800,
