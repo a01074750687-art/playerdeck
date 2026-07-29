@@ -284,27 +284,46 @@ export const genGPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 800,
-      sensitivity: 0.25,
+      sensitivity: 0.45,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 200,
+      edpi: 360,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-28",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/t3xture/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;s;1;P;o;0;f;0;0l;3;0o;2;0a;1;0f;0;1b;0;S;o;0",
       color: "White",
-      outlines: true,
+      outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-07-28",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/t3xture/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Logitech G Pro X Superlight 2 Cyan",
+      mousepad: "SteelSeries QcK Heavy",
+      keyboard: "SteelSeries Apex Pro TKL Gen 3 White",
+      headset: "Razer BlackShark V2 HyperSpeed White",
+      earphones: "Sennheiser IE 300",
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-07-28",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/t3xture/",
+      },
     },
 
     stats: {
@@ -346,27 +365,46 @@ export const genGPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 800,
-      sensitivity: 0.28,
+      sensitivity: 0.2,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 224,
+      edpi: 160,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-28",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/karon/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      code: "0;s;1;P;o;1;d;1;0b;0;1b;0;S;d;0",
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-07-28",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/karon/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X Superlight Magenta",
+      mousepad: "X-raypad Aqua Control+ Wave Black",
+      keyboard: "Wooting 60HE+",
+      headset: "Razer BlackShark V2 HyperSpeed White",
+      earphones: "Shure SE215 Clear",
+      monitor: "ZOWIE XL2566X+",
+
+      verification: {
+        verifiedAt: "2026-07-28",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/karon/",
+      },
     },
 
     stats: {
@@ -407,28 +445,29 @@ export const genGPlayers: ProPlayer[] = [
     awards: ashAwards,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.27,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ZOWIE XL2566K",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      headset: null,
+      earphones: null,
+      monitor: null,
     },
 
     stats: {
@@ -468,28 +507,29 @@ export const genGPlayers: ProPlayer[] = [
     career: raxcalCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.3,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 240,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
     },
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      headset: null,
+      earphones: null,
+      monitor: null,
     },
 
     stats: {
@@ -529,28 +569,29 @@ export const genGPlayers: ProPlayer[] = [
     career: efinaCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.26,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 208,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ZOWIE XL2566K",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      headset: null,
+      earphones: null,
+      monitor: null,
     },
 
     stats: {

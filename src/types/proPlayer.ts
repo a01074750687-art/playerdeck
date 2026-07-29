@@ -114,34 +114,76 @@ export interface ProTeam {
   achievements?: ProTeamAchievement[];
 }
 
+export interface VerificationInfo {
+  /**
+   * 마지막으로 데이터를 검증한 날짜
+   *
+   * YYYY-MM-DD 형식 권장
+   */
+  verifiedAt: string;
+
+  /**
+   * 데이터를 확인한 출처 이름
+   *
+   * 예:
+   * - ProSettings
+   * - Liquipedia
+   * - Official Stream
+   */
+  sourceName: string;
+
+  /**
+   * 원본 페이지 URL
+   */
+  sourceUrl: string;
+}
+
 export interface ProPlayerSettings {
-  dpi: number;
-  sensitivity: number;
+  dpi: number | null;
+  sensitivity: number | null;
 
-  scopedSensitivity: number;
-  adsSensitivity: number;
+  scopedSensitivity: number | null;
+  adsSensitivity: number | null;
 
-  edpi: number;
-  pollingRate: number;
+  edpi: number | null;
+  pollingRate: number | null;
 
-  resolution: string;
+  resolution: string | null;
+
+  /**
+   * 설정값의 출처와 마지막 검증 정보
+   */
+  verification?: VerificationInfo;
 }
 
 export interface ProPlayerCrosshair {
   code: string | null;
 
-  color: string;
+  color: string | null;
 
-  outlines: boolean;
-  centerDot: boolean;
+  outlines: boolean | null;
+  centerDot: boolean | null;
+
+  /**
+   * 크로스헤어 정보의 출처와 마지막 검증 정보
+   */
+  verification?: VerificationInfo;
 }
 
 export interface ProPlayerGear {
-  mouse: string;
-  mousepad: string;
-  keyboard: string;
-  headset: string;
-  monitor: string;
+  mouse: string | null;
+  mousepad: string | null;
+  keyboard: string | null;
+
+  headset: string | null;
+  earphones: string | null;
+  
+  monitor: string | null;
+
+  /**
+   * 장비 정보의 출처와 마지막 검증 정보
+   */
+  verification?: VerificationInfo;
 }
 
 export interface ProPlayerCareerTeam {
@@ -151,7 +193,7 @@ export interface ProPlayerCareerTeam {
    * 예:
    * - DRX
    * - T1
-   * - Barrel
+   * - VARREL
    */
   teamName: string;
 
@@ -185,9 +227,9 @@ export interface ProPlayerCareerHighlight {
    * 대회 성적이나 추가 설명
    *
    * 예:
-   * - Champion
-   * - Runner-up
-   * - Qualified
+   * - 우승
+   * - 준우승
+   * - 진출
    */
   result?: string;
 }
@@ -233,8 +275,8 @@ export interface ProPlayerAward {
    *
    * 예:
    * - MVP
-   * - Finals MVP
-   * - Duelist of the Year
+   * - 결승 MVP
+   * - 올해의 타격대
    */
   result: string;
 }
