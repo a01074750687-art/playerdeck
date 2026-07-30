@@ -405,7 +405,7 @@ export default function ProPlayerDetail() {
   ]);
 
   const gearVerificationRecord = isRecord(
-    getRecordValue(gearRecord, ["verificarion"]),
+    getRecordValue(gearRecord, ["verification"]),
   )
     ? (getRecordValue(
       gearRecord,
@@ -855,12 +855,12 @@ export default function ProPlayerDetail() {
               <div className="relative flex h-40 w-40 items-center justify-center rounded-xl bg-[#0f172a]">
 
                <img
-                src={`https://api.henrikdev.xyz/valorant/v1/crosshair/generate?id=${encodeURIComponent(crosshairCode,)}&api_key=${import.meta.env.VITE_HENRIK_API_KEY}`}
+                src={`https://api.henrikdev.xyz/valorant/v1/crosshair/generate?id=${encodeURIComponent(crosshairCode)}&api_key=${import.meta.env.VITE_HENRIK_API_KEY}`}
                 alt={`${player.nickname} 조준선 미리보기`}
-                className="h-auto w-auto max-h-48 max-w-48 objeect-contain"
+                className="h-auto w-auto max-h-48 max-w-48 object-contain"
               onError={(event) => {
                   console.error(
-                    "Crosshaur preview load failed",
+                    "Crosshair preview load failed",
                     event.currentTarget.src,
                   );
                 }}
@@ -989,7 +989,7 @@ export default function ProPlayerDetail() {
                   href={gearSourceUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-3 inline-flex font-black text-indigo-300 transition horver:text-indigo-200"
+                  className="mt-3 inline-flex font-black text-indigo-300 transition hover:text-indigo-200"
                   >
                     {gearSourceName}
                   </a>
