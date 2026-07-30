@@ -1,26 +1,30 @@
 import {
   ArrowLeft,
   BadgeCheck,
-  Copy,
   Crosshair,
   Gamepad2,
   Gauge,
-  Globe2,
   Headphones,
-  History,
   Keyboard,
-  Medal,
   Monitor,
   Mouse,
   Shield,
   Target,
-  Trophy,
   UserRound,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import PlayerHero from "../components/player/PlayerHero";
+import PlayerStatistics from "../components/player/PlayerStatistics";
 import { getProPlayerBySlug } from "../data/pro";
+import PlayerRoles from "../components/player/PlayerRoles";
+import PlayerAgents from "../components/player/PlayerAgents";
+import PlayerMouseSettings from "../components/player/PlayerMouseSettings";
+import PlayerCrosshair from "../components/player/PlayerCrosshair";
+import PlayerGear from "../components/player/PlayerGear";
+import PlayerCareer from "../components/player/PlayerCareer";
+import PlayerTeam from "../components/player/PlayerTeam";
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -112,85 +116,6 @@ const hexToRgba = (hex: string, alpha: number): string => {
 
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 };
-
-const getCountryFlag = (countryCode: string): string => {
-  if (!/^[A-Za-z]{2}$/.test(countryCode)) {
-    return "🌐";
-  }
-
-  return countryCode
-    .toUpperCase()
-    .split("")
-    .map((character) =>
-      String.fromCodePoint(127397 + character.charCodeAt(0)),
-    )
-    .join("");
-};
-
-function SectionCard({
-  title,
-  description,
-  icon,
-  children,
-  className = "",
-}: {
-  title: string;
-  description?: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <section
-      className={`overflow-hidden rounded-3xl border border-white/10 bg-slate-950/60 shadow-2xl shadow-black/20 backdrop-blur-xl ${className}`}
-    >
-      <div className="flex items-start gap-3 border-b border-white/10 px-5 py-5 sm:px-6">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-indigo-300">
-          {icon}
-        </div>
-
-        <div>
-          <h2 className="text-lg font-black tracking-tight text-white">
-            {title}
-          </h2>
-
-          {description ? (
-            <p className="mt-1 text-sm leading-6 text-slate-400">
-              {description}
-            </p>
-          ) : null}
-        </div>
-      </div>
-
-      <div className="p-5 sm:p-6">{children}</div>
-    </section>
-  );
-}
-
-function DetailGrid({ items }: { items: DetailItem[] }) {
-  return (
-    <div className="grid gap-3 sm:grid-cols-2">
-      {items.map((item) => (
-        <div
-          key={item.label}
-          className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 transition hover:border-white/20 hover:bg-white/[0.055]"
-        >
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
-            {item.icon ? (
-              <span className="text-slate-400">{item.icon}</span>
-            ) : null}
-
-            {item.label}
-          </div>
-
-          <p className="mt-3 break-words text-base font-black text-white">
-            {item.value}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function ProPlayerDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -345,6 +270,27 @@ export default function ProPlayerDetail() {
     "resolution",
   ]);
 
+  const settingsVerificationRecord = isRecord(
+    getRecordValue(settingsRecord, ["verification"]),
+  )
+    ? (getRecordValue(
+      settingsRecord,
+      ["verification"],
+    ) as UnknownRecord)
+    : null;
+  
+  const settingsVerifiedAt = formatValue(
+    getRecordValue(settingsVerificationRecord, ["verifiedAt"]),
+  );
+
+  const settingsSourceName = formatValue(
+    getRecordValue(settingsVerificationRecord, ["sourceName"]),
+  );
+
+  const settingsSourceUrl = getRecordValue(
+    settingsVerificationRecord,
+    ["sourceUrl"],
+  );
   const crosshairCode = formatValue(
     getRecordValue(crosshairRecord, ["code"]),
   );
@@ -601,646 +547,65 @@ export default function ProPlayerDetail() {
           <ArrowLeft size={17} />
           Pro Players
         </Link>
-
-        <section
-          className="relative mt-6 overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl shadow-black/40"
-          style={{
-            background: `
-              linear-gradient(
-                135deg,
-                ${hexToRgba(primaryColor, 0.34)} 0%,
-                ${hexToRgba(secondaryColor, 0.26)} 42%,
-                rgba(7, 11, 20, 0.96) 78%
-              )
-            `,
-          }}
-        >
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.055] to-transparent" />
-
-          <div
-            className="pointer-events-none absolute -right-20 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full blur-3xl"
-            style={{
-              backgroundColor: hexToRgba(primaryColor, 0.18),
-            }}
+        
+        <PlayerHero
+          player={player}
+          team={team}
+          teamLogoUrl={teamLogoUrl}
+          teamInitials={teamInitials}
+          primaryColor={primaryColor}
+          secondaryColor={secondaryColor}
+          heroStats={heroStats}
           />
+          <div className="mt-6 grid gap-6 lg:grid-cols-12">
+          <PlayerStatistics statistics={statistics} />
 
-          {teamLogoUrl ? (
-            <img
-              src={teamLogoUrl}
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-8 top-1/2 h-[340px] w-[340px] -translate-y-1/2 object-contain opacity-[0.08] grayscale sm:right-4 sm:h-[440px] sm:w-[440px]"
+          <PlayerRoles
+            primaryRole={player.primaryRole}
             />
-          ) : (
-            <div className="pointer-events-none absolute -right-6 top-1/2 -translate-y-1/2 select-none text-[13rem] font-black leading-none text-white/[0.035] sm:text-[20rem]">
-              {teamInitials}
-            </div>
-          )}
 
-          <div className="relative grid gap-10 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-12 lg:py-14">
-            <div className="flex min-w-0 flex-col justify-center">
-              <div className="flex flex-wrap items-center gap-2">
-                <span
-                  className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black uppercase tracking-[0.15em]"
-                  style={{
-                    borderColor: hexToRgba(primaryColor, 0.45),
-                    backgroundColor: hexToRgba(primaryColor, 0.14),
-                    color: "#ffffff",
-                  }}
-                >
-                  <span
-                    className="h-2 w-2 rounded-full"
-                    style={{
-                      backgroundColor: primaryColor,
-                    }}
-                  />
-
-                  {team.name}
-                </span>
-
-                <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-xs font-black uppercase tracking-[0.12em] text-emerald-300">
-                  {player.status}
-                </span>
-
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[0.12em] text-slate-300">
-                  {player.region}
-                </span>
-              </div>
-
-              <p className="mt-8 text-xs font-black uppercase tracking-[0.3em] text-slate-400">
-                Professional Valorant Player
-              </p>
-
-              <h1 className="mt-3 break-words text-5xl font-black tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
-                {player.nickname}
-              </h1>
-
-              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold text-slate-300">
-                <span>{player.realName}</span>
-
-                <span className="hidden h-1 w-1 rounded-full bg-slate-600 sm:block" />
-
-                <span className="inline-flex items-center gap-2">
-                  <span className="text-lg">
-                    {getCountryFlag(player.countryCode)}
-                  </span>
-
-                  {player.countryName}
-                </span>
-
-                <span className="hidden h-1 w-1 rounded-full bg-slate-600 sm:block" />
-
-                <span className="inline-flex items-center gap-2">
-                  <Shield size={15} />
-                  {player.primaryRole}
-                </span>
-              </div>
-
-              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {heroStats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4 backdrop-blur"
-                  >
-                    <p className="text-[11px] font-black uppercase tracking-[0.17em] text-slate-500">
-                      {stat.label}
-                    </p>
-
-                    <p className="mt-2 text-2xl font-black tracking-tight text-white">
-                      {stat.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center lg:justify-end">
-              <div
-                className="relative flex aspect-square w-full max-w-[260px] items-center justify-center overflow-hidden rounded-[2rem] border border-white/15 bg-black/25 p-8 shadow-2xl backdrop-blur-xl"
-                style={{
-                  boxShadow: `0 24px 80px ${hexToRgba(
-                    primaryColor,
-                    0.18,
-                  )}`,
-                }}
-              >
-                <div
-                  className="absolute inset-0 opacity-50"
-                  style={{
-                    background: `radial-gradient(
-                      circle,
-                      ${hexToRgba(primaryColor, 0.24)},
-                      transparent 68%
-                    )`,
-                  }}
-                />
-
-                {teamLogoUrl ? (
-                  <img
-                    src={teamLogoUrl}
-                    alt={`${team.name} 로고`}
-                    className="relative z-10 h-full w-full object-contain drop-shadow-2xl"
-                  />
-                ) : (
-                  <span className="relative z-10 text-7xl font-black tracking-[-0.08em] text-white sm:text-8xl">
-                    {teamInitials}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-12">
-          <SectionCard
-            title="Player Statistics"
-            description="선수의 주요 경기 지표를 한눈에 확인합니다."
-            icon={<Gauge size={21} />}
-            className="lg:col-span-7"
-          >
-            <DetailGrid items={statistics} />
-          </SectionCard>
-
-          <SectionCard
-            title="Roles"
-            description="선수가 주로 담당하는 인게임 역할입니다."
-            icon={<Shield size={21} />}
-            className="lg:col-span-5"
-          >
-            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                Primary role
-              </p>
-
-              <p className="mt-3 text-3xl font-black tracking-tight text-white">
-                {player.primaryRole}
-              </p>
-            </div>
-
-            <div className="mt-4">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                Available roles
-              </p>
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                {player.roles.map((role) => (
-                  <span
-                    key={role}
-                    className="rounded-xl border border-indigo-400/20 bg-indigo-400/10 px-3 py-2 text-sm font-black text-indigo-200"
-                  >
-                    {role}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </SectionCard>
-
-          <SectionCard
-            title="Main Agents"
-            description="선수가 자주 활용하는 대표 요원 목록입니다."
-            icon={<UserRound size={21} />}
-            className="lg:col-span-5"
-          >
-            {player.mainAgents.length > 0 ? (
-              <div className="grid gap-3 sm:grid-cols-2">
-                {player.mainAgents.map((agent, index) => (
-                  <div
-                    key={agent}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-5 transition hover:border-white/20 hover:bg-white/[0.06]"
-                  >
-                    <span className="absolute right-3 top-2 text-4xl font-black text-white/[0.035]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <p className="relative text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                      Agent
-                    </p>
-
-                    <p className="relative mt-2 text-lg font-black text-white">
-                      {agent}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-slate-400">
-                등록된 대표 요원이 없습니다.
-              </p>
-            )}
-          </SectionCard>
-
-          <SectionCard
-            title="Mouse Settings"
-            description="인게임 조준과 입력 장치 설정입니다."
-            icon={<Mouse size={21} />}
-            className="lg:col-span-7"
-          >
-            <DetailGrid items={mouseSettings} />
-          </SectionCard>
-
-          <SectionCard
-            title="Crosshair"
-            description="선수가 사용하는 크로스헤어 설정입니다."
-            icon={<Crosshair size={21} />}
-            className="lg:col-span-7"
-          >
-            <div className="mb-4 overflow-hidden rounded-2xl border border-white/10 bg-[#050811]">
-              <div className="border-b border-white/10 px-4 py-3">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                  Crosshair Preview
-                </p>
-              </div>
-
-            <div className="flex justify-center p-8">
-              <div className="relative flex h-40 w-40 items-center justify-center rounded-xl bg-[#0f172a]">
-
-               <img
-                src={`https://api.henrikdev.xyz/valorant/v1/crosshair/generate?id=${encodeURIComponent(crosshairCode)}&api_key=${import.meta.env.VITE_HENRIK_API_KEY}`}
-                alt={`${player.nickname} 조준선 미리보기`}
-                className="h-auto w-auto max-h-48 max-w-48 object-contain"
-              onError={(event) => {
-                  console.error(
-                    "Crosshair preview load failed",
-                    event.currentTarget.src,
-                  );
-                }}
-              />
-
-              </div>
-            </div>
-           </div>
-
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#050811]">
-              <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                  Crosshair code
-                </p>
-
-                <button
-                  type="button"
-                  onClick={handleCopyCrosshair}
-                  disabled={crosshairCode === "-"}
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-black text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <Copy size={14} />
-                  {copied ? "Copied" : "Copy"}
-                </button>
-              </div>
-
-              <code className="block min-h-24 break-all px-4 py-5 text-sm leading-7 text-indigo-200">
-                {crosshairCode}
-              </code>
-            </div>
-
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Last Verified
-                </p>
-
-                <p className="mt-3 font-black text-white">
-                  {crosshairVerifiedAt}
-                </p>
-              </div>
-              
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Source
-                </p>
-
-              {typeof crosshairSourceUrl === "string" && 
-              crosshairSourceUrl.trim() !== "" ? (
-                <a
-                href={crosshairSourceUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-flex font-black text-indigo-300 transition hover:text-indigo-200"
-                >
-                  {crosshairSourceName}
-                </a>
-              ) : (
-                <p className="mt-3 font-black text-white">
-                  {crosshairSourceName}
-                </p>
-              )}
-              </div>
-            </div>
-
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Color
-                </p>
-
-                <p className="mt-3 font-black text-white">
-                  {crosshairColor}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Outlines
-                </p>
-
-                <p className="mt-3 font-black text-white">
-                  {outlines}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Center dot
-                </p>
-
-                <p className="mt-3 font-black text-white">
-                  {centerDot}
-                </p>
-              </div>
-            </div>
-          </SectionCard>
-
-          <SectionCard
-            title="Gear"
-            description="선수가 사용하는 주요 게이밍 장비입니다."
-            icon={<Gamepad2 size={21} />}
-            className="lg:col-span-5"
-          >
-            <DetailGrid items={gear} />
-
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Last Verified
-                </p>
-
-                <p className="mt-3 font-black text-white">
-                  {gearVerifiedAt}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-               <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                Source
-               </p>
-
-               {typeof gearSourceUrl === "string" && 
-               gearSourceUrl.trim() !== "" ? (
-                <a
-                  href={gearSourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex font-black text-indigo-300 transition hover:text-indigo-200"
-                  >
-                    {gearSourceName}
-                  </a>
-               ) : (
-                <p className="mt-3 font-black text-white">
-                  {gearSourceName}
-                </p>
-               )}
-              </div>
-            </div>
-          </SectionCard>
-
-
-          <SectionCard
-            title="Career"
-            description="선수의 소속 팀 이력과 주요 커리어를 확인합니다."
-            icon={<History size={21} />}
-            className="lg:col-span-12"
-          >
-            {!career ||
-            (career.previousTeams.length === 0 &&
-              career.highlights.length === 0 &&
-              !career.joinedAt) ? (
-              <div className="flex min-h-44 flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/[0.025] px-6 py-10 text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-400">
-                  <History size={25} />
-                </div>
-
-                <h3 className="mt-5 text-lg font-black text-white">
-                  아직 등록된 커리어 정보가 없습니다
-                </h3>
-
-                <p className="mt-2 max-w-md text-sm leading-6 text-slate-500">
-                  선수의 이전 소속 팀과 주요 대회 성적이 확인되면 순차적으로
-                  업데이트됩니다.
-                </p>
-              </div>
-            ) : (
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                <div className="space-y-4">
-                  <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-indigo-300">
-                        <Shield size={20} />
-                      </div>
-
-                      <div>
-                        <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                          Current team
-                        </p>
-
-                        <h3 className="mt-1 text-xl font-black text-white">
-                          {team.name}
-                        </h3>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-2xl border border-white/10 bg-black/15 p-4">
-                        <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                          Joined
-                        </p>
-
-                        <p className="mt-2 font-black text-white">
-                          {career.joinedAt ?? "정보 없음"}
-                        </p>
-                      </div>
-
-                      <div className="rounded-2xl border border-white/10 bg-black/15 p-4">
-                        <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                          Status
-                        </p>
-
-                        <p className="mt-2 font-black text-emerald-300">
-                          {player.status}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                          Previous teams
-                        </p>
-
-                        <h3 className="mt-2 text-xl font-black text-white">
-                          Team History
-                        </h3>
-                      </div>
-
-                      <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-black text-slate-400">
-                        {career.previousTeams.length}
-                      </span>
-                    </div>
-
-                    {career.previousTeams.length > 0 ? (
-                      <div className="mt-5 space-y-3">
-                        {career.previousTeams.map((careerTeam, index) => (
-                          <div
-                            key={`${careerTeam.teamName}-${careerTeam.joinedAt ?? index}`}
-                            className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/15 p-4"
-                          >
-                            <span className="absolute right-4 top-3 text-4xl font-black text-white/[0.035]">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
-
-                            <p className="relative text-base font-black text-white">
-                              {careerTeam.teamName}
-                            </p>
-
-                            <p className="relative mt-2 text-sm font-semibold text-slate-400">
-                              {careerTeam.joinedAt ?? "시작일 미상"}{" "}
-                              <span className="mx-1 text-slate-600">—</span>{" "}
-                              {careerTeam.leftAt ?? "종료일 미상"}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-5 rounded-2xl border border-dashed border-white/10 bg-black/10 px-4 py-6 text-center text-sm text-slate-500">
-                        등록된 이전 소속 팀이 없습니다.
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                        Career highlights
-                      </p>
-
-                      <h3 className="mt-2 text-xl font-black text-white">
-                        주요 커리어
-                      </h3>
-                    </div>
-
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-400/20 bg-amber-400/10 text-amber-300">
-                      <Trophy size={20} />
-                    </div>
-                  </div>
-
-                  {career.highlights.length > 0 ? (
-                    <div className="relative mt-6 space-y-4 before:absolute before:bottom-4 before:left-[19px] before:top-4 before:w-px before:bg-white/10">
-                      {career.highlights.map((highlight, index) => (
-                        <div
-                          key={`${highlight.year}-${highlight.title}-${index}`}
-                          className="relative pl-12"
-                        >
-                          <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-2xl border border-indigo-400/20 bg-indigo-400/10 text-indigo-200">
-                            <Medal size={17} />
-                          </div>
-
-                          <div className="rounded-2xl border border-white/10 bg-black/15 p-4 transition hover:border-white/20 hover:bg-black/25">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <span className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-black text-slate-300">
-                                {highlight.year}
-                              </span>
-
-                              {highlight.result ? (
-                                <span className="rounded-lg border border-amber-400/20 bg-amber-400/10 px-2.5 py-1 text-xs font-black text-amber-300">
-                                  {highlight.result}
-                                </span>
-                              ) : null}
-                            </div>
-
-                            <p className="mt-3 text-base font-black leading-7 text-white">
-                              {highlight.title}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="mt-6 flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-black/10 px-6 text-center">
-                      <Trophy size={27} className="text-slate-600" />
-
-                      <p className="mt-4 text-sm font-black text-slate-400">
-                        등록된 주요 커리어가 없습니다.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </SectionCard>
-
-          <SectionCard
-            title="Team"
-            description="현재 소속 팀 정보입니다."
-            icon={<Globe2 size={21} />}
-            className="lg:col-span-12"
-          >
-            <div
-              className="relative overflow-hidden rounded-3xl border border-white/10 p-5 sm:p-6"
-              style={{
-                background: `linear-gradient(
-                  125deg,
-                  ${hexToRgba(primaryColor, 0.17)},
-                  ${hexToRgba(secondaryColor, 0.12)},
-                  rgba(255, 255, 255, 0.025)
-                )`,
-              }}
-            >
-              <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl border border-white/10 bg-black/20 p-4">
-                  {teamLogoUrl ? (
-                    <img
-                      src={teamLogoUrl}
-                      alt={`${team.name} 로고`}
-                      className="h-full w-full object-contain"
-                    />
-                  ) : (
-                    <span className="text-2xl font-black">
-                      {teamInitials}
-                    </span>
-                  )}
-                </div>
-
-                <div className="min-w-0">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">
-                    Current organization
-                  </p>
-
-                  <h2 className="mt-2 text-3xl font-black tracking-tight text-white">
-                    {team.name}
-                  </h2>
-
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300">
-                      {team.shortName}
-                    </span>
-
-                    <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300">
-                      {team.region}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="sm:ml-auto">
-                  <span className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-black text-slate-300">
-                    <BadgeCheck size={17} />
-                    Team page 준비 중
-                  </span>
-                </div>
-              </div>
-            </div>
-          </SectionCard>
+          <PlayerAgents mainAgents={player.mainAgents} />
+
+          <PlayerMouseSettings
+            mouseSettings={mouseSettings}
+            settingsVerifiedAt={settingsVerifiedAt}
+            settingsSourceName={settingsSourceName}
+            settingsSourceUrl={settingsSourceUrl}
+            />
+
+          <PlayerCrosshair
+            playerNickname={player.nickname}
+            crosshairCode={crosshairCode}
+            copied={copied}
+            handleCopyCrosshair={handleCopyCrosshair}
+            crosshairVerifiedAt={crosshairVerifiedAt}
+            crosshairSourceName={crosshairSourceName}
+            crosshairSourceUrl={crosshairSourceUrl}
+            crosshairColor={crosshairColor}
+            outlines={outlines}
+            centerDot={centerDot}
+            />
+          
+          <PlayerGear
+            gear={gear}
+            gearVerifiedAt={gearVerifiedAt}
+            gearSourceName={gearSourceName}
+            gearSourceUrl={gearSourceUrl}
+            />
+          
+          <PlayerCareer
+            career={career}
+            teamName={team.name}
+            playerStatus={player.status}
+            />
+
+          <PlayerTeam
+            team={team}
+            teamLogoUrl={teamLogoUrl}
+            teamInitials={teamInitials}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            />
         </div>
 
         <footer className="mt-10 border-t border-white/10 py-8 text-center text-xs font-semibold text-slate-600">

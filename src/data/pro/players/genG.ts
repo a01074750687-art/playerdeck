@@ -381,9 +381,9 @@ export const genGPlayers: ProPlayer[] = [
 
     crosshair: {
       code: "0;s;1;P;o;1;d;1;0b;0;1b;0;S;d;0",
-      color: null,
-      outlines: null,
-      centerDot: null,
+      color: "White",
+      outlines: true,
+      centerDot: true,
 
       verification: {
         verifiedAt: "2026-07-28",
