@@ -30,6 +30,7 @@ import type { DetailItem } from "../components/player/DetailGrid";
 import {
   createInitials,
   formatValue,
+  formatToggle,
   getRecordValue,
   hexToRgba,
   isRecord,
@@ -124,6 +125,7 @@ export default function ProPlayerDetail() {
   const crosshairRecord = isRecord(player.crosshair)
     ? player.crosshair
     : null;
+ 
   const gearRecord = isRecord(player.gear) ? player.gear : null;
   const career = player.career;
 
@@ -240,11 +242,11 @@ export default function ProPlayerDetail() {
     getRecordValue(crosshairRecord, ["color"]),
   );
 
-  const outlines = formatValue(
+  const outlines = formatToggle(
     getRecordValue(crosshairRecord, ["outlines"]),
   );
 
-  const centerDot = formatValue(
+  const centerDot = formatToggle(
     getRecordValue(crosshairRecord, ["centerDot"]),
   );
 

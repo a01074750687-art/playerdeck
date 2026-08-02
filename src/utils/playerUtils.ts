@@ -49,6 +49,14 @@ export const formatValue = (
   return `${String(value)}${options?.suffix ?? ""}`;
 };
 
+export const formatToggle = (value: unknown): string => {
+  if (typeof value !== "boolean") {
+    return "-";
+  }
+
+  return value ? "On" : "Off";
+};
+
 export const createInitials = (value: string): string => {
   const normalized = value.trim();
 

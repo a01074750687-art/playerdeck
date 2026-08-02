@@ -31,7 +31,7 @@ export default function PlayerCrosshair({
 }: PlayerCrosshairProps) {
   return (
     <SectionCard
-      title="Crosshair"
+      title="조준선"
       description="선수가 사용하는 조준선 설정입니다."
       icon={<Crosshair size={21} />}
       className="lg:col-span-7"
@@ -75,7 +75,7 @@ export default function PlayerCrosshair({
             className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-black text-slate-300 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Copy size={14} />
-            {copied ? "Copied" : "Copy"}
+            {copied ? "복사 완료" : "복사"}
           </button>
         </div>
 
@@ -87,7 +87,7 @@ export default function PlayerCrosshair({
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            Last Verified
+            마지막 검증
           </p>
 
           <p className="mt-3 font-black text-white">
@@ -97,7 +97,7 @@ export default function PlayerCrosshair({
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            Source
+            출처
           </p>
 
           {typeof crosshairSourceUrl === "string" &&
