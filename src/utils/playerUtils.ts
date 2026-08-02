@@ -30,7 +30,7 @@ export const formatValue = (
   },
 ): string => {
   if (value === undefined || value === null || value === "") {
-    return "-";
+    return "정보 없음";
   }
 
   if (typeof value === "number") {
@@ -43,7 +43,7 @@ export const formatValue = (
   }
 
   if (typeof value === "boolean") {
-    return value ? "Yes" : "No";
+    return value ? "예" : "아니오";
   }
 
   return `${String(value)}${options?.suffix ?? ""}`;

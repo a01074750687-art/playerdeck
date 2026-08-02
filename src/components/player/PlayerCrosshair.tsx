@@ -36,6 +36,7 @@ export default function PlayerCrosshair({
       icon={<Crosshair size={21} />}
       className="lg:col-span-7"
     >
+      {crosshairCode !== "정보 없음" ? (
       <div className="mb-4 overflow-hidden rounded-2xl border border-white/10 bg-[#050811]">
         <div className="border-b border-white/10 px-4 py-3">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
@@ -61,6 +62,13 @@ export default function PlayerCrosshair({
           </div>
         </div>
       </div>
+      ) : (
+        <div className="mb-4 flex min-h-52 items-center justify-center rounded-2xl border border/10 bg-white/[0.025] px-6 text-center">
+          <p className="text-sm font-semibold text-slate-500">
+            등록된 조준선 미리보기가 없습니다.
+          </p>
+        </div>
+      )}
 
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#050811]">
         <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3">
@@ -87,7 +95,7 @@ export default function PlayerCrosshair({
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            마지막 검증
+            검증 날짜
           </p>
 
           <p className="mt-3 font-black text-white">

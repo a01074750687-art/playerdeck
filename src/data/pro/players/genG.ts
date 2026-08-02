@@ -439,35 +439,54 @@ export const genGPlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist", ["Initiator"]),
 
-    mainAgents: ["Sova", "Fade", "Gekko"],
+    mainAgents: ["Neon", "Omen", "Sova"],
 
     career: ashCareer,
     awards: ashAwards,
 
     settings: {
-      dpi: null,
-      sensitivity: null,
+      dpi: 800,
+      sensitivity: 0.35,
       scopedSensitivity: null,
       adsSensitivity: null,
-      edpi: null,
+      edpi: 280,
       pollingRate: null,
-      resolution: null,
+      resolution: "1680x1050",
+
+      verification: {
+       verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/lists/valorant/",
+     },
     },
 
+
     crosshair: {
-      code: null,
-      color: null,
-      outlines: null,
-      centerDot: null,
+      code: "0;s;1;P;o;1;d;1;f;0;0b;0;1b;0;S;s;0.85;o;1",
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/lists/valorant/",
+      },
     },
 
     gear: {
-      mouse: null,
-      mousepad: null,
-      keyboard: null,
+      mouse: "Razer Viper V3 Pro White",
+      mousepad: "VAXEE PA Winter23 Daydream",
+      keyboard: "SteelSeries Apex Pro Mini",
       headset: null,
       earphones: null,
-      monitor: null,
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/lists/valorant/",
+      },
     },
 
     stats: {
@@ -499,10 +518,10 @@ export const genGPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("gen-g"),
 
-    primaryRole: "Sentinel",
-    roles: createRoles("Sentinel", ["Controller"]),
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Duelist", "Initiator"]),
 
-    mainAgents: ["Cypher", "Killjoy", "Omen"],
+    mainAgents: ["Phoenix", "Vyse", "Omen"],
 
     career: raxcalCareer,
 
@@ -564,7 +583,7 @@ export const genGPlayers: ProPlayer[] = [
     primaryRole: "Initiator",
     roles: createRoles("Initiator", ["Sentinel"]),
 
-    mainAgents: ["Sova", "Fade", "Cypher"],
+    mainAgents: ["Sova", "Fade", "Skye"],
 
     career: efinaCareer,
 
