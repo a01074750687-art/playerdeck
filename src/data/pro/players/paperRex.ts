@@ -254,33 +254,46 @@ export const paperRexPlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
 
-    mainAgents: ["Jett", "Reyna", "Neon"],
+    mainAgents: ["Jett", "Yoru", "Phoenix"],
 
     career: somethingCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.33,
-      scopedSensitivity: 1,
+      sensitivity: 0.58,
+      scopedSensitivity: 1.115,
       adsSensitivity: 1,
-      edpi: 264,
-      pollingRate: 1000,
+      edpi: 464,
+      pollingRate: 4000,
       resolution: "1920x1080",
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
+      code: "0;s;1;P;h;0;0l;2;0o;1;0a;1;0f;0;1b;0;S;c;0;s;0.713;o;1",
+      color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/something/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X2 Superlight ",
+      mousepad: "Pulsar eS Saturn Pro Red",
+      keyboard: "Pulsar PCMK 3",
+      headset: "HyperX Cloud III",
+      earphones: null,
+      monitor: "ZOWIE XL2586K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/something/",
+      },
     },
 
     stats: {
@@ -327,27 +340,46 @@ export const paperRexPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 800,
-      sensitivity: 0.36,
+      sensitivity: 0.712,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 288,
-      pollingRate: 1000,
+      edpi: 569.6,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/forsaken/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;p;0;c;1;s;1;P;h;0;f;0;s;0;0l;3;0v;3;0g;1;0o;0;0a;1;0f;0;1b;0;A;o;1;d;1;0b;0;1b;0;S;d;0",
       color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/forsaken/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Pulsar Susanto-X",
+      mousepad: "Pulsar eS Saturn Pro Red",
+      keyboard: "Wooting 60HE v2 Silver",
+      headset: "HyperX Cloud III Wireless",
+      earphones: null,
+      monitor: "ZOWIE XL2566K+",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/forsaken/",
+      },
     },
 
     stats: {
@@ -388,27 +420,46 @@ export const paperRexPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 1600,
-      sensitivity: 0.2,
+      sensitivity: 0.175,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 320,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      edpi: 280,
+      pollingRate: 2000,
+      resolution: "1280x960",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/jinggg/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
-      outlines: false,
+      code: "0;s;1;P;c;8;u;FF99FFFF;o;1;b;1;f;0;0l;3;0o;2;0a;1;0f;0;1b;0;S;c;5;o;1",
+      color: "Pink",
+      outlines: true,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/jinggg/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Pulsar Jinggg-X",
+      mousepad: "Artisan Hayate Otsu V2 XSoft Black",
+      keyboard: "Wooting 60He v2 Silver",
+      headset: "HyperX Cloud III Wireless",
+      earphones: null,
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/jinggg/",
+      },
     },
 
     stats: {
@@ -443,34 +494,53 @@ export const paperRexPlayers: ProPlayer[] = [
     primaryRole: "Sentinel",
     roles: createRoles("Sentinel", ["Initiator"]),
 
-    mainAgents: ["Cypher", "Killjoy", "Sova"],
+    mainAgents: ["Cypher", "Killjoy", "Chamber"],
 
     career: d4v41Career,
     awards: d4v41Awards,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.25,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 200,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: 900,
+      sensitivity: 0.23,
+      scopedSensitivity: 1.15,
+      adsSensitivity: null,
+      edpi: 207,
+      pollingRate: 2000,
+      resolution: "1280x1024",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/d4v41/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      code: "0;P;c;8;o;1;d;1;b;1;z;1;0t;1;0l;1;0o;0;0a;1;0f;0;1b;0",
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/d4v41/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ZOWIE XL2566K",
+      mouse: "VAXEE ZYGEN NP-01S V2 Wireless Fluorescent Green",
+      mousepad: "Pulsar d4v41 Mousepad",
+      keyboard: "Arbiter Studio Polar 65",
+      headset: "HyperX Cloud III Wireless",
+      earphones: null,
+      monitor: "ZOWIE XL2566K+",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/d4v41/",
+      },
     },
 
     stats: {
@@ -490,7 +560,7 @@ export const paperRexPlayers: ProPlayer[] = [
     slug: "invy",
 
     nickname: "invy",
-    realName: "Adrian Reyes",
+    realName: "Adrian Jiggs Aisa Reyes",
 
     countryCode: "PH",
     countryName: "Philippines",
@@ -505,33 +575,52 @@ export const paperRexPlayers: ProPlayer[] = [
     primaryRole: "Initiator",
     roles: createRoles("Initiator"),
 
-    mainAgents: ["Sova", "Fade", "Gekko"],
+    mainAgents: ["Sova", "Fade", "Skye"],
 
     career: invyCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.27,
+      dpi: 1600,
+      sensitivity: 0.175,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      edpi: 280,
+      pollingRate: 4000,
+      resolution: "1280x960",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/invy/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "White",
+      code: "0;P;c;5;h;0;0l;3;0o;2;0a;1;0f;0;1b;0",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/invy/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Logitech G Pro X2 Superlight",
+      mousepad: "Pulsar eS Saturn Pro",
+      keyboard: "Pulsar PCMK 2 HE TKL",
+      headset: "HyperX Cloud III Wireless",
+      earphones: null,
+      monitor: "ZOWIE XL2566K+",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/invy/",
+      },
     },
 
     stats: {

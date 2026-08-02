@@ -323,27 +323,46 @@ export const krxPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 400,
-      sensitivity: 0.45,
+      sensitivity: 0.48,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 180,
+      edpi: 192,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/mako/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;P;c;1;o;1;f;0;0l;4;0a;1;0f;0;1b;0",
       color: "Green",
       outlines: true,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/mako/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V3 Pro White",
+      mousepad: "SteelSeries QcK Heavy",
+      keyboard: "Razer BlackWidow V3 Pro",
+      headset: "Razer BlackShark V2 Pro",
+      earphones: null,
+      monitor: "ZOWIE XL2546",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/mako/",
+      },
     },
 
     stats: {
@@ -378,33 +397,52 @@ export const krxPlayers: ProPlayer[] = [
     primaryRole: "Initiator",
     roles: createRoles("Initiator", ["Controller"]),
 
-    mainAgents: ["Sova", "Fade", "Gekko"],
+    mainAgents: ["Sova", "Fade", "Skye"],
 
     career: beynCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.26,
+      sensitivity: 0.2,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 208,
-      pollingRate: 1000,
+      edpi: 160,
+      pollingRate: 8000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/beyn/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "White",
+      code: "0;P;c;5;h;0;0l;2;0o;1;0a;1;0f;0;1b;0",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/beyn/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
+      mouse: "Logitech G Pro X2 Superlight ",
+      mousepad: "Pulsar Hyperion",
+      keyboard: "Wooting 60HE Black",
+      headset: null,
+      earphones: null,
       monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/beyn/",
+      },
     },
 
     stats: {
@@ -445,27 +483,46 @@ export const krxPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 800,
-      sensitivity: 0.27,
+      sensitivity: 0.19,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
+      edpi: 152,
+      pollingRate: 2000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/yong/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      code:"0;s;1;P;o;1;d;1;f;0;0b;0;1b;0",
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/yong/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X2 SUPERSTRIKE",
+      mousepad: null,
+      keyboard: null,
+      headset: null,
+      earphones: null,
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/yong/",
+      },  
     },
 
     stats: {
@@ -500,33 +557,52 @@ export const krxPlayers: ProPlayer[] = [
     primaryRole: "Flex",
     roles: createRoles("Flex", ["Initiator", "Sentinel"]),
 
-    mainAgents: ["Sova", "Gekko", "Killjoy"],
+    mainAgents: ["Sova", "Neon", "Cypher"],
 
     career: free1ngCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.26,
+      dpi: 400,
+      sensitivity: 0.4,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 208,
+      edpi: 160,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/free1ng/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;p;0;P;c;1;o;1;d;1;0b;0;1b;0",
       color: "Green",
-      outlines: false,
-      centerDot: false,
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/free1ng/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
+      mouse:"Razer Viper V3 Pro White",
+      mousepad: "Artisan Raiden FX XSoft",
+      keyboard: "Wooting 60HE+",
+      headset: "Razer BlackShark V2 Pro Black",
+      earphones: null,
       monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/free1ng/",
+      },
     },
 
     stats: {
@@ -561,34 +637,53 @@ export const krxPlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
 
-    mainAgents: ["Jett", "Raze", "Neon"],
+    mainAgents: ["Jett", "Yoru", "Phoenix"],
 
     career: hyunminCareer,
     awards: hyunminAwards,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.29,
+      sensitivity: 0.2,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 232,
-      pollingRate: 1000,
+      edpi: 160,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/hyunmin/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;P;o;1;d;1;0b;0;1b;0",
       color: "White",
-      outlines: false,
-      centerDot: false,
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/hyunmin/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "Artisan Ninja FX Zero XSoft Black",
+      keyboard: "Wooting 60HE+",
+      headset:  "Corsair HS80 RGB USB",
+      earphones: null,
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/hyunmin/",
+      },
     },
 
     stats: {
@@ -608,7 +703,7 @@ export const krxPlayers: ProPlayer[] = [
     slug: "flicker",
 
     nickname: "Flicker",
-    realName: "Kim Tae-hee",
+    realName: "Yoon Tae-hee",
 
     countryCode: "KR",
     countryName: "South Korea",
@@ -628,28 +723,47 @@ export const krxPlayers: ProPlayer[] = [
     career: flickerCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.25,
-      scopedSensitivity: 1,
+      dpi: 1600,
+      sensitivity: 0.1,
+      scopedSensitivity: 0.9,
       adsSensitivity: 1,
-      edpi: 200,
-      pollingRate: 1000,
+      edpi: 160,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/flicker/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;s;1;P;c;5;h;0;f;0;0l;4;0o;0;0a;1;0f;0;1b;0;S;c;0;o;1",
       color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/flicker/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Lamzu Maya X Purple Shadow",
+      mousepad: "Pulsar eS Saturn Pro Red",
+      keyboard:"Wooting 60HE+",
+      headset: "Razer BlackShark V2 Pro Black",
+      earphones: null,
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/flicker/",
+      },
     },
 
     stats: {
