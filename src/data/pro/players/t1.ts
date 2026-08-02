@@ -350,7 +350,7 @@ export const t1Players: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist", ["Sentinel"]),
 
-    mainAgents: ["Jett", "Raze", "Killjoy"],
+    mainAgents: ["Jett", "Neon", "Killjoy"],
 
     career: buzzCareer,
 
@@ -358,25 +358,38 @@ export const t1Players: ProPlayer[] = [
       dpi: 400,
       sensitivity: 0.57,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 228,
+      adsSensitivity: 0.8,
+      edpi: 220,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: "1280x960",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/buzz/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
+      code: "0;p;0;s;1;P;h;0;f;0;0l;2;0o;2;0a;1;0f;0;1b;0;A;o;1;d;1;0b;0;1b;0",
+      color: "White",
       outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Pulsar BUZZ-X",
+      mousepad: "X-raypad Aqua Control+ Wave Black",
+      keyboard: "Custom Keyboard",
+      headset: "SONY INZONE H9 II",
+      earphones: "null",
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/buzz/",
+      },
     },
 
     stats: {
@@ -411,7 +424,7 @@ export const t1Players: ProPlayer[] = [
     primaryRole: "Sentinel",
     roles: createRoles("Sentinel", ["Duelist"]),
 
-    mainAgents: ["Killjoy", "Cypher", "Jett"],
+    mainAgents: ["Killjoy", "Chamber", "Jett"],
 
     career: meteorCareer,
     awards: meteorAwards,
@@ -419,26 +432,45 @@ export const t1Players: ProPlayer[] = [
     settings: {
       dpi: 800,
       sensitivity: 0.3,
-      scopedSensitivity: 1,
+      scopedSensitivity: 1.25,
       adsSensitivity: 1,
       edpi: 240,
-      pollingRate: 1000,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/meteor/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;s;1;P;o;1;d;1;f;0;0t;4;0l;1;0o;0;0a;1;0f;0;1b;0;S;c;0;o;1",
       color: "White",
-      outlines: false,
-      centerDot: false,
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/meteor/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
+      mouse: "Logitech G Pro X2 Superlight ",
+      mousepad: "Artisan Hayate Otsu V2 Soft Whine Red",
+      keyboard: "Wooting 60HE v2 Silver",
+      headset: "Razer BlackShark V2 Pro White",
+      earphones: "null",
       monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/meteor/",
+      },
     },
 
     stats: {
@@ -478,28 +510,47 @@ export const t1Players: ProPlayer[] = [
     career: dhCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.28,
+      dpi: 1600,
+      sensitivity: 0.1,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 224,
+      adsSensitivity: null,
+      edpi: 160,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/dh/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      code: "0;s;1;P;o;1;d;1;f;0;0t;4;0l;1;0o;0;0a;1;0f;0;1b;0;S;c;0;o;1",
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/dh/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Pulsar X2 V3 Mini T1 Edition",
+      mousepad: null,
+      keyboard: null,
+      headset: null,
+      earphones: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/dh/",
+      },
     },
 
     stats: {
@@ -534,33 +585,46 @@ export const t1Players: ProPlayer[] = [
     primaryRole: "Flex",
     roles: createRoles("Flex", ["Duelist"]),
 
-    mainAgents: ["Gekko", "Omen", "Breach"],
+    mainAgents: ["Sova", "Chamber", "Yoru"],
 
     career: izuCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.27,
+      sensitivity: 0.28,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 216,
+      edpi: 224,
       pollingRate: 1000,
       resolution: "1920x1080",
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
-      outlines: false,
+      code: "0;s;1;P;u;000000FF;o;1;s;0;0t;3;0l;1;0v;0;0g;1;0o;0;0a;1;0f;0;1t;1;1l;4;1g;1;1o;0;1a;1;1m;0;1f;0",
+      color: "Black",
+      outlines: true,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/izu/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
+      mouse: "Razer Viper V3 Pro Black",
+      mousepad: "SteelSeries QcK Heavy",
+      keyboard: "Wooting 60HE",
+      headset: "HyperX Cloud III",
+      earphones: null,
       monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/izu/",
+      },
     },
 
     stats: {
@@ -602,27 +666,40 @@ export const t1Players: ProPlayer[] = [
 
     settings: {
       dpi: 800,
-      sensitivity: 0.25,
+      sensitivity: 0.35,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
+      adsSensitivity: null,
       edpi: 200,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: "1440x1080",
     },
 
     crosshair: {
-      code: null,
-      color: "White",
+      code: "0;P;c;5;h;0;0l;4;0o;2;0a;1;0f;0;1b;0",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/munchkin/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "X-raypad Aqua Control+ Wave Black",
+      keyboard: "Wooting 60HE Ghost",
+      headset: "Senheiser GAME ONE",
+      earphones: null,
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/munchkin/",
+      },
     },
 
     stats: {
@@ -664,27 +741,40 @@ export const t1Players: ProPlayer[] = [
 
     settings: {
       dpi: 400,
-      sensitivity: 0.44,
+      sensitivity: 0.6,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 176,
+      edpi: 240,
       pollingRate: 1000,
       resolution: "1920x1080",
     },
 
     crosshair: {
-      code: null,
+      code: "0;P;c;5;h;0;0l;4;0o;2;0a;1;0f;0;1b;0",
       color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/stax/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
+      mouse: "Razer Viper V3 Pro Black",
+      mousepad: "SteelSeries QcK Heavy",
+      keyboard: "Wooting 60HE",
+      headset: null,
+      earphones: null,
       monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/stax/",
+      },
     },
 
     stats: {
