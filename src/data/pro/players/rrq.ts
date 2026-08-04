@@ -284,7 +284,7 @@ export const rrqPlayers: ProPlayer[] = [
     slug: "jemkin",
 
     nickname: "Jemkin",
-    realName: "Jemkin",
+    realName: "Maksim Batorov",
 
     countryCode: "RU",
     countryName: "Russia",
@@ -304,28 +304,41 @@ export const rrqPlayers: ProPlayer[] = [
     career: jemkinCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.27,
+      dpi: 1600,
+      sensitivity: 0.125,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 216,
+      edpi: 200,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/jemkin/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: true,
+      color: "White",
+      outlines: false,
       centerDot: false,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer Viper V4 Pro Black",
+      mousepad: "Artisan Hayate Otsu Soft",
+      keyboard: "Wooting 80HE",
+      headset: null,
+      earphones: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/jemkin/",
+      },
     },
 
     stats: {
@@ -345,7 +358,7 @@ export const rrqPlayers: ProPlayer[] = [
     slug: "monyet",
 
     nickname: "Monyet",
-    realName: "Cahya Nugraha",
+    realName: "I Made Adhi Cahya Nugraha",
 
     countryCode: "ID",
     countryName: "Indonesia",
@@ -365,28 +378,41 @@ export const rrqPlayers: ProPlayer[] = [
     career: monyetCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.28,
+      dpi: 1600,
+      sensitivity: 0.125,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 224,
+      adsSensitivity: null,
+      edpi: 200,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/monyet/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "VAXEE NP-01S Pink",
+      mousepad: null,
+      keyboard: "Wooting 80HE Frost",
+      headset: null,
+      earphones: null,
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/monyet/",
+      },
     },
 
     stats: {
@@ -406,7 +432,7 @@ export const rrqPlayers: ProPlayer[] = [
     slug: "crazyguy",
 
     nickname: "crazyguy",
-    realName: "Nguyen Van Manh",
+    realName: "Ngô Công Anh",
 
     countryCode: "VN",
     countryName: "Vietnam",
@@ -427,27 +453,40 @@ export const rrqPlayers: ProPlayer[] = [
 
     settings: {
       dpi: 800,
-      sensitivity: 0.29,
+      sensitivity: 0.235,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 231,
+      edpi: 188,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+         verifiedAt: "2026-08-05",
+         sourceName: "ProSettings.net",
+          sourceUrl: "https://prosettings.net/valorant/players/crazyguy/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
+      mouse: "Logitech G Pro X Superlight 2",
+      mousepad: "Artisan Hayate Otsu XSoft",
+      keyboard: "Wooting 60HE+",
+      headset: null,
+      earphones: null,
       monitor: "ZOWIE XL2566K",
+
+       verification: {
+         verifiedAt: "2026-08-05",
+         sourceName: "ProSettings.net",
+          sourceUrl: "https://prosettings.net/valorant/players/crazyguy/",
+      },
     },
 
     stats: {
@@ -467,7 +506,7 @@ export const rrqPlayers: ProPlayer[] = [
     slug: "kushy",
 
     nickname: "Kushy",
-    realName: "Kushy",
+    realName: "Bryan Carlos Setiawan",
 
     countryCode: "ID",
     countryName: "Indonesia",
@@ -479,36 +518,49 @@ export const rrqPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("rrq"),
 
-    primaryRole: "Sentinel",
-    roles: createRoles("Sentinel"),
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
 
-    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+    mainAgents: ["Sova", "Fade"],
 
     career: kushyCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.3,
+      dpi: 1600,
+      sensitivity: 0.14,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 240,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      edpi: 224,
+      pollingRate: 2000,
+      resolution: "1680x1050",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/kushy",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X2 SUPERSTRIKE",
+      mousepad: "Pulsar eS Saturn Pro Black",
+      keyboard: "Wooting 60HE v2 Silver",
+      headset: null,
+      earphones: null,
+      monitor: null,
+
+       verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/kushy",
+      },
     },
 
     stats: {
@@ -540,36 +592,49 @@ export const rrqPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("rrq"),
 
-    primaryRole: "Controller",
-    roles: createRoles("Controller", ["Initiator"]),
+    primaryRole: "Sentinel",
+    roles: createRoles("Sentinel", ["Controller"]),
 
-    mainAgents: ["Omen", "Viper", "Sova"],
+    mainAgents: ["Cypher", "Viper", "Killjoy"],
 
     career: xfferoCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.31,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 248,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: 1600,
+      sensitivity: 0.125,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: 200,
+      pollingRate: null,
+      resolution: "1280x960",
+
+       verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/xffero",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X Superlight 2 White",
+      mousepad: "Artisan Type-99 Matcha",
+      keyboard: "Wooting 80HE Black",
+      headset: "HyperX Cloud III",
+      earphones: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/xffero",
+      },
     },
 
     stats: {
@@ -601,36 +666,49 @@ export const rrqPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("rrq"),
 
-    primaryRole: "Flex",
-    roles: createRoles("Flex", ["Duelist", "Initiator"]),
+    primaryRole: "Duelist",
+    roles: createRoles("Duelist"),
 
-    mainAgents: ["Yoru", "Gekko", "Breach"],
+    mainAgents: ["Neon"],
 
     career: xanCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.28,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 224,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: 1280,
+      sensitivity: 0.18,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: 230.4,
+      pollingRate: null,
+      resolution: "1280x960",
+
+       verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/xan",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
+      mouse: "Razer DeathAdder V3 Pro",
+      mousepad:  "X-Raypad Aqua Control 2 Medium",
       keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
-      monitor: "ZOWIE XL2566K",
+      headset: "Moondrop KXXS Grey",
+      earphones: null,
+      monitor: "Acer Nitro XV271",
+
+       verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/valorant/players/xan",
+      },
     },
 
     stats: {
