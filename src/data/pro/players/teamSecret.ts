@@ -321,7 +321,6 @@ export const teamSecretPlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro",
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
       monitor: "ASUS ROG Swift PG259QN",
     },
 
@@ -354,26 +353,28 @@ export const teamSecretPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("team-secret"),
 
-    primaryRole: "Duelist",
-    roles: createRoles("Duelist"),
+    primaryRole: "Initiator",
+    roles: createRoles("Initiator"),
 
-    mainAgents: ["Jett", "Raze", "Yoru"],
+    mainAgents: ["Sova", "Fade", "Skye"],
 
     career: keilysCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.24,
+      sensitivity: 0.3,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 192,
+      edpi: 240,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
+      color: "Yellow",
       outlines: false,
       centerDot: false,
     },
@@ -382,7 +383,6 @@ export const teamSecretPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "ZOWIE G-SR-SE",
       keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -443,7 +443,6 @@ export const teamSecretPlayers: ProPlayer[] = [
       mouse: "Razer DeathAdder V3 Pro",
       mousepad: "Logitech G640",
       keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
       monitor: "ASUS ROG Swift PG259QN",
     },
 
@@ -504,7 +503,6 @@ export const teamSecretPlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro",
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -565,7 +563,6 @@ export const teamSecretPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "ZOWIE G-SR-SE",
       keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
       monitor: "ASUS ROG Swift PG259QN",
     },
 

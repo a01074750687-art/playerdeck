@@ -315,8 +315,6 @@ export const genGPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2 Cyan",
       mousepad: "SteelSeries QcK Heavy",
       keyboard: "SteelSeries Apex Pro TKL Gen 3 White",
-      headset: "Razer BlackShark V2 HyperSpeed White",
-      earphones: "Sennheiser IE 300",
       monitor: "ZOWIE XL2546K",
 
       verification: {
@@ -396,8 +394,6 @@ export const genGPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight Magenta",
       mousepad: "X-raypad Aqua Control+ Wave Black",
       keyboard: "Wooting 60HE+",
-      headset: "Razer BlackShark V2 HyperSpeed White",
-      earphones: "Shure SE215 Clear",
       monitor: "ZOWIE XL2566X+",
 
       verification: {
@@ -478,8 +474,6 @@ export const genGPlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro White",
       mousepad: "VAXEE PA Winter23 Daydream",
       keyboard: "SteelSeries Apex Pro Mini",
-      headset: null,
-      earphones: null,
       monitor: "ZOWIE XL2546K",
 
       verification: {
@@ -546,8 +540,6 @@ export const genGPlayers: ProPlayer[] = [
       mouse: null,
       mousepad: null,
       keyboard: null,
-      headset: null,
-      earphones: null,
       monitor: null,
     },
 
@@ -608,8 +600,6 @@ export const genGPlayers: ProPlayer[] = [
       mouse: null,
       mousepad: null,
       keyboard: null,
-      headset: null,
-      earphones: null,
       monitor: null,
     },
 

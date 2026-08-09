@@ -19,9 +19,9 @@ export default function PlayerGear({
 }: PlayerGearProps) {
   return (
     <SectionCard
-      title="Gear"
+      title="장비"
       description="선수가 사용하는 주요 게이밍 장비입니다."
-      icon={<Gamepad2 size={21} />}
+      icon={<Gamepad2 size={18} />}
       className="lg:col-span-5"
     >
       <DetailGrid items={gear} />
@@ -29,7 +29,7 @@ export default function PlayerGear({
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            Last Verified
+            마지막 확인
           </p>
 
           <p className="mt-3 font-black text-white">{gearVerifiedAt}</p>
@@ -37,7 +37,7 @@ export default function PlayerGear({
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            Source
+            출처
           </p>
 
           {typeof gearSourceUrl === "string" &&

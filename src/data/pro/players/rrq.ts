@@ -330,8 +330,6 @@ export const rrqPlayers: ProPlayer[] = [
       mouse: "Razer Viper V4 Pro Black",
       mousepad: "Artisan Hayate Otsu Soft",
       keyboard: "Wooting 80HE",
-      headset: null,
-      earphones: null,
       monitor: null,
 
       verification: {
@@ -404,8 +402,6 @@ export const rrqPlayers: ProPlayer[] = [
       mouse: "VAXEE NP-01S Pink",
       mousepad: null,
       keyboard: "Wooting 80HE Frost",
-      headset: null,
-      earphones: null,
       monitor: "ZOWIE XL2546K",
 
       verification: {
@@ -478,8 +474,6 @@ export const rrqPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "Artisan Hayate Otsu XSoft",
       keyboard: "Wooting 60HE+",
-      headset: null,
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
        verification: {
@@ -552,8 +546,6 @@ export const rrqPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X2 SUPERSTRIKE",
       mousepad: "Pulsar eS Saturn Pro Black",
       keyboard: "Wooting 60HE v2 Silver",
-      headset: null,
-      earphones: null,
       monitor: null,
 
        verification: {
@@ -626,8 +618,6 @@ export const rrqPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2 White",
       mousepad: "Artisan Type-99 Matcha",
       keyboard: "Wooting 80HE Black",
-      headset: "HyperX Cloud III",
-      earphones: null,
       monitor: null,
 
       verification: {
@@ -700,8 +690,6 @@ export const rrqPlayers: ProPlayer[] = [
       mouse: "Razer DeathAdder V3 Pro",
       mousepad:  "X-Raypad Aqua Control 2 Medium",
       keyboard: "Wooting 60HE",
-      headset: "Moondrop KXXS Grey",
-      earphones: null,
       monitor: "Acer Nitro XV271",
 
        verification: {

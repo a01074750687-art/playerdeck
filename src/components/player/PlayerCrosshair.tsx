@@ -95,7 +95,7 @@ export default function PlayerCrosshair({
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            검증 날짜
+            마지막 확인
           </p>
 
           <p className="mt-3 font-black text-white">

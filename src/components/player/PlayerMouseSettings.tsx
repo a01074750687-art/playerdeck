@@ -19,9 +19,9 @@ export default function PlayerMouseSettings({
 }: PlayerMouseSettingsProps) {
   return (
     <SectionCard
-      title="Mouse Settings"
+      title="마우스 설정"
       description="인게임 조준과 입력 장치 설정입니다."
-      icon={<Mouse size={21} />}
+      icon={<Mouse size={18} />}
       className="lg:col-span-7"
     >
       <DetailGrid items={mouseSettings} />
@@ -29,7 +29,7 @@ export default function PlayerMouseSettings({
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            Last Verified
+            마지막 확인
           </p>
 
           <p className="mt-3 font-black text-white">
@@ -39,7 +39,7 @@ export default function PlayerMouseSettings({
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            Source
+            출처
           </p>
 
           {typeof settingsSourceUrl === "string" &&

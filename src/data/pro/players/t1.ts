@@ -381,8 +381,6 @@ export const t1Players: ProPlayer[] = [
       mouse: "Pulsar BUZZ-X",
       mousepad: "X-raypad Aqua Control+ Wave Black",
       keyboard: "Custom Keyboard",
-      headset: "SONY INZONE H9 II",
-      earphones: "null",
       monitor: "ZOWIE XL2546K",
 
       verification: {
@@ -462,8 +460,6 @@ export const t1Players: ProPlayer[] = [
       mouse: "Logitech G Pro X2 Superlight ",
       mousepad: "Artisan Hayate Otsu V2 Soft Whine Red",
       keyboard: "Wooting 60HE v2 Silver",
-      headset: "Razer BlackShark V2 Pro White",
-      earphones: "null",
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -542,8 +538,6 @@ export const t1Players: ProPlayer[] = [
       mouse: "Pulsar X2 V3 Mini T1 Edition",
       mousepad: null,
       keyboard: null,
-      headset: null,
-      earphones: null,
       monitor: null,
 
       verification: {
@@ -616,8 +610,6 @@ export const t1Players: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro Black",
       mousepad: "SteelSeries QcK Heavy",
       keyboard: "Wooting 60HE",
-      headset: "HyperX Cloud III",
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -691,8 +683,6 @@ export const t1Players: ProPlayer[] = [
       mouse: "Razer Viper V4 Pro White",
       mousepad: "X-raypad Aqua Control+ Wave Black",
       keyboard: "Wooting 60HE Ghost",
-      headset: "Senheiser GAME ONE",
-      earphones: null,
       monitor: "ZOWIE XL2546K",
 
       verification: {
@@ -766,8 +756,6 @@ export const t1Players: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro Black",
       mousepad: "SteelSeries QcK Heavy",
       keyboard: "Wooting 60HE",
-      headset: null,
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {

@@ -354,8 +354,6 @@ export const krxPlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro White",
       mousepad: "SteelSeries QcK Heavy",
       keyboard: "Razer BlackWidow V3 Pro",
-      headset: "Razer BlackShark V2 Pro",
-      earphones: null,
       monitor: "ZOWIE XL2546",
 
       verification: {
@@ -434,8 +432,6 @@ export const krxPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X2 Superlight ",
       mousepad: "Pulsar Hyperion",
       keyboard: "Wooting 60HE Black",
-      headset: null,
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -514,8 +510,6 @@ export const krxPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X2 SUPERSTRIKE",
       mousepad: null,
       keyboard: null,
-      headset: null,
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -594,8 +588,6 @@ export const krxPlayers: ProPlayer[] = [
       mouse:"Razer Viper V3 Pro White",
       mousepad: "Artisan Raiden FX XSoft",
       keyboard: "Wooting 60HE+",
-      headset: "Razer BlackShark V2 Pro Black",
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -675,8 +667,6 @@ export const krxPlayers: ProPlayer[] = [
       mouse: "Razer Viper V4 Pro White",
       mousepad: "Artisan Ninja FX Zero XSoft Black",
       keyboard: "Wooting 60HE+",
-      headset:  "Corsair HS80 RGB USB",
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -755,8 +745,6 @@ export const krxPlayers: ProPlayer[] = [
       mouse: "Lamzu Maya X Purple Shadow",
       mousepad: "Pulsar eS Saturn Pro Red",
       keyboard:"Wooting 60HE+",
-      headset: "Razer BlackShark V2 Pro Black",
-      earphones: null,
       monitor: "ZOWIE XL2546K",
 
       verification: {

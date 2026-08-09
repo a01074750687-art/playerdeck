@@ -174,9 +174,6 @@ export interface ProPlayerGear {
   mouse: string | null;
   mousepad: string | null;
   keyboard: string | null;
-
-  headset: string | null;
-  earphones: string | null;
   
   monitor: string | null;
 

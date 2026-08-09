@@ -4,7 +4,6 @@ import {
   Crosshair,
   Gamepad2,
   Gauge,
-  Headphones,
   Keyboard,
   Monitor,
   Mouse,
@@ -55,7 +54,7 @@ export default function ProPlayerDetail() {
           </div>
 
           <p className="mt-6 text-xs font-black uppercase tracking-[0.25em] text-rose-300">
-            Player not found
+            선수 정보 없음
           </p>
 
           <h1 className="mt-3 text-3xl font-black tracking-tight">
@@ -90,7 +89,7 @@ export default function ProPlayerDetail() {
           </div>
 
           <p className="mt-6 text-xs font-black uppercase tracking-[0.25em] text-amber-300">
-            Team information missing
+            소속 팀 정보 없음
           </p>
 
           <h1 className="mt-3 text-3xl font-black tracking-tight">
@@ -255,18 +254,7 @@ export default function ProPlayerDetail() {
   const keyboard = getRecordValue(gearRecord, [
     "keyboard",
   ]);
-
-  const headset = getRecordValue(gearRecord, [
-    "headset",
-    "headphones",
-  ]);
-
-  const earphones = getRecordValue(gearRecord, [
-    "earphones",
-    "inEars",
-    "iems"
-  ]);
-
+  
   const monitor = getRecordValue(gearRecord, [
     "monitor",
   ]);
@@ -319,22 +307,22 @@ export default function ProPlayerDetail() {
 
   const statistics: DetailItem[] = [
     {
-      label: "Rating",
+      label: "레이팅",
       value: formatValue(rating, { digits: 2 }),
       icon: <Gauge size={15} />,
     },
     {
-      label: "Average Combat Score",
+      label: "평균 전투 점수",
       value: formatValue(acs),
       icon: <Target size={15} />,
     },
     {
-      label: "Kill / Death",
+      label: "킬 / 데스",
       value: formatValue(kd, { digits: 2 }),
       icon: <Crosshair size={15} />,
     },
     {
-      label: "Headshot Rate",
+      label: "헤드샷 비율",
       value: formatValue(hsRate, { suffix: "%" }),
       icon: <BadgeCheck size={15} />,
     },
@@ -357,7 +345,7 @@ export default function ProPlayerDetail() {
       icon: <Mouse size={15} />,
     },
     {
-      label: "Sensitivity",
+      label: "감도",
       value: formatValue(sensitivity),
       icon: <Target size={15} />,
     },
@@ -367,22 +355,22 @@ export default function ProPlayerDetail() {
       icon: <Gauge size={15} />,
     },
     {
-      label: "Scoped Sensitivity",
+      label: "조준 감도",
       value: formatValue(scopedSensitivity),
       icon: <Crosshair size={15} />,
     },
     {
-      label: "ADS Sensitivity",
+      label: "ADS 감도",
       value: formatValue(adsSensitivity),
       icon: <Crosshair size={15} />,
     },
     {
-      label: "Polling Rate",
+      label: "폴링 레이트",
       value: formatValue(pollingRate, { suffix: " Hz" }),
       icon: <Mouse size={15} />,
     },
     {
-      label: "Resolution",
+      label: "해상도",
       value: formatValue(resolution),
       icon: <Monitor size={15} />,
     },
@@ -390,32 +378,22 @@ export default function ProPlayerDetail() {
 
   const gear: DetailItem[] = [
     {
-      label: "Mouse",
+      label: "마우스",
       value: formatValue(mouse),
       icon: <Mouse size={15} />,
     },
     {
-      label: "Keyboard",
+      label: "키보드",
       value: formatValue(keyboard),
       icon: <Keyboard size={15} />,
     },
     {
-      label: "Headset",
-      value: formatValue(headset),
-      icon: <Headphones size={15} />,
-    },
-    {
-      label: "Earphones",
-      value: formatValue(earphones),
-      icon: <Headphones size={15} />
-    },
-    {
-      label: "Monitor",
+      label: "모니터",
       value: formatValue(monitor),
       icon: <Monitor size={15} />,
     },
     {
-      label: "Mousepad",
+      label: "마우스 패드",
       value: formatValue(mousepad),
       icon: <Gamepad2 size={15} />,
     },
@@ -466,7 +444,7 @@ export default function ProPlayerDetail() {
           className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-sm font-bold text-slate-300 backdrop-blur transition hover:border-white/20 hover:bg-white/10 hover:text-white"
         >
           <ArrowLeft size={17} />
-          Pro Players
+          프로 선수
         </Link>
         
         <PlayerHero
@@ -528,10 +506,6 @@ export default function ProPlayerDetail() {
             secondaryColor={secondaryColor}
             />
         </div>
-
-        <footer className="mt-10 border-t border-white/10 py-8 text-center text-xs font-semibold text-slate-600">
-          선수 정보는 현재 UI 개발을 위한 샘플 데이터입니다.
-        </footer>
       </div>
     </main>
   );

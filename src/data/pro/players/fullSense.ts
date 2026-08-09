@@ -282,7 +282,6 @@ export const fullSensePlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "ZOWIE G-SR-SE",
       keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
       monitor: "ASUS ROG Swift PG259QN",
     },
 
@@ -343,7 +342,6 @@ export const fullSensePlayers: ProPlayer[] = [
       mouse: "Razer DeathAdder V3 Pro",
       mousepad: "Logitech G640",
       keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -404,7 +402,6 @@ export const fullSensePlayers: ProPlayer[] = [
       mouse: "Razer Viper V3 Pro",
       mousepad: "Artisan Ninja FX Zero Soft",
       keyboard: "Wooting 60HE",
-      headset: "Razer BlackShark V2 Pro",
       monitor: "ASUS ROG Swift PG259QN",
     },
 
@@ -465,7 +462,6 @@ export const fullSensePlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X Superlight 2",
       mousepad: "ZOWIE G-SR-SE",
       keyboard: "Razer Huntsman V3 Pro Mini",
-      headset: "HyperX Cloud III",
       monitor: "ZOWIE XL2566K",
     },
 
@@ -526,7 +522,6 @@ export const fullSensePlayers: ProPlayer[] = [
       mouse: "Razer DeathAdder V3 Pro",
       mousepad: "Logitech G640",
       keyboard: "HyperX Alloy Origins Core",
-      headset: "Logitech G Pro X 2",
       monitor: "ASUS ROG Swift PG259QN",
     },
 

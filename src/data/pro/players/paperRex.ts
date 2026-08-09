@@ -285,8 +285,6 @@ export const paperRexPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X2 Superlight ",
       mousepad: "Pulsar eS Saturn Pro Red",
       keyboard: "Pulsar PCMK 3",
-      headset: "HyperX Cloud III",
-      earphones: null,
       monitor: "ZOWIE XL2586K",
 
       verification: {
@@ -371,8 +369,6 @@ export const paperRexPlayers: ProPlayer[] = [
       mouse: "Pulsar Susanto-X",
       mousepad: "Pulsar eS Saturn Pro Red",
       keyboard: "Wooting 60HE v2 Silver",
-      headset: "HyperX Cloud III Wireless",
-      earphones: null,
       monitor: "ZOWIE XL2566K+",
 
       verification: {
@@ -451,8 +447,6 @@ export const paperRexPlayers: ProPlayer[] = [
       mouse: "Pulsar Jinggg-X",
       mousepad: "Artisan Hayate Otsu V2 XSoft Black",
       keyboard: "Wooting 60He v2 Silver",
-      headset: "HyperX Cloud III Wireless",
-      earphones: null,
       monitor: "ZOWIE XL2566K",
 
       verification: {
@@ -532,8 +526,6 @@ export const paperRexPlayers: ProPlayer[] = [
       mouse: "VAXEE ZYGEN NP-01S V2 Wireless Fluorescent Green",
       mousepad: "Pulsar d4v41 Mousepad",
       keyboard: "Arbiter Studio Polar 65",
-      headset: "HyperX Cloud III Wireless",
-      earphones: null,
       monitor: "ZOWIE XL2566K+",
 
       verification: {
@@ -612,8 +604,6 @@ export const paperRexPlayers: ProPlayer[] = [
       mouse: "Logitech G Pro X2 Superlight",
       mousepad: "Pulsar eS Saturn Pro",
       keyboard: "Pulsar PCMK 2 HE TKL",
-      headset: "HyperX Cloud III Wireless",
-      earphones: null,
       monitor: "ZOWIE XL2566K+",
 
       verification: {
