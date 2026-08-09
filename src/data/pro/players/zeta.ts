@@ -274,44 +274,62 @@ export const zetaPlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
 
-    mainAgents: ["Jett", "Raze", "Neon"],
+    mainAgents: ["Neon", "Waylay", "Jett"],
 
     career: absolCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.25,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 200,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.2,
-      acs: 204.3,
-      kd: 1.16,
-      kast: 77,
-      adr: 148.4,
-      hs: 28,
+      rating: 0.75,
+      acs: 194.2,
+      kd: 0.74,
+      kast: 62.2,
+      adr: 119.4,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -334,44 +352,62 @@ export const zetaPlayers: ProPlayer[] = [
     primaryRole: "Controller",
     roles: createRoles("Controller"),
 
-    mainAgents: ["Omen", "Viper", "Astra"],
+    mainAgents: ["Omen", "Harbor"],
 
     career: sugarz3roCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.26,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 208,
+      sensitivity: 0.225,
+      scopedSensitivity: 0.9,
+      adsSensitivity: null,
+      edpi: 180,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: "1440x1080",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/sugarz3ro/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "White",
-      outlines: false,
+      code: "0;P;c;1;o;1;0t;1;0l;2;0o;2;0a;1;0f;0;1b;0",
+      color: "Green",
+      outlines: true,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/sugarz3ro/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer Viper V4 Pro Black",
+      mousepad: "Pulsar eS Saturn Pro Black",
+      keyboard: "Wooting 60HE v2 Black",
+      monitor: "SONY INZONE M10S",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/sugarz3ro/",
+      },
     },
 
     stats: {
-      rating: 1.02,
-      acs: 208.4,
-      kd: 1.19,
-      kast: 78,
-      adr: 151.6,
-      hs: 29,
+      rating: 0.92,
+      acs: 166.5,
+      kd: 0.91,
+      kast: 75.8,
+      adr: 104.3,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -392,53 +428,71 @@ export const zetaPlayers: ProPlayer[] = [
     team: getRequiredTeam("zeta"),
 
     primaryRole: "Initiator",
-    roles: createRoles("Initiator"),
+    roles: createRoles("Initiator", ["Sentinel"]),
 
-    mainAgents: ["Sova", "Fade", "Breach"],
+    mainAgents: ["Sova", "Sage", "Skye"],
 
     career: xdllCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.27,
+      sensitivity: 0.235,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
+      adsSensitivity: null,
+      edpi: 188,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-23",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/xdll/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
+      code: "0;P;h;0;0t;1;0l;2;0o;1;0a;1;0f;0;1b;0",
+      color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-07-23",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/xdll/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "Pulsar eS Saturn Pro Black",
+      keyboard: "Razer Huntsman V3 Pro TKL Black",
+      monitor: "SONY INZONE M10S",
+
+      verification: {
+        verifiedAt: "2026-07-23",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/xdll/",
+      },
     },
 
     stats: {
-      rating: 1.04,
-      acs: 212.5,
-      kd: 1.01,
-      kast: 72,
-      adr: 154.8,
-      hs: 30,
+      rating: 0.94,
+      acs: 176.7,
+      kd: 0.95,
+      kast: 72.2,
+      adr: 106.7,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-eko",
     slug: "eko",
 
-    nickname: "eko",
+    nickname: "eKo",
     realName: "Yeom Wang-ryong",
 
     countryCode: "KR",
@@ -452,46 +506,64 @@ export const zetaPlayers: ProPlayer[] = [
     team: getRequiredTeam("zeta"),
 
     primaryRole: "Flex",
-    roles: createRoles("Flex"),
+    roles: createRoles("Flex", ["Initiator", "Duelist"]),
 
-    mainAgents: ["Gekko", "Omen", "Killjoy"],
+    mainAgents: ["Sova", "Yoru", "Breach"],
 
     career: ekoCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.28,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 224,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ZOWIE XL2566K",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.07,
-      acs: 216.6,
-      kd: 1.04,
-      kast: 73,
-      adr: 126.0,
-      hs: 31,
+      rating: 1.37,
+      acs: 247.6,
+      kd: 1.38,
+      kast: 80.9,
+      adr: 157.6,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -512,45 +584,63 @@ export const zetaPlayers: ProPlayer[] = [
     team: getRequiredTeam("zeta"),
 
     primaryRole: "Sentinel",
-    roles: createRoles("Sentinel"),
+    roles: createRoles("Sentinel", ["Controller"]),
 
-    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+    mainAgents: ["Cypher", "Vyse", "Viper"],
 
     career: syoutaCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.29,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 231,
-      pollingRate: 1000,
+      sensitivity: 0.355,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: 284,
+      pollingRate: null,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/syouta/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;P;o;1;d;1;0b;0;1b;0",
       color: "White",
-      outlines: false,
-      centerDot: false,
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/syouta/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X2 SUPERSTRIKE",
+      mousepad: "Pulsar eS PD170",
+      keyboard: "Razer Huntsman V3 Pro TKL Black",
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/syouta/",
+      },
     },
 
     stats: {
-      rating: 1.09,
-      acs: 220.7,
-      kd: 1.07,
-      kast: 74,
-      adr: 129.2,
-      hs: 32,
+      rating: 1.11,
+      acs: 207.3,
+      kd: 1.15,
+      kast: 76.2,
+      adr: 143.6,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 ];

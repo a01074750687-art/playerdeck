@@ -251,50 +251,66 @@ export const fullSensePlayers: ProPlayer[] = [
     status: "Active",
 
     profileImageUrl: null,
-
     team: getRequiredTeam("full-sense"),
 
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
-
     mainAgents: ["Jett", "Raze", "Neon"],
 
     career: primmieCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.24,
+      sensitivity: 0.3,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 192,
+      edpi: 240,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/primmie/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      code: "0;s;1;P;o;1;d;1;f;0;0b;0;1b;0;S;o;1",
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/primmie/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V3 Pro Faker Edition",
+      mousepad: null,
+      keyboard: "Wooting 60HE v2 Black",
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/primmie/",
+      },
     },
 
     stats: {
-      rating: 1.15,
-      acs: 208.4,
-      kd: 1.07,
-      kast: 74,
-      adr: 148.4,
-      hs: 29,
+      rating: null,
+      acs: null,
+      kd: null,
+      kast: null,
+      adr: null,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -311,50 +327,66 @@ export const fullSensePlayers: ProPlayer[] = [
     status: "Active",
 
     profileImageUrl: null,
-
     team: getRequiredTeam("full-sense"),
 
-    primaryRole: "Sentinel",
-    roles: createRoles("Sentinel"),
-
-    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Controller", "Sentinel"]),
+    mainAgents: ["Cypher", "Killjoy"],
 
     career: seph1rothCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.25,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 200,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ZOWIE XL2566K",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.17,
-      acs: 212.5,
-      kd: 1.1,
-      kast: 75,
-      adr: 151.6,
-      hs: 30,
+      rating: 0.76,
+      acs: 140.9,
+      kd: 0.72,
+      kast: 64.8,
+      adr: 96.7,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -371,57 +403,73 @@ export const fullSensePlayers: ProPlayer[] = [
     status: "Active",
 
     profileImageUrl: null,
-
     team: getRequiredTeam("full-sense"),
 
-    primaryRole: "Controller",
-    roles: createRoles("Controller", ["Initiator"]),
-
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Controller", "Sentinel", "Initiator"]),
     mainAgents: ["Omen", "Viper", "Breach"],
 
     career: crwsCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.26,
+      dpi: 1600,
+      sensitivity: 0.1,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 208,
+      adsSensitivity: null,
+      edpi: 160,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: "1280x960",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/crws/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "White",
+      code: "0;P;c;5;h;0;0l;3;0o;1;0a;1;0f;0;1b;0",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/crws/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer DeathAdder V3 HyperSpeed",
+      mousepad: "Artisan Type-99 Matcha",
+      keyboard: "Wooting 80HE TenZ Edition",
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/crws/",
+      },
     },
 
     stats: {
-      rating: 1.2,
-      acs: 216.6,
-      kd: 1.13,
-      kast: 76,
-      adr: 154.8,
-      hs: 31,
+      rating: null,
+      acs: null,
+      kd: null,
+      kast: null,
+      adr: null,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-killua",
     slug: "killua",
 
-    nickname: "killua",
+    nickname: "Killua",
     realName: "Tanate Teerasawad",
 
     countryCode: "TH",
@@ -431,57 +479,73 @@ export const fullSensePlayers: ProPlayer[] = [
     status: "Active",
 
     profileImageUrl: null,
-
     team: getRequiredTeam("full-sense"),
 
     primaryRole: "Initiator",
     roles: createRoles("Initiator"),
-
-    mainAgents: ["Sova", "Fade", "Gekko"],
+    mainAgents: ["Fade", "Sova", "Skye"],
 
     career: killuaCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.27,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ZOWIE XL2566K",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.02,
-      acs: 220.7,
-      kd: 1.16,
-      kast: 77,
-      adr: 126.0,
-      hs: 32,
+      rating: 0.78,
+      acs: 147.0,
+      kd: 0.69,
+      kast: 64.5,
+      adr: 101.7,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-jitboys",
     slug: "jitboys",
 
-    nickname: "JitboyS",
+    nickname: "JitBoyS",
     realName: "Jittana Nokngam",
 
     countryCode: "TH",
@@ -491,49 +555,65 @@ export const fullSensePlayers: ProPlayer[] = [
     status: "Active",
 
     profileImageUrl: null,
-
     team: getRequiredTeam("full-sense"),
 
-    primaryRole: "Duelist",
-    roles: createRoles("Duelist"),
-
-    mainAgents: ["Jett", "Raze", "Yoru"],
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Sentinel", "Duelist"]),
+    mainAgents: ["Cypher", "Neon", "Yoru"],
 
     career: jitboysCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.28,
+      sensitivity: 0.5,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 224,
+      adsSensitivity: null,
+      edpi: 400,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/jitboys/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
+      code: "0;P;h;0;0l;4;0o;0;0a;1;0f;0;1b;0",
+      color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/jitboys/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X2 SUPERSTRIKE",
+      mousepad: "Artisan Ninja FX Zero Soft Orange",
+      keyboard: "Wooting 80HE Frost",
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/jitboys/",
+      },
     },
 
     stats: {
-      rating: 1.04,
-      acs: 224.8,
-      kd: 1.19,
-      kast: 78,
-      adr: 129.2,
-      hs: 33,
+      rating: null,
+      acs: null,
+      kd: null,
+      kast: null,
+      adr: null,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 ];

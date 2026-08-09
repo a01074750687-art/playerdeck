@@ -296,51 +296,69 @@ export const teamSecretPlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
 
-    mainAgents: ["Jett", "Raze", "Neon"],
+    mainAgents: ["Neon", "Raze", "Jett"],
 
     career: zeusCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.23,
+      dpi: 1600,
+      sensitivity: 0.175,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 184,
-      pollingRate: 1000,
+      adsSensitivity: 0.9,
+      edpi: 280,
+      pollingRate: 2000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-17",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-zeus/",
+      },
     },
 
     crosshair: {
       code: null,
       color: "White",
-      outlines: false,
-      centerDot: false,
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-07-17",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-zeus/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "ARTISAN NINJA FX Zero TenZ",
+      keyboard: "Wooting 60HE v2 Silver",
+      monitor: "ZOWIE XL2586X+",
+
+      verification: {
+        verifiedAt: "2026-07-17",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-zeus/",
+      },
     },
 
     stats: {
-      rating: 1.09,
-      acs: 212.5,
-      kd: 1.19,
-      kast: 78,
-      adr: 148.4,
-      hs: 30,
+      rating: 1.07,
+      acs: 230.0,
+      kd: 1.11,
+      kast: 76.23,
+      adr: 150.5,
+      hs: null,
     },
 
     updatedAt: null,
   },
 
   {
-    id: "player-keilys",
-    slug: "keilys",
+    id: "player-kellys",
+    slug: "kellys",
 
-    nickname: "keilyS",
+    nickname: "kellyS",
     realName: "Kelly Kent Sedillo",
 
     countryCode: "PH",
@@ -354,9 +372,9 @@ export const teamSecretPlayers: ProPlayer[] = [
     team: getRequiredTeam("team-secret"),
 
     primaryRole: "Initiator",
-    roles: createRoles("Initiator"),
+    roles: createRoles("Initiator", ["Flex", "Controller"]),
 
-    mainAgents: ["Sova", "Fade", "Skye"],
+    mainAgents: ["Phoenix", "KAY/O", "Viper"],
 
     career: keilysCareer,
 
@@ -369,30 +387,46 @@ export const teamSecretPlayers: ProPlayer[] = [
       pollingRate: 1000,
       resolution: "1920x1080",
 
-      
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/kellys/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Yellow",
+      code: "0;s;1;P;c;5;h;0;f;0;0l;2;0o;1;0a;1;0f;0;1b;0;S;c;5;s;1.2;o;1",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/kellys/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "Razer Gigantus V2 Pro Balance",
+      keyboard: "Wooting 80HE Black",
       monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/kellys/",
+      },
     },
 
     stats: {
-      rating: 1.12,
-      acs: 216.6,
-      kd: 1.01,
-      kast: 72,
-      adr: 151.6,
-      hs: 31,
+      rating: 1.07,
+      acs: 213.2,
+      kd: 1.0,
+      kast: 75.97,
+      adr: 148.1,
+      hs: null,
     },
 
     updatedAt: null,
@@ -416,43 +450,61 @@ export const teamSecretPlayers: ProPlayer[] = [
     team: getRequiredTeam("team-secret"),
 
     primaryRole: "Controller",
-    roles: createRoles("Controller"),
+    roles: createRoles("Controller", ["Flex"]),
 
-    mainAgents: ["Omen", "Viper", "Astra"],
+    mainAgents: ["Omen", "Astra", "Viper"],
 
     career: sylvanCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.25,
+      sensitivity: 0.27,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 200,
+      adsSensitivity: null,
+      edpi: 216,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/sylvan/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/sylvan/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X Superlight White",
+      mousepad: "SteelSeries QcK Heavy",
+      keyboard: "Logitech G Pro X Keyboard",
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-03",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/sylvan/",
+      },
     },
 
     stats: {
-      rating: 1.15,
-      acs: 220.7,
-      kd: 1.04,
-      kast: 73,
-      adr: 154.8,
-      hs: 32,
+      rating: 0.96,
+      acs: 182.8,
+      kd: 0.91,
+      kast: 74.42,
+      adr: 124.4,
+      hs: null,
     },
 
     updatedAt: null,
@@ -463,7 +515,7 @@ export const teamSecretPlayers: ProPlayer[] = [
     slug: "styron",
 
     nickname: "STYRON",
-    realName: "Tidus Goh Zhen Wei",
+    realName: "Tidus Goh",
 
     countryCode: "SG",
     countryName: "Singapore",
@@ -478,41 +530,59 @@ export const teamSecretPlayers: ProPlayer[] = [
     primaryRole: "Initiator",
     roles: createRoles("Initiator"),
 
-    mainAgents: ["Sova", "Fade", "Breach"],
+    mainAgents: ["Sova", "Skye", "Fade"],
 
     career: styronCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.26,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 208,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ZOWIE XL2566K",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.17,
-      acs: 224.8,
-      kd: 1.07,
-      kast: 74,
-      adr: 126.0,
-      hs: 33,
+      rating: 0.95,
+      acs: 183.3,
+      kd: 0.95,
+      kast: 74.35,
+      adr: 122.1,
+      hs: null,
     },
 
     updatedAt: null,
@@ -522,7 +592,7 @@ export const teamSecretPlayers: ProPlayer[] = [
     id: "player-natz",
     slug: "natz",
 
-    nickname: "natz",
+    nickname: "naTz",
     realName: "Jonathan Adiputra",
 
     countryCode: "ID",
@@ -538,41 +608,59 @@ export const teamSecretPlayers: ProPlayer[] = [
     primaryRole: "Sentinel",
     roles: createRoles("Sentinel", ["Controller"]),
 
-    mainAgents: ["Cypher", "Viper", "Killjoy"],
+    mainAgents: ["Cypher", "Omen", "Waylay"],
 
     career: natzCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.27,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.2,
-      acs: 228.9,
-      kd: 1.1,
-      kast: 75,
-      adr: 129.2,
-      hs: 34,
+      rating: 0.96,
+      acs: 192.2,
+      kd: 0.95,
+      kast: 68.95,
+      adr: 128.0,
+      hs: null,
     },
 
     updatedAt: null,

@@ -299,7 +299,7 @@ export const globalEsportsPlayers: ProPlayer[] = [
     slug: "udotan",
 
     nickname: "UdoTan",
-    realName: "Go Kyung-Won",
+    realName: "Go Kyung-won",
 
     countryCode: "KR",
     countryName: "South Korea",
@@ -314,44 +314,62 @@ export const globalEsportsPlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
 
-    mainAgents: ["Jett", "Raze", "Neon"],
+    mainAgents: ["Neon", "Raze", "Jett"],
 
     career: udotanCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.28,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 224,
-      pollingRate: 1000,
+      dpi: 1600,
+      sensitivity: 0.101,
+      scopedSensitivity: 0.8,
+      adsSensitivity: 0.6,
+      edpi: 161.6,
+      pollingRate: null,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-udotan/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-udotan/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer Viper V4 Pro Black",
+      mousepad: "Pulsar eS Saturn Pro Red",
+      keyboard: "Wooting 60HE v2 Silver",
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-udotan/",
+      },
     },
 
     stats: {
-      rating: 1.02,
-      acs: 233.0,
-      kd: 1.13,
-      kast: 76,
-      adr: 132.4,
-      hs: 35,
+      rating: 0.92,
+      acs: 202.0,
+      kd: 0.92,
+      kast: 65.8,
+      adr: 134.6,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -371,54 +389,72 @@ export const globalEsportsPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("global-esports"),
 
-    primaryRole: "Sentinel",
-    roles: createRoles("Sentinel"),
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Initiator", "Sentinel", "Controller"]),
 
-    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+    mainAgents: ["Sova", "Killjoy", "Fade"],
 
     career: kr1stalCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.29,
+      dpi: 1600,
+      sensitivity: 0.21,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 231,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      adsSensitivity: 0.9,
+      edpi: 336,
+      pollingRate: null,
+      resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
+      },
     },
 
     crosshair: {
       code: null,
       color: "White",
       outlines: true,
-      centerDot: false,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "ZOWIE EC2-DW Black",
+      mousepad: "ARTISAN NINJA FX Zero Daidai XSoft",
+      keyboard: "SteelSeries Apex Pro TKL",
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
+      },
     },
 
     stats: {
-      rating: 1.04,
-      acs: 192.0,
-      kd: 1.16,
-      kast: 77,
-      adr: 135.6,
-      hs: 25,
+      rating: 1.00,
+      acs: 168.3,
+      kd: 0.96,
+      kast: 68.9,
+      adr: 118.6,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-xavi8k",
     slug: "xavi8k",
 
-    nickname: "Xavi8K",
+    nickname: "xavi8k",
     realName: "Xavier Juan",
 
     countryCode: "PH",
@@ -432,46 +468,64 @@ export const globalEsportsPlayers: ProPlayer[] = [
     team: getRequiredTeam("global-esports"),
 
     primaryRole: "Initiator",
-    roles: createRoles("Initiator"),
+    roles: createRoles("Initiator", ["Controller", "Sentinel"]),
 
-    mainAgents: ["Sova", "Fade", "Breach"],
+    mainAgents: ["Omen", "Astra", "Sova"],
 
     career: xavi8kCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.3,
+      dpi: 1600,
+      sensitivity: 0.102,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 240,
-      pollingRate: 1000,
+      edpi: 163.2,
+      pollingRate: null,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-xavi8k/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
+      color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-xavi8k/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "ARTISAN NINJA FX Hien Red",
+      keyboard: "Wooting 60HE+",
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-xavi8k/",
+      },
     },
 
     stats: {
-      rating: 1.07,
-      acs: 196.1,
-      kd: 1.19,
-      kast: 78,
-      adr: 138.8,
-      hs: 26,
+      rating: 0.93,
+      acs: 189.7,
+      kd: 0.88,
+      kast: 70.1,
+      adr: 129.5,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -491,47 +545,65 @@ export const globalEsportsPlayers: ProPlayer[] = [
 
     team: getRequiredTeam("global-esports"),
 
-    primaryRole: "Duelist",
-    roles: createRoles("Duelist"),
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Duelist", "Sentinel", "Controller"]),
 
-    mainAgents: ["Jett", "Raze", "Yoru"],
+    mainAgents: ["Phoenix", "Veto", "Yoru"],
 
     career: autumnCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.31,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 248,
+      dpi: 1600,
+      sensitivity: 0.113,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: 180.8,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/autumn/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
-      outlines: false,
+      code: "0;s;1;P;c;5;o;1;f;0;0b;0;1b;0;S;c;1;o;1",
+      color: "Cyan",
+      outlines: true,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/autumn/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X Superlight 2 Black",
+      mousepad: "VAXEE PE Tortoiseshell Cats",
+      keyboard: "Wooting 60HE+",
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/autumn/",
+      },
     },
 
     stats: {
-      rating: 1.09,
-      acs: 200.2,
-      kd: 1.01,
-      kast: 72,
-      adr: 142.0,
-      hs: 27,
+      rating: 0.98,
+      acs: 198.5,
+      kd: 1.04,
+      kast: 69.3,
+      adr: 130.7,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -552,46 +624,64 @@ export const globalEsportsPlayers: ProPlayer[] = [
     team: getRequiredTeam("global-esports"),
 
     primaryRole: "Controller",
-    roles: createRoles("Controller"),
+    roles: createRoles("Controller", ["Initiator"]),
 
-    mainAgents: ["Omen", "Viper", "Astra"],
+    mainAgents: ["Omen", "Fade", "Gekko"],
 
     career: patmenCareer,
     awards: patmenAwards,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.23,
+      dpi: 1600,
+      sensitivity: 0.125,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 184,
+      edpi: 200,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/patmen/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;s;1;P;h;0;f;0;0l;3;0o;0;0a;1;0f;0;1b;0;S;c;1;s;0.7;o;1",
       color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/patmen/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "VAXEE XE V2 Black",
+      mousepad: "Pulsar eS Saturn Pro Black",
+      keyboard: "Wooting 60HE v2 Silver",
+      monitor: "ZOWIE XL2566X+",
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/patmen/",
+      },
     },
 
     stats: {
-      rating: 1.12,
-      acs: 204.3,
-      kd: 1.04,
-      kast: 73,
-      adr: 145.2,
-      hs: 28,
+      rating: 1.00,
+      acs: 202.8,
+      kd: 1.01,
+      kast: 69.1,
+      adr: 129.6,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 ];

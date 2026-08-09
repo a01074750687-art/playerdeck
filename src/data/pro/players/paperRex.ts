@@ -266,6 +266,12 @@ export const paperRexPlayers: ProPlayer[] = [
       edpi: 464,
       pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/something/",
+      },
     },
 
     crosshair: {
@@ -282,7 +288,7 @@ export const paperRexPlayers: ProPlayer[] = [
     },
 
     gear: {
-      mouse: "Logitech G Pro X2 Superlight ",
+      mouse: "Logitech G Pro X2 Superlight",
       mousepad: "Pulsar eS Saturn Pro Red",
       keyboard: "Pulsar PCMK 3",
       monitor: "ZOWIE XL2586K",

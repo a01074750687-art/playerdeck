@@ -279,12 +279,12 @@ export interface ProPlayerAward {
 }
 
 export interface ProPlayerStats {
-  rating: number;
-  acs: number;
-  kd: number;
-  kast: number;
-  adr: number;
-  hs: number;
+  rating: number | null;
+  acs: number | null;
+  kd: number | null;
+  kast:number | null;
+  adr: number | null;
+  hs: number | null;
 }
 
 export interface ProPlayer {

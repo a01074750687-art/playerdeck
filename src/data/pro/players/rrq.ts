@@ -324,6 +324,12 @@ export const rrqPlayers: ProPlayer[] = [
       color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -396,6 +402,12 @@ export const rrqPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -468,6 +480,12 @@ export const rrqPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -476,7 +494,7 @@ export const rrqPlayers: ProPlayer[] = [
       keyboard: "Wooting 60HE+",
       monitor: "ZOWIE XL2566K",
 
-       verification: {
+      verification: {
          verifiedAt: "2026-08-05",
          sourceName: "ProSettings.net",
           sourceUrl: "https://prosettings.net/valorant/players/crazyguy/",
@@ -540,6 +558,12 @@ export const rrqPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -548,7 +572,7 @@ export const rrqPlayers: ProPlayer[] = [
       keyboard: "Wooting 60HE v2 Silver",
       monitor: null,
 
-       verification: {
+      verification: {
         verifiedAt: "2026-08-05",
         sourceName: "ProSettings.net",
         sourceUrl: "https://prosettings.net/valorant/players/kushy",
@@ -600,7 +624,7 @@ export const rrqPlayers: ProPlayer[] = [
       pollingRate: null,
       resolution: "1280x960",
 
-       verification: {
+      verification: {
         verifiedAt: "2026-08-05",
         sourceName: "ProSettings.net",
         sourceUrl: "https://prosettings.net/valorant/players/xffero",
@@ -612,6 +636,12 @@ export const rrqPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -672,7 +702,7 @@ export const rrqPlayers: ProPlayer[] = [
       pollingRate: null,
       resolution: "1280x960",
 
-       verification: {
+      verification: {
         verifiedAt: "2026-08-05",
         sourceName: "ProSettings.net",
         sourceUrl: "https://prosettings.net/valorant/players/xan",
@@ -684,15 +714,21 @@ export const rrqPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
       mouse: "Razer DeathAdder V3 Pro",
-      mousepad:  "X-Raypad Aqua Control 2 Medium",
+      mousepad: "X-Raypad Aqua Control 2 Medium",
       keyboard: "Wooting 60HE",
       monitor: "Acer Nitro XV271",
 
-       verification: {
+      verification: {
         verifiedAt: "2026-08-05",
         sourceName: "ProSettings.net",
         sourceUrl: "https://prosettings.net/valorant/players/xan",

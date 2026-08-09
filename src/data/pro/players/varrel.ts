@@ -278,360 +278,402 @@ export const varrelPlayers: ProPlayer[] = [
   {
     id: "player-zexy",
     slug: "zexy",
-
     nickname: "Zexy",
     realName: "Jang Suk-hyun",
-
     countryCode: "KR",
     countryName: "South Korea",
-
     region: "Pacific",
     status: "Active",
-
     profileImageUrl: null,
-
     team: getRequiredTeam("varrel"),
-
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
-
-    mainAgents: ["Jett", "Raze", "Neon"],
-
+    mainAgents: ["Raze", "Waylay", "Neon", "Jett"],
     career: zexyCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.26,
+      dpi: 1600,
+      sensitivity: 0.09,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 208,
+      edpi: 144,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: null,
+      verification: {
+        verifiedAt: "2026-07-16",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-zexy/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "White",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: "Geon Venom 60 HE",
+      monitor: null,
+      verification: {
+        verifiedAt: "2026-07-16",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-zexy/",
+      },
     },
 
     stats: {
-      rating: 1.04,
-      acs: 200.2,
-      kd: 1.04,
-      kast: 73,
-      adr: 148.4,
-      hs: 27,
+      rating: 0.92,
+      acs: 210.33,
+      kd: 0.95,
+      kast: 65.94,
+      adr: 130.21,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-xuna",
     slug: "xuna",
-
     nickname: "XuNa",
     realName: "Kim Tae-geon",
-
     countryCode: "KR",
     countryName: "South Korea",
-
     region: "Pacific",
     status: "Active",
-
     profileImageUrl: null,
-
     team: getRequiredTeam("varrel"),
-
     primaryRole: "Initiator",
     roles: createRoles("Initiator"),
-
-    mainAgents: ["Sova", "Fade", "Breach"],
-
+    mainAgents: ["Fade", "Sova"],
     career: xunaCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.27,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 216,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.07,
-      acs: 204.3,
-      kd: 1.07,
-      kast: 74,
-      adr: 151.6,
-      hs: 28,
+      rating: 1.14,
+      acs: 211.15,
+      kd: 1.09,
+      kast: 74.63,
+      adr: 146.99,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-oonzmlp",
     slug: "oonzmlp",
-
     nickname: "oonzmlp",
     realName: "Shin Sang-beom",
-
     countryCode: "KR",
     countryName: "South Korea",
-
     region: "Pacific",
     status: "Active",
-
     profileImageUrl: null,
-
     team: getRequiredTeam("varrel"),
-
-    primaryRole: "Duelist",
-    roles: createRoles("Duelist"),
-
-    mainAgents: ["Jett", "Raze", "Yoru"],
-
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Sentinel", "Duelist", "Controller"]),
+    mainAgents: ["Sage", "Phoenix", "Cypher"],
     career: oonzmlpCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.28,
+      sensitivity: 0.21,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 224,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      edpi: 168,
+      pollingRate: null,
+      resolution: null,
+      verification: {
+        verifiedAt: "2026-07-16",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-oonzmlp/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: "STEADY WINNNER ENVY Gray",
+      keyboard: "Custom Keyboard",
+      monitor: null,
+      verification: {
+        verifiedAt: "2026-07-16",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-oonzmlp/",
+      },
     },
 
     stats: {
-      rating: 1.09,
-      acs: 208.4,
-      kd: 1.1,
-      kast: 75,
-      adr: 154.8,
-      hs: 29,
+      rating: 1.03,
+      acs: 198.8,
+      kd: 0.96,
+      kast: 73.82,
+      adr: 134.61,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-foxy9",
     slug: "foxy9",
-
     nickname: "Foxy9",
     realName: "Jung Jae-sung",
-
     countryCode: "KR",
     countryName: "South Korea",
-
     region: "Pacific",
     status: "Active",
-
     profileImageUrl: null,
-
     team: getRequiredTeam("varrel"),
-
     primaryRole: "Sentinel",
-    roles: createRoles("Sentinel", ["Duelist"]),
-
-    mainAgents: ["Cypher", "Killjoy", "Jett"],
-
+    roles: createRoles("Sentinel", ["Controller"]),
+    mainAgents: ["Cypher", "Viper", "Chamber"],
     career: foxy9Career,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.29,
+      sensitivity: 0.27,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 231,
+      adsSensitivity: null,
+      edpi: 216,
       pollingRate: 1000,
       resolution: "1920x1080",
+      verification: {
+        verifiedAt: "2026-07-27",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/foxy9/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "White",
+      code: "0;s;1;P;c;5;h;0;0l;3;0o;0;0a;1;0f;0;1b;0;S;c;5;o;1",
+      color: "Cyan",
       outlines: false,
       centerDot: false,
+      verification: {
+        verifiedAt: "2026-07-27",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/foxy9/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Logitech G Pro X Superlight 2c Black",
+      mousepad: "Artisan FX Hien XSoft Wine Red",
+      keyboard: "Custom Keyboard",
+      monitor: null,
+      verification: {
+        verifiedAt: "2026-07-27",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/foxy9/",
+      },
     },
 
     stats: {
-      rating: 1.12,
-      acs: 212.5,
-      kd: 1.13,
-      kast: 76,
-      adr: 126.0,
-      hs: 30,
+      rating: 1.26,
+      acs: 251.46,
+      kd: 1.44,
+      kast: 71.97,
+      adr: 150.56,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-c1nder",
     slug: "c1nder",
-
     nickname: "C1ndeR",
     realName: "Ko Jae-hyuk",
-
     countryCode: "KR",
     countryName: "South Korea",
-
     region: "Pacific",
     status: "Active",
-
     profileImageUrl: null,
-
     team: getRequiredTeam("varrel"),
-
     primaryRole: "Controller",
     roles: createRoles("Controller"),
-
-    mainAgents: ["Omen", "Viper", "Astra"],
-
+    mainAgents: ["Omen"],
     career: c1nderCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.3,
-      scopedSensitivity: 1,
+      sensitivity: 0.25,
+      scopedSensitivity: 1.05,
       adsSensitivity: 1,
-      edpi: 240,
+      edpi: 200,
       pollingRate: 1000,
-      resolution: "1920x1080",
+      resolution: null,
+      verification: {
+        verifiedAt: "2026-04-01",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-c1nder/",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Cyan",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: "Custom Keyboard",
+      monitor: null,
+      verification: {
+        verifiedAt: "2026-04-01",
+        sourceName: "BestGamers",
+        sourceUrl: "https://b-gamers.net/valorant-c1nder/",
+      },
     },
 
     stats: {
-      rating: 1.15,
-      acs: 216.6,
-      kd: 1.16,
-      kast: 77,
-      adr: 129.2,
-      hs: 31,
+      rating: 0.76,
+      acs: 133.0,
+      kd: 0.69,
+      kast: 66,
+      adr: 89.4,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
     id: "player-klaus",
     slug: "klaus",
-
     nickname: "Klaus",
     realName: "Kim Min-hyuk",
-
     countryCode: "KR",
     countryName: "South Korea",
-
     region: "Pacific",
     status: "Active",
-
     profileImageUrl: null,
-
     team: getRequiredTeam("varrel"),
-
-    primaryRole: "Controller",
-    roles: createRoles("Controller", ["Initiator"]),
-
-    mainAgents: ["Omen", "Viper", "KAY/O"],
-
+    primaryRole: "Flex",
+    roles: createRoles("Flex", ["Controller", "Duelist"]),
+    mainAgents: ["Omen", "Raze"],
     career: klausCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.31,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 248,
-      pollingRate: 1000,
-      resolution: "1920x1080",
+      dpi: null,
+      sensitivity: null,
+      scopedSensitivity: null,
+      adsSensitivity: null,
+      edpi: null,
+      pollingRate: null,
+      resolution: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
       code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      color: null,
+      outlines: null,
+      centerDot: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: null,
+      mousepad: null,
+      keyboard: null,
+      monitor: null,
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
-      rating: 1.17,
-      acs: 220.7,
-      kd: 1.19,
-      kast: 78,
-      adr: 132.4,
-      hs: 32,
+      rating: 1.44,
+      acs: 235.0,
+      kd: 1.40,
+      kast: 70,
+      adr: 138.5,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 ];

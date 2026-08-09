@@ -527,6 +527,12 @@ export const genGPlayers: ProPlayer[] = [
       edpi: null,
       pollingRate: null,
       resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
@@ -534,6 +540,12 @@ export const genGPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -541,6 +553,12 @@ export const genGPlayers: ProPlayer[] = [
       mousepad: null,
       keyboard: null,
       monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {
@@ -587,6 +605,12 @@ export const genGPlayers: ProPlayer[] = [
       edpi: null,
       pollingRate: null,
       resolution: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     crosshair: {
@@ -594,6 +618,12 @@ export const genGPlayers: ProPlayer[] = [
       color: null,
       outlines: null,
       centerDot: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     gear: {
@@ -601,6 +631,12 @@ export const genGPlayers: ProPlayer[] = [
       mousepad: null,
       keyboard: null,
       monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-09",
+        sourceName: "공개 정보 없음",
+        sourceUrl: "",
+      },
     },
 
     stats: {

@@ -429,7 +429,7 @@ export const krxPlayers: ProPlayer[] = [
     },
 
     gear: {
-      mouse: "Logitech G Pro X2 Superlight ",
+      mouse: "Logitech G Pro X2 Superlight",
       mousepad: "Pulsar Hyperion",
       keyboard: "Wooting 60HE Black",
       monitor: "ZOWIE XL2566K",
@@ -494,7 +494,7 @@ export const krxPlayers: ProPlayer[] = [
     },
 
     crosshair: {
-      code:"0;s;1;P;o;1;d;1;f;0;0b;0;1b;0",
+      code: "0;s;1;P;o;1;d;1;f;0;0b;0;1b;0",
       color: "White",
       outlines: true,
       centerDot: true,
@@ -585,7 +585,7 @@ export const krxPlayers: ProPlayer[] = [
     },
 
     gear: {
-      mouse:"Razer Viper V3 Pro White",
+      mouse: "Razer Viper V3 Pro White",
       mousepad: "Artisan Raiden FX XSoft",
       keyboard: "Wooting 60HE+",
       monitor: "ZOWIE XL2566K",
@@ -744,7 +744,7 @@ export const krxPlayers: ProPlayer[] = [
     gear: {
       mouse: "Lamzu Maya X Purple Shadow",
       mousepad: "Pulsar eS Saturn Pro Red",
-      keyboard:"Wooting 60HE+",
+      keyboard: "Wooting 60HE+",
       monitor: "ZOWIE XL2546K",
 
       verification: {

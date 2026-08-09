@@ -375,6 +375,12 @@ export const t1Players: ProPlayer[] = [
       color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/buzz/",
+      },
     },
 
     gear: {
@@ -591,6 +597,12 @@ export const t1Players: ProPlayer[] = [
       edpi: 224,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/izu/",
+      },
     },
 
     crosshair: {
@@ -664,6 +676,12 @@ export const t1Players: ProPlayer[] = [
       edpi: 200,
       pollingRate: 1000,
       resolution: "1440x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/munchkin/",
+      },
     },
 
     crosshair: {
@@ -737,6 +755,12 @@ export const t1Players: ProPlayer[] = [
       edpi: 240,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-02",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/stax/",
+      },
     },
 
     crosshair: {

@@ -253,45 +253,63 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     primaryRole: "Duelist",
     roles: createRoles("Duelist"),
 
-    mainAgents: ["Jett", "Raze", "Neon"],
+    mainAgents: ["Neon", "Jett", "Waylay"],
 
     career: dambiCareer,
     awards: dambiAwards,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.3,
+      dpi: 1600,
+      sensitivity: 0.175,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 240,
-      pollingRate: 1000,
+      edpi: 280,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/dambi/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
+      code: "0;p;0;s;1;P;h;0;f;0;0l;3;0o;2;0a;1;0f;0;1b;0;A;o;1;d;1;0b;0;1b;0;S;c;0;s;0.933;o;1",
+      color: "White",
       outlines: false,
       centerDot: false,
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/dambi/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Logitech G Pro X Superlight 2 Cyan",
+      mousepad: "Artisan Ninja FX Zero Soft Orange",
+      keyboard: "Custom Keyboard",
+      monitor: null,
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/dambi/",
+      },
     },
 
     stats: {
-      rating: 1.12,
-      acs: 224.8,
-      kd: 1.1,
-      kast: 75,
-      adr: 132.4,
-      hs: 33,
+      rating: 1.03,
+      acs: 225.8,
+      kd: 1.06,
+      kast: 70.4,
+      adr: 148.2,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -299,7 +317,7 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     slug: "xross",
 
     nickname: "Xross",
-    realName: "Jeong Hwan",
+    realName: "Jeonghwan",
 
     countryCode: "KR",
     countryName: "South Korea",
@@ -312,46 +330,64 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     team: getRequiredTeam("nongshim-redforce"),
 
     primaryRole: "Duelist",
-    roles: createRoles("Duelist"),
+    roles: createRoles("Duelist", ["Flex"]),
 
-    mainAgents: ["Jett", "Raze", "Yoru"],
+    mainAgents: ["Phoenix", "Raze", "Fade"],
 
     career: xrossCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.31,
+      sensitivity: 0.27,
       scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 248,
-      pollingRate: 1000,
+      adsSensitivity: 0.8,
+      edpi: 216,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/xross/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Green",
-      outlines: false,
-      centerDot: false,
+      code: "0;s;1;P;o;1;d;1;z;1;f;0;0b;0;1b;0;S;c;0;s;1.007;o;1",
+      color: "White",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/xross/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V3 Pro White",
+      mousepad: "Artisan Ninja FX Zero XSoft Black",
+      keyboard: "Wooting 60HE v2 Silver",
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/xross/",
+      },
     },
 
     stats: {
-      rating: 1.15,
-      acs: 228.9,
-      kd: 1.13,
-      kast: 76,
-      adr: 135.6,
-      hs: 34,
+      rating: 1.11,
+      acs: 212.9,
+      kd: 1.08,
+      kast: 76.0,
+      adr: 142.1,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -359,7 +395,7 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     slug: "francis",
 
     nickname: "Francis",
-    realName: "Kim Mu-Been",
+    realName: "Kim Mu-bin",
 
     countryCode: "KR",
     countryName: "South Korea",
@@ -372,46 +408,64 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     team: getRequiredTeam("nongshim-redforce"),
 
     primaryRole: "Initiator",
-    roles: createRoles("Initiator"),
+    roles: createRoles("Initiator", ["Flex"]),
 
-    mainAgents: ["Sova", "Fade", "Breach"],
+    mainAgents: ["Sova", "Fade", "Skye"],
 
     career: francisCareer,
 
     settings: {
       dpi: 800,
-      sensitivity: 0.23,
-      scopedSensitivity: 1,
-      adsSensitivity: 1,
-      edpi: 184,
-      pollingRate: 1000,
+      sensitivity: 0.27,
+      scopedSensitivity: 0.85,
+      adsSensitivity: 0.9,
+      edpi: 216,
+      pollingRate: 2000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/francis/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "White",
-      outlines: false,
-      centerDot: false,
+      code: "0;P;c;1;o;1;d;1;0b;0;1b;0",
+      color: "Green",
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/francis/",
+      },
     },
 
     gear: {
-      mouse: "Razer Viper V3 Pro",
-      mousepad: "Artisan Ninja FX Zero Soft",
-      keyboard: "Wooting 60HE",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "Artisan Ninja FX Zero Soft Black",
+      keyboard: "IQUNIX EV63 HE",
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-08-05",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/francis/",
+      },
     },
 
     stats: {
-      rating: 1.17,
-      acs: 233.0,
-      kd: 1.16,
-      kast: 77,
-      adr: 138.8,
-      hs: 35,
+      rating: 1.02,
+      acs: 188.8,
+      kd: 0.99,
+      kast: 72.6,
+      adr: 129.3,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -434,44 +488,62 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     primaryRole: "Controller",
     roles: createRoles("Controller", ["Flex"]),
 
-    mainAgents: ["Omen", "Viper", "Gekko"],
+    mainAgents: ["Omen", "Harbor", "Astra"],
 
     career: rbCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.24,
+      dpi: 1600,
+      sensitivity: 0.175,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 192,
+      edpi: 280,
       pollingRate: 1000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/rb/",
+      },
     },
 
     crosshair: {
-      code: null,
-      color: "Cyan",
+      code: "0;s;1;P;d;1;0b;0;1b;0;S;o;1",
+      color: "White",
       outlines: true,
-      centerDot: false,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/rb/",
+      },
     },
 
     gear: {
-      mouse: "Logitech G Pro X Superlight 2",
-      mousepad: "ZOWIE G-SR-SE",
-      keyboard: "Razer Huntsman V3 Pro Mini",
-      monitor: "ASUS ROG Swift PG259QN",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "Artisan Ninja FX Zero Soft Black",
+      keyboard: "Custom Keyboard",
+      monitor: "ZOWIE XL2566K",
+
+      verification: {
+        verifiedAt: "2026-07-13",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/rb/",
+      },
     },
 
     stats: {
-      rating: 1.2,
-      acs: 192.0,
-      kd: 1.19,
-      kast: 78,
-      adr: 142.0,
-      hs: 25,
+      rating: 0.97,
+      acs: 177.1,
+      kd: 0.94,
+      kast: 73.8,
+      adr: 115.2,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 
   {
@@ -492,45 +564,63 @@ export const nongshimRedForcePlayers: ProPlayer[] = [
     team: getRequiredTeam("nongshim-redforce"),
 
     primaryRole: "Sentinel",
-    roles: createRoles("Sentinel"),
+    roles: createRoles("Sentinel", ["Controller"]),
 
-    mainAgents: ["Cypher", "Killjoy", "Vyse"],
+    mainAgents: ["Cypher", "Viper", "Vyse"],
 
     career: ivyCareer,
 
     settings: {
-      dpi: 800,
-      sensitivity: 0.25,
+      dpi: 1600,
+      sensitivity: 0.1,
       scopedSensitivity: 1,
       adsSensitivity: 1,
-      edpi: 200,
-      pollingRate: 1000,
+      edpi: 160,
+      pollingRate: 4000,
       resolution: "1920x1080",
+
+      verification: {
+        verifiedAt: "2026-07-22",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/ivy/",
+      },
     },
 
     crosshair: {
-      code: null,
+      code: "0;c;1;s;1;P;c;1;o;1;d;1;f;0;0b;0;1b;0;S;c;1;s;0.619;o;1",
       color: "Green",
-      outlines: false,
-      centerDot: false,
+      outlines: true,
+      centerDot: true,
+
+      verification: {
+        verifiedAt: "2026-07-22",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/ivy/",
+      },
     },
 
     gear: {
-      mouse: "Razer DeathAdder V3 Pro",
-      mousepad: "Logitech G640",
-      keyboard: "HyperX Alloy Origins Core",
-      monitor: "ZOWIE XL2566K",
+      mouse: "Razer Viper V4 Pro White",
+      mousepad: "Artisan FX Hien XSoft Wine Red",
+      keyboard: "Wooting 60HE v2 Black",
+      monitor: "ZOWIE XL2546K",
+
+      verification: {
+        verifiedAt: "2026-07-22",
+        sourceName: "ProSettings.net",
+        sourceUrl: "https://prosettings.net/players/ivy/",
+      },
     },
 
     stats: {
-      rating: 1.02,
-      acs: 196.1,
-      kd: 1.01,
-      kast: 72,
-      adr: 145.2,
-      hs: 26,
+      rating: 1.03,
+      acs: 196.6,
+      kd: 1.07,
+      kast: 70.1,
+      adr: 129.1,
+      hs: null,
     },
 
-    updatedAt: null,
+    updatedAt: "2026-08-09",
   },
 ];
