@@ -17,6 +17,14 @@ export type FavoriteProPlayer = {
   teamShortName?: string;
 };
 
+export type FavoriteProTeam = {
+  type: "pro-team";
+  id: string;
+  name: string;
+  slug: string;
+  shortName: string;
+};
+
 export type FavoriteValorantAccount = {
   type: "valorant-account";
   name: string;
@@ -25,14 +33,15 @@ export type FavoriteValorantAccount = {
 
 export type FavoriteItem =
   | FavoriteProPlayer
+  | FavoriteProTeam
   | FavoriteValorantAccount;
 
 const getFavoriteKey = (item: FavoriteItem) => {
-  if (item.type === "pro-player") {
-    return `${item.type}:${item.id}`;
+  if (item.type === "valorant-account") {
+    return `${item.type}:${item.name.toLowerCase()}#${item.tag.toLowerCase()}`;
   }
 
-  return `${item.type}:${item.name.toLowerCase()}#${item.tag.toLowerCase()}`;
+  return `${item.type}:${item.id}`;
 };
 
 const readFavorites = (): FavoriteItem[] => {
@@ -201,6 +210,17 @@ export default function useFavorites() {
     [favorites],
   );
 
+  const proTeamFavorites = useMemo(
+    () =>
+      favorites.filter(
+        (
+          item,
+        ): item is FavoriteProTeam =>
+          item.type === "pro-team",
+      ),
+    [favorites],
+  );
+
   const valorantAccountFavorites = useMemo(
     () =>
       favorites.filter(
@@ -215,6 +235,7 @@ export default function useFavorites() {
   return {
     favorites,
     proPlayerFavorites,
+    proTeamFavorites,
     valorantAccountFavorites,
     addFavorite,
     removeFavorite,

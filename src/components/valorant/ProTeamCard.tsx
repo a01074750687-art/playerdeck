@@ -3,10 +3,14 @@ import {
   ArrowUpRight,
   MapPin,
   Shield,
+  Star,
   Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import useFavorites, {
+  type FavoriteProTeam,
+} from "../../hooks/useFavorites";
 import type { ProPlayer } from "../../types/proPlayer";
 
 type ProTeam = NonNullable<ProPlayer["team"]>;
@@ -124,8 +128,13 @@ const ProTeamCard = ({
   const [hasMainLogoError, setHasMainLogoError] =
     useState(false);
 
-  const [hasWatermarkLogoError, setHasWatermarkLogoError] =
-    useState(false);
+  const [
+    hasWatermarkLogoError,
+    setHasWatermarkLogoError,
+  ] = useState(false);
+
+  const { isFavorite, toggleFavorite } =
+    useFavorites();
 
   const teamTheme =
     TEAM_WATERMARK_THEME[team.shortName] ??
@@ -135,7 +144,19 @@ const ProTeamCard = ({
     Boolean(team.logoUrl) && !hasMainLogoError;
 
   const canShowWatermarkLogo =
-    Boolean(team.logoUrl) && !hasWatermarkLogoError;
+    Boolean(team.logoUrl) &&
+    !hasWatermarkLogoError;
+
+  const favoriteTeam: FavoriteProTeam = {
+    type: "pro-team",
+    id: team.id,
+    name: team.name,
+    slug: team.slug,
+    shortName: team.shortName,
+  };
+
+  const teamIsFavorite =
+    isFavorite(favoriteTeam);
 
   return (
     <Link
@@ -143,7 +164,7 @@ const ProTeamCard = ({
       aria-label={`${team.name} 팀 상세 페이지로 이동`}
       className="group block h-full"
     >
-      <article className="relative h-full min-h-[420px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950/90 shadow-[0_24px_80px_rgba(0,0,0,0.30)] transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+      <article className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 shadow-[0_24px_80px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_28px_100px_rgba(0,0,0,0.45)]">
         <div
           className="pointer-events-none absolute inset-0 opacity-55"
           style={{
@@ -209,19 +230,54 @@ const ProTeamCard = ({
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-red-400/20 bg-red-400/10 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-red-200 backdrop-blur-md">
                 <Shield size={13} />
-
                 VCT Pacific
               </span>
 
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-950/55 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300 backdrop-blur-md">
                 <MapPin size={13} />
-
                 {team.countryName}
               </span>
             </div>
 
-            <div className="flex h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-slate-950/65 px-3 text-xs font-black tracking-[0.12em] text-white backdrop-blur-md">
-              {team.shortName}
+            <div className="flex shrink-0 items-center gap-2">
+              <button
+                type="button"
+                aria-label={
+                  teamIsFavorite
+                    ? `${team.name} 즐겨찾기 해제`
+                    : `${team.name} 즐겨찾기 추가`
+                }
+                aria-pressed={teamIsFavorite}
+                title={
+                  teamIsFavorite
+                    ? "즐겨찾기 해제"
+                    : "즐겨찾기 추가"
+                }
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  toggleFavorite(favoriteTeam);
+                }}
+                className={`flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-md transition duration-200 ${
+                  teamIsFavorite
+                    ? "border-amber-300/40 bg-amber-300/15 text-amber-200"
+                    : "border-white/10 bg-slate-950/65 text-slate-400 hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-amber-200"
+                }`}
+              >
+                <Star
+                  size={18}
+                  strokeWidth={2}
+                  fill={
+                    teamIsFavorite
+                      ? "currentColor"
+                      : "none"
+                  }
+                />
+              </button>
+
+              <div className="flex h-11 min-w-11 items-center justify-center rounded-xl border border-white/10 bg-slate-950/65 px-3 text-xs font-black tracking-[0.12em] text-white backdrop-blur-md">
+                {team.shortName}
+              </div>
             </div>
           </div>
 
@@ -232,7 +288,9 @@ const ProTeamCard = ({
                   src={team.logoUrl ?? undefined}
                   alt={`${team.name} 팀 로고`}
                   loading="lazy"
-                  onError={() => setHasMainLogoError(true)}
+                  onError={() =>
+                    setHasMainLogoError(true)
+                  }
                   className="max-h-full max-w-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.55)]"
                 />
               ) : (

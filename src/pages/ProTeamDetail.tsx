@@ -5,6 +5,7 @@ import {
   Globe2,
   Medal,
   Shield,
+  Star,
   Target,
   Trophy,
   UserRound,
@@ -14,6 +15,9 @@ import { Link, useParams } from "react-router-dom";
 
 import { proPlayers } from "../data/pro";
 import { proTeams } from "../data/proTeams";
+import useFavorites, {
+  type FavoriteProTeam,
+} from "../hooks/useFavorites";
 import type {
   ProPlayer,
   ProPlayerRole,
@@ -74,6 +78,19 @@ const getTeamBySlug = (
     proTeams.find((team) => team.slug === teamSlug) ??
     null
   );
+};
+
+const formatStatValue = (
+  value: number | null,
+  digits?: number,
+): string => {
+  if (value === null) {
+    return "공개 정보 없음";
+  }
+
+  return typeof digits === "number"
+    ? value.toFixed(digits)
+    : String(value);
 };
 
 const getTeamRoster = (
@@ -270,6 +287,9 @@ const ProTeamDetail = () => {
     teamSlug: string;
   }>();
 
+  const { isFavorite, toggleFavorite } =
+    useFavorites();
+
   const team = getTeamBySlug(teamSlug);
   const roster = getTeamRoster(teamSlug);
 
@@ -319,6 +339,17 @@ const ProTeamDetail = () => {
       </main>
     );
   }
+
+  const favoriteTeam: FavoriteProTeam = {
+    type: "pro-team",
+    id: team.id,
+    name: team.name,
+    slug: team.slug,
+    shortName: team.shortName,
+  };
+
+  const teamIsFavorite =
+    isFavorite(favoriteTeam);
 
   const activeRosterCount = roster.filter(
     (player) => player.status === "Active",
@@ -373,6 +404,39 @@ const ProTeamDetail = () => {
         </div>
 
         <section className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/70 shadow-[0_30px_100px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:rounded-[2rem]">
+          <button
+            type="button"
+            aria-label={
+              teamIsFavorite
+                ? `${team.name} 즐겨찾기 해제`
+                : `${team.name} 즐겨찾기 추가`
+            }
+            aria-pressed={teamIsFavorite}
+            title={
+              teamIsFavorite
+                ? "즐겨찾기 해제"
+                : "즐겨찾기 추가"
+            }
+            onClick={() =>
+              toggleFavorite(favoriteTeam)
+            }
+            className={`absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-md transition duration-200 sm:right-8 sm:top-8 ${
+              teamIsFavorite
+                ? "border-amber-300/40 bg-amber-300/15 text-amber-200"
+                : "border-white/10 bg-slate-950/70 text-slate-400 hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-amber-200"
+            }`}
+          >
+            <Star
+              size={19}
+              strokeWidth={2}
+              fill={
+                teamIsFavorite
+                  ? "currentColor"
+                  : "none"
+              }
+            />
+          </button>
+
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
@@ -927,7 +991,8 @@ const ProTeamDetail = () => {
                             </p>
 
                             <p className="mt-1 text-lg font-black text-white">
-                              {player.stats.rating.toFixed(
+                              {formatStatValue(
+                                player.stats.rating,
                                 2,
                               )}
                             </p>
@@ -939,7 +1004,9 @@ const ProTeamDetail = () => {
                             </p>
 
                             <p className="mt-1 text-lg font-black text-white">
-                              {player.stats.acs}
+                              {formatStatValue(
+                                player.stats.acs,
+                              )}
                             </p>
                           </div>
 
@@ -949,7 +1016,8 @@ const ProTeamDetail = () => {
                             </p>
 
                             <p className="mt-1 text-lg font-black text-white">
-                              {player.stats.kd.toFixed(
+                              {formatStatValue(
+                                player.stats.kd,
                                 2,
                               )}
                             </p>
@@ -960,7 +1028,12 @@ const ProTeamDetail = () => {
                           <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
                             <Target size={14} />
 
-                            헤드샷 {player.stats.hs}%
+                            헤드샷{" "}
+                            {player.stats.hs === null
+                              ? "공개 정보 없음"
+                              : `${formatStatValue(
+                                  player.stats.hs,
+                                )}%`}
                           </div>
 
                           <span className="text-xs font-black tracking-[0.1em] text-slate-500 transition-colors duration-300 group-hover:text-slate-200">
