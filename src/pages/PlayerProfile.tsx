@@ -1,3 +1,4 @@
+import { Star } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 
@@ -10,6 +11,9 @@ import StatCard from "../components/valorant/StatCard";
 import TopAgents from "../components/valorant/TopAgents";
 import WeaponStats from "../components/valorant/WeaponStats";
 import { isGameMode, type GameMode } from "../constants/valorantModes";
+import useFavorites, {
+  type FavoriteValorantAccount,
+} from "../hooks/useFavorites";
 import { getPlayerProfile } from "../services/valorantService";
 
 import type { PlayerData } from "../types/valorant";
@@ -17,13 +21,57 @@ import type { ValorantActAsset } from "../types/valorantAssets";
 
 const REFRESH_COOLDOWN_SECONDS = 30;
 
+const parseRiotId = (
+  riotId: string,
+): FavoriteValorantAccount | null => {
+  const separatorIndex = riotId.lastIndexOf("#");
+
+  if (
+    separatorIndex <= 0 ||
+    separatorIndex === riotId.length - 1
+  ) {
+    return null;
+  }
+
+  const name = riotId
+    .slice(0, separatorIndex)
+    .trim();
+
+  const tag = riotId
+    .slice(separatorIndex + 1)
+    .trim();
+
+  if (!name || !tag) {
+    return null;
+  }
+
+  return {
+    type: "valorant-account",
+    name,
+    tag,
+  };
+};
+
 export default function PlayerProfile() {
   const { playerName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const {
+    isFavorite,
+    toggleFavorite,
+  } = useFavorites();
+
   const decodedPlayerName = decodeURIComponent(
-    playerName ?? "Unknown Player"
+    playerName ?? "Unknown Player",
   );
+
+  const favoriteAccount =
+    parseRiotId(decodedPlayerName);
+
+  const accountIsFavorite =
+    favoriteAccount
+      ? isFavorite(favoriteAccount)
+      : false;
 
   const modeParam = searchParams.get("mode");
 
@@ -31,35 +79,51 @@ export default function PlayerProfile() {
     ? modeParam
     : "all";
 
-  const selectedAct = searchParams.get("act") ?? "current";
+  const selectedAct =
+    searchParams.get("act") ?? "current";
 
-  const [player, setPlayer] = useState<PlayerData | null>(null);
-  const [acts, setActs] = useState<ValorantActAsset[]>([]);
+  const [player, setPlayer] =
+    useState<PlayerData | null>(null);
+
+  const [acts, setActs] =
+    useState<ValorantActAsset[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [actLoading, setActLoading] = useState(true);
-  const [matchLoading, setMatchLoading] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
+  const [matchLoading, setMatchLoading] =
+    useState(false);
+  const [refreshing, setRefreshing] =
+    useState(false);
 
-  const [refreshCooldown, setRefreshCooldown] = useState(0);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [refreshCooldown, setRefreshCooldown] =
+    useState(0);
+
+  const [lastUpdated, setLastUpdated] =
+    useState<Date | null>(null);
 
   const [error, setError] = useState("");
 
   const requestIdRef = useRef(0);
 
   const updateSearchParams = (
-    nextParams: Record<string, string | null>
+    nextParams: Record<string, string | null>,
   ) => {
-    const params = new URLSearchParams(searchParams);
+    const params =
+      new URLSearchParams(searchParams);
 
-    Object.entries(nextParams).forEach(([key, value]) => {
-      if (!value || value === "all" || value === "current") {
-        params.delete(key);
-      } else {
-        params.set(key, value);
-      }
-    });
+    Object.entries(nextParams).forEach(
+      ([key, value]) => {
+        if (
+          !value ||
+          value === "all" ||
+          value === "current"
+        ) {
+          params.delete(key);
+        } else {
+          params.set(key, value);
+        }
+      },
+    );
 
     setSearchParams(params);
   };
@@ -106,7 +170,7 @@ export default function PlayerProfile() {
         decodedPlayerName,
         selectedMode,
         selectedAct,
-        acts
+        acts,
       );
 
       if (requestId !== requestIdRef.current) {
@@ -163,7 +227,9 @@ export default function PlayerProfile() {
       return;
     }
 
-    setRefreshCooldown(REFRESH_COOLDOWN_SECONDS);
+    setRefreshCooldown(
+      REFRESH_COOLDOWN_SECONDS,
+    );
   };
 
   useEffect(() => {
@@ -171,7 +237,8 @@ export default function PlayerProfile() {
       try {
         setActLoading(true);
 
-        const data = await getValorantActs();
+        const data =
+          await getValorantActs();
 
         setActs(data);
       } catch (error) {
@@ -191,7 +258,8 @@ export default function PlayerProfile() {
       return;
     }
 
-    const isInitialLoading = player === null;
+    const isInitialLoading =
+      player === null;
 
     fetchPlayerData({
       showPageLoading: isInitialLoading,
@@ -234,12 +302,61 @@ export default function PlayerProfile() {
 
       <main className="w-full px-3 py-8 sm:px-6 sm:py-10">
         <section className="mx-auto w-full max-w-6xl">
-          <Link
-            to="/valorant"
-            className="inline-flex items-center rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm font-bold text-slate-400 transition-all duration-200 hover:border-red-400/40 hover:text-red-300"
-          >
-            ← 발로란트 검색으로
-          </Link>
+          <div className="flex items-center justify-between gap-3">
+            <Link
+              to="/valorant"
+              className="inline-flex items-center rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm font-bold text-slate-400 transition-all duration-200 hover:border-red-400/40 hover:text-red-300"
+            >
+              ← 발로란트 검색으로
+            </Link>
+
+            {!loading &&
+              player &&
+              favoriteAccount && (
+                <button
+                  type="button"
+                  aria-label={
+                    accountIsFavorite
+                      ? `${decodedPlayerName} 즐겨찾기 해제`
+                      : `${decodedPlayerName} 즐겨찾기 추가`
+                  }
+                  aria-pressed={
+                    accountIsFavorite
+                  }
+                  title={
+                    accountIsFavorite
+                      ? "즐겨찾기 해제"
+                      : "즐겨찾기 추가"
+                  }
+                  onClick={() =>
+                    toggleFavorite(
+                      favoriteAccount,
+                    )
+                  }
+                  className={`inline-flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-bold backdrop-blur transition duration-200 ${
+                    accountIsFavorite
+                      ? "border-amber-300/40 bg-amber-300/15 text-amber-200"
+                      : "border-white/10 bg-slate-900/60 text-slate-400 hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-amber-200"
+                  }`}
+                >
+                  <Star
+                    size={17}
+                    strokeWidth={2}
+                    fill={
+                      accountIsFavorite
+                        ? "currentColor"
+                        : "none"
+                    }
+                  />
+
+                  <span className="hidden sm:inline">
+                    {accountIsFavorite
+                      ? "즐겨찾기됨"
+                      : "즐겨찾기"}
+                  </span>
+                </button>
+              )}
+          </div>
 
           {loading && (
             <div className="mt-6">
@@ -247,28 +364,32 @@ export default function PlayerProfile() {
             </div>
           )}
 
-          {!loading && error && !player && (
-            <div className="mt-6 rounded-3xl border border-red-500/30 bg-slate-900 p-8">
-              <p className="mb-3 font-bold text-red-400">
-                ERROR
-              </p>
+          {!loading &&
+            error &&
+            !player && (
+              <div className="mt-6 rounded-3xl border border-red-500/30 bg-slate-900 p-8">
+                <p className="mb-3 font-bold text-red-400">
+                  ERROR
+                </p>
 
-              <h1 className="mb-4 text-3xl font-black">
-                검색 실패
-              </h1>
+                <h1 className="mb-4 text-3xl font-black">
+                  검색 실패
+                </h1>
 
-              <p className="text-slate-400">
-                {error}
-              </p>
-            </div>
-          )}
+                <p className="text-slate-400">
+                  {error}
+                </p>
+              </div>
+            )}
 
           {!loading && player && (
             <div className="mt-6">
               <PlayerHeader
                 player={player}
                 isRefreshing={refreshing}
-                refreshCooldown={refreshCooldown}
+                refreshCooldown={
+                  refreshCooldown
+                }
                 lastUpdated={lastUpdated}
                 onRefresh={refreshPlayer}
               />
@@ -276,42 +397,74 @@ export default function PlayerProfile() {
               <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
                 <StatCard
                   title="K/D"
-                  value={hasMatchData ? player.kd : "-"}
+                  value={
+                    hasMatchData
+                      ? player.kd
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="Win Rate"
-                  value={hasMatchData ? player.winRate : "-"}
+                  value={
+                    hasMatchData
+                      ? player.winRate
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="HS%"
-                  value={hasMatchData ? player.hsRate : "-"}
+                  value={
+                    hasMatchData
+                      ? player.hsRate
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="ACS"
-                  value={hasMatchData ? player.acs : "-"}
+                  value={
+                    hasMatchData
+                      ? player.acs
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="ADR"
-                  value={hasMatchData ? player.adr : "-"}
+                  value={
+                    hasMatchData
+                      ? player.adr
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="Kills"
-                  value={hasMatchData ? player.kills : "-"}
+                  value={
+                    hasMatchData
+                      ? player.kills
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="Deaths"
-                  value={hasMatchData ? player.deaths : "-"}
+                  value={
+                    hasMatchData
+                      ? player.deaths
+                      : "-"
+                  }
                 />
 
                 <StatCard
                   title="Assists"
-                  value={hasMatchData ? player.assists : "-"}
+                  value={
+                    hasMatchData
+                      ? player.assists
+                      : "-"
+                  }
                 />
               </div>
 
@@ -322,19 +475,33 @@ export default function PlayerProfile() {
                   />
 
                   <WeaponStats
-                    weaponKills={player.weaponKills}
+                    weaponKills={
+                      player.weaponKills
+                    }
                   />
                 </div>
 
                 <RecentMatches
                   playerName={player.name}
-                  matches={player.recentMatches}
-                  selectedMode={selectedMode}
-                  onChangeMode={changeMode}
+                  matches={
+                    player.recentMatches
+                  }
+                  selectedMode={
+                    selectedMode
+                  }
+                  onChangeMode={
+                    changeMode
+                  }
                   acts={acts}
-                  selectedAct={selectedAct}
-                  onChangeAct={changeAct}
-                  actLoading={actLoading}
+                  selectedAct={
+                    selectedAct
+                  }
+                  onChangeAct={
+                    changeAct
+                  }
+                  actLoading={
+                    actLoading
+                  }
                 />
               </div>
             </div>
