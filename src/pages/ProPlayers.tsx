@@ -23,18 +23,39 @@ import {
 import { weeklyPick } from "../data/weeklyPick";
 import type {
   ProPlayerRole,
-  ProRegion,
 } from "../types/proPlayer";
 
-type RegionFilter = "All" | ProRegion;
+type TeamFilter =
+  | "All"
+  | "GEN"
+  | "T1"
+  | "KRX"
+  | "PRX"
+  | "RRQ"
+  | "TS"
+  | "GE"
+  | "FS"
+  | "DFM"
+  | "ZETA"
+  | "NS"
+  | "VL";
+
 type RoleFilter = "All" | ProPlayerRole;
 
-const REGION_FILTERS: RegionFilter[] = [
+const TEAM_FILTERS: TeamFilter[] = [
   "All",
-  "Pacific",
-  "Americas",
-  "EMEA",
-  "China",
+  "GEN",
+  "T1",
+  "KRX",
+  "PRX",
+  "RRQ",
+  "TS",
+  "GE",
+  "FS",
+  "DFM",
+  "ZETA",
+  "NS",
+  "VL",
 ];
 
 const ROLE_FILTERS: RoleFilter[] = [
@@ -46,12 +67,20 @@ const ROLE_FILTERS: RoleFilter[] = [
   "Flex",
 ];
 
-const REGION_LABELS: Record<RegionFilter, string> = {
-  All: "전체 지역",
-  Pacific: "Pacific",
-  Americas: "Americas",
-  EMEA: "EMEA",
-  China: "China",
+const TEAM_LABELS: Record<TeamFilter, string> = {
+  All: "전체 팀",
+  GEN: "GEN",
+  T1: "T1",
+  KRX: "KRX",
+  PRX: "PRX",
+  RRQ: "RRQ",
+  TS: "TS",
+  GE: "GE",
+  FS: "FS",
+  DFM: "DFM",
+  ZETA: "ZETA",
+  NS: "NS",
+  VL: "VL",
 };
 
 const ROLE_LABELS: Record<RoleFilter, string> = {
@@ -63,15 +92,27 @@ const ROLE_LABELS: Record<RoleFilter, string> = {
   Flex: "플렉스",
 };
 
+type SortOption = "default" | "name" | "rating" | "acs";
+
+const SORT_LABELS: Record<SortOption, string> = {
+  default: "기본순",
+  name: "이름순",
+  rating: "레이팅 높은 순",
+  acs: "ACS 높은 순",
+};
+
 const ProPlayers = () => {
   const [searchKeyword, setSearchKeyword] =
     useState("");
 
-  const [selectedRegion, setSelectedRegion] =
-    useState<RegionFilter>("All");
+  const [selectedTeam, setSelectedTeam] =
+    useState<TeamFilter>("All");
 
   const [selectedRole, setSelectedRole] =
     useState<RoleFilter>("All");
+
+  const [sortOption, setSortOption] =
+    useState<SortOption>("default");
 
   const filteredPlayers = useMemo(() => {
     const searchedPlayers = searchProPlayers(
@@ -79,31 +120,69 @@ const ProPlayers = () => {
     );
 
     return searchedPlayers.filter((player) => {
-      const matchesRegion =
-        selectedRegion === "All" ||
-        player.region === selectedRegion;
+      const matchesTeam =
+        selectedTeam === "All" ||
+        player.team?.shortName === selectedTeam;
 
       const matchesRole =
         selectedRole === "All" ||
         player.primaryRole === selectedRole ||
         player.roles.includes(selectedRole);
 
-      return matchesRegion && matchesRole;
+      return matchesTeam && matchesRole;
     });
   }, [
     searchKeyword,
-    selectedRegion,
+    selectedTeam,
     selectedRole,
   ]);
 
+  const sortedPlayers = useMemo(() => {
+    const players = [...filteredPlayers];
+
+    switch (sortOption) {
+      case "name":
+        return players.sort((a, b) =>
+          a.nickname.localeCompare(b.nickname),
+        );
+
+      case "rating":
+        return players.sort((a, b) => {
+          const aRating = a.stats?.rating;
+          const bRating = b.stats?.rating;
+
+          if (aRating == null && bRating == null) return 0;
+          if (aRating == null) return 1;
+          if (bRating == null) return -1;
+
+          return bRating - aRating;
+        });
+
+      case "acs":
+        return players.sort((a, b) => {
+          const aAcs = a.stats?.acs;
+          const bAcs = b.stats?.acs;
+
+          if (aAcs == null && bAcs == null) return 0;
+          if (aAcs == null) return 1;
+          if (bAcs == null) return -1;
+
+          return bAcs - aAcs;
+        });
+
+      default:
+        return players;
+    }
+  }, [filteredPlayers, sortOption]);
+
   const hasActiveFilters =
     searchKeyword.trim().length > 0 ||
-    selectedRegion !== "All" ||
+    selectedTeam !== "All" ||
     selectedRole !== "All";
 
   const clearFilters = () => {
     setSearchKeyword("");
-    setSelectedRegion("All");
+    setSelectedTeam("All");
     setSelectedRole("All");
   };
 
@@ -233,20 +312,20 @@ const ProPlayers = () => {
             <div className="grid gap-4 lg:grid-cols-2">
               <div>
                 <p className="mb-2 text-[11px] font-black tracking-[0.18em] text-slate-500">
-                  지역
+                  팀
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {REGION_FILTERS.map((region) => {
+                  {TEAM_FILTERS.map((team) => {
                     const isSelected =
-                      selectedRegion === region;
+                      selectedTeam === team;
 
                     return (
                       <button
-                        key={region}
+                        key={team}
                         type="button"
                         onClick={() =>
-                          setSelectedRegion(region)
+                          setSelectedTeam(team)
                         }
                         className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${
                           isSelected
@@ -254,7 +333,7 @@ const ProPlayers = () => {
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
                         }`}
                       >
-                        {REGION_LABELS[region]}
+                        {TEAM_LABELS[team]}
                       </button>
                     );
                   })}
@@ -329,13 +408,39 @@ const ProPlayers = () => {
                   </h2>
                 </div>
 
-                <p className="text-sm text-slate-500">
-                  총 {filteredPlayers.length}명
-                </p>
+                <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
+                  <p className="text-sm text-slate-500">
+                    총 {filteredPlayers.length}명
+                  </p>
+
+                  <select
+                    value={sortOption}
+                    onChange={(event) =>
+                      setSortOption(
+                        event.target.value as SortOption,
+                      )
+                    }
+                    aria-label="선수 정렬"
+                    className="rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-sm font-bold text-slate-300 outline-none transition hover:border-white/20 focus:border-white/30"
+                  >
+                    {(
+                      Object.keys(
+                        SORT_LABELS,
+                      ) as SortOption[]
+                    ).map((option) => (
+                      <option
+                        key={option}
+                        value={option}
+                      >
+                        {SORT_LABELS[option]}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-                {filteredPlayers.map((player) => (
+                {sortedPlayers.map((player) => (
                   <ProPlayerCard
                     key={player.id}
                     player={player}
