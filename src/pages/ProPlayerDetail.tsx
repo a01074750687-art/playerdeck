@@ -8,6 +8,7 @@ import {
   Monitor,
   Mouse,
   Shield,
+  Star,
   Target,
   UserRound,
 } from "lucide-react";
@@ -24,6 +25,9 @@ import PlayerCrosshair from "../components/player/PlayerCrosshair";
 import PlayerGear from "../components/player/PlayerGear";
 import PlayerCareer from "../components/player/PlayerCareer";
 import PlayerTeam from "../components/player/PlayerTeam";
+import useFavorites, {
+  type FavoriteProPlayer,
+} from "../hooks/useFavorites";
 
 import type { DetailItem } from "../components/player/DetailGrid";
 import {
@@ -39,6 +43,9 @@ import {
 export default function ProPlayerDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [copied, setCopied] = useState(false);
+
+  const { isFavorite, toggleFavorite } =
+    useFavorites();
 
   const player = useMemo(
     () => (slug ? getProPlayerBySlug(slug) : undefined),
@@ -119,6 +126,17 @@ export default function ProPlayerDetail() {
   const primaryColor = team.primaryColor || "#6366f1";
   const secondaryColor = team.secondaryColor || "#111827";
 
+  const favoritePlayer: FavoriteProPlayer = {
+    type: "pro-player",
+    id: player.id,
+    nickname: player.nickname,
+    slug: player.slug,
+    teamShortName: team.shortName,
+  };
+
+  const playerIsFavorite =
+    isFavorite(favoritePlayer);
+
   const statsRecord = isRecord(player.stats) ? player.stats : null;
   const settingsRecord = isRecord(player.settings) ? player.settings : null;
   const crosshairRecord = isRecord(player.crosshair)
@@ -145,6 +163,7 @@ export default function ProPlayerDetail() {
   ]);
 
   const hsRate = getRecordValue(statsRecord, [
+    "hs",
     "hsRate",
     "headshotRate",
     "headshotPercentage",
@@ -447,15 +466,50 @@ export default function ProPlayerDetail() {
           프로 선수
         </Link>
         
-        <PlayerHero
-          player={player}
-          team={team}
-          teamLogoUrl={teamLogoUrl}
-          teamInitials={teamInitials}
-          primaryColor={primaryColor}
-          secondaryColor={secondaryColor}
-          heroStats={heroStats}
+        <div className="relative">
+          <PlayerHero
+            player={player}
+            team={team}
+            teamLogoUrl={teamLogoUrl}
+            teamInitials={teamInitials}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            heroStats={heroStats}
           />
+
+          <button
+            type="button"
+            aria-label={
+              playerIsFavorite
+                ? `${player.nickname} 즐겨찾기 해제`
+                : `${player.nickname} 즐겨찾기 추가`
+            }
+            aria-pressed={playerIsFavorite}
+            title={
+              playerIsFavorite
+                ? "즐겨찾기 해제"
+                : "즐겨찾기 추가"
+            }
+            onClick={() =>
+              toggleFavorite(favoritePlayer)
+            }
+            className={`absolute right-6 top-6 z-30 flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-md transition duration-200 sm:right-8 sm:top-8 ${
+              playerIsFavorite
+                ? "border-amber-300/40 bg-amber-300/15 text-amber-200"
+                : "border-white/10 bg-slate-950/70 text-slate-400 hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-amber-200"
+            }`}
+          >
+            <Star
+              size={19}
+              strokeWidth={2}
+              fill={
+                playerIsFavorite
+                  ? "currentColor"
+                  : "none"
+              }
+            />
+          </button>
+        </div>
           <div className="mt-6 grid gap-6 lg:grid-cols-12">
           <PlayerStatistics statistics={statistics} />
 

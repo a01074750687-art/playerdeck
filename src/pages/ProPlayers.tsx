@@ -21,6 +21,7 @@ import {
   searchProPlayers,
 } from "../data/pro";
 import { weeklyPick } from "../data/weeklyPick";
+import useFavorites from "../hooks/useFavorites";
 import type {
   ProPlayerRole,
 } from "../types/proPlayer";
@@ -92,16 +93,20 @@ const ROLE_LABELS: Record<RoleFilter, string> = {
   Flex: "플렉스",
 };
 
-type SortOption = "default" | "name" | "rating" | "acs";
+type SortOption = "default" | "favorite" | "name" | "rating" | "acs";
 
 const SORT_LABELS: Record<SortOption, string> = {
   default: "기본순",
+  favorite: "즐겨찾기 우선",
   name: "이름순",
   rating: "레이팅 높은 순",
   acs: "ACS 높은 순",
 };
 
 const ProPlayers = () => {
+  const { proPlayerFavorites } =
+    useFavorites();
+
   const [searchKeyword, setSearchKeyword] =
     useState("");
 
@@ -137,10 +142,34 @@ const ProPlayers = () => {
     selectedRole,
   ]);
 
+  const favoritePlayerIds = useMemo(
+    () =>
+      new Set(
+        proPlayerFavorites.map(
+          (favorite) => favorite.id,
+        ),
+      ),
+    [proPlayerFavorites],
+  );
+
   const sortedPlayers = useMemo(() => {
     const players = [...filteredPlayers];
 
     switch (sortOption) {
+      case "favorite":
+        return players.sort((a, b) => {
+          const aIsFavorite =
+            favoritePlayerIds.has(a.id);
+          const bIsFavorite =
+            favoritePlayerIds.has(b.id);
+
+          if (aIsFavorite === bIsFavorite) {
+            return 0;
+          }
+
+          return aIsFavorite ? -1 : 1;
+        });
+
       case "name":
         return players.sort((a, b) =>
           a.nickname.localeCompare(b.nickname),
@@ -173,7 +202,7 @@ const ProPlayers = () => {
       default:
         return players;
     }
-  }, [filteredPlayers, sortOption]);
+  }, [filteredPlayers, sortOption, favoritePlayerIds]);
 
   const hasActiveFilters =
     searchKeyword.trim().length > 0 ||

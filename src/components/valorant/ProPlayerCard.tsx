@@ -3,11 +3,15 @@ import {
   ArrowUpRight,
   Crosshair,
   Shield,
+  Star,
   Target,
   Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import useFavorites, {
+  type FavoriteProPlayer,
+} from "../../hooks/useFavorites";
 import type {
   ProPlayer,
   ProPlayerRole,
@@ -85,20 +89,27 @@ const WATERMARK_FILTER: Record<string, string> = {
 };
 
 const formatStat = (
-  value: number,
+  value: number | null,
   maximumFractionDigits = 2,
 ): string => {
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits,
-  }).format(value);
-};
+    if (value === null) {
+      return "공개 정보 없음";
+    }
+
+    return new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits,
+    }).format(value);
+   };
 
 const ProPlayerCard = ({
   player,
 }: ProPlayerCardProps) => {
   const [hasTeamLogoError, setHasTeamLogoError] =
     useState(false);
+
+  const { isFavorite, toggleFavorite } =
+    useFavorites();
 
   const team = player.team;
 
@@ -122,6 +133,17 @@ const ProPlayerCard = ({
 
   const canShowTeamLogo =
     Boolean(teamLogoUrl) && !hasTeamLogoError;
+
+  const favoritePlayer: FavoriteProPlayer = {
+    type: "pro-player",
+    id: player.id,
+    nickname: player.nickname,
+    slug: player.slug,
+    teamShortName,
+  };
+
+  const playerIsFavorite =
+    isFavorite(favoritePlayer);
 
   return (
     <Link
@@ -224,6 +246,41 @@ const ProPlayerCard = ({
                 </div>
               )}
             </div>
+
+            <button
+              type="button"
+              aria-label={
+                playerIsFavorite
+                  ? `${player.nickname} 즐겨찾기 해제`
+                  : `${player.nickname} 즐겨찾기 추가`
+              }
+              aria-pressed={playerIsFavorite}
+              title={
+                playerIsFavorite
+                  ? "즐겨찾기 해제"
+                  : "즐겨찾기 추가"
+              }
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleFavorite(favoritePlayer);
+              }}
+              className={`absolute bottom-[118px] left-5 z-30 flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md transition duration-200 ${
+                playerIsFavorite
+                  ? "border-amber-300/40 bg-amber-300/15 text-amber-200"
+                  : "border-white/10 bg-slate-950/70 text-slate-400 hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-amber-200"
+              }`}
+            >
+              <Star
+                size={18}
+                strokeWidth={2}
+                fill={
+                  playerIsFavorite
+                    ? "currentColor"
+                    : "none"
+                }
+              />
+            </button>
 
             <div className="absolute inset-x-0 bottom-0 z-20 px-5 pb-5">
               <div className="flex items-end justify-between gap-4">
@@ -363,7 +420,12 @@ const ProPlayerCard = ({
                 </p>
 
                 <p className="mt-1 text-lg font-black text-white">
-                  {formatStat(player.stats.hs, 1)}%
+                  {player.stats.hs === null
+                    ? "공개 정보 없음"
+                    : `${formatStat(
+                        player.stats.hs,
+                        1,
+                      )}%`}
                 </p>
               </div>
             </div>
