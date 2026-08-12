@@ -1,17 +1,17 @@
 import type { ProPlayer } from "../../types/proPlayer";
 
-import { genGPlayers } from "./players/genG";
+import { genGPlayers } from "./players/gen";
 import { t1Players } from "./players/t1";
 import { krxPlayers } from "./players/krx";
-import { paperRexPlayers } from "./players/paperRex";
+import { paperRexPlayers } from "./players/prx";
 import { rrqPlayers } from "./players/rrq";
-import { teamSecretPlayers } from "./players/teamSecret";
-import { globalEsportsPlayers } from "./players/globalEsports";
-import { fullSensePlayers } from "./players/fullSense";
+import { teamSecretPlayers } from "./players/ts";
+import { globalEsportsPlayers } from "./players/ge";
+import { fullSensePlayers } from "./players/fs";
 import { dfmPlayers } from "./players/dfm";
 import { zetaPlayers } from "./players/zeta";
-import { nongshimRedForcePlayers } from "./players/nongshim";
-import { varrelPlayers } from "./players/varrel";
+import { nongshimRedForcePlayers } from "./players/ns";
+import { varrelPlayers } from "./players/vl";
 
 export const proPlayers: ProPlayer[] = [
   ...genGPlayers,
