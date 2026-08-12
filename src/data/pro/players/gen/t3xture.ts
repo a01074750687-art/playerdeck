@@ -83,6 +83,19 @@ export const t3xture: ProPlayer = {
 
   mainAgents: ["Jett", "Raze", "Neon"],
 
+  riotAccounts: [
+    {
+      name: "WelcometotheShow",
+      tag: "1111",
+
+      verification: {
+        verifiedAt: "2026-08-12",
+        sourceName: "Unisquads Wiki",
+        sourceUrl: "https://uniquads.io/w/%EA%B9%80%EB%82%98%EB%9D%BC",
+      },
+    },
+  ],
+
   career: t3xtureCareer,
   awards: t3xtureAwards,
 

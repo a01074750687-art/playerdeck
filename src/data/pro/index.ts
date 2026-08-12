@@ -31,6 +31,15 @@ export const proPlayers: ProPlayer[] = [
 export const getProPlayerBySlug = (slug: string) =>
     proPlayers.find((player) => player.slug === slug);
 
+export const getProPlayerByRiotId = (name: string, tag: string) =>
+  proPlayers.find((player) => 
+    player.riotAccounts?.some(
+      (account) =>
+        account.name.toLowerCase() === name.toLowerCase() &&
+        account.tag.toLowerCase() === tag.toLowerCase(), 
+      ),
+    );
+
 export const searchProPlayers = (
   keyword: string,
 ): ProPlayer[] => {

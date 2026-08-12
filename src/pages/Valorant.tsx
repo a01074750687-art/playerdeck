@@ -1,8 +1,9 @@
-import { Star, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowUpRight, Star, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/common/Header";
+import { searchProPlayers } from "../data/pro";
 import useFavorites, {
   type FavoriteValorantAccount,
 } from "../hooks/useFavorites";
@@ -60,6 +61,25 @@ export default function Valorant() {
   const [playerName, setPlayerName] =
     useState("");
 
+
+  const proPlayerResults = useMemo(() => {
+    const keyword = playerName.trim();
+
+    if (
+      keyword.length < 2 ||
+      keyword.includes("#")
+    ) {
+      return [];
+    }
+
+    return searchProPlayers(keyword)
+      .filter(
+        (player) =>
+          (player.riotAccounts?.length ?? 0) > 0,
+      )
+      .slice(0, 3);
+  }, [playerName]);
+
   const [
     recentSearches,
     setRecentSearches,
@@ -100,8 +120,15 @@ export default function Valorant() {
 
     if (!trimmedPlayerName) {
       alert(
-        "라이엇 ID를 입력해 주세요.",
+        "라이엇 ID 또는 프로 선수 닉네임을 입력해 주세요.",
       );
+      return;
+    }
+
+    if (
+      !trimmedPlayerName.includes("#") &&
+      proPlayerResults.length > 0
+    ) {
       return;
     }
 
@@ -178,7 +205,7 @@ export default function Valorant() {
               htmlFor="riot-id"
               className="mb-3 block text-sm font-bold text-slate-300"
             >
-              라이엇 ID
+              라이엇 ID 또는 프로 선수
             </label>
 
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -200,7 +227,7 @@ export default function Valorant() {
                     searchPlayer();
                   }
                 }}
-                placeholder="라이엇 ID를 입력하세요"
+                placeholder="라이엇 ID 또는 선수 닉네임을 입력하세요"
                 className="h-14 min-w-0 flex-1 rounded-2xl border border-white/10 bg-slate-950/90 px-5 text-base text-white outline-none transition-all duration-300 placeholder:text-slate-600 focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
               />
 
@@ -214,9 +241,101 @@ export default function Valorant() {
             </div>
 
             <p className="mt-3 text-xs text-slate-600">
-              게임 이름과 태그를 함께 입력해
-              주세요. 예: TenZ#NA1
+              라이엇 ID는 게임 이름과 태그를 함께 입력해 주세요.
+              예: TenZ#NA1 · 프로 선수는 닉네임으로 검색할 수 있습니다.
             </p>
+
+            {proPlayerResults.length > 0 && (
+              <div className="mt-5 border-t border-white/10 pt-5">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+                    프로 선수 검색 결과
+                  </p>
+
+                  <span className="text-xs font-bold text-slate-600">
+                    {proPlayerResults.length}명
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  {proPlayerResults.map((proPlayer) => (
+                    <div
+                      key={proPlayer.id}
+                      className="rounded-2xl border border-blue-400/15 bg-slate-950/70 p-4 transition-all duration-200 hover:border-blue-400/30"
+                    >
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            navigate(
+                              `/valorant/pros/${proPlayer.slug}`,
+                            )
+                          }
+                          className="group min-w-0 text-left"
+                        >
+                          <div className="flex flex-wrap items-center gap-2.5">
+                            <span className="inline-flex -skew-x-12 items-center bg-blue-600 px-2.5 py-1 shadow-[0_0_14px_rgba(37,99,235,0.22)]">
+                              <span className="skew-x-12 text-[10px] font-black italic tracking-[-0.04em] text-white">
+                                PRO
+                              </span>
+                            </span>
+
+                            <span className="text-lg font-black text-white transition group-hover:text-blue-200">
+                              {proPlayer.nickname}
+                            </span>
+
+                            {proPlayer.team && (
+                              <span className="text-xs font-bold text-slate-500">
+                                {proPlayer.team.shortName}
+                              </span>
+                            )}
+
+                            <ArrowUpRight
+                              size={15}
+                              className="text-slate-600 transition group-hover:text-blue-300"
+                            />
+                          </div>
+
+                          <p className="mt-1.5 text-xs font-semibold text-slate-500">
+                            {proPlayer.primaryRole}
+                            {proPlayer.realName
+                              ? ` · ${proPlayer.realName}`
+                              : ""}
+                          </p>
+                        </button>
+
+                        <div className="flex flex-wrap gap-2">
+                          {proPlayer.riotAccounts?.map(
+                            (account) => {
+                              const riotId = `${account.name}#${account.tag}`;
+
+                              return (
+                                <button
+                                  key={riotId.toLowerCase()}
+                                  type="button"
+                                  onClick={() =>
+                                    moveToPlayerProfile(
+                                      riotId,
+                                    )
+                                  }
+                                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm font-bold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-400/40 hover:bg-red-500/10 hover:text-white"
+                                >
+                                  <span>{riotId}</span>
+
+                                  <span className="text-[10px] font-black text-red-300">
+                                    전적 보기
+                                  </span>
+                                </button>
+                              );
+                            },
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <section className="mt-6 rounded-3xl border border-amber-300/10 bg-slate-900/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-300/20 sm:p-7">

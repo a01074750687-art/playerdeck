@@ -11,6 +11,7 @@ import StatCard from "../components/valorant/StatCard";
 import TopAgents from "../components/valorant/TopAgents";
 import WeaponStats from "../components/valorant/WeaponStats";
 import { isGameMode, type GameMode } from "../constants/valorantModes";
+import { getProPlayerByRiotId } from "../data/pro";
 import useFavorites, {
   type FavoriteValorantAccount,
 } from "../hooks/useFavorites";
@@ -72,6 +73,13 @@ export default function PlayerProfile() {
     favoriteAccount
       ? isFavorite(favoriteAccount)
       : false;
+
+  const proPlayer = favoriteAccount
+    ? getProPlayerByRiotId(
+        favoriteAccount.name,
+        favoriteAccount.tag,
+      )
+    : undefined;
 
   const modeParam = searchParams.get("mode");
 
@@ -386,6 +394,7 @@ export default function PlayerProfile() {
             <div className="mt-6">
               <PlayerHeader
                 player={player}
+                proPlayer={proPlayer}
                 isRefreshing={refreshing}
                 refreshCooldown={
                   refreshCooldown

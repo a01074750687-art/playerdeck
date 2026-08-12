@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+
 import ActPeakRanks from "./ActPeakRanks";
 import RankIcon from "./RankIcon";
 
+import type { ProPlayer } from "../../types/proPlayer";
 import type { PlayerData } from "../../types/valorant";
 
 type Props = {
   player: PlayerData;
+  proPlayer?: ProPlayer;
   isRefreshing?: boolean;
   refreshCooldown?: number;
   lastUpdated?: Date | null;
@@ -33,6 +37,7 @@ function formatLastUpdated(lastUpdated: Date | null | undefined) {
 
 export default function PlayerHeader({
   player,
+  proPlayer,
   isRefreshing = false,
   refreshCooldown = 0,
   lastUpdated = null,
@@ -98,9 +103,22 @@ export default function PlayerHeader({
                   Riot ID
                 </p>
 
-                <h1 className="break-words text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  {player.name}
-                </h1>
+                <div className="flex flex-wrap items-center gap-3">
+                  <h1 className="break-words text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    {player.name}
+                  </h1>
+
+                  {proPlayer && (
+                    <Link
+                      to={`/valorant/pros/${proPlayer.slug}`}
+                      title={`${proPlayer.nickname} 프로 선수 프로필 보기`}
+                      aria-label={`${proPlayer.nickname} 프로 선수 프로필 보기`}
+                      className="inline-flex shrink-0 items-center rounded-lg border border-amber-300/40 bg-amber-300/15 px-2.5 py-1.5 text-xs font-black tracking-[0.14em] text-amber-200 shadow-lg shadow-amber-950/10 transition duration-200 hover:-translate-y-0.5 hover:border-amber-200/70 hover:bg-amber-300/25 hover:text-amber-100"
+                    >
+                      PRO
+                    </Link>
+                  )}
+                </div>
 
                 <div className="mt-5 flex flex-wrap gap-3">
                   <div className="min-w-[112px] rounded-2xl border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-sm">
