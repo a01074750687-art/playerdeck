@@ -101,15 +101,15 @@ export const kushy: ProPlayer = {
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 SUPERSTRIKE",
-    mousepad: "Pulsar eS Saturn Pro Black",
+    mouse: "Razer Viper V3 Pro Black",
+    mousepad: "ARTISAN NINJA FX Type-99 Matcha",
     keyboard: "Wooting 60HE v2 Silver",
     monitor: null,
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/kushy",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-kushy/",
     },
   },
 

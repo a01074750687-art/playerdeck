@@ -89,21 +89,33 @@ export const efina: ProPlayer = {
 
   mainAgents: ["Sova", "Fade", "Skye"],
 
+  riotAccounts: [
+    {
+      name: "GEN Efina",
+      tag: "0527",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl:
+            "https://namu.moe/w/%EA%B9%80%EB%82%99%EC%97%B0",
+      },
+    },
+  ],
   career: efinaCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
+    dpi: 1600,
+    sensitivity: 0.125,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
+    edpi: 200,
     pollingRate: null,
-    resolution: null,
+    resolution:"1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-efina/",
     },
   },
 
@@ -121,15 +133,15 @@ export const efina: ProPlayer = {
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mouse: "Logitech G PRO X SUPERLIGHT 2c Pink",
+    mousepad: "Pulsar eS Saturn Pro Red",
+    keyboard: "Geon Venom TKL HE",
+    monitor: "BenQ ZOWIE XL2586X",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-efina/",
     },
   },
 

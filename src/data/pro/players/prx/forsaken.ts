@@ -80,7 +80,20 @@ export const forsaken: ProPlayer = {
     "Sentinel",
   ]),
 
-  mainAgents: ["Yoru", "Breach", "Killjoy"],
+  mainAgents: ["Yoru", "Omen", "Neon"],
+
+  riotAccounts: [
+    {
+      name: "PRX f0rsakeN",
+      tag: "bibii",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/crosshairs/gallery?players=pros",
+      },
+    },
+  ],
 
   career: forsakenCareer,
   awards: forsakenAwards,

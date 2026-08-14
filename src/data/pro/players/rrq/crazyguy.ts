@@ -92,44 +92,44 @@ export const crazyguy: ProPlayer = {
   career: crazyguyCareer,
 
   settings: {
-    dpi: 800,
-    sensitivity: 0.235,
+    dpi: 1600,
+    sensitivity: 0.13,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 188,
+    edpi: 208,
     pollingRate: 1000,
-    resolution: "1920x1080",
+    resolution: "1280x960",
 
     verification: {
-       verifiedAt: "2026-08-05",
+       verifiedAt: "2026-08-14",
        sourceName: "ProSettings.net",
         sourceUrl: "https://prosettings.net/valorant/players/crazyguy/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;h;0;0l;4;0v;4;0g;1;0o;0;0a;1;0f;0;1b;0",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-14",
+      sourceName: "ProSettings.net",
+      sourceUrl: "https://prosettings.net/players/crazyguy/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X Superlight 2",
-    mousepad: "Artisan Hayate Otsu XSoft",
-    keyboard: "Wooting 60HE+",
-    monitor: "ZOWIE XL2566K",
+    mouse: "Razer Viper V3 Pro Green",
+    mousepad: "Pulsar eS Saturn Pro Black",
+    keyboard: "Wooting 60HE v2 Silver",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-       verifiedAt: "2026-08-05",
+       verifiedAt: "2026-08-14",
        sourceName: "ProSettings.net",
-        sourceUrl: "https://prosettings.net/valorant/players/crazyguy/",
+        sourceUrl: "https://prosettings.net/players/crazyguy/",
     },
   },
 

@@ -79,21 +79,34 @@ export const dh: ProPlayer = {
 
   mainAgents: ["Omen", "Viper", "Astra"],
 
+  riotAccounts: [
+    {
+      name: "T1 Joshua",
+      tag: "2006",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl:
+           "https://namu.moe/w/%EA%B0%95%EB%8F%99%ED%98%B8%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+      },
+    },
+  ],
+
   career: dhCareer,
 
   settings: {
     dpi: 1600,
     sensitivity: 0.1,
     scopedSensitivity: 1,
-    adsSensitivity: null,
+    adsSensitivity: 1,
     edpi: 160,
     pollingRate: 1000,
-    resolution: null,
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/dh/",
+      verifiedAt: "2026-08-14",
+      sourceName: "SPECS.GG / BestGamers",
+      sourceUrl: "https://specs.gg/DH",
     },
   },
 
@@ -112,14 +125,14 @@ export const dh: ProPlayer = {
 
   gear: {
     mouse: "Pulsar X2 V3 Mini T1 Edition",
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mousepad: "SteelSeries QcK Performance Speed",
+    keyboard: "Wooting 60HE+",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/dh/",
+      verifiedAt: "2026-08-14",
+      sourceName: "SPECS.GG",
+      sourceUrl: "https://specs.gg/DH",
     },
   },
 

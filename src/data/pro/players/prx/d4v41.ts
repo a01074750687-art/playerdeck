@@ -70,7 +70,20 @@ export const d4v41: ProPlayer = {
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Initiator"]),
 
-  mainAgents: ["Cypher", "Killjoy", "Chamber"],
+  mainAgents: ["Killjoy", "Vyse", "Chamber"],
+
+  riotAccounts: [
+    {
+      name: "PRX d4v41",
+      tag: "556",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "OP.GG",
+        sourceUrl:
+          "https://op.gg/ko/valorant/profile/PRX%20d4v41-556",
+      },
+    },
+  ],
 
   career: d4v41Career,
   awards: d4v41Awards,

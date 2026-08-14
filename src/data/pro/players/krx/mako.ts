@@ -87,6 +87,19 @@ export const mako: ProPlayer = {
 
   mainAgents: ["Omen", "Viper", "Astra"],
 
+  riotAccounts: [
+    {
+      name: "DRX Mako",
+      tag: "V S",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+          "https://namu.moe/w/%EA%B9%80%EB%AA%85%EA%B4%80(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+      },
+    },
+  ],
+
   career: makoCareer,
   awards: makoAwards,
 

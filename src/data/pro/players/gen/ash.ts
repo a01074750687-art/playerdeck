@@ -83,22 +83,35 @@ export const ash: ProPlayer = {
 
   mainAgents: ["Neon", "Omen", "Sova"],
 
+  riotAccounts: [
+    {
+      name: "GEN Ash",
+      tag: "7777",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+            "https://namu.moe/w/%ED%95%98%ED%98%84%EC%B2%A0",
+      },
+    },
+  ],
+
   career: ashCareer,
   awards: ashAwards,
 
   settings: {
     dpi: 800,
     sensitivity: 0.35,
-    scopedSensitivity: null,
-    adsSensitivity: null,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
     edpi: 280,
-    pollingRate: null,
+    pollingRate: 1000,
     resolution: "1680x1050",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/lists/valorant/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-ash/",
     },
   },
 
@@ -117,14 +130,14 @@ export const ash: ProPlayer = {
 
   gear: {
     mouse: "Razer Viper V3 Pro White",
-    mousepad: "VAXEE PA Winter23 Daydream",
+    mousepad: "VAXEE PA Winter25 Angel",
     keyboard: "SteelSeries Apex Pro Mini",
-    monitor: "ZOWIE XL2546K",
+    monitor: "ZOWIE XL2540",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/lists/valorant/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-ash/",
     },
   },
 

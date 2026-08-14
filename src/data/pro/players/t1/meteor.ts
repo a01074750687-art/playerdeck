@@ -88,22 +88,35 @@ export const meteor: ProPlayer = {
 
   mainAgents: ["Killjoy", "Chamber", "Jett"],
 
+  riotAccounts: [
+    {
+      name: "T1 Meteor",
+      tag: "0617",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+            "https://namu.moe/w/%EA%B9%80%ED%83%9C%EC%98%A4%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+      },
+    },
+  ],
+
   career: meteorCareer,
   awards: meteorAwards,
 
   settings: {
     dpi: 800,
-    sensitivity: 0.3,
-    scopedSensitivity: 1.25,
+    sensitivity: 0.25,
+    scopedSensitivity: 1.2,
     adsSensitivity: 1,
-    edpi: 240,
+    edpi: 200,
     pollingRate: 4000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/meteor/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-meteor/",
     },
   },
 
@@ -114,22 +127,22 @@ export const meteor: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/meteor/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 Superlight ",
-    mousepad: "Artisan Hayate Otsu V2 Soft Whine Red",
-    keyboard: "Wooting 60HE v2 Silver",
-    monitor: "ZOWIE XL2566K",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
+    mousepad: "Artisan Hayate Otsu V2 Soft Wine Red",
+    keyboard: "Wooting 60HE+",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/meteor/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-meteor/",
     },
   },
 

@@ -77,6 +77,19 @@ export const karon: ProPlayer = {
 
   mainAgents: ["Omen", "Viper", "Astra"],
 
+  riotAccounts: [
+    {
+      name: "Jotaro Kujo",
+      tag: "星の白金",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl:
+             "https://namu.moe/w/%EA%B9%80%EC%9B%90%ED%83%9C(2002)",
+      },
+    },
+  ],
+
   career: karonCareer,
   awards: karonAwards,
 

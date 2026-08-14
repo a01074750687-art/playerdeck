@@ -84,6 +84,19 @@ export const buzz: ProPlayer = {
 
   mainAgents: ["Jett", "Neon", "Killjoy"],
 
+  riotAccounts: [
+    {
+      name: "T1 Buzz",
+      tag: "5555",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "Tracker Network",
+        sourceUrl:
+            "https://tracker.gg/valorant/crosshairs/gallery?page=9",
+      },
+    },
+  ],
+
   career: buzzCareer,
 
   settings: {
@@ -91,14 +104,14 @@ export const buzz: ProPlayer = {
     sensitivity: 0.57,
     scopedSensitivity: 1,
     adsSensitivity: 0.8,
-    edpi: 220,
+    edpi: 228,
     pollingRate: 1000,
     resolution: "1280x960",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/buzz/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-buzz/",
     },
   },
 
@@ -109,22 +122,22 @@ export const buzz: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/buzz/",
     },
   },
 
   gear: {
-    mouse: "Pulsar BUZZ-X",
-    mousepad: "X-raypad Aqua Control+ Wave Black",
+    mouse: "Pulsar Pro Series BUZZ-X",
+    mousepad: "X-raypad Aqua Control Plus AC+ Storm",
     keyboard: "Custom Keyboard",
-    monitor: "ZOWIE XL2546K",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/buzz/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-buzz/",
     },
   },
 

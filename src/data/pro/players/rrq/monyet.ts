@@ -79,19 +79,32 @@ export const monyet: ProPlayer = {
 
   mainAgents: ["Omen", "Viper", "Raze"],
 
+  riotAccounts: [
+    {
+      name: "RRQ Monyet",
+      tag: "000",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "OP.GG",
+        sourceUrl:
+          "https://op.gg/valorant/profile/RRQ%20Monyet-000",
+      },
+    },
+  ],
+
   career: monyetCareer,
 
   settings: {
-    dpi: 1600,
-    sensitivity: 0.125,
+    dpi: 800,
+    sensitivity: 0.4,
     scopedSensitivity: 1,
     adsSensitivity: null,
-    edpi: 200,
+    edpi: 320,
     pollingRate: 1000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-05",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/valorant/players/monyet/",
     },
@@ -112,12 +125,12 @@ export const monyet: ProPlayer = {
 
   gear: {
     mouse: "VAXEE NP-01S Pink",
-    mousepad: null,
+    mousepad: "Pulsar eS Saturn Pro Black",
     keyboard: "Wooting 80HE Frost",
     monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-08-05",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/valorant/players/monyet/",
     },

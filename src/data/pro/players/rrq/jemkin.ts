@@ -77,7 +77,20 @@ export const jemkin: ProPlayer = {
   primaryRole: "Duelist",
   roles: createRoles("Duelist", ["Sentinel"]),
 
-  mainAgents: ["Jett", "Raze", "Cypher"],
+  mainAgents: ["Jett", "Raze", "Chamber"],
+
+  riotAccounts: [
+    {
+      name:"RRQ Jemkin",
+      tag: "1351",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "OP.GG",
+        sourceUrl:
+          "https://op.gg/valorant/profile/RRQ%20Jemkin-1351",
+      },
+    },
+  ],
 
   career: jemkinCareer,
 
@@ -98,21 +111,22 @@ export const jemkin: ProPlayer = {
   },
 
   crosshair: {
-    code: null,
+    code: "0;s;1;P;o;1;d;1;f;0;0b;0;1b;0;S;s;1.0",
     color: "White",
-    outlines: false,
-    centerDot: false,
+    outlines: true,
+    centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-14",
+      sourceName: "ProSettings.net",
+      sourceUrl:
+        "https://prosettings.net/players/jemkin/",
     },
   },
 
   gear: {
     mouse: "Razer Viper V4 Pro Black",
-    mousepad: "Artisan Hayate Otsu Soft",
+    mousepad: "Pulsar eS Saturn Pro Black",
     keyboard: "Wooting 80HE",
     monitor: null,
 

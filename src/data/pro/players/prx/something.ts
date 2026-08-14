@@ -79,6 +79,19 @@ export const something: ProPlayer = {
 
   mainAgents: ["Jett", "Yoru", "Phoenix"],
 
+  riotAccounts: [
+    {
+      name: "PRX something",
+      tag: "112",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl:
+          "https://namu.moe/w/%EC%9D%BC%EB%A6%AC%EC%95%BC%20%ED%8E%98%ED%8A%B8%EB%A1%9C%ED%94%84",
+      },
+    },
+  ],
+
   career: somethingCareer,
 
   settings: {

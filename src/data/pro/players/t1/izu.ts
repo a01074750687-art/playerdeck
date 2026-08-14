@@ -69,21 +69,34 @@ export const izu: ProPlayer = {
 
   mainAgents: ["Sova", "Chamber", "Yoru"],
 
+  riotAccounts: [
+    {
+      name: "T1 izu",
+      tag: "1223",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+            "https://namu.moe/w/%ED%95%A8%EC%9A%B0%EC%A3%BC",
+      },
+    },
+  ],
+
   career: izuCareer,
 
   settings: {
     dpi: 800,
-    sensitivity: 0.28,
+    sensitivity: 0.25,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 224,
+    edpi: 200,
     pollingRate: 1000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/izu/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-izu/",
     },
   },
 
@@ -101,15 +114,14 @@ export const izu: ProPlayer = {
   },
 
   gear: {
-    mouse: "Razer Viper V3 Pro Black",
-    mousepad: "SteelSeries QcK Heavy",
-    keyboard: "Wooting 60HE",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
+    mousepad: "Pulsar eS Saturn Pro Black",
+    keyboard: "Geon Venom TKL HE",
     monitor: "ZOWIE XL2566K",
-
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/izu/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-izu/",
     },
   },
 

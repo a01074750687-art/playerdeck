@@ -108,13 +108,13 @@ export const xffero: ProPlayer = {
   gear: {
     mouse: "Logitech G Pro X Superlight 2 White",
     mousepad: "Artisan Type-99 Matcha",
-    keyboard: "Wooting 80HE Black",
-    monitor: null,
+    keyboard: "Wooting 80HE",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/xffero",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-xffero/",
     },
   },
 

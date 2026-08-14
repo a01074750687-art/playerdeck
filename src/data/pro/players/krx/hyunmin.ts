@@ -78,6 +78,19 @@ export const hyunmin: ProPlayer = {
 
   mainAgents: ["Jett", "Yoru", "Phoenix"],
 
+  riotAccounts: [
+    {
+      name: "DRX HYUNMIN",
+      tag: "V S",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+         "https://namu.moe/w/%EC%86%A1%ED%98%84%EB%AF%BC%282006%29",
+      },
+    },
+  ],
+
   career: hyunminCareer,
   awards: hyunminAwards,
 

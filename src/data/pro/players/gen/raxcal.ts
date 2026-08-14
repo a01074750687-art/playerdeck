@@ -96,15 +96,15 @@ export const raxcal: ProPlayer = {
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
+    mouse: "Razer Viper V4 Pro White",
+    mousepad: "ARTISAN NINJA FX Type-99 Matcha",
+    keyboard:"Wooting 60HE+",
     monitor: null,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-raxcal/",
     },
   },
 

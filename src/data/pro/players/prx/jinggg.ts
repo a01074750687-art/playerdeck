@@ -69,32 +69,45 @@ export const jinggg: ProPlayer = {
 
   mainAgents: ["Raze", "Neon", "Omen"],
 
+  riotAccounts: [
+    {
+      name: "PRX Jinggg",
+      tag: "Jing",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "Tracker Network",
+        sourceUrl:
+           "https://tracker.gg/valorant/crosshairs/gallery?page=6",
+      },
+    },
+  ],
+
   career: jingggCareer,
 
   settings: {
     dpi: 1600,
-    sensitivity: 0.175,
+    sensitivity: 0.195,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 280,
+    edpi: 312,
     pollingRate: 2000,
-    resolution: "1280x960",
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/jinggg/",
     },
   },
 
   crosshair: {
-    code: "0;s;1;P;c;8;u;FF99FFFF;o;1;b;1;f;0;0l;3;0o;2;0a;1;0f;0;1b;0;S;c;5;o;1",
-    color: "Pink",
+    code: "0;s;1;P;c;5;o;1;f;0;m;1;0t;3;0l;0;0v;1;0g;1;0o;0;0a;1;0f;0;1t;1;1l;4;1g;1;1o;0;1a;1;1m;0;1f;0;S;c;5;o;1",
+    color: "Cyan",
     outlines: true,
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/jinggg/",
     },
@@ -104,12 +117,12 @@ export const jinggg: ProPlayer = {
     mouse: "Pulsar Jinggg-X",
     mousepad: "Artisan Hayate Otsu V2 XSoft Black",
     keyboard: "Wooting 60He v2 Silver",
-    monitor: "ZOWIE XL2566K",
+    monitor: "ZOWIE XL2566K+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/jinggg/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-jinggg/",
     },
   },
 

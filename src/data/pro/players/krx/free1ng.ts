@@ -74,6 +74,19 @@ export const free1ng: ProPlayer = {
 
   mainAgents: ["Sova", "Neon", "Cypher"],
 
+  riotAccounts: [
+    {
+      name: "DRX free1ng",
+      tag: "KJS",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+           "https://namu.moe/w/%EB%85%B8%ED%95%98%EC%A4%80",
+      },
+    },
+  ],
+
   career: free1ngCareer,
 
   settings: {

@@ -61,44 +61,44 @@ export const xan: ProPlayer = {
   career: xanCareer,
 
   settings: {
-    dpi: 1280,
-    sensitivity: 0.18,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: 230.4,
-    pollingRate: null,
-    resolution: "1280x960",
+    dpi: 800,
+    sensitivity: 0.21,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
+    edpi: 168,
+    pollingRate: 1000,
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-05",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/xan",
+      sourceUrl: "https://prosettings.net/players/xan/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;c;1;s;1;P;o;1;f;0;m;1;0t;1;0l;3;0o;2;0a;1;0f;0;1b;0;S;c;5;s;0.5;o;1",
+    color:"White",
+    outlines: true,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-14",
+      sourceName: "ProSettings.net",
+      sourceUrl: "https://prosettings.net/players/xan/",
     },
   },
 
   gear: {
-    mouse: "Razer DeathAdder V3 Pro",
-    mousepad: "X-Raypad Aqua Control 2 Medium",
-    keyboard: "Wooting 60HE",
-    monitor: "Acer Nitro XV271",
+    mouse: "Razer Viper V3 Pro Black",
+    mousepad: "Xraypad Aqua Control II Black",
+    keyboard: "Wooting 60HE v2 Black",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-05",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/xan",
+      sourceUrl: "https://prosettings.net/players/xan/",
     },
   },
 

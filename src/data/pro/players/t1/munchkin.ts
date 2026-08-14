@@ -98,6 +98,19 @@ export const munchkin: ProPlayer = {
 
   mainAgents: ["KAY/O", "Skye", "Viper"],
 
+  riotAccounts: [
+    {
+      name: "Munchkin",
+      tag: "98327",
+      verification:{
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl: 
+             "https://namu.moe/w/%EB%B3%80%EC%83%81%EB%B2%94",
+      },
+    },
+  ],
+
   career: munchkinCareer,
   awards: munchkinAwards,
 
@@ -106,13 +119,13 @@ export const munchkin: ProPlayer = {
     sensitivity: 0.35,
     scopedSensitivity: 1,
     adsSensitivity: null,
-    edpi: 200,
+    edpi: 280,
     pollingRate: 1000,
     resolution: "1440x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
+      verifiedAt: "2026-08-14",
+      sourceName: "ProSettings.net / BestGamers",
       sourceUrl: "https://prosettings.net/players/munchkin/",
     },
   },
@@ -124,7 +137,7 @@ export const munchkin: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/munchkin/",
     },
@@ -133,13 +146,13 @@ export const munchkin: ProPlayer = {
   gear: {
     mouse: "Razer Viper V4 Pro White",
     mousepad: "X-raypad Aqua Control+ Wave Black",
-    keyboard: "Wooting 60HE Ghost",
+    keyboard: "Wooting 60HE",
     monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/munchkin/",
+      verifiedAt: "2026-08-14",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-munchkin/",
     },
   },
 

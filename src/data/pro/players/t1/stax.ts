@@ -83,46 +83,59 @@ export const stax: ProPlayer = {
 
   mainAgents: ["Breach", "KAY/O", "Skye"],
 
+  riotAccounts: [
+    {
+      name: "Señor Vac",
+      tag: "prime",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl:
+          "https://namu.moe/w/%EA%B9%80%EA%B5%AC%ED%83%9D",
+      },
+    },
+  ],
+
   career: staxCareer,
   awards: staxAwards,
 
   settings: {
-    dpi: 400,
-    sensitivity: 0.6,
-    scopedSensitivity: 1,
+    dpi: 800,
+    sensitivity: 0.215,
+    scopedSensitivity: 0.9,
     adsSensitivity: 1,
-    edpi: 240,
+    edpi: 172,
     pollingRate: 1000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/stax/",
     },
   },
 
   crosshair: {
-    code: "0;P;c;5;h;0;0l;4;0o;2;0a;1;0f;0;1b;0",
-    color: "Cyan",
+    code: "0;p;0;P;h;0;f;0;0l;3;0o;2;0a;1;0f;0;1b;0",
+    color: "White",
     outlines: false,
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/stax/",
     },
   },
 
   gear: {
-    mouse: "Razer Viper V3 Pro Black",
-    mousepad: "SteelSeries QcK Heavy",
-    keyboard: "Wooting 60HE",
-    monitor: "ZOWIE XL2566K",
+    mouse: "Pulsar STA-X",
+    mousepad: "Artisan Type-99 Soft Black",
+    keyboard: "Custom Keyboard",
+    monitor: "ZOWIE XL2546S",
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-14",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/stax/",
     },

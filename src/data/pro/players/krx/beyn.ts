@@ -84,6 +84,19 @@ export const beyn: ProPlayer = {
 
   mainAgents: ["Sova", "Fade", "Skye"],
 
+  riotAccounts: [
+    {
+      name: "DRX Beyn",
+      tag: "V S",
+      verification: {
+        verifiedAt: "2026-08-14",
+        sourceName: "나무위키",
+        sourceUrl:
+          "https://namu.moe/w/%EA%B0%95%ED%95%98%EB%B9%88(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+      },
+    },
+  ],
+
   career: beynCareer,
 
   settings: {
