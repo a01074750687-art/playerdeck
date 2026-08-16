@@ -89,9 +89,9 @@ export const stax: ProPlayer = {
       tag: "prime",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network / 나무위키",
         sourceUrl:
-          "https://namu.moe/w/%EA%B9%80%EA%B5%AC%ED%83%9D",
+          "https://tracker.gg/valorant/profile/riot/Se%C3%B1or%20Vac%23prime/overview",
       },
     },
   ],

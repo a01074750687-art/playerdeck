@@ -86,7 +86,7 @@ export const meteor: ProPlayer = {
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Duelist"]),
 
-  mainAgents: ["Killjoy", "Chamber", "Jett"],
+  mainAgents: ["Vyse", "Chamber", "Jett"],
 
   riotAccounts: [
     {
@@ -94,9 +94,9 @@ export const meteor: ProPlayer = {
       tag: "0617",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-            "https://namu.moe/w/%EA%B9%80%ED%83%9C%EC%98%A4%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+          "https://tracker.gg/valorant/profile/riot/T1%20Meteor%230617/overview",
       },
     },
   ],

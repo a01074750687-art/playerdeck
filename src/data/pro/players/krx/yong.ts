@@ -75,9 +75,9 @@ export const yong: ProPlayer = {
       tag: "V S",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://d.namu.moe/w/%EA%B9%80%ED%98%B8%EC%9A%A9(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+          "https://tracker.gg/valorant/profile/riot/DRX%20Yong%23V%20S/overview",
       },
     },
   ],

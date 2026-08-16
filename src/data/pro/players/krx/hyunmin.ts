@@ -84,9 +84,9 @@ export const hyunmin: ProPlayer = {
       tag: "V S",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-         "https://namu.moe/w/%EC%86%A1%ED%98%84%EB%AF%BC%282006%29",
+         "https://tracker.gg/valorant/profile/riot/DRX%20HYUNMIN%23V%20S/overview",
       },
     },
   ],

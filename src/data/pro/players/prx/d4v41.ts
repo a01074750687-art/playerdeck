@@ -77,10 +77,10 @@ export const d4v41: ProPlayer = {
       name: "PRX d4v41",
       tag: "556",
       verification: {
-        verifiedAt: "2026-08-14",
-        sourceName: "OP.GG",
+        verifiedAt: "2026-08-16",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://op.gg/ko/valorant/profile/PRX%20d4v41-556",
+           "https://tracker.gg/valorant/profile/riot/PRX%20d4v41%23556/overview",
       },
     },
   ],
@@ -119,7 +119,7 @@ export const d4v41: ProPlayer = {
 
   gear: {
     mouse: "VAXEE ZYGEN NP-01S V2 Wireless Fluorescent Green",
-    mousepad: "Pulsar d4v41 Mousepad",
+    mousepad: "Pulsar Pro Series D4v41",
     keyboard: "Arbiter Studio Polar 65",
     monitor: "ZOWIE XL2566K+",
 

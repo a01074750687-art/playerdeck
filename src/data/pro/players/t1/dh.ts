@@ -85,9 +85,9 @@ export const dh: ProPlayer = {
       tag: "2006",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl:
-           "https://namu.moe/w/%EA%B0%95%EB%8F%99%ED%98%B8%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+          "https://tracker.gg/valorant/profile/riot/T1%20Joshua%232006/overview",
       },
     },
   ],

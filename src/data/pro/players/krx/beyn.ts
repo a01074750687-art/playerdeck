@@ -90,9 +90,9 @@ export const beyn: ProPlayer = {
       tag: "V S",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://namu.moe/w/%EA%B0%95%ED%95%98%EB%B9%88(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+          "https://tracker.gg/valorant/profile/riot/DRX%20BeYN%23V%20S/overview",
       },
     },
   ],

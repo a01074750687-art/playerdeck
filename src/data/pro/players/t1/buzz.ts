@@ -86,13 +86,13 @@ export const buzz: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "T1 Buzz",
-      tag: "5555",
+      name: "PulsarBuZz Mouse",
+      tag: "BUYIT",
       verification: {
-        verifiedAt: "2026-08-14",
+        verifiedAt: "2026-08-16",
         sourceName: "Tracker Network",
         sourceUrl:
-            "https://tracker.gg/valorant/crosshairs/gallery?page=9",
+          "https://tracker.gg/valorant/profile/riot/PulsarBuZz%20Mouse%23BUYIT/overview",
       },
     },
   ],

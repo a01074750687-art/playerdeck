@@ -95,9 +95,9 @@ export const efina: ProPlayer = {
       tag: "0527",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl:
-            "https://namu.moe/w/%EA%B9%80%EB%82%99%EC%97%B0",
+          "https://tracker.gg/valorant/profile/riot/GEN%20Efina%230527/overview",
       },
     },
   ],

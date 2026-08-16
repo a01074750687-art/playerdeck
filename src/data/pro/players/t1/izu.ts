@@ -75,9 +75,9 @@ export const izu: ProPlayer = {
       tag: "1223",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-            "https://namu.moe/w/%ED%95%A8%EC%9A%B0%EC%A3%BC",
+          "https://tracker.gg/valorant/profile/riot/T1%20iZu%231223/overview",
       },
     },
   ],

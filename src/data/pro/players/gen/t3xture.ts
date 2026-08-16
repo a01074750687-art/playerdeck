@@ -89,9 +89,10 @@ export const t3xture: ProPlayer = {
       tag: "1111",
 
       verification: {
-        verifiedAt: "2026-08-12",
-        sourceName: "Unisquads Wiki",
-        sourceUrl: "https://uniquads.io/w/%EA%B9%80%EB%82%98%EB%9D%BC",
+        verifiedAt: "2026-08-16",
+        sourceName: "Tracker Network",
+        sourceUrl: 
+          "https://tracker.gg/valorant/profile/riot/WelcometotheShow%231111/overview",
       },
     },
   ],

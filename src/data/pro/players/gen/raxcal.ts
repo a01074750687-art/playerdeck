@@ -64,6 +64,20 @@ export const raxcal: ProPlayer = {
 
   mainAgents: ["Phoenix", "Vyse", "Omen"],
 
+  riotAccounts: [
+    {
+      name: "LEV Sato",
+      tag: "락스칼이다",
+
+      verification: {
+        verifiedAt: "2026-08-16",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/LEV%20Sato%23%EB%9D%BD%EC%8A%A4%EC%B9%BC%EC%9D%B4%EB%8B%A4/overview",
+      },
+    },
+  ],
+
   career: raxcalCareer,
 
   settings: {

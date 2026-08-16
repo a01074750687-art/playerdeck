@@ -85,9 +85,9 @@ export const something: ProPlayer = {
       tag: "112",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://namu.moe/w/%EC%9D%BC%EB%A6%AC%EC%95%BC%20%ED%8E%98%ED%8A%B8%EB%A1%9C%ED%94%84",
+           "https://tracker.gg/valorant/profile/riot/PRX%20something%23112/overview",
       },
     },
   ],
@@ -124,15 +124,15 @@ export const something: ProPlayer = {
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 Superlight",
-    mousepad: "Pulsar eS Saturn Pro Red",
-    keyboard: "Pulsar PCMK 3",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
+    mousepad: "Lethal Gaming Gear Saturn Pro Red",
+    keyboard: "Pulsar PCMK 3HE TKL Something Edition",
     monitor: "ZOWIE XL2586K",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/something/",
+      verifiedAt: "2026-08-16",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-something/",
     },
   },
 

@@ -104,9 +104,9 @@ export const munchkin: ProPlayer = {
       tag: "98327",
       verification:{
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-             "https://namu.moe/w/%EB%B3%80%EC%83%81%EB%B2%94",
+          "https://tracker.gg/valorant/profile/riot/Munchkin%2398327/overview"
       },
     },
   ],

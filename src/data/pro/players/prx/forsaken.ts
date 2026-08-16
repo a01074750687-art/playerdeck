@@ -88,7 +88,7 @@ export const forsaken: ProPlayer = {
       tag: "bibii",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "Tracker Network",
+        sourceName: "Tracker Network / OP.GG",
         sourceUrl:
           "https://tracker.gg/valorant/crosshairs/gallery?players=pros",
       },
@@ -108,9 +108,9 @@ export const forsaken: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/forsaken/",
+      verifiedAt: "2026-08-16",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-f0rsaken/",
     },
   },
 
@@ -121,9 +121,9 @@ export const forsaken: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-16",
       sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/forsaken/",
+      sourceUrl: "https://prosettings.net/players/f0rsaken/",
     },
   },
 
@@ -134,9 +134,9 @@ export const forsaken: ProPlayer = {
     monitor: "ZOWIE XL2566K+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/forsaken/",
+      verifiedAt: "2026-08-16",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-f0rsaken/",
     },
   },
 

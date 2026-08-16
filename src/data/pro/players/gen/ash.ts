@@ -89,9 +89,9 @@ export const ash: ProPlayer = {
       tag: "7777",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-            "https://namu.moe/w/%ED%95%98%ED%98%84%EC%B2%A0",
+          "https://tracker.gg/valorant/profile/riot/GEN%20Ash%237777/overview",
       },
     },
   ],

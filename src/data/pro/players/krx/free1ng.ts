@@ -80,9 +80,9 @@ export const free1ng: ProPlayer = {
       tag: "KJS",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-           "https://namu.moe/w/%EB%85%B8%ED%95%98%EC%A4%80",
+          "https://tracker.gg/valorant/profile/riot/DRX%20free1ng%23KJS/overview",
       },
     },
   ],

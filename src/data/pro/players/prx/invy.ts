@@ -78,21 +78,34 @@ export const invy: ProPlayer = {
 
   mainAgents: ["Sova", "Fade", "Skye"],
 
+  riotAccounts: [
+    {
+      name: "PRX inny",
+      tag: "jia",
+      verification: {
+        verifiedAt: "2026-08-16",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/PRX%20invy%23jia/overview",
+      },
+    },
+  ],
+
   career: invyCareer,
 
   settings: {
     dpi: 1600,
-    sensitivity: 0.175,
+    sensitivity: 0.135,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 280,
+    edpi: 216,
     pollingRate: 4000,
-    resolution: "1280x960",
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/invy/",
+      verifiedAt: "2026-08-16",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-invy/",
     },
   },
 
@@ -110,15 +123,15 @@ export const invy: ProPlayer = {
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 Superlight",
-    mousepad: "Pulsar eS Saturn Pro",
-    keyboard: "Pulsar PCMK 2 HE TKL",
-    monitor: "ZOWIE XL2566K+",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
+    mousepad: "ARTISAN NINJA FX Zero TenZ",
+    keyboard: "Wooting 60HE v2 Silver",
+    monitor: "ZOWIE XL2586X+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/invy/",
+      verifiedAt: "2026-08-16",
+      sourceName: "BestGamers / SPECS.GG",
+      sourceUrl: "https://b-gamers.net/valorant-invy/",
     },
   },
 

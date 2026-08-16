@@ -80,9 +80,9 @@ export const flicker: ProPlayer = {
       tag: "V S",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl: 
-           "https://namu.moe/w/%EC%9C%A4%ED%83%9C%ED%9D%AC%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+          "https://tracker.gg/valorant/profile/riot/DRX%20Flicker%23V%20S/overview",
       },
     },
   ],
