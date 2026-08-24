@@ -12,17 +12,28 @@ const sylvanCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
-      teamName: "World Game Star",
-      joinedAt: "2021-05",
-      leftAt: "2023-03",
+      teamName: "aNg DarkHorse",
+      joinedAt: "2020-09",
+      leftAt: "2021-01",
     },
     {
-      teamName: "Gen.G",
+      teamName: "ZFGaming",
+      joinedAt: "2021-01",
+      leftAt: "2021-03",
+    },
+    {
+      teamName: "World Game Star",
+      joinedAt: "2021-05",
+      leftAt: "2022-11",
+    },
+    {
+      teamName: "Gen.G Esports",
       joinedAt: "2023-03",
       leftAt: "2023-09",
     },
     {
       teamName: "TOP Esports",
+      joinedAt: "2023-09",
       leftAt: "2024-01",
     },
     {
@@ -34,13 +45,23 @@ const sylvanCareer: ProPlayerCareer = {
 
   highlights: [
     {
-      year: 2023,
-      title: "VCT Pacific",
+      year: 2020,
+      title: "First Strike Korea",
+      result: "3~4위",
+    },
+    {
+      year: 2022,
+      title: "VCT 2022: Korea Stage 2 Challengers",
       result: "4위",
     },
     {
       year: 2023,
-      title: "VCT Pacific Last Chance Qualifier",
+      title: "VCT 2023: Pacific League",
+      result: "4위",
+    },
+    {
+      year: 2023,
+      title: "VCT 2023: Pacific Last Chance Qualifier",
       result: "3위",
     },
     {
@@ -50,12 +71,22 @@ const sylvanCareer: ProPlayerCareer = {
     },
     {
       year: 2025,
-      title: "VALORANT Masters Bangkok",
+      title: "VCT 2025: Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Bangkok 2025",
       result: "우승",
     },
     {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 1",
+      result: "7~8위",
+    },
+    {
       year: 2026,
-      title: "Esports World Cup Pacific Qualifier Stage 1",
+      title: "Esports World Cup 2026: Pacific Qualifier Stage 1",
       result: "3위",
     },
   ],
@@ -87,6 +118,7 @@ export const sylvan: ProPlayer = {
     {
       name: "Secret Sylvan",
       tag: "1004",
+
       verification: {
         verifiedAt: "2026-08-21",
         sourceName: "Tracker Network",
@@ -108,46 +140,46 @@ export const sylvan: ProPlayer = {
     resolution: null,
 
     verification: {
-      verifiedAt: "2026-08-03",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/sylvan/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;c;0;o;1;d;1;z;2;0b;0;1b;0",
+    color: "White",
+    outlines: true,
+    centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-03",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/sylvan/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-sylvan/",
     },
   },
 
   gear: {
     mouse: "Logitech G Pro X Superlight White",
-    mousepad: "SteelSeries QcK Heavy",
+    mousepad: "SteelSeries QcK Heavy Black",
     keyboard: "Logitech G Pro X Keyboard",
     monitor: null,
 
     verification: {
-      verifiedAt: "2026-08-03",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/sylvan/",
     },
   },
 
   stats: {
-    rating: 0.96,
-    acs: 182.8,
-    kd: 0.91,
-    kast: 74.42,
-    adr: 124.4,
-    hs: null,
+    rating: 1.01,
+    acs: 193,
+    kd: 1.0,
+    kast: 70,
+    adr: 130.2,
+    hs: 33,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

@@ -7,7 +7,7 @@ import {
   getRequiredTeam,
 } from "../../common/helpers";
 
-const keilysCareer: ProPlayerCareer = {
+const kellysCareer: ProPlayerCareer = {
   joinedAt: "2025-05",
 
   previousTeams: [
@@ -22,6 +22,7 @@ const keilysCareer: ProPlayerCareer = {
     },
     {
       teamName: "Action PH",
+      joinedAt: "2023-03",
       leftAt: "2023-06",
     },
     {
@@ -39,12 +40,12 @@ const keilysCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2022,
-      title: "VCT Philippines Stage 2 Challengers",
+      title: "VCT 2022: Philippines Stage 2 Challengers",
       result: "3위",
     },
     {
       year: 2022,
-      title: "Predator League Philippines",
+      title: "Predator League 2022 - Philippines",
       result: "우승",
     },
     {
@@ -54,12 +55,17 @@ const keilysCareer: ProPlayerCareer = {
     },
     {
       year: 2024,
-      title: "VCT OFF//SEASON Spotlight Series Pacific",
+      title: "VALORANT Challengers 2024 Philippines: Split 2",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "Spotlight Series Pacific 2024",
       result: "준우승",
     },
     {
       year: 2026,
-      title: "Esports World Cup Pacific Qualifier Stage 1",
+      title: "Esports World Cup 2026: Pacific Qualifier Stage 1",
       result: "3위",
     },
   ],
@@ -82,10 +88,15 @@ export const kellys: ProPlayer = {
 
   team: getRequiredTeam("team-secret"),
 
-  primaryRole: "Initiator",
-  roles: createRoles("Initiator", ["Flex", "Controller"]),
+  primaryRole: "Flex",
+  roles: createRoles("Flex", [
+    "Controller",
+    "Duelist",
+    "Initiator",
+    "Sentinel",
+  ]),
 
-  mainAgents: ["Phoenix", "KAY/O", "Viper"],
+  mainAgents: ["Viper", "Phoenix", "KAY/O"],
 
   riotAccounts: [
     {
@@ -93,15 +104,15 @@ export const kellys: ProPlayer = {
       tag: "MJC",
 
       verification: {
-        verifiedAt: "2026-08-21",
+        verifiedAt: "2026-08-25",
         sourceName: "Tracker Network",
         sourceUrl:
-         "https://tracker.gg/valorant/profile/riot/Secret%20kellyS%23MJC", 
+          "https://tracker.gg/valorant/profile/riot/Secret%20kellyS%23MJC/overview",
       },
     },
   ],
 
-  career: keilysCareer,
+  career: kellysCareer,
 
   settings: {
     dpi: 800,
@@ -113,7 +124,7 @@ export const kellys: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-03",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/kellys/",
     },
@@ -126,7 +137,7 @@ export const kellys: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-03",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/kellys/",
     },
@@ -134,25 +145,25 @@ export const kellys: ProPlayer = {
 
   gear: {
     mouse: "Razer Viper V4 Pro White",
-    mousepad: "Razer Gigantus V2 Pro Balance",
-    keyboard: "Wooting 80HE Black",
+    mousepad: "ARTISAN NINJA FX Zero Black",
+    keyboard: "Wooting 60HE+",
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-03",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/kellys/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-kellys/",
     },
   },
 
   stats: {
-    rating: 1.07,
-    acs: 213.2,
-    kd: 1.0,
-    kast: 75.97,
-    adr: 148.1,
-    hs: null,
+    rating: 0.91,
+    acs: 192,
+    kd: 0.86,
+    kast: 71,
+    adr: 130.8,
+    hs: 22,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

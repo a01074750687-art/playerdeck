@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   CalendarDays,
   Crosshair,
-  Quote,
   Sparkles,
   Star,
-  Target,
-  Trophy,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -27,42 +24,33 @@ const ROLE_LABELS: Record<ProPlayerRole, string> = {
 };
 
 const ROLE_STYLES: Record<ProPlayerRole, string> = {
-  Duelist: "border-red-400/25 bg-red-400/10 text-red-100",
+  Duelist:
+    "border-red-400/25 bg-red-400/10 text-red-100",
   Initiator:
     "border-sky-400/25 bg-sky-400/10 text-sky-100",
   Controller:
     "border-violet-400/25 bg-violet-400/10 text-violet-100",
   Sentinel:
     "border-emerald-400/25 bg-emerald-400/10 text-emerald-100",
-  Flex: "border-amber-400/25 bg-amber-400/10 text-amber-100",
+  Flex:
+    "border-amber-400/25 bg-amber-400/10 text-amber-100",
 };
 
-const formatStat = (
-  value: number,
-  maximumFractionDigits = 2,
+const formatSelectedDate = (
+  selectedAt: string,
 ): string => {
-  if (!Number.isFinite(value)) {
-    return "-";
-  }
+  const [year, month, day] = selectedAt
+    .split("-")
+    .map(Number);
 
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits,
-  }).format(value);
-};
-
-const formatSelectedDate = (selectedAt: string): string => {
-  const date = new Date(selectedAt);
-
-  if (Number.isNaN(date.getTime())) {
+  if (!year || !month || !day) {
     return selectedAt;
   }
 
-  return new Intl.DateTimeFormat("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
+  return `${year}-${String(month).padStart(
+    2,
+    "0",
+  )}-${String(day).padStart(2, "0")}`;
 };
 
 const WeeklyPick = ({ pick }: WeeklyPickProps) => {
@@ -85,281 +73,430 @@ const WeeklyPick = ({ pick }: WeeklyPickProps) => {
   const canShowTeamLogo =
     Boolean(teamLogoUrl) && !hasTeamLogoError;
 
-  const nicknameInitial =
-    player.nickname.trim().charAt(0).toUpperCase() || "?";
+  useEffect(() => {
+    setHasTeamLogoError(false);
+  }, [teamLogoUrl]);
 
   return (
     <section
       aria-labelledby="weekly-pick-title"
-      className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-[0_32px_110px_rgba(0,0,0,0.38)]"
+      className="
+        group relative overflow-hidden
+        rounded-[1.6rem]
+        border border-white/[0.09]
+        bg-[#090b18]/90
+        shadow-[0_24px_80px_rgba(0,0,0,0.3)]
+      "
     >
+      {/* Background effects */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
       >
         <div
-          className="absolute -left-24 -top-32 h-[420px] w-[420px] rounded-full opacity-25 blur-[130px]"
+          className="
+            absolute -left-40 -top-44
+            h-[420px] w-[420px]
+            rounded-full opacity-[0.16]
+            blur-[130px]
+          "
           style={{
             backgroundColor: teamPrimaryColor,
           }}
         />
 
         <div
-          className="absolute -bottom-40 right-0 h-[460px] w-[460px] rounded-full opacity-20 blur-[140px]"
+          className="
+            absolute -bottom-52 right-[-80px]
+            h-[440px] w-[440px]
+            rounded-full opacity-[0.1]
+            blur-[140px]
+          "
           style={{
             backgroundColor: teamSecondaryColor,
           }}
         />
 
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.025),transparent_45%,rgba(255,255,255,0.015))]" />
+        <div
+          className="
+            absolute inset-0
+            bg-[linear-gradient(135deg,rgba(255,255,255,0.02),transparent_40%,rgba(255,255,255,0.008))]
+          "
+        />
 
         <div
-          className="absolute inset-x-0 top-0 h-1"
+          className="absolute inset-x-0 top-0 h-px"
           style={{
-            background: `linear-gradient(90deg, ${teamPrimaryColor}, ${teamSecondaryColor})`,
+            background: `linear-gradient(
+              90deg,
+              transparent,
+              ${teamPrimaryColor},
+              ${teamSecondaryColor},
+              transparent
+            )`,
           }}
         />
       </div>
 
-      {canShowTeamLogo && (
-        <img
-          src={teamLogoUrl ?? undefined}
-          alt=""
-          aria-hidden="true"
-          onError={() => setHasTeamLogoError(true)}
-          className="pointer-events-none absolute -right-16 top-10 h-72 w-72 object-contain opacity-[0.045] grayscale"
-        />
-      )}
+      <div
+        className="
+          relative grid
+          lg:grid-cols-[240px_minmax(0,1fr)_210px]
+          xl:grid-cols-[240px_minmax(0,1fr)_220px]
+        "
+      >
+        {/* Team Visual */}
+        <div
+          className="
+            relative flex min-h-[190px]
+            items-center justify-center
+            overflow-hidden
+            border-b border-white/[0.07]
+            px-7 py-8
+            lg:min-h-[310px]
+            lg:border-b-0
+            lg:border-r
+          "
+        >
+          <div
+            aria-hidden="true"
+            className="
+              absolute left-1/2 top-1/2
+              h-48 w-48
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full opacity-20
+              blur-[60px]
+            "
+            style={{
+              backgroundColor: teamPrimaryColor,
+            }}
+          />
 
-      <div className="relative grid min-h-[520px] lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="flex flex-col justify-center px-6 py-8 sm:px-9 sm:py-10 lg:px-12 lg:py-14">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/25 bg-amber-400/10 px-3.5 py-2 text-[11px] font-black tracking-[0.14em] text-amber-100">
-              <Star
-                size={14}
-                fill="currentColor"
+          {/* Weekly Pick Badge */}
+          <div className="absolute left-5 top-5 z-20">
+            <span
+              className="
+                inline-flex items-center gap-1.5
+                rounded-full
+                border border-white/[0.1]
+                bg-slate-950/60
+                px-3 py-1.5
+                text-[10px] font-black
+                tracking-[0.06em]
+                text-slate-200
+                backdrop-blur-md
+              "
+            >
+              <Sparkles
+                size={12}
+                className="text-rose-200"
               />
 
               {pick.title}
             </span>
-
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-[11px] font-bold text-slate-300">
-              <CalendarDays size={13} />
-
-              {formatSelectedDate(pick.selectedAt)}
-            </span>
           </div>
 
-          <div className="mt-8">
-            <p className="flex items-center gap-2 text-xs font-black tracking-[0.16em] text-slate-500">
-              <Sparkles size={15} />
-
-              {pick.label}
-            </p>
-
-            <div className="mt-3 flex flex-wrap items-end gap-x-4 gap-y-2">
-              <h2
-                id="weekly-pick-title"
-                className="text-5xl font-black tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl"
-              >
-                {player.nickname}
-              </h2>
-
-              <span
-                className={`mb-1 inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-black ${
-                  ROLE_STYLES[player.primaryRole]
-                }`}
-              >
-                {ROLE_LABELS[player.primaryRole]}
-              </span>
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2">
-                {canShowTeamLogo ? (
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white p-2">
-                    <img
-                      src={teamLogoUrl ?? undefined}
-                      alt={`${teamName} 로고`}
-                      onError={() =>
-                        setHasTeamLogoError(true)
-                      }
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="flex h-10 min-w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] px-2 text-xs font-black text-white"
-                    style={{
-                      boxShadow: `0 12px 30px ${teamPrimaryColor}22`,
-                    }}
-                  >
-                    {teamShortName}
-                  </div>
-                )}
-
-                <div>
-                  <p className="text-sm font-black text-white">
-                    {teamName}
-                  </p>
-
-                  <p className="text-xs text-slate-500">
-                    {player.region} · {player.countryName}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 max-w-2xl rounded-2xl border border-white/10 bg-slate-950/45 p-5 backdrop-blur-md sm:p-6">
-            <div className="flex items-center gap-2 text-slate-500">
-              <Quote size={16} />
-
-              <p className="text-[11px] font-black tracking-[0.16em]">
-                DECK.GG COMMENT
-              </p>
-            </div>
-
-            <p className="mt-3 text-sm font-medium leading-7 text-slate-300 sm:text-base">
-              {pick.comment}
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="flex items-center gap-2">
-                <Crosshair
-                  size={15}
-                  className="text-slate-500"
-                />
-
-                <p className="text-[11px] font-black tracking-[0.16em] text-slate-500">
-                  대표 요원
-                </p>
-              </div>
-
-              <div className="mt-2 flex flex-wrap gap-2">
-                {player.mainAgents.length > 0 ? (
-                  player.mainAgents
-                    .slice(0, 4)
-                    .map((agent) => (
-                      <span
-                        key={agent}
-                        className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-bold text-slate-300"
-                      >
-                        {agent}
-                      </span>
-                    ))
-                ) : (
-                  <span className="text-xs text-slate-600">
-                    등록된 대표 요원이 없습니다
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <Link
-              to={`/valorant/pros/${player.slug}`}
-              className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-            >
-              프로필 보기
-
-              <ArrowRight size={17} />
-            </Link>
-          </div>
-        </div>
-
-        <div className="relative min-h-[420px] overflow-hidden border-t border-white/10 lg:min-h-0 lg:border-l lg:border-t-0">
-          <div
-            className="absolute inset-0 opacity-75"
-            style={{
-              background: `
-                radial-gradient(
-                  circle at 50% 35%,
-                  ${teamPrimaryColor}55 0%,
-                  transparent 48%
-                ),
-                linear-gradient(
-                  150deg,
-                  ${teamSecondaryColor} 0%,
-                  #020617 76%
-                )
-              `,
-            }}
-          />
-
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,6,23,0.98)_0%,transparent_48%)]" />
-
-          {canShowTeamLogo && (
+          {canShowTeamLogo ? (
             <img
               src={teamLogoUrl ?? undefined}
-              alt=""
-              aria-hidden="true"
+              alt={`${teamName} 로고`}
               onError={() =>
                 setHasTeamLogoError(true)
               }
-              className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08] grayscale"
+              className="
+                relative z-10
+                h-[112px] w-[160px]
+                object-contain
+                drop-shadow-[0_18px_35px_rgba(0,0,0,0.4)]
+                transition-transform
+                duration-500
+                group-hover:scale-[1.035]
+                lg:h-[130px]
+                lg:w-[175px]
+              "
             />
+          ) : (
+            <div
+              className="
+                relative z-10 flex
+                h-28 min-w-28
+                items-center justify-center
+                rounded-[1.75rem]
+                border border-white/10
+                bg-white/[0.04]
+                px-5
+                text-3xl font-black
+                text-white
+                backdrop-blur-md
+              "
+            >
+              {teamShortName}
+            </div>
           )}
 
-          <div className="absolute inset-x-0 bottom-0 top-6 z-10 flex items-end justify-center">
-            {player.profileImageUrl ? (
-              <img
-                src={player.profileImageUrl}
-                alt={`${player.nickname} 선수`}
-                className="h-full w-full object-contain object-bottom drop-shadow-[0_30px_55px_rgba(0,0,0,0.6)]"
+          <div
+            aria-hidden="true"
+            className="
+              absolute inset-x-0 bottom-0
+              h-24
+              bg-gradient-to-t
+              from-black/20
+              to-transparent
+            "
+          />
+        </div>
+
+        {/* Main Content */}
+        <div
+          className="
+            flex min-w-0 flex-col
+            justify-center
+            px-6 py-7
+            sm:px-8
+            lg:px-9 lg:py-8
+            xl:px-10
+          "
+        >
+          {/* Badges */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span
+              className="
+                inline-flex items-center gap-1.5
+                rounded-full
+                border border-rose-400/20
+                bg-rose-400/[0.08]
+                px-3 py-1.5
+                text-[10px] font-black
+                text-rose-100
+              "
+            >
+              <Star
+                size={11}
+                fill="currentColor"
               />
-            ) : (
-              <div className="mb-28 flex h-40 w-40 items-center justify-center rounded-[2rem] border border-white/10 bg-slate-950/55 text-7xl font-black text-white shadow-2xl backdrop-blur-md">
-                {nicknameInitial}
-              </div>
-            )}
+
+              {pick.label}
+            </span>
+
+            <span
+              className={`
+                inline-flex items-center
+                rounded-full border
+                px-3 py-1.5
+                text-[10px] font-black
+                ${ROLE_STYLES[player.primaryRole]}
+              `}
+            >
+              {ROLE_LABELS[player.primaryRole]}
+            </span>
+
+            <span
+              className="
+                inline-flex items-center
+                rounded-full
+                border border-white/[0.08]
+                bg-white/[0.035]
+                px-3 py-1.5
+                text-[10px] font-black
+                text-slate-400
+              "
+            >
+              {teamShortName}
+            </span>
           </div>
 
-          <div className="absolute inset-x-0 bottom-0 z-20 p-5 sm:p-7">
-            <div className="grid grid-cols-3 gap-2">
-              <div className="rounded-2xl border border-white/10 bg-slate-950/65 p-3.5 backdrop-blur-md">
-                <div className="flex items-center gap-1.5 text-slate-500">
-                  <Trophy size={13} />
+          {/* Brand label */}
+          <p
+            className="
+              mt-5 text-[10px]
+              font-black tracking-[0.2em]
+              text-slate-500
+            "
+          >
+            DECK.GG WEEKLY PICK
+          </p>
 
-                  <p className="text-[9px] font-black tracking-[0.1em]">
-                    RATING
-                  </p>
-                </div>
+          {/* Player */}
+          <div
+            className="
+              mt-2 flex flex-wrap
+              items-end gap-x-3 gap-y-1
+            "
+          >
+            <h2
+              id="weekly-pick-title"
+              className="
+                text-[2.8rem] font-black
+                leading-none
+                tracking-[-0.055em]
+                text-white
+                sm:text-[3.15rem]
+              "
+            >
+              {player.nickname}
+            </h2>
 
-                <p className="mt-2 text-xl font-black text-white">
-                  {formatStat(player.stats.rating)}
-                </p>
-              </div>
+            <span
+              className="
+                mb-1 text-[11px]
+                font-black tracking-[0.06em]
+                text-slate-500
+              "
+            >
+              {teamShortName}
+            </span>
+          </div>
 
-              <div className="rounded-2xl border border-white/10 bg-slate-950/65 p-3.5 backdrop-blur-md">
-                <div className="flex items-center gap-1.5 text-slate-500">
-                  <Crosshair size={13} />
+          {/* Comment */}
+          <p
+            className="
+              mt-5 max-w-[760px]
+              text-[13px] font-medium
+              leading-6 text-slate-400
+              sm:text-sm sm:leading-7
+            "
+          >
+            {pick.comment}
+          </p>
 
-                  <p className="text-[9px] font-black tracking-[0.1em]">
-                    ACS
-                  </p>
-                </div>
-
-                <p className="mt-2 text-xl font-black text-white">
-                  {formatStat(player.stats.acs, 1)}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-slate-950/65 p-3.5 backdrop-blur-md">
-                <div className="flex items-center gap-1.5 text-slate-500">
-                  <Target size={13} />
-
-                  <p className="text-[9px] font-black tracking-[0.1em]">
-                    K/D
-                  </p>
-                </div>
-
-                <p className="mt-2 text-xl font-black text-white">
-                  {formatStat(player.stats.kd)}
-                </p>
-              </div>
+          {/* Agents + Date */}
+          <div
+            className="
+              mt-5 flex flex-wrap
+              items-center gap-x-3 gap-y-3
+            "
+          >
+            <div className="flex flex-wrap gap-1.5">
+              {player.mainAgents.length > 0 ? (
+                player.mainAgents
+                  .slice(0, 3)
+                  .map((agent) => (
+                    <span
+                      key={agent}
+                      className="
+                        rounded-full
+                        border border-white/[0.08]
+                        bg-white/[0.03]
+                        px-3 py-1.5
+                        text-[10px] font-bold
+                        text-slate-400
+                        transition-colors
+                        hover:border-white/[0.13]
+                        hover:bg-white/[0.055]
+                        hover:text-slate-300
+                      "
+                    >
+                      {agent}
+                    </span>
+                  ))
+              ) : (
+                <span
+                  className="
+                    text-[10px]
+                    text-slate-600
+                  "
+                >
+                  등록된 대표 요원이 없습니다
+                </span>
+              )}
             </div>
+
+            <div
+              className="
+                hidden h-3 w-px
+                bg-white/[0.08]
+                sm:block
+              "
+            />
+
+            <span
+              className="
+                inline-flex items-center
+                gap-1.5 text-[10px]
+                font-medium text-slate-500
+              "
+            >
+              <CalendarDays size={11} />
+
+              선정일 {formatSelectedDate(pick.selectedAt)}
+            </span>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div
+          className="
+            flex items-center
+            border-t border-white/[0.07]
+            px-6 py-6
+            lg:border-l
+            lg:border-t-0
+            lg:px-7
+          "
+        >
+          <div className="w-full">
+            <div
+              className="
+                mb-5 hidden h-px w-8
+                bg-white/10
+                lg:block
+              "
+            />
+
+            <Link
+              to={`/valorant/pros/${player.slug}`}
+              className="
+                inline-flex h-12 w-full
+                items-center justify-center
+                gap-2 rounded-xl
+                bg-white px-4
+                text-[12px] font-black
+                text-slate-950
+                shadow-[0_10px_30px_rgba(255,255,255,0.06)]
+                transition-all duration-200
+                hover:-translate-y-0.5
+                hover:bg-slate-100
+                hover:shadow-[0_14px_34px_rgba(255,255,255,0.1)]
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-white
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-slate-950
+              "
+            >
+              프로필 보기
+
+              <ArrowRight size={15} />
+            </Link>
+
+            <Link
+              to="/valorant/pros"
+              className="
+                mt-3 inline-flex
+                h-11 w-full
+                items-center justify-center
+                gap-2 rounded-xl
+                border border-white/[0.09]
+                bg-white/[0.025]
+                px-4
+                text-[12px] font-bold
+                text-slate-300
+                transition-all duration-200
+                hover:border-white/[0.14]
+                hover:bg-white/[0.055]
+                hover:text-white
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-white/50
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-slate-950
+              "
+            >
+              전체 선수 보기
+
+              <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </div>

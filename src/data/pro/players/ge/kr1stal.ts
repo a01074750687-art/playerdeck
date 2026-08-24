@@ -23,6 +23,7 @@ const kr1stalCareer: ProPlayerCareer = {
     },
     {
       teamName: "Night Wings Gaming",
+      joinedAt: "2023-11",
       leftAt: "2023-12",
     },
     {
@@ -35,28 +36,33 @@ const kr1stalCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2023,
-      title: "Challengers Japan Split 2",
+      title: "VALORANT Challengers 2023 Japan: Split 2",
       result: "우승",
     },
     {
       year: 2023,
-      title: "VCT Ascension Pacific",
+      title: "VCT Ascension Pacific 2023",
       result: "준우승",
     },
     {
       year: 2024,
-      title: "VALORANT China National Competition Season 2",
+      title: "VALORANT China National Tournament: Season 2",
       result: "우승",
     },
     {
       year: 2024,
-      title: "VCT Ascension China",
+      title: "VCT Ascension China 2024",
       result: "우승",
     },
     {
       year: 2026,
-      title: "VCT Pacific Stage 1",
+      title: "VCT 2026: Pacific Stage 1",
       result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London 2026",
+      result: "9~10위",
     },
   ],
 };
@@ -78,17 +84,17 @@ export const kr1stal: ProPlayer = {
 
   team: getRequiredTeam("global-esports"),
 
-  primaryRole: "Flex",
-  roles: createRoles("Flex", ["Initiator", "Sentinel", "Controller"]),
+  primaryRole: "Initiator",
+  roles: createRoles("Initiator", ["Sentinel"]),
 
-  mainAgents: ["Sova", "Killjoy", "Fade"],
+  mainAgents: ["Sova", "Tejo", "Killjoy"],
 
   riotAccounts: [
     {
       name: "GE Kr1stal",
       tag: "5252",
 
-      verification:{
+      verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
@@ -109,8 +115,8 @@ export const kr1stal: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-24",
-      sourceName: "ProSettings",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/kr1stal/",
     },
   },
@@ -122,33 +128,33 @@ export const kr1stal: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-24",
-      sourceName: "ProSettings",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/kr1stal/",
     },
   },
 
   gear: {
-    mouse: "VAXEE XE V2 Black",
-    mousepad: "Pulsar eS Saturn Pro Black",
-    keyboard: "Wooting 60HE v2 Black",
+    mouse: "ZOWIE EC2-DW Black",
+    mousepad: "ARTISAN NINJA FX Zero XSoft Orange",
+    keyboard: "SteelSeries Apex Pro TKL",
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-24",
-      sourceName: "ProSettings",
-      sourceUrl: "https://prosettings.net/players/kr1stal/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
     },
   },
 
   stats: {
-    rating: 1.00,
-    acs: 168.3,
+    rating: 0.97,
+    acs: 159,
     kd: 0.96,
-    kast: 68.9,
-    adr: 118.6,
-    hs: null,
+    kast: 68,
+    adr: 109.0,
+    hs: 21,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-25",
 };

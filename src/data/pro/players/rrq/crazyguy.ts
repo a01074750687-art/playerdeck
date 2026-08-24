@@ -1,5 +1,6 @@
 import type {
   ProPlayer,
+  ProPlayerAward,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
 import {
@@ -12,60 +13,118 @@ const crazyguyCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
-      teamName: "CERBERUS Esports",
-      joinedAt: "2020-07",
-      leftAt: "2021-02",
+      teamName: "Steal Your Glory",
+      joinedAt: "2020-10",
+      leftAt: "2021-07",
     },
     {
-      teamName: "Big BAAM",
-      joinedAt: "2021-03",
-      leftAt: "2022-01",
+      teamName: "Team Big BAAM",
+      joinedAt: "2021-07",
+      leftAt: "2021-10",
     },
     {
-      teamName: "Fancy United Esports",
-      joinedAt: "2022-01",
-      leftAt: "2022-10",
+      teamName: "Nigma Galaxy",
+      joinedAt: "2021-11",
+      leftAt: "2022-07",
     },
     {
       teamName: "BLEED Esports",
       joinedAt: "2022-10",
-      leftAt: "2024-08",
+      leftAt: "2024-10",
     },
     {
       teamName: "Disguised",
-      joinedAt: "2024-08",
+      joinedAt: "2024-11",
       leftAt: "2025-01",
+    },
+    {
+      teamName: "KIMMY KITTENS",
+      joinedAt: "2025-01",
+      leftAt: "2025-03",
     },
   ],
 
   highlights: [
     {
       year: 2023,
-      title: "Challengers Malaysia & Singapore Split 2",
+      title: "VALORANT Challengers 2023 Malaysia & Singapore: Split 1",
       result: "우승",
     },
     {
       year: 2023,
-      title: "VCT Ascension Pacific",
+      title: "VALORANT Challengers 2023 Malaysia & Singapore: Split 2",
+      result: "우승",
+    },
+    {
+      year: 2023,
+      title: "VCT Ascension Pacific 2023",
       result: "우승",
     },
     {
       year: 2024,
-      title: "Challengers Southeast Asia Stage 3",
+      title: "VALORANT Challengers 2024 Southeast Asia: Split 3",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "OneGame Showdown 2024",
       result: "우승",
     },
     {
       year: 2025,
-      title: "VCT Pacific Stage 1",
-      result: "우승",
-    },
-    {
-      year: 2025,
-      title: "VCT Pacific Stage 2",
+      title: "VALORANT Challengers 2025 Southeast Asia: Split 1",
       result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto 2025",
+      result: "7~8위",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
+      result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "4위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
     },
   ],
 };
+
+const crazyguyAwards: ProPlayerAward[] = [
+  {
+    year: 2023,
+    title: "VALORANT Challengers 2023 Malaysia & Singapore: Split 2",
+    result: "MVP",
+  },
+  {
+    year: 2024,
+    title: "OneGame Showdown 2024",
+    result: "MVP",
+  },
+  {
+    year: 2025,
+    title: "VCT Pacific 2025 Season Awards",
+    result: "올해의 인게임 리더",
+  },
+];
 
 export const crazyguy: ProPlayer = {
   id: "player-crazyguy",
@@ -85,9 +144,9 @@ export const crazyguy: ProPlayer = {
   team: getRequiredTeam("rrq"),
 
   primaryRole: "Initiator",
-  roles: createRoles("Initiator"),
+  roles: createRoles("Initiator", ["Sentinel"]),
 
-  mainAgents: ["Fade", "Sova", "KAY/O"],
+  mainAgents: ["Sova", "Fade", "Sage"],
 
   riotAccounts: [
     {
@@ -104,6 +163,7 @@ export const crazyguy: ProPlayer = {
   ],
 
   career: crazyguyCareer,
+  awards: crazyguyAwards,
 
   settings: {
     dpi: 1600,
@@ -115,9 +175,9 @@ export const crazyguy: ProPlayer = {
     resolution: "1280x960",
 
     verification: {
-       verifiedAt: "2026-08-14",
-       sourceName: "ProSettings.net",
-        sourceUrl: "https://prosettings.net/valorant/players/crazyguy/",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net",
+      sourceUrl: "https://prosettings.net/players/crazyguy/",
     },
   },
 
@@ -128,7 +188,7 @@ export const crazyguy: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/crazyguy/",
     },
@@ -141,20 +201,20 @@ export const crazyguy: ProPlayer = {
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-       verifiedAt: "2026-08-14",
-       sourceName: "ProSettings.net",
-        sourceUrl: "https://prosettings.net/players/crazyguy/",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net / BestGamers",
+      sourceUrl: "https://prosettings.net/players/crazyguy/",
     },
   },
 
   stats: {
     rating: 1.02,
-    acs: 200.2,
-    kd: 1.1,
-    kast: 75,
-    adr: 138.8,
-    hs: 27,
+    acs: 211,
+    kd: 0.94,
+    kast: 71,
+    adr: 138.4,
+    hs: 23,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

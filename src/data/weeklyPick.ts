@@ -9,7 +9,7 @@ export interface WeeklyPick {
   selectedAt: string;
 }
 
-const WEEKLY_PICK_PLAYER_SLUG = "foxy9";
+const WEEKLY_PICK_PLAYER_SLUG = "izu";
 
 const findWeeklyPickPlayer = (
   playerSlug: string,
@@ -37,12 +37,12 @@ export const weeklyPick: WeeklyPick = {
     WEEKLY_PICK_PLAYER_SLUG,
   ),
 
-  title: "Deck.GG Weekly Pick",
+  title: "이번 주 선수",
 
   label: "이번 주 주목할 선수",
 
   comment:
-    "Barrel에 합류한 이후 뛰어난 기량과 인상적인 퍼포먼스를 보여주며 팀의 핵심 선수로 활약하고 있는 Foxy9을 이번 주 선수로 선정했습니다.",
+    "다양한 역할을 소화하는 유연함과 안정적인 경기력을 바탕으로 T1의 핵심 전력으로 활약하고 있는 iZu를 이번 주 선수로 선정했습니다.",
 
-  selectedAt: "2026-07-25",
+  selectedAt: "2026-08-25",
 };

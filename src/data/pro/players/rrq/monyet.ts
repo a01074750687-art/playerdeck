@@ -1,5 +1,6 @@
 import type {
   ProPlayer,
+  ProPlayerAward,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
 import {
@@ -13,8 +14,8 @@ const monyetCareer: ProPlayerCareer = {
   previousTeams: [
     {
       teamName: "ONIC Esports",
-      joinedAt: "2021-07",
-      leftAt: "2022-09",
+      joinedAt: "2020-11",
+      leftAt: "2022-10",
     },
     {
       teamName: "Global Esports",
@@ -31,31 +32,79 @@ const monyetCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2022,
+      title: "VCT 2022: Indonesia Stage 2 Challengers",
+      result: "우승",
+    },
+    {
+      year: 2022,
       title: "VCT APAC Last Chance Qualifier",
       result: "3위",
     },
     {
       year: 2024,
-      title: "VALORANT Masters Madrid",
+      title: "VCT 2024: Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Masters Madrid 2024",
       result: "3위",
     },
     {
       year: 2025,
-      title: "VCT Pacific Stage 1",
+      title: "VCT 2025: Pacific Stage 1",
       result: "우승",
     },
     {
       year: 2025,
-      title: "VCT Pacific Stage 2",
+      title: "VALORANT Masters Toronto 2025",
+      result: "7~8위",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
       result: "준우승",
     },
     {
       year: 2025,
-      title: "VALORANT Champions Paris",
+      title: "VALORANT Champions 2025",
       result: "9~12위",
+    },
+    {
+      year: 2025,
+      title: "Spotlight Series Pacific 2025 x GES Asia",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "4위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
     },
   ],
 };
+
+const monyetAwards: ProPlayerAward[] = [
+  {
+    year: 2022,
+    title: "SEA Esports Championship 2021",
+    result: "MVP",
+  },
+  {
+    year: 2022,
+    title: "VCT 2022: Indonesia Stage 2 Challengers",
+    result: "MVP",
+  },
+  {
+    year: 2025,
+    title: "Spotlight Series Pacific 2025 x GES Asia",
+    result: "MVP",
+  },
+];
 
 export const monyet: ProPlayer = {
   id: "player-monyet",
@@ -75,9 +124,9 @@ export const monyet: ProPlayer = {
   team: getRequiredTeam("rrq"),
 
   primaryRole: "Controller",
-  roles: createRoles("Controller", ["Duelist"]),
+  roles: createRoles("Controller"),
 
-  mainAgents: ["Omen", "Viper", "Raze"],
+  mainAgents: ["Omen", "Astra", "Harbor"],
 
   riotAccounts: [
     {
@@ -93,59 +142,59 @@ export const monyet: ProPlayer = {
     },
   ],
 
- 
   career: monyetCareer,
+  awards: monyetAwards,
 
   settings: {
-    dpi: 800,
-    sensitivity: 0.4,
-    scopedSensitivity: 1,
-    adsSensitivity: null,
-    edpi: 320,
+    dpi: 400,
+    sensitivity: 0.639,
+    scopedSensitivity: 0.98,
+    adsSensitivity: 0.98,
+    edpi: 255.6,
     pollingRate: 1000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/monyet/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-monyet/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;c;0;h;0;d;0;f;0;0b;1;0a;1;0l;3;0t;2;0o;2;0m;0;0f;0;1b;0",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-monyet/",
     },
   },
 
   gear: {
-    mouse: "VAXEE NP-01S Pink",
-    mousepad: "Pulsar eS Saturn Pro Black",
-    keyboard: "Wooting 80HE Frost",
-    monitor: "ZOWIE XL2546K",
+    mouse: "VAXEE NP-01S V3",
+    mousepad: "VAXEE PD151",
+    keyboard: "Wooting 80HE",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/monyet/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-monyet/",
     },
   },
 
   stats: {
-    rating: 1.2,
-    acs: 196.1,
-    kd: 1.07,
-    kast: 74,
-    adr: 135.6,
-    hs: 26,
+    rating: 1.14,
+    acs: 217,
+    kd: 1.1,
+    kast: 75,
+    adr: 138.2,
+    hs: 33,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

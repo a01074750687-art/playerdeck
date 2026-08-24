@@ -12,11 +12,18 @@ const zeusCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "SNAPZ",
+      joinedAt: "2024-05",
+      leftAt: "2024-05",
+    },
+    {
       teamName: "Avernus Esports",
+      joinedAt: "2024-06",
       leftAt: "2024-08",
     },
     {
       teamName: "Oasis Gaming",
+      joinedAt: "2024-10",
       leftAt: "2026-03",
     },
   ],
@@ -29,22 +36,27 @@ const zeusCareer: ProPlayerCareer = {
     },
     {
       year: 2025,
+      title: "Locked N' Loaded Philippines Split 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
       title: "Predator League Philippines 2026",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Challengers Southeast Asia Stage 3",
+      title: "VALORANT Challengers 2025 Southeast Asia: Stage 3",
       result: "3~4위",
     },
     {
       year: 2026,
-      title: "Challengers SEA Split 1 Philippines Qualifier",
+      title: "VALORANT Challengers 2026 Southeast Asia: Split 1 - Philippines Qualifier",
       result: "우승",
     },
     {
       year: 2026,
-      title: "Esports World Cup Pacific Qualifier Stage 1",
+      title: "Esports World Cup 2026: Pacific Qualifier Stage 1",
       result: "3위",
     },
   ],
@@ -75,7 +87,7 @@ export const zeus: ProPlayer = {
   riotAccounts: [
     {
       name: "Secret Zeus",
-      tag:  "ela",
+      tag: "ela",
 
       verification: {
         verifiedAt: "2026-08-21",
@@ -98,7 +110,7 @@ export const zeus: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-17",
+      verifiedAt: "2026-08-25",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-zeus/",
     },
@@ -111,7 +123,7 @@ export const zeus: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-07-17",
+      verifiedAt: "2026-08-25",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-zeus/",
     },
@@ -124,20 +136,20 @@ export const zeus: ProPlayer = {
     monitor: "ZOWIE XL2586X+",
 
     verification: {
-      verifiedAt: "2026-07-17",
+      verifiedAt: "2026-08-25",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-zeus/",
     },
   },
 
   stats: {
-    rating: 1.07,
-    acs: 230.0,
-    kd: 1.11,
-    kast: 76.23,
-    adr: 150.5,
-    hs: null,
+    rating: 1.03,
+    acs: 224,
+    kd: 1.05,
+    kast: 73,
+    adr: 145.8,
+    hs: 29,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

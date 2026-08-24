@@ -1,5 +1,6 @@
 import type {
   ProPlayer,
+  ProPlayerAward,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
 import {
@@ -20,32 +21,70 @@ const kushyCareer: ProPlayerCareer = {
 
   highlights: [
     {
-      year: 2023,
-      title: "Challengers Indonesia Split 1",
+      year: 2021,
+      title: "The Esports Club Challenger Series 6",
+      result: "우승",
+    },
+    {
+      year: 2022,
+      title: "VCT 2022: Indonesia Stage 2 Challengers",
       result: "준우승",
+    },
+    {
+      year: 2023,
+      title: "Red Bull Campus Clutch 2023",
+      result: "우승",
     },
     {
       year: 2024,
-      title: "Challengers Indonesia Split 1",
+      title: "VALORANT Challengers 2024 Indonesia: Split 1",
       result: "우승",
     },
     {
-      year: 2025,
-      title: "VCT Pacific Stage 1",
-      result: "우승",
-    },
-    {
-      year: 2025,
-      title: "VCT Pacific Stage 2",
+      year: 2024,
+      title: "VALORANT Challengers 2024 Indonesia: Split 2",
       result: "준우승",
     },
     {
       year: 2025,
-      title: "VALORANT Champions Paris",
+      title: "VCT 2025: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto 2025",
+      result: "7~8위",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
       result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "4위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
     },
   ],
 };
+
+const kushyAwards: ProPlayerAward[] = [
+  {
+    year: 2023,
+    title: "Red Bull Campus Clutch 2023",
+    result: "결승 MVP",
+  },
+];
 
 export const kushy: ProPlayer = {
   id: "player-kushy",
@@ -64,10 +103,14 @@ export const kushy: ProPlayer = {
 
   team: getRequiredTeam("rrq"),
 
-  primaryRole: "Initiator",
-  roles: createRoles("Initiator"),
+  primaryRole: "Flex",
+  roles: createRoles("Flex", [
+    "Duelist",
+    "Initiator",
+    "Sentinel",
+  ]),
 
-  mainAgents: ["Sova", "Fade", "Skye"],
+  mainAgents: ["Phoenix", "Fade", "Sage"],
 
   riotAccounts: [
     {
@@ -84,6 +127,7 @@ export const kushy: ProPlayer = {
   ],
 
   career: kushyCareer,
+  awards: kushyAwards,
 
   settings: {
     dpi: 1600,
@@ -95,9 +139,9 @@ export const kushy: ProPlayer = {
     resolution: "1680x1050",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/kushy",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-kushy/",
     },
   },
 
@@ -108,7 +152,7 @@ export const kushy: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-21",
+      verifiedAt: "2026-08-25",
       sourceName: "E-Sports_GG",
       sourceUrl: "https://e-sportsgg.com/News/LkF_bE1B",
     },
@@ -121,20 +165,20 @@ export const kushy: ProPlayer = {
     monitor: null,
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "BestGamers",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
       sourceUrl: "https://b-gamers.net/valorant-kushy/",
     },
   },
 
   stats: {
-    rating: 1.04,
-    acs: 204.3,
-    kd: 1.13,
-    kast: 76,
-    adr: 142.0,
-    hs: 28,
+    rating: 0.66,
+    acs: 167,
+    kd: 0.67,
+    kast: 64,
+    adr: 113.0,
+    hs: 31,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

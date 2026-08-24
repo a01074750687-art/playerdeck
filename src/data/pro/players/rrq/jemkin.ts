@@ -1,5 +1,6 @@
 import type {
   ProPlayer,
+  ProPlayerAward,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
 import {
@@ -31,31 +32,64 @@ const jemkinCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2023,
-      title: "Challengers Japan Split 2",
+      title: "VALORANT Challengers 2023 Japan: Split 1",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Challengers 2023 Japan: Split 2",
       result: "우승",
     },
     {
       year: 2023,
-      title: "VCT Ascension Pacific",
+      title: "VCT Ascension Pacific 2023",
       result: "준우승",
     },
     {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 2",
+      result: "5~6위",
+    },
+    {
       year: 2025,
-      title: "VCT Pacific Stage 1",
+      title: "VCT 2025: Pacific Stage 1",
       result: "우승",
     },
     {
       year: 2025,
-      title: "VCT Pacific Stage 2",
+      title: "VALORANT Masters Toronto 2025",
+      result: "7~8위",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
       result: "준우승",
     },
     {
       year: 2025,
-      title: "VALORANT Champions Paris",
+      title: "VALORANT Champions 2025",
       result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "4위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
     },
   ],
 };
+
+const jemkinAwards: ProPlayerAward[] = [
+  {
+    year: 2025,
+    title: "VCT 2025: Pacific Stage 1",
+    result: "결승 MVP",
+  },
+];
 
 export const jemkin: ProPlayer = {
   id: "player-jemkin",
@@ -77,12 +111,13 @@ export const jemkin: ProPlayer = {
   primaryRole: "Duelist",
   roles: createRoles("Duelist", ["Sentinel"]),
 
-  mainAgents: ["Jett", "Raze", "Chamber"],
+  mainAgents: ["Yoru", "Chamber", "Waylay"],
 
   riotAccounts: [
     {
-      name:"RRQ Jemkin",
+      name: "RRQ Jemkin",
       tag: "1351",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
@@ -93,6 +128,7 @@ export const jemkin: ProPlayer = {
   ],
 
   career: jemkinCareer,
+  awards: jemkinAwards,
 
   settings: {
     dpi: 1600,
@@ -100,51 +136,50 @@ export const jemkin: ProPlayer = {
     scopedSensitivity: 1,
     adsSensitivity: 1,
     edpi: 200,
-    pollingRate: 1000,
+    pollingRate: null,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/jemkin/",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net / BestGamers",
+      sourceUrl: "https://prosettings.net/players/jemkin/",
     },
   },
 
   crosshair: {
-    code: "0;s;1;P;o;1;d;1;f;0;0b;0;1b;0;S;s;1.0",
+    code: "0;P;h;0;0l;3;0o;0;0a;1;0f;0;1b;0",
     color: "White",
-    outlines: true,
-    centerDot: true,
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
-      sourceUrl:
-        "https://prosettings.net/players/jemkin/",
+      sourceUrl: "https://prosettings.net/players/jemkin/",
     },
   },
 
   gear: {
-    mouse: "Razer Viper V4 Pro Black",
+    mouse: "Logitech G Pro X Superlight 2c Magenta",
     mousepad: "Pulsar eS Saturn Pro Black",
-    keyboard: "Wooting 80HE",
+    keyboard: "Wooting 80HE Black",
     monitor: null,
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/valorant/players/jemkin/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-jemkin/",
     },
   },
 
   stats: {
-    rating: 1.17,
-    acs: 192.0,
-    kd: 1.04,
-    kast: 73,
-    adr: 132.4,
-    hs: 25,
+    rating: 1.01,
+    acs: 195,
+    kd: 1.03,
+    kast: 70,
+    adr: 124.8,
+    hs: 26,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

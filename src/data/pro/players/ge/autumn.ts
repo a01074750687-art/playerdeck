@@ -12,12 +12,23 @@ const autumnCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "Ground Zero Gaming",
+      joinedAt: "2020-09",
+      leftAt: "2020-10",
+    },
+    {
       teamName: "ORDER",
       joinedAt: "2020-10",
       leftAt: "2022-09",
     },
     {
+      teamName: "HONEY BADGERS",
+      joinedAt: "2022-07",
+      leftAt: "2023-03",
+    },
+    {
       teamName: "Gods Reign",
+      joinedAt: "2023-03",
       leftAt: "2023-09",
     },
     {
@@ -30,28 +41,38 @@ const autumnCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2021,
-      title: "Oceania Tour Championship",
+      title: "Oceania Tour: Championship",
       result: "우승",
     },
     {
-      year: 2024,
-      title: "VCT China Kickoff",
+      year: 2023,
+      title: "VALORANT Challengers 2023 South Asia: Split 1",
       result: "준우승",
     },
     {
       year: 2024,
-      title: "VCT China Stage 1",
+      title: "VCT 2024: China Kickoff",
       result: "준우승",
     },
     {
       year: 2024,
-      title: "VCT China Stage 2",
+      title: "VCT 2024: China Stage 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: China Stage 2",
       result: "준우승",
     },
     {
       year: 2026,
-      title: "VCT Pacific Stage 1",
+      title: "VCT 2026: Pacific Stage 1",
       result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London 2026",
+      result: "9~10위",
     },
   ],
 };
@@ -74,9 +95,9 @@ export const autumn: ProPlayer = {
   team: getRequiredTeam("global-esports"),
 
   primaryRole: "Flex",
-  roles: createRoles("Flex", ["Duelist", "Sentinel", "Controller"]),
+  roles: createRoles("Flex", ["Sentinel", "Duelist"]),
 
-  mainAgents: ["Phoenix", "Veto", "Yoru"],
+  mainAgents: ["Veto", "Yoru", "Phoenix"],
 
   career: autumnCareer,
 
@@ -90,7 +111,7 @@ export const autumn: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/autumn/",
     },
@@ -103,7 +124,7 @@ export const autumn: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/autumn/",
     },
@@ -116,20 +137,20 @@ export const autumn: ProPlayer = {
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-09",
+      verifiedAt: "2026-08-25",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/autumn/",
     },
   },
 
   stats: {
-    rating: 0.98,
-    acs: 198.5,
-    kd: 1.04,
-    kast: 69.3,
-    adr: 130.7,
-    hs: null,
+    rating: 1.11,
+    acs: 209,
+    kd: 1.19,
+    kast: 73,
+    adr: 133.1,
+    hs: 27,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-25",
 };

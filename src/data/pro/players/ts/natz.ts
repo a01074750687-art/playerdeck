@@ -14,10 +14,16 @@ const natzCareer: ProPlayerCareer = {
     {
       teamName: "NXL LIGAGAME",
       joinedAt: "2020-11",
-      leftAt: "2021-07",
+      leftAt: "2021-03",
     },
     {
       teamName: "Alter Ego",
+      joinedAt: "2021-06",
+      leftAt: "2023-06",
+    },
+    {
+      teamName: "Hike Digital Esports",
+      joinedAt: "2023-03",
       leftAt: "2023-06",
     },
     {
@@ -28,6 +34,11 @@ const natzCareer: ProPlayerCareer = {
     {
       teamName: "RRQ Academy",
       joinedAt: "2024-12",
+      leftAt: "2025-09",
+    },
+    {
+      teamName: "Rex Regum Qeon",
+      joinedAt: "2025-08",
       leftAt: "2025-09",
     },
     {
@@ -45,22 +56,47 @@ const natzCareer: ProPlayerCareer = {
     },
     {
       year: 2021,
-      title: "VCT Indonesia Stage 3 Challengers 2",
+      title: "VCT 2021: Indonesia Stage 3 Challengers 2",
+      result: "우승",
+    },
+    {
+      year: 2021,
+      title: "VCT 2021: Southeast Asia Stage 3 Challengers Playoffs",
+      result: "3위",
+    },
+    {
+      year: 2021,
+      title: "The Esports Club Challenger Series 6",
       result: "우승",
     },
     {
       year: 2022,
-      title: "VCT APAC Stage 2 Challengers",
+      title: "VCT 2022: Indonesia Stage 2 Challengers",
+      result: "준우승",
+    },
+    {
+      year: 2022,
+      title: "VCT 2022: APAC Stage 2 Challengers",
       result: "5~6위",
     },
     {
       year: 2025,
-      title: "VCT Pacific Ascension",
+      title: "Global Esports Fight Night: Academy",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific 2025",
       result: "3위",
     },
     {
+      year: 2025,
+      title: "Predator League Indonesia 2026",
+      result: "우승",
+    },
+    {
       year: 2026,
-      title: "Predator League Asia-Pacific",
+      title: "APAC Predator League 2026",
       result: "준우승",
     },
   ],
@@ -83,10 +119,10 @@ export const natz: ProPlayer = {
 
   team: getRequiredTeam("team-secret"),
 
-  primaryRole: "Initiator",
-  roles: createRoles("Initiator", ["Controller"]),
+  primaryRole: "Sentinel",
+  roles: createRoles("Sentinel", ["Controller", "Duelist"]),
 
-  mainAgents: ["Sova", "Omen", "Waylay"],
+  mainAgents: ["Cypher", "Vyse", "Omen"],
 
   riotAccounts: [
     {
@@ -105,7 +141,7 @@ export const natz: ProPlayer = {
   career: natzCareer,
 
   settings: {
-    dpi: 1600 ,
+    dpi: 1600,
     sensitivity: 0.115,
     scopedSensitivity: null,
     adsSensitivity: null,
@@ -114,22 +150,24 @@ export const natz: ProPlayer = {
     resolution: null,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-25",
+      sourceName: "BOOM Esports",
+      sourceUrl:
+        "https://boomesports.gg/pro-playbook-inside-the-valorant-setup-of-boom-esports-natz/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;o;1;d;1;z;1;0b;0;1b;0",
+    color: "White",
+    outlines: true,
+    centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-25",
+      sourceName: "BOOM Esports",
+      sourceUrl:
+        "https://boomesports.gg/pro-playbook-inside-the-valorant-setup-of-boom-esports-natz/",
     },
   },
 
@@ -137,23 +175,24 @@ export const natz: ProPlayer = {
     mouse: null,
     mousepad: null,
     keyboard: null,
-    monitor: null,
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-25",
+      sourceName: "BOOM Esports",
+      sourceUrl:
+        "https://boomesports.gg/pro-playbook-inside-the-valorant-setup-of-boom-esports-natz/",
     },
   },
 
   stats: {
-    rating: 0.96,
-    acs: 192.2,
-    kd: 0.95,
-    kast: 68.95,
-    adr: 128.0,
-    hs: null,
+    rating: 0.82,
+    acs: 174,
+    kd: 0.81,
+    kast: 65,
+    adr: 119.8,
+    hs: 29,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };

@@ -30,42 +30,42 @@ const udotanCareer: ProPlayerCareer = {
       leftAt: "2022-10",
     },
     {
-      teamName: "Gwangju Shadow",
+      teamName: "Shadow Corporation",
       joinedAt: "2023-03",
-      leftAt: "2023-12",
+      leftAt: "2023-06",
     },
     {
       teamName: "Four Angry Men",
-      joinedAt: "2023-10",
+      joinedAt: "2023-09",
       leftAt: "2024-02",
     },
     {
       teamName: "Rare Atom",
       joinedAt: "2024-02",
-      leftAt: "2024-09",
+      leftAt: "2024-10",
     },
   ],
 
   highlights: [
     {
       year: 2024,
-      title: "VCT Ascension China",
+      title: "VCT Ascension China 2024",
       result: "준우승",
     },
     {
       year: 2026,
-      title: "VCT Pacific Stage 1",
+      title: "VCT 2026: Pacific Stage 1",
       result: "3위",
     },
     {
       year: 2026,
-      title: "VALORANT Masters London",
+      title: "VALORANT Masters London 2026",
       result: "9~10위",
     },
     {
       year: 2026,
-      title: "Esports World Cup Pacific Qualifier Stage 2",
-      result: "준우승",
+      title: "Esports World Cup 2026: Pacific Qualifier",
+      result: "본선 진출",
     },
   ],
 };
@@ -90,7 +90,7 @@ export const udotan: ProPlayer = {
   primaryRole: "Duelist",
   roles: createRoles("Duelist"),
 
-  mainAgents: ["Neon", "Raze", "Jett"],
+  mainAgents: ["Raze", "Neon", "Jett"],
 
   riotAccounts: [
     {
@@ -118,8 +118,8 @@ export const udotan: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "ProSettings",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/udotan/",
     },
   },
@@ -131,33 +131,33 @@ export const udotan: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "ProSettings",
+      verifiedAt: "2026-08-25",
+      sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/udotan/",
     },
   },
 
   gear: {
     mouse: "Razer Viper V4 Pro Black",
-    mousepad: "Pulsar eS Saturn Pro Black",
-    keyboard: "Wooting 60HE v2 Black",
+    mousepad: "Pulsar eS Saturn Pro Red",
+    keyboard: "Wooting 60HE v2 Silver",
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "ProSettings",
-      sourceUrl: "https://prosettings.net/players/udotan/",
+      verifiedAt: "2026-08-25",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-udotan/",
     },
   },
 
   stats: {
-    rating: 0.92,
-    acs: 202.0,
-    kd: 0.92,
-    kast: 65.8,
-    adr: 134.6,
-    hs: null,
+    rating: 1.08,
+    acs: 231,
+    kd: 1.15,
+    kast: 70,
+    adr: 154.8,
+    hs: 26,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-25",
 };

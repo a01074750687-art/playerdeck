@@ -12,17 +12,29 @@ const styronCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
-      teamName: "Enigma Gaming",
-      leftAt: "2023-07",
+      teamName: "Gaimin Gladiators",
+      joinedAt: "2022-06",
+      leftAt: "2022-07",
     },
     {
       teamName: "LaZe",
-      leftAt: "2024-05",
+      joinedAt: "2022-07",
+      leftAt: "2022-09",
+    },
+    {
+      teamName: "Enigma Gaming",
+      joinedAt: "2023-02",
+      leftAt: "2023-07",
     },
     {
       teamName: "Disguised",
       joinedAt: "2024-05",
       leftAt: "2025-01",
+    },
+    {
+      teamName: "KIMMY KITTENS",
+      joinedAt: "2025-01",
+      leftAt: "2025-04",
     },
     {
       teamName: "Motiv Esports",
@@ -31,6 +43,7 @@ const styronCareer: ProPlayerCareer = {
     },
     {
       teamName: "XLB",
+      joinedAt: "2026-01",
       leftAt: "2026-06",
     },
   ],
@@ -38,27 +51,42 @@ const styronCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2024,
-      title: "Challengers Malaysia & Singapore Split 2",
+      title: "VALORANT Challengers 2024 Malaysia & Singapore: Split 2",
       result: "우승",
     },
     {
       year: 2024,
-      title: "Challengers Southeast Asia Stage 3",
+      title: "VALORANT Challengers 2024 Southeast Asia: Split 3",
       result: "우승",
     },
     {
       year: 2024,
-      title: "One Game Showdown",
+      title: "OneGame Showdown 2024",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Challengers Southeast Asia Stage 2",
+      title: "VALORANT Challengers 2025 Southeast Asia: Split 1",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Challengers 2025 Southeast Asia: Split 2",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Challengers Southeast Asia Stage 3",
+      title: "VALORANT Challengers 2025 Southeast Asia: Split 3",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Ascension Pacific 2025",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "Predator League Singapore 2026",
       result: "우승",
     },
   ],
@@ -69,7 +97,7 @@ export const styron: ProPlayer = {
   slug: "styron",
 
   nickname: "STYRON",
-  realName: "Tidus Goh",
+  realName: "Tidus Goh Zhen Wei",
 
   countryCode: "SG",
   countryName: "Singapore",
@@ -81,21 +109,21 @@ export const styron: ProPlayer = {
 
   team: getRequiredTeam("team-secret"),
 
-  primaryRole: "Sentinel",
-  roles: createRoles("Sentinel"),
+  primaryRole: "Initiator",
+  roles: createRoles("Initiator"),
 
-  mainAgents: ["Cypher", "Killjoy", "Fade"],
+  mainAgents: ["Sova", "Fade", "Skye"],
 
   riotAccounts: [
     {
-      name: "BLG STYRON",
+      name: "Secret STYRON",
       tag: "bibi",
 
       verification: {
-        verifiedAt: "2026-08-24",
+        verifiedAt: "2026-08-25",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/profile/riot/BLG%20STYRON%23bibi/overview?utm_source=chatgpt.com",
+          "https://tracker.gg/valorant/profile/riot/Secret%20STYRON%23bibi/overview",
       },
     },
   ],
@@ -112,7 +140,7 @@ export const styron: ProPlayer = {
     resolution: null,
 
     verification: {
-      verifiedAt: "2026-08-09",
+      verifiedAt: "2026-08-25",
       sourceName: "note.com",
       sourceUrl: "https://note.com/gaminglog/n/n4e04e83ff42c",
     },
@@ -125,33 +153,33 @@ export const styron: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
+      verifiedAt: "2026-08-25",
       sourceName: "note.com",
       sourceUrl: "https://note.com/gaminglog/n/n4e04e83ff42c",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mouse: "Logitech G Pro X Superlight",
+    mousepad: "ARTISAN NINJA FX Zero Soft",
+    keyboard: "Wooting 60HE",
+    monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-25",
+      sourceName: "note.com",
+      sourceUrl: "https://note.com/gaminglog/n/n4e04e83ff42c",
     },
   },
 
   stats: {
-    rating: 0.95,
-    acs: 183.3,
-    kd: 0.95,
-    kast: 74.35,
-    adr: 122.1,
-    hs: null,
+    rating: 0.93,
+    acs: 185,
+    kd: 0.86,
+    kast: 72,
+    adr: 123.0,
+    hs: 23,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-25",
 };
