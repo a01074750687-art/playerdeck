@@ -12,7 +12,11 @@ const ivyCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
-      teamName: "Gwangju Shadow",
+      teamName: "Our Growth Story",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "Shadow Corporation",
       joinedAt: "2023-09",
       leftAt: "2023-12",
     },
@@ -49,6 +53,11 @@ const ivyCareer: ProPlayerCareer = {
       title: "VALORANT Masters Santiago 2026",
       result: "우승",
     },
+    {
+      year: 2026,
+      title: "Esports World Cup 2026",
+      result: "3위",
+    },
   ],
 };
 
@@ -72,7 +81,21 @@ export const ivy: ProPlayer = {
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Controller"]),
 
-  mainAgents: ["Cypher", "Viper", "Vyse"],
+  mainAgents: ["Cypher", "Viper", "Killjoy"],
+
+  riotAccounts: [
+    {
+      name: "NS Ivy",
+      tag: "0520",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/leaderboards/ranked/pc/default?act=9d85c932-4820-c060-09c3-668636d4df1b&page=23&platform=pc&region=global",
+      },
+    },
+  ],
 
   career: ivyCareer,
 
@@ -86,7 +109,7 @@ export const ivy: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-22",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/ivy/",
     },
@@ -99,7 +122,7 @@ export const ivy: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-07-22",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/ivy/",
     },
@@ -112,20 +135,20 @@ export const ivy: ProPlayer = {
     monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-07-22",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/ivy/",
     },
   },
 
   stats: {
-    rating: 1.03,
-    acs: 196.6,
-    kd: 1.07,
-    kast: 70.1,
-    adr: 129.1,
-    hs: null,
+    rating: 1.00,
+    acs: 197,
+    kd: 1.04,
+    kast: 70,
+    adr: 128.1,
+    hs: 30,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

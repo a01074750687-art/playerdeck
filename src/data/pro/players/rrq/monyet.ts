@@ -81,17 +81,19 @@ export const monyet: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "RRQ Monyet",
-      tag: "000",
+      name: "monyet",
+      tag: "0506",
+
       verification: {
-        verifiedAt: "2026-08-14",
-        sourceName: "OP.GG",
+        verifiedAt: "2026-08-16",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://op.gg/valorant/profile/RRQ%20Monyet-000",
+          "https://tracker.gg/valorant/profile/riot/monyet%230506/overview",
       },
     },
   ],
 
+ 
   career: monyetCareer,
 
   settings: {

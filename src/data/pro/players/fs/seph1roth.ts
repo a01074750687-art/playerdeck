@@ -13,12 +13,18 @@ const seph1rothCareer: ProPlayerCareer = {
   previousTeams: [
     {
       teamName: "CRIT Esports",
+      joinedAt: "2023-08",
       leftAt: "2023-09",
     },
     {
       teamName: "Made in Thailand",
       joinedAt: "2023-09",
       leftAt: "2025-01",
+    },
+    {
+      teamName: "FULL SENSE",
+      joinedAt: "2025-01",
+      leftAt: "2025-12",
     },
     {
       teamName: "Sharper Esports",
@@ -72,62 +78,79 @@ export const seph1roth: ProPlayer = {
   profileImageUrl: null,
   team: getRequiredTeam("full-sense"),
 
-  primaryRole: "Flex",
-  roles: createRoles("Flex", ["Controller", "Sentinel"]),
+  primaryRole: "Sentinel",
+  roles: createRoles("Sentinel", ["Controller"]),
   mainAgents: ["Cypher", "Killjoy"],
+
+  riotAccounts: [
+    {
+      name: "Fs seph1roth",
+      tag: "mumg",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/leaderboards/ranked/all/default?act=4f0864e2-40af-28a4-de2c-0e9e64e75f23&page=21&platform=pc&region=global",
+      },
+    },
+  ],
 
   career: seph1rothCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
-    pollingRate: null,
-    resolution: null,
+    dpi: 800,
+    sensitivity: 0.314,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
+    edpi: 251.2,
+    pollingRate: 1000,
+    resolution: "1440x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "Johotaxi",
+      sourceUrl:
+        "https://johotaxi.com/valorant-seph1roth-device/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;h;0;0l;2;0o;1;0a;1;0f;0;1b;0",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "Johotaxi",
+      sourceUrl:
+        "https://johotaxi.com/valorant-seph1roth-device/",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mouse: "Logitech G Pro X Superlight 2 White",
+    mousepad: "Artisan Ninja FX Zero Soft XL",
+    keyboard: "Wooting 60HE+",
+    monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "Johotaxi",
+      sourceUrl:
+        "https://johotaxi.com/valorant-seph1roth-device/",
     },
   },
 
   stats: {
-    rating: 0.76,
-    acs: 140.9,
-    kd: 0.72,
-    kast: 64.8,
-    adr: 96.7,
-    hs: null,
+    rating: 0.85,
+    acs: 172,
+    kd: 0.88,
+    kast: 69,
+    adr: 110.8,
+    hs: 37,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

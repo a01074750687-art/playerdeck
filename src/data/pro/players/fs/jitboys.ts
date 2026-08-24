@@ -13,6 +13,7 @@ const jitboysCareer: ProPlayerCareer = {
   previousTeams: [
     {
       teamName: "FW Esports",
+      joinedAt: "2021-06",
       leftAt: "2022-10",
     },
     {
@@ -69,7 +70,7 @@ export const jitboys: ProPlayer = {
 
   primaryRole: "Flex",
   roles: createRoles("Flex", ["Sentinel", "Duelist"]),
-  mainAgents: ["Cypher", "Neon", "Yoru"],
+  mainAgents: ["Phoenix", "Neon", "Yoru"],
 
   career: jitboysCareer,
 
@@ -83,7 +84,7 @@ export const jitboys: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/jitboys/",
     },
@@ -96,33 +97,33 @@ export const jitboys: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/jitboys/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 SUPERSTRIKE",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
     mousepad: "Artisan Ninja FX Zero Soft Orange",
     keyboard: "Wooting 80HE Frost",
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/jitboys/",
     },
   },
 
   stats: {
-    rating: null,
-    acs: null,
-    kd: null,
-    kast: null,
-    adr: null,
-    hs: null,
+    rating: 0.93,
+    acs: 209,
+    kd: 0.98,
+    kast: 67,
+    adr: 137.6,
+    hs: 27,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

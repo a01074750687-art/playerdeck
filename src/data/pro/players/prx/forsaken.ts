@@ -16,27 +16,87 @@ const forsakenCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2022,
-      title: "VALORANT Masters Copenhagen",
+      title: "VALORANT Masters Reykjavík 2022",
+      result: "4위",
+    },
+    {
+      year: 2022,
+      title: "VALORANT Masters Copenhagen 2022",
       result: "준우승",
     },
     {
       year: 2023,
-      title: "VCT Pacific",
+      title: "VCT 2023: Pacific League",
       result: "우승",
     },
     {
       year: 2023,
-      title: "VALORANT Champions Los Angeles",
+      title: "VALORANT Masters Tokyo 2023",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions 2023",
       result: "준우승",
     },
     {
+      year: 2024,
+      title: "VALORANT Masters Madrid 2024",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 2",
+      result: "3위",
+    },
+    {
       year: 2025,
-      title: "VALORANT Masters Toronto",
+      title: "VCT 2025: Pacific Stage 1",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto 2025",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Radiant International Invitational",
       result: "우승",
     },
     {
       year: 2026,
-      title: "VALORANT Masters London",
+      title: "VCT 2026: Pacific Kickoff",
+      result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London 2026",
       result: "준우승",
     },
   ],
@@ -45,13 +105,23 @@ const forsakenCareer: ProPlayerCareer = {
 const forsakenAwards: ProPlayerAward[] = [
   {
     year: 2023,
-    title: "VCT Pacific Awards",
+    title: "VCT 2023: Pacific League",
     result: "올해의 감시자",
   },
   {
-    year: 2025,
-    title: "VALORANT Masters Toronto",
+    year: 2024,
+    title: "VALORANT Radiant Asia Invitational",
     result: "결승 MVP",
+  },
+  {
+    year: 2025,
+    title: "VALORANT Masters Toronto 2025",
+    result: "MVP",
+  },
+  {
+    year: 2025,
+    title: "VCT 2025: Pacific Stage 2",
+    result: "올해의 선수",
   },
 ];
 
@@ -74,23 +144,23 @@ export const forsaken: ProPlayer = {
 
   primaryRole: "Flex",
   roles: createRoles("Flex", [
-    "Duelist",
-    "Initiator",
     "Controller",
-    "Sentinel",
+    "Initiator",
+    "Duelist",
   ]),
 
-  mainAgents: ["Yoru", "Omen", "Neon"],
+  mainAgents: ["Omen", "Harbor", "Gekko"],
 
   riotAccounts: [
     {
       name: "PRX f0rsakeN",
       tag: "bibii",
+
       verification: {
-        verifiedAt: "2026-08-14",
-        sourceName: "Tracker Network / OP.GG",
+        verifiedAt: "2026-08-24",
+        sourceName: "OP.GG",
         sourceUrl:
-          "https://tracker.gg/valorant/crosshairs/gallery?players=pros",
+          "https://op.gg/valorant/profile/PRX%20f0rsakeN-bibii",
       },
     },
   ],
@@ -108,7 +178,7 @@ export const forsaken: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-16",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers / ProSettings.net",
       sourceUrl: "https://b-gamers.net/valorant-f0rsaken/",
     },
@@ -121,7 +191,7 @@ export const forsaken: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-16",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/f0rsaken/",
     },
@@ -131,23 +201,23 @@ export const forsaken: ProPlayer = {
     mouse: "Pulsar Susanto-X",
     mousepad: "Pulsar eS Saturn Pro Red",
     keyboard: "Wooting 60HE v2 Silver",
-    monitor: "ZOWIE XL2566K+",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-16",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers / ProSettings.net",
       sourceUrl: "https://b-gamers.net/valorant-f0rsaken/",
     },
   },
 
   stats: {
-    rating: 1.18,
-    acs: 224.6,
-    kd: 1.17,
-    kast: 76,
-    adr: 146.8,
+    rating: 0.97,
+    acs: 213,
+    kd: 0.98,
+    kast: 70,
+    adr: 135.8,
     hs: 33,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

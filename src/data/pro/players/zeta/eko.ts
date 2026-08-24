@@ -69,6 +69,11 @@ const ekoCareer: ProPlayerCareer = {
       title: "Red Bull Home Ground 2025",
       result: "3위",
     },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2 Play-Ins",
+      result: "7~8위",
+    },
   ],
 };
 
@@ -86,66 +91,78 @@ export const eko: ProPlayer = {
   status: "Active",
 
   profileImageUrl: null,
-
   team: getRequiredTeam("zeta"),
 
-  primaryRole: "Flex",
-  roles: createRoles("Flex", ["Initiator", "Duelist"]),
+  primaryRole: "Initiator",
+  roles: createRoles("Initiator", ["Duelist"]),
+  mainAgents: ["Yoru", "Fade", "Sova"],
 
-  mainAgents: ["Sova", "Yoru", "Breach"],
+  riotAccounts: [
+    {
+      name: "ZETA eKo",
+      tag: "twoSu",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/ZETA%20eKo%23twoSu/overview",
+      },
+    },
+  ],
 
   career: ekoCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
+    dpi: 800,
+    sensitivity: 0.27,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
+    edpi: 216,
     pollingRate: null,
-    resolution: null,
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-eKo/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;o;1;d;1;0b;0;1b;0",
+    color: "White",
+    outlines: true,
+    centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "FPS Loadout",
+      sourceUrl: "https://www.fps-loadout.com/valorant-eko/",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mouse: "Razer Viper V3 Pro Black",
+    mousepad: "ARTISAN NINJA FX Zero",
+    keyboard: "SONY INZONE KBD-H75",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-eKo/",
     },
   },
 
   stats: {
-    rating: 1.37,
-    acs: 247.6,
-    kd: 1.38,
-    kast: 80.9,
-    adr: 157.6,
-    hs: null,
+    rating: 1.03,
+    acs: 203,
+    kd: 0.96,
+    kast: 71,
+    adr: 137.2,
+    hs: 30,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

@@ -13,12 +13,23 @@ const killuaCareer: ProPlayerCareer = {
   previousTeams: [
     {
       teamName: "FW Esports",
+      joinedAt: "2021-06",
       leftAt: "2022-12",
+    },
+    {
+      teamName: "FULL SENSE",
+      joinedAt: "2022-12",
+      leftAt: "2023-12",
     },
     {
       teamName: "Made in Thailand",
       joinedAt: "2023-12",
       leftAt: "2025-01",
+    },
+    {
+      teamName: "FULL SENSE",
+      joinedAt: "2025-01",
+      leftAt: "2025-02",
     },
     {
       teamName: "TALON",
@@ -76,58 +87,72 @@ export const killua: ProPlayer = {
   roles: createRoles("Initiator"),
   mainAgents: ["Fade", "Sova", "Skye"],
 
+  riotAccounts: [
+    {
+      name: "Fs killua",
+      tag: "hrdm",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/leaderboards/ranked/pc/default?act=dcde7346-4085-de4f-c463-2489ed47983b&page=1&platform=pc&region=ap",
+      },
+    },
+  ],
+
   career: killuaCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
+    dpi: 800,
+    sensitivity: 0.35,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
+    edpi: 280,
     pollingRate: null,
-    resolution: null,
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-killua/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;o;1;d;1;0b;0;1b;0",
+    color: "White",
+    outlines: true,
+    centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BetaGamer",
+      sourceUrl: "https://www.betagamer.net/archives/7157",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mouse: "Razer Viper V3 Pro Faker Edition",
+    mousepad: "Artisan Ninja FX Hayate Otsu Black",
+    keyboard: "Wooting 60HE",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-killua/",
     },
   },
 
   stats: {
-    rating: 0.78,
-    acs: 147.0,
-    kd: 0.69,
-    kast: 64.5,
-    adr: 101.7,
-    hs: null,
+    rating: 1.03,
+    acs: 193,
+    kd: 0.98,
+    kast: 76,
+    adr: 131.5,
+    hs: 34,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

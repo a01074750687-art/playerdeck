@@ -92,6 +92,20 @@ export const udotan: ProPlayer = {
 
   mainAgents: ["Neon", "Raze", "Jett"],
 
+  riotAccounts: [
+    {
+      name: "GE UdoTan",
+      tag: "GOOSE",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/GE%20UdoTan%23GOOSE/overview",
+      },
+    },
+  ],
+
   career: udotanCareer,
 
   settings: {
@@ -100,39 +114,39 @@ export const udotan: ProPlayer = {
     scopedSensitivity: 0.8,
     adsSensitivity: 0.6,
     edpi: 161.6,
-    pollingRate: null,
+    pollingRate: 4000,
     resolution: "1920x1080",
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-udotan/",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/udotan/",
     },
   },
 
   crosshair: {
-    code: null,
+    code: "0;c;1;s;1;P;o;1;f;0;m;1;0t;1;0l;2;0a;1;0f;0;1b;0;S;b;1;c;8;t;040510FF;s;0.9;o;1",
     color: "White",
     outlines: true,
-    centerDot: true,
+    centerDot: false,
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-udotan/",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/udotan/",
     },
   },
 
   gear: {
     mouse: "Razer Viper V4 Pro Black",
-    mousepad: "Pulsar eS Saturn Pro Red",
-    keyboard: "Wooting 60HE v2 Silver",
-    monitor: null,
+    mousepad: "Pulsar eS Saturn Pro Black",
+    keyboard: "Wooting 60HE v2 Black",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-udotan/",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/udotan/",
     },
   },
 

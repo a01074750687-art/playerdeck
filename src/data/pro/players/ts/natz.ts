@@ -83,19 +83,33 @@ export const natz: ProPlayer = {
 
   team: getRequiredTeam("team-secret"),
 
-  primaryRole: "Sentinel",
-  roles: createRoles("Sentinel", ["Controller"]),
+  primaryRole: "Initiator",
+  roles: createRoles("Initiator", ["Controller"]),
 
-  mainAgents: ["Cypher", "Omen", "Waylay"],
+  mainAgents: ["Sova", "Omen", "Waylay"],
+
+  riotAccounts: [
+    {
+      name: "Secret natz",
+      tag: "0108",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Secret%20natz%230108/overview",
+      },
+    },
+  ],
 
   career: natzCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
+    dpi: 1600 ,
+    sensitivity: 0.115,
     scopedSensitivity: null,
     adsSensitivity: null,
-    edpi: null,
+    edpi: 184,
     pollingRate: null,
     resolution: null,
 

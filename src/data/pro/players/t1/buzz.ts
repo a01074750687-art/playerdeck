@@ -12,9 +12,24 @@ const buzzCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "MaD",
+      joinedAt: "2020-06",
+      leftAt: "2020-08",
+    },
+    {
       teamName: "Cloud9 Korea",
       joinedAt: "2020-10",
       leftAt: "2020-12",
+    },
+    {
+      teamName: "BearClaw Gaming",
+      joinedAt: "2021-01",
+      leftAt: "2021-02",
+    },
+    {
+      teamName: "MUYAHO",
+      joinedAt: "2021-02",
+      leftAt: "2021-03",
     },
     {
       teamName: "Rio Company",
@@ -41,23 +56,33 @@ const buzzCareer: ProPlayerCareer = {
     },
     {
       year: 2022,
-      title: "Masters Reykjavík",
+      title: "VALORANT Masters Reykjavík 2022",
       result: "5~6위",
     },
     {
       year: 2022,
-      title: "Champions Istanbul",
+      title: "VALORANT Champions Istanbul 2022",
       result: "3위",
     },
     {
       year: 2023,
-      title: "VCT Pacific",
+      title: "VCT 2023: Pacific League",
       result: "준우승",
     },
     {
       year: 2025,
-      title: "Masters Bangkok",
+      title: "VCT 2025: Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Bangkok 2025",
       result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "준우승",
     },
   ],
 };
@@ -80,14 +105,15 @@ export const buzz: ProPlayer = {
   team: getRequiredTeam("t1"),
 
   primaryRole: "Duelist",
-  roles: createRoles("Duelist", ["Sentinel"]),
+  roles: createRoles("Duelist", ["Controller"]),
 
-  mainAgents: ["Jett", "Neon", "Killjoy"],
+  mainAgents: ["Phoenix", "Neon", "Omen"],
 
   riotAccounts: [
     {
       name: "PulsarBuZz Mouse",
       tag: "BUYIT",
+
       verification: {
         verifiedAt: "2026-08-16",
         sourceName: "Tracker Network",
@@ -109,7 +135,7 @@ export const buzz: ProPlayer = {
     resolution: "1280x960",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers / ProSettings.net",
       sourceUrl: "https://b-gamers.net/valorant-buzz/",
     },
@@ -122,7 +148,7 @@ export const buzz: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/buzz/",
     },
@@ -135,20 +161,20 @@ export const buzz: ProPlayer = {
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-buzz/",
     },
   },
 
   stats: {
-    rating: 1.17,
-    acs: 238.4,
-    kd: 1.19,
-    kast: 74,
-    adr: 153.6,
-    hs: 29,
+    rating: 1.07,
+    acs: 225,
+    kd: 1.11,
+    kast: 77,
+    adr: 148.0,
+    hs: 25,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

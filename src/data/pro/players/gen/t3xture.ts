@@ -37,6 +37,11 @@ const t3xtureCareer: ProPlayerCareer = {
     },
     {
       year: 2024,
+      title: "VCT 2024: Pacific Stage 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
       title: "VALORANT Masters Shanghai 2024",
       result: "우승",
     },
@@ -55,9 +60,19 @@ const t3xtureCareer: ProPlayerCareer = {
 
 const t3xtureAwards: ProPlayerAward[] = [
   {
+    year: 2022,
+    title: "VCT 2022: Korea Stage 2 Challengers",
+    result: "그룹 스테이지 MVP",
+  },
+  {
     year: 2024,
     title: "VCT 2024: Pacific Stage 2",
     result: "올해의 타격대",
+  },
+  {
+    year: 2024,
+    title: "VCT 2024: Pacific Stage 2",
+    result: "VCT Pacific 2024 MVP",
   },
 ];
 
@@ -79,9 +94,9 @@ export const t3xture: ProPlayer = {
   team: getRequiredTeam("gen-g"),
 
   primaryRole: "Duelist",
-  roles: createRoles("Duelist"),
+  roles: createRoles("Duelist", ["Sentinel"]),
 
-  mainAgents: ["Jett", "Raze", "Neon"],
+  mainAgents: ["Chamber", "Raze", "Phoenix"],
 
   riotAccounts: [
     {
@@ -91,7 +106,7 @@ export const t3xture: ProPlayer = {
       verification: {
         verifiedAt: "2026-08-16",
         sourceName: "Tracker Network",
-        sourceUrl: 
+        sourceUrl:
           "https://tracker.gg/valorant/profile/riot/WelcometotheShow%231111/overview",
       },
     },
@@ -110,7 +125,7 @@ export const t3xture: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-28",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/t3xture/",
     },
@@ -119,11 +134,11 @@ export const t3xture: ProPlayer = {
   crosshair: {
     code: "0;s;1;P;o;0;f;0;0l;3;0o;2;0a;1;0f;0;1b;0;S;o;0",
     color: "White",
-    outlines: false,
+    outlines: true,
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-07-28",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/t3xture/",
     },
@@ -131,25 +146,25 @@ export const t3xture: ProPlayer = {
 
   gear: {
     mouse: "Logitech G Pro X Superlight 2 Cyan",
-    mousepad: "SteelSeries QcK Heavy",
+    mousepad: "SteelSeries QcK Heavy Black",
     keyboard: "SteelSeries Apex Pro TKL Gen 3 White",
     monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-07-28",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/t3xture/",
     },
   },
 
   stats: {
-    rating: 1.28,
-    acs: 259.4,
-    kd: 1.31,
-    kast: 74,
-    adr: 165.8,
-    hs: 28,
+    rating: 1.08,
+    acs: 223,
+    kd: 1.16,
+    kast: 71,
+    adr: 144.0,
+    hs: 23,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

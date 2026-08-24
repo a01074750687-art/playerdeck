@@ -83,6 +83,19 @@ export const sylvan: ProPlayer = {
 
   mainAgents: ["Omen", "Astra", "Viper"],
 
+  riotAccounts: [
+    {
+      name: "Secret Sylvan",
+      tag: "1004",
+      verification: {
+        verifiedAt: "2026-08-21",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Secret%20Sylvan%231004/overview",
+      },
+    },
+  ],
+
   career: sylvanCareer,
 
   settings: {

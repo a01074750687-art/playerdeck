@@ -10,7 +10,12 @@ import {
 const xrossCareer: ProPlayerCareer = {
   joinedAt: "2024-02",
 
-  previousTeams: [],
+  previousTeams: [
+    {
+      teamName: "골판지 전사",
+      leftAt: "2024-02",
+    },
+  ],
 
   highlights: [
     {
@@ -35,8 +40,18 @@ const xrossCareer: ProPlayerCareer = {
     },
     {
       year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2026,
       title: "VALORANT Masters Santiago 2026",
       result: "우승",
+    },
+    {
+      year: 2026,
+      title: "Esports World Cup 2026",
+      result: "3위",
     },
   ],
 };
@@ -58,10 +73,24 @@ export const xross: ProPlayer = {
 
   team: getRequiredTeam("nongshim-redforce"),
 
-  primaryRole: "Duelist",
-  roles: createRoles("Duelist", ["Flex"]),
+  primaryRole: "Initiator",
+  roles: createRoles("Initiator", ["Duelist"]),
 
-  mainAgents: ["Phoenix", "Raze", "Fade"],
+  mainAgents: ["Sova", "Phoenix", "Fade"],
+
+  riotAccounts: [
+    {
+      name: "NS Xross",
+      tag: "2012y",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/leaderboards/ranked/pc/default?act=4f0864e2-40af-28a4-de2c-0e9e64e75f23&page=20&platform=pc&region=ap",
+      },
+    },
+  ],
 
   career: xrossCareer,
 
@@ -75,7 +104,7 @@ export const xross: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/xross/",
     },
@@ -88,7 +117,7 @@ export const xross: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/xross/",
     },
@@ -96,25 +125,25 @@ export const xross: ProPlayer = {
 
   gear: {
     mouse: "Razer Viper V3 Pro White",
-    mousepad: "Artisan Ninja FX Zero XSoft Black",
+    mousepad: "ARTISAN NINJA FX Zero",
     keyboard: "Wooting 60HE v2 Silver",
-    monitor: "ZOWIE XL2546K",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-07-13",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/xross/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-xross/",
     },
   },
 
   stats: {
-    rating: 1.11,
-    acs: 212.9,
-    kd: 1.08,
-    kast: 76.0,
-    adr: 142.1,
-    hs: null,
+    rating: 1.16,
+    acs: 210,
+    kd: 1.17,
+    kast: 74,
+    adr: 142.8,
+    hs: 27,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

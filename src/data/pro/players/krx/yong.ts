@@ -31,17 +31,27 @@ const yongCareer: ProPlayerCareer = {
     },
     {
       year: 2025,
-      title: "Challengers Korea Stage 3",
+      title: "VALORANT Challengers 2025 Korea: Stage 2",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Challengers 2025 Korea: Stage 3",
       result: "4위",
     },
     {
       year: 2026,
-      title: "VCT Pacific Stage 1",
+      title: "VALORANT Challengers 2026 Korea: Split 1",
       result: "5~6위",
     },
     {
       year: 2026,
-      title: "Esports World Cup Pacific Qualifier",
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
+    },
+    {
+      year: 2026,
+      title: "Esports World Cup 2026: Pacific Qualifier",
       result: "5~6위",
     },
   ],
@@ -65,14 +75,15 @@ export const yong: ProPlayer = {
   team: getRequiredTeam("krx"),
 
   primaryRole: "Sentinel",
-  roles: createRoles("Sentinel"),
+  roles: createRoles("Sentinel", ["Controller"]),
 
-  mainAgents: ["Cypher", "Killjoy", "Vyse"],
+  mainAgents: ["Cypher", "Vyse", "Chamber"],
 
   riotAccounts: [
     {
       name: "DRX Yong",
       tag: "V S",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
@@ -86,17 +97,17 @@ export const yong: ProPlayer = {
 
   settings: {
     dpi: 800,
-    sensitivity: 0.19,
+    sensitivity: 0.393,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 152,
+    edpi: 314.4,
     pollingRate: 2000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/yong/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-yong/",
     },
   },
 
@@ -107,33 +118,33 @@ export const yong: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/yong/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 SUPERSTRIKE",
-    mousepad: null,
-    keyboard: null,
+    mouse: "LAMZU Maya X Purple Shadow",
+    mousepad: "ARTISAN NINJA FX Zero Soft Orange",
+    keyboard: "HYPESHOP Dama60 Pink",
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/yong/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-yong/",
     },
   },
 
   stats: {
-    rating: 1.08,
-    acs: 199.4,
-    kd: 1.06,
-    kast: 75,
-    adr: 130.8,
-    hs: 31,
+    rating: 1.04,
+    acs: 207,
+    kd: 1.12,
+    kast: 69,
+    adr: 133.4,
+    hs: 33,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

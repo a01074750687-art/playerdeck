@@ -12,6 +12,11 @@ const zexyCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "T1 Rookies",
+      joinedAt: "2024-07",
+      leftAt: "2024-10",
+    },
+    {
       teamName: "SLT Seongnam",
       joinedAt: "2024-10",
       leftAt: "2025-12",
@@ -19,6 +24,11 @@ const zexyCareer: ProPlayerCareer = {
   ],
 
   highlights: [
+    {
+      year: 2024,
+      title: "VALORANT Amateur Champions 2024",
+      result: "우승",
+    },
     {
       year: 2024,
       title: "WDG Challengers League 2024 Korea Split 3",
@@ -44,35 +54,49 @@ const zexyCareer: ProPlayerCareer = {
       title: "VCT Ascension Pacific",
       result: "우승",
     },
+    {
+      year: 2025,
+      title: "SOOP VALORANT League",
+      result: "3~4위",
+    },
   ],
 };
 
 export const zexy: ProPlayer = {
   id: "player-zexy",
   slug: "zexy",
+
   nickname: "Zexy",
   realName: "Jang Suk-hyun",
+
   countryCode: "KR",
   countryName: "South Korea",
+
   region: "Pacific",
   status: "Active",
+
   profileImageUrl: null,
+
   team: getRequiredTeam("varrel"),
+
   primaryRole: "Duelist",
   roles: createRoles("Duelist"),
-  mainAgents: ["Raze", "Waylay", "Neon", "Jett"],
+
+  mainAgents: ["Neon", "Raze", "Waylay", "Jett"],
+
   career: zexyCareer,
 
   settings: {
-    dpi: 1600,
-    sensitivity: 0.09,
+    dpi: 800,
+    sensitivity: 0.35,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 144,
+    edpi: 280,
     pollingRate: 1000,
-    resolution: null,
+    resolution: "1920x1080",
+
     verification: {
-      verifiedAt: "2026-07-16",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-zexy/",
     },
@@ -83,33 +107,35 @@ export const zexy: ProPlayer = {
     color: null,
     outlines: null,
     centerDot: null,
+
     verification: {
-      verifiedAt: "2026-08-09",
+      verifiedAt: "2026-08-24",
       sourceName: "공개 정보 없음",
       sourceUrl: "",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: "Geon Venom 60 HE",
+    mouse: "Logitech G Pro X Superlight 2 Cyan",
+    mousepad: "ARTISAN NINJA FX Zero Daidai",
+    keyboard: "Wooting 80HE",
     monitor: null,
+
     verification: {
-      verifiedAt: "2026-07-16",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-zexy/",
     },
   },
 
   stats: {
-    rating: 0.92,
-    acs: 210.33,
-    kd: 0.95,
-    kast: 65.94,
-    adr: 130.21,
-    hs: null,
+    rating: 0.83,
+    acs: 188,
+    kd: 0.87,
+    kast: 67,
+    adr: 118.0,
+    hs: 24,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

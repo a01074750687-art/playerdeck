@@ -13,16 +13,22 @@ const invyCareer: ProPlayerCareer = {
   previousTeams: [
     {
       teamName: "Hashira",
+      joinedAt: "2021-02",
+      leftAt: "2021-07",
     },
     {
       teamName: "SV Empire",
+      joinedAt: "2021-07",
+      leftAt: "2021-09",
     },
     {
       teamName: "Oasis Gaming",
+      joinedAt: "2021-09",
+      leftAt: "2022-10",
     },
     {
       teamName: "Team Secret",
-      joinedAt: "2022-11",
+      joinedAt: "2022-12",
       leftAt: "2025-12",
     },
   ],
@@ -30,27 +36,42 @@ const invyCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2023,
-      title: "VCT Pacific",
+      title: "VCT 2023: Pacific League",
       result: "5~6위",
     },
     {
       year: 2023,
-      title: "VALORANT Champions Los Angeles",
+      title: "VALORANT Champions 2023",
       result: "9~12위",
     },
     {
-      year: 2026,
-      title: "VALORANT Masters Santiago",
-      result: "준우승",
+      year: 2024,
+      title: "Predator League Asia Pacific 2024",
+      result: "우승",
     },
     {
-      year: 2026,
-      title: "VCT Pacific Stage 1",
+      year: 2025,
+      title: "VALORANT Radiant International Invitational",
       result: "우승",
     },
     {
       year: 2026,
-      title: "VALORANT Masters London",
+      title: "VCT 2026: Pacific Kickoff",
+      result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London 2026",
       result: "준우승",
     },
   ],
@@ -74,16 +95,17 @@ export const invy: ProPlayer = {
   team: getRequiredTeam("paper-rex"),
 
   primaryRole: "Initiator",
-  roles: createRoles("Initiator"),
+  roles: createRoles("Initiator", ["Controller"]),
 
-  mainAgents: ["Sova", "Fade", "Skye"],
+  mainAgents: ["Sova", "Fade", "Harbor"],
 
   riotAccounts: [
     {
-      name: "PRX inny",
+      name: "PRX invy",
       tag: "jia",
+
       verification: {
-        verifiedAt: "2026-08-16",
+        verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
           "https://tracker.gg/valorant/profile/riot/PRX%20invy%23jia/overview",
@@ -103,22 +125,22 @@ export const invy: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-16",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers / ProSettings.net",
       sourceUrl: "https://b-gamers.net/valorant-invy/",
     },
   },
 
   crosshair: {
-    code: "0;P;c;5;h;0;0l;3;0o;2;0a;1;0f;0;1b;0",
+    code: "0;P;c;5;h;0;d;0;f;0;0b;1;0a;1;0l;4;0t;2;0o;0;0m;0;0f;0;1b;0",
     color: "Cyan",
     outlines: false,
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/invy/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-invy/",
     },
   },
 
@@ -129,20 +151,20 @@ export const invy: ProPlayer = {
     monitor: "ZOWIE XL2586X+",
 
     verification: {
-      verifiedAt: "2026-08-16",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers / SPECS.GG",
       sourceUrl: "https://b-gamers.net/valorant-invy/",
     },
   },
 
   stats: {
-    rating: 1.13,
-    acs: 213.7,
-    kd: 1.12,
+    rating: 1.11,
+    acs: 196,
+    kd: 1.14,
     kast: 77,
-    adr: 139.1,
+    adr: 137.3,
     hs: 30,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

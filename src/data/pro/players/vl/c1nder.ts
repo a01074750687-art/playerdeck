@@ -27,6 +27,11 @@ const c1nderCareer: ProPlayerCareer = {
       leftAt: "2024-02",
     },
     {
+      teamName: "T1 Rookies",
+      joinedAt: "2024-07",
+      leftAt: "2024-10",
+    },
+    {
       teamName: "SLT Seongnam",
       joinedAt: "2024-10",
       leftAt: "2025-12",
@@ -65,17 +70,39 @@ const c1nderCareer: ProPlayerCareer = {
 export const c1nder: ProPlayer = {
   id: "player-c1nder",
   slug: "c1nder",
+
   nickname: "C1ndeR",
   realName: "Ko Jae-hyuk",
+
   countryCode: "KR",
   countryName: "South Korea",
+
   region: "Pacific",
   status: "Active",
+
   profileImageUrl: null,
+
   team: getRequiredTeam("varrel"),
+
   primaryRole: "Controller",
   roles: createRoles("Controller"),
-  mainAgents: ["Omen"],
+
+  mainAgents: ["Omen", "Brimstone", "Astra"],
+
+  riotAccounts: [
+    {
+      name: "VARREL C1ndeR",
+      tag: "2009",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/VARREL%20C1ndeR%232009/performance?platform=pc&playlist=competitive&season=3ea2b318-423b-cf86-25da-7cbb0eefbe2d",
+      },
+    },
+  ],
+
   career: c1nderCareer,
 
   settings: {
@@ -86,45 +113,49 @@ export const c1nder: ProPlayer = {
     edpi: 200,
     pollingRate: 1000,
     resolution: null,
+
     verification: {
-      verifiedAt: "2026-04-01",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-c1nder/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;s;1;P;o;1;d;1;0b;0;1b;0;S;s;0.64",
+    color: "White",
+    outlines: true,
+    centerDot: true,
+
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "Gearly",
+      sourceUrl:
+        "https://gamingqa.com/%E3%80%90vct-ascension%E5%84%AA%E5%8B%9D%E3%80%91slt-c1nder-%E3%82%B7%E3%83%B3%E3%83%80%E3%83%BC%E9%81%B8%E6%89%8B%E3%81%AE%E7%B5%8C%E6%AD%B4%E3%83%BB%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E3%83%BB/",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
+    mouse: "Logitech G PRO X2 SUPERSTRIKE",
+    mousepad: "ARTISAN NINJA FX Zero Daidai",
     keyboard: "Custom Keyboard",
     monitor: null,
+
     verification: {
-      verifiedAt: "2026-04-01",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-c1nder/",
     },
   },
 
   stats: {
-    rating: 0.76,
-    acs: 133.0,
-    kd: 0.69,
-    kast: 66,
-    adr: 89.4,
-    hs: null,
+    rating: 0.83,
+    acs: 150.7,
+    kd: 0.75,
+    kast: 67,
+    adr: 102.2,
+    hs: 27,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

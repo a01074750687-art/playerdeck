@@ -2,14 +2,9 @@ import type {
   ProPlayer,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
-import {
-  createRoles,
-  getRequiredTeam,
-} from "../../common/helpers";
+import { createRoles } from "../../common/helpers";
 
 const crwsCareer: ProPlayerCareer = {
-  joinedAt: "2026-04",
-
   previousTeams: [
     {
       teamName: "X10 Esports",
@@ -25,6 +20,11 @@ const crwsCareer: ProPlayerCareer = {
       teamName: "TALON",
       joinedAt: "2022-10",
       leftAt: "2025-11",
+    },
+    {
+      teamName: "FULL SENSE",
+      joinedAt: "2026-04",
+      leftAt: "2026-08",
     },
   ],
 
@@ -68,14 +68,28 @@ export const crws: ProPlayer = {
   countryName: "Thailand",
 
   region: "Pacific",
-  status: "Active",
+  status: "Retired",
 
   profileImageUrl: null,
-  team: getRequiredTeam("full-sense"),
+  team: null,
 
   primaryRole: "Flex",
   roles: createRoles("Flex", ["Controller", "Sentinel", "Initiator"]),
   mainAgents: ["Omen", "Viper", "Breach"],
+
+  riotAccounts: [
+    {
+      name: "FS Crws",
+      tag: "ssss",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/FS%20Crws%23ssss",
+      },
+    },
+  ],
 
   career: crwsCareer,
 
@@ -89,7 +103,7 @@ export const crws: ProPlayer = {
     resolution: "1280x960",
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/crws/",
     },
@@ -102,7 +116,7 @@ export const crws: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/crws/",
     },
@@ -115,20 +129,20 @@ export const crws: ProPlayer = {
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/crws/",
     },
   },
 
   stats: {
-    rating: null,
-    acs: null,
-    kd: null,
-    kast: null,
-    adr: null,
-    hs: null,
+    rating: 0.89,
+    acs: 156,
+    kd: 0.78,
+    kast: 68,
+    adr: 104.2,
+    hs: 24,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

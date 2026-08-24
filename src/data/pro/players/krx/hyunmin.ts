@@ -22,28 +22,43 @@ const hyunminCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2024,
-      title: "Challengers Japan Split 1",
+      title: "VALORANT Challengers 2024 Japan: Split 1",
       result: "3위",
     },
     {
       year: 2025,
-      title: "VCT Pacific Kickoff",
+      title: "VCT 2025: Pacific Kickoff",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Masters Bangkok",
+      title: "VALORANT Masters Bangkok 2025",
       result: "5~6위",
     },
     {
       year: 2025,
-      title: "HERO Esports Asian Champions League",
+      title: "VCT 2025: Pacific Stage 1",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "HERO ESPORTS Asian Champions League 2025",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Champions Paris",
+      title: "VCT 2025: Pacific Stage 2",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
       result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
     },
   ],
 };
@@ -51,7 +66,7 @@ const hyunminCareer: ProPlayerCareer = {
 const hyunminAwards: ProPlayerAward[] = [
   {
     year: 2025,
-    title: "VCT Pacific Awards",
+    title: "VCT Pacific 2025 Season Awards",
     result: "올해의 기량 발전 선수",
   },
 ];
@@ -76,17 +91,18 @@ export const hyunmin: ProPlayer = {
   primaryRole: "Duelist",
   roles: createRoles("Duelist"),
 
-  mainAgents: ["Jett", "Yoru", "Phoenix"],
+  mainAgents: ["Phoenix", "Yoru", "Raze"],
 
   riotAccounts: [
     {
       name: "DRX HYUNMIN",
       tag: "V S",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
-        sourceUrl: 
-         "https://tracker.gg/valorant/profile/riot/DRX%20HYUNMIN%23V%20S/overview",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/DRX%20HYUNMIN%23V%20S/overview",
       },
     },
   ],
@@ -104,7 +120,7 @@ export const hyunmin: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/hyunmin/",
     },
@@ -117,33 +133,33 @@ export const hyunmin: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/hyunmin/",
     },
   },
 
   gear: {
-    mouse: "Razer Viper V4 Pro White",
-    mousepad: "Artisan Ninja FX Zero XSoft Black",
-    keyboard: "Wooting 60HE+",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
+    mousepad: "ARTISAN NINJA FX Zero XSoft Black",
+    keyboard: "Wooting 80HE",
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/hyunmin/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-hyunmin/",
     },
   },
 
   stats: {
-    rating: 1.18,
-    acs: 239.6,
-    kd: 1.2,
-    kast: 74,
-    adr: 154.2,
-    hs: 28,
+    rating: 1.11,
+    acs: 229,
+    kd: 1.11,
+    kast: 75,
+    adr: 152.4,
+    hs: 32,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

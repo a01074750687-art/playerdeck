@@ -13,6 +13,21 @@ const ashCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "All Ways Incheon",
+      joinedAt: "2022-05",
+      leftAt: "2023-01",
+    },
+    {
+      teamName: "OP.GG SPORTS",
+      joinedAt: "2023-01",
+      leftAt: "2023-03",
+    },
+    {
+      teamName: "Incheon On Sla2ers",
+      joinedAt: "2023-03",
+      leftAt: "2023-05",
+    },
+    {
       teamName: "LFG Portal",
       joinedAt: "2024-01",
       leftAt: "2024-05",
@@ -50,6 +65,11 @@ const ashCareer: ProPlayerCareer = {
       title: "Esports World Cup 2025",
       result: "3위",
     },
+    {
+      year: 2025,
+      title: "VALORANT Radiant International Invitational",
+      result: "준우승",
+    },
   ],
 };
 
@@ -79,18 +99,19 @@ export const ash: ProPlayer = {
   team: getRequiredTeam("gen-g"),
 
   primaryRole: "Duelist",
-  roles: createRoles("Duelist", ["Initiator"]),
+  roles: createRoles("Duelist"),
 
-  mainAgents: ["Neon", "Omen", "Sova"],
+  mainAgents: ["Neon"],
 
   riotAccounts: [
     {
       name: "GEN Ash",
       tag: "7777",
+
       verification: {
-        verifiedAt: "2026-08-14",
+        verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
-        sourceUrl: 
+        sourceUrl:
           "https://tracker.gg/valorant/profile/riot/GEN%20Ash%237777/overview",
       },
     },
@@ -109,22 +130,22 @@ export const ash: ProPlayer = {
     resolution: "1680x1050",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-ash/",
     },
   },
 
   crosshair: {
-    code: "0;s;1;P;o;1;d;1;f;0;0b;0;1b;0;S;s;0.85;o;1",
+    code: "0;P;h;0;0l;3;0o;0;0a;1;0f;0;1b;0",
     color: "White",
-    outlines: true,
-    centerDot: true,
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/lists/valorant/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-ash/",
     },
   },
 
@@ -135,20 +156,20 @@ export const ash: ProPlayer = {
     monitor: "ZOWIE XL2540",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-ash/",
     },
   },
 
   stats: {
-    rating: 1.14,
-    acs: 210.6,
-    kd: 1.12,
-    kast: 76,
-    adr: 138.7,
-    hs: 30,
+    rating: 0.97,
+    acs: 230,
+    kd: 1.03,
+    kast: 70,
+    adr: 144.9,
+    hs: 27,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

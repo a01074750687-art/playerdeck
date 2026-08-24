@@ -59,37 +59,61 @@ const foxy9Career: ProPlayerCareer = {
       title: "VALORANT Champions 2024",
       result: "5~6위",
     },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 1",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto 2025",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
+      title: "Esports World Cup 2025",
+      result: "3위",
+    },
   ],
 };
 
 export const foxy9: ProPlayer = {
   id: "player-foxy9",
   slug: "foxy9",
+
   nickname: "Foxy9",
   realName: "Jung Jae-sung",
+
   countryCode: "KR",
   countryName: "South Korea",
+
   region: "Pacific",
   status: "Active",
+
   profileImageUrl: null,
+
   team: getRequiredTeam("varrel"),
+
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Controller"]),
+
   mainAgents: ["Cypher", "Viper", "Chamber"],
+
   career: foxy9Career,
 
   settings: {
     dpi: 800,
     sensitivity: 0.27,
     scopedSensitivity: 1,
-    adsSensitivity: null,
+    adsSensitivity: 1,
     edpi: 216,
-    pollingRate: 1000,
+    pollingRate: null,
     resolution: "1920x1080",
+
     verification: {
-      verifiedAt: "2026-07-27",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/foxy9/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-foxy9/",
     },
   },
 
@@ -98,8 +122,9 @@ export const foxy9: ProPlayer = {
     color: "Cyan",
     outlines: false,
     centerDot: false,
+
     verification: {
-      verifiedAt: "2026-07-27",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/foxy9/",
     },
@@ -109,22 +134,23 @@ export const foxy9: ProPlayer = {
     mouse: "Logitech G Pro X Superlight 2c Black",
     mousepad: "Artisan FX Hien XSoft Wine Red",
     keyboard: "Custom Keyboard",
-    monitor: null,
+    monitor: "ZOWIE XL2566K",
+
     verification: {
-      verifiedAt: "2026-07-27",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/foxy9/",
     },
   },
 
   stats: {
-    rating: 1.26,
-    acs: 251.46,
-    kd: 1.44,
-    kast: 71.97,
-    adr: 150.56,
-    hs: null,
+    rating: 1.22,
+    acs: 249,
+    kd: 1.33,
+    kast: 73,
+    adr: 159.9,
+    hs: 38,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

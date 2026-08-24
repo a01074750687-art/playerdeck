@@ -13,7 +13,11 @@ const dambiCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
-      teamName: "Gwangju Shadow",
+      teamName: "Our Growth Story",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "Shadow Corporation",
       joinedAt: "2023-09",
       leftAt: "2023-12",
     },
@@ -50,6 +54,11 @@ const dambiCareer: ProPlayerCareer = {
       title: "VALORANT Masters Santiago 2026",
       result: "우승",
     },
+    {
+      year: 2026,
+      title: "Esports World Cup 2026",
+      result: "3위",
+    },
   ],
 };
 
@@ -81,7 +90,21 @@ export const dambi: ProPlayer = {
   primaryRole: "Duelist",
   roles: createRoles("Duelist"),
 
-  mainAgents: ["Neon", "Jett", "Waylay"],
+  mainAgents: ["Neon", "Waylay", "Jett"],
+
+  riotAccounts: [
+    {
+      name: "NS Dambi",
+      tag: "1117",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/leaderboards/ranked/pc/default?a=&page=10&region=ap",
+      },
+    },
+  ],
 
   career: dambiCareer,
   awards: dambiAwards,
@@ -96,9 +119,9 @@ export const dambi: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/dambi/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-dambi/",
     },
   },
 
@@ -109,7 +132,7 @@ export const dambi: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-05",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/dambi/",
     },
@@ -117,25 +140,25 @@ export const dambi: ProPlayer = {
 
   gear: {
     mouse: "Logitech G Pro X Superlight 2 Cyan",
-    mousepad: "Artisan Ninja FX Zero Soft Orange",
-    keyboard: "Custom Keyboard",
-    monitor: null,
+    mousepad: "ARTISAN NINJA FX Zero Daidai",
+    keyboard: "Razer Huntsman V3 HE Magnetic Mini 65% 8KHz",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/dambi/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-dambi/",
     },
   },
 
   stats: {
-    rating: 1.03,
-    acs: 225.8,
-    kd: 1.06,
-    kast: 70.4,
-    adr: 148.2,
-    hs: null,
+    rating: 1.02,
+    acs: 212,
+    kd: 1.04,
+    kast: 69,
+    adr: 135.3,
+    hs: 24,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

@@ -81,39 +81,53 @@ export const styron: ProPlayer = {
 
   team: getRequiredTeam("team-secret"),
 
-  primaryRole: "Initiator",
-  roles: createRoles("Initiator"),
+  primaryRole: "Sentinel",
+  roles: createRoles("Sentinel"),
 
-  mainAgents: ["Sova", "Skye", "Fade"],
+  mainAgents: ["Cypher", "Killjoy", "Fade"],
+
+  riotAccounts: [
+    {
+      name: "BLG STYRON",
+      tag: "bibi",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/BLG%20STYRON%23bibi/overview?utm_source=chatgpt.com",
+      },
+    },
+  ],
 
   career: styronCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
+    dpi: 800,
+    sensitivity: 0.3,
+    scopedSensitivity: 1,
     adsSensitivity: null,
-    edpi: null,
-    pollingRate: null,
+    edpi: 240,
+    pollingRate: 1000,
     resolution: null,
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      sourceName: "note.com",
+      sourceUrl: "https://note.com/gaminglog/n/n4e04e83ff42c",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;h;0;0t;1;0l;2;0o;2;0a;1;0f;0;1b;0",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      sourceName: "note.com",
+      sourceUrl: "https://note.com/gaminglog/n/n4e04e83ff42c",
     },
   },
 

@@ -13,6 +13,7 @@ const absolCareer: ProPlayerCareer = {
   previousTeams: [
     {
       teamName: "DetoNator Academy",
+      joinedAt: "2022-12",
       leftAt: "2023-08",
     },
     {
@@ -48,6 +49,11 @@ const absolCareer: ProPlayerCareer = {
       title: "Red Bull Home Ground 2025",
       result: "3위",
     },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2 Play-Ins",
+      result: "7~8위",
+    },
   ],
 };
 
@@ -65,66 +71,78 @@ export const absol: ProPlayer = {
   status: "Active",
 
   profileImageUrl: null,
-
   team: getRequiredTeam("zeta"),
 
   primaryRole: "Duelist",
   roles: createRoles("Duelist"),
+  mainAgents: ["Neon", "Waylay", "Yoru"],
 
-  mainAgents: ["Neon", "Waylay", "Jett"],
+  riotAccounts: [
+    {
+      name: "Absol",
+      tag: "1321",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Absol%231321/overview",
+      },
+    },
+  ],
 
   career: absolCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
+    dpi: 800,
+    sensitivity: 0.22,
+    scopedSensitivity: 1.23,
+    adsSensitivity: 1,
+    edpi: 176,
     pollingRate: null,
-    resolution: null,
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-absol/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;p;0;s;1;P;o;1;d;1;f;0;0b;0;1b;0;A;o;1;0t;1;0l;3;0o;2;0a;1;0f;0;1b;0;S;c;1;o;1",
+    color: "White",
+    outlines: true,
+    centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "Better Buy",
+      sourceUrl: "https://better-buy.jp/absol-device/",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
-    monitor: null,
+    mouse: "Logitech G Pro X Superlight 2 White",
+    mousepad: "Nachoneko × Fumo Collection",
+    keyboard: "Wooting 60HE v2",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-absol/",
     },
   },
 
   stats: {
-    rating: 0.75,
-    acs: 194.2,
-    kd: 0.74,
-    kast: 62.2,
-    adr: 119.4,
-    hs: null,
+    rating: 0.95,
+    acs: 207,
+    kd: 0.94,
+    kast: 65,
+    adr: 135.9,
+    hs: 20,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

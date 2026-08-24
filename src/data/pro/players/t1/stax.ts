@@ -32,23 +32,73 @@ const staxCareer: ProPlayerCareer = {
     },
     {
       year: 2021,
-      title: "VCT Korea Stage 1 Masters",
+      title: "VCT 2021: Korea Stage 1 Masters",
+      result: "우승",
+    },
+    {
+      year: 2021,
+      title: "VCT 2021: Korea Stage 3 Challengers Playoffs",
       result: "우승",
     },
     {
       year: 2022,
-      title: "Champions Istanbul",
+      title: "VALORANT Masters Reykjavík 2022",
+      result: "5~6위",
+    },
+    {
+      year: 2022,
+      title: "VALORANT Champions Istanbul 2022",
       result: "3위",
     },
     {
       year: 2023,
-      title: "VCT Pacific",
+      title: "VCT 2023: LOCK//IN São Paulo",
+      result: "3~4위",
+    },
+    {
+      year: 2023,
+      title: "VCT 2023: Pacific League",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "Red Bull Home Ground #5",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Kickoff",
       result: "준우승",
     },
     {
       year: 2025,
-      title: "Masters Bangkok",
+      title: "VALORANT Masters Bangkok 2025",
       result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
+      result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "9~10위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "4위",
     },
   ],
 };
@@ -56,8 +106,13 @@ const staxCareer: ProPlayerCareer = {
 const staxAwards: ProPlayerAward[] = [
   {
     year: 2023,
-    title: "VCT 2023 End of Season Awards",
-    result: "올해의 MVP",
+    title: "VCT 2023: Pacific League",
+    result: "올해의 인게임 리더",
+  },
+  {
+    year: 2024,
+    title: "Red Bull Home Ground #5: APAC Play-In",
+    result: "MVP",
   },
 ];
 
@@ -78,15 +133,16 @@ export const stax: ProPlayer = {
 
   team: getRequiredTeam("t1"),
 
-  primaryRole: "Initiator",
-  roles: createRoles("Initiator"),
+  primaryRole: "Controller",
+  roles: createRoles("Controller"),
 
-  mainAgents: ["Breach", "KAY/O", "Skye"],
+  mainAgents: ["Omen", "Harbor"],
 
   riotAccounts: [
     {
       name: "Señor Vac",
       tag: "prime",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network / 나무위키",
@@ -101,54 +157,54 @@ export const stax: ProPlayer = {
 
   settings: {
     dpi: 800,
-    sensitivity: 0.215,
-    scopedSensitivity: 0.9,
+    sensitivity: 0.22,
+    scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 172,
-    pollingRate: 1000,
+    edpi: 176,
+    pollingRate: 4000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/stax/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-stax/",
     },
   },
 
   crosshair: {
-    code: "0;p;0;P;h;0;f;0;0l;3;0o;2;0a;1;0f;0;1b;0",
+    code: "0;P;c;0;o;1;d;0;f;0;0b;1;0t;2;0l;4;0o;3;0a;1;0m;0;0f;0;1b;0",
     color: "White",
-    outlines: false,
+    outlines: true,
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/stax/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-stax/",
     },
   },
 
   gear: {
-    mouse: "Pulsar STA-X",
-    mousepad: "Artisan Type-99 Soft Black",
-    keyboard: "Custom Keyboard",
-    monitor: "ZOWIE XL2546S",
+    mouse: "Pulsar Pro Series STA-X",
+    mousepad: "ARTISAN NINJA FX Hayate Otsu V2 Wine Red",
+    keyboard: "Geon Venom TKL HE",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/stax/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-stax/",
     },
   },
 
   stats: {
-    rating: 1.06,
-    acs: 194.7,
-    kd: 1.03,
-    kast: 75,
-    adr: 126.9,
-    hs: 32,
+    rating: 1.03,
+    acs: 191,
+    kd: 1.05,
+    kast: 78,
+    adr: 125.1,
+    hs: 28,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

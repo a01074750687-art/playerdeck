@@ -1,5 +1,6 @@
 import type {
   ProPlayer,
+  ProPlayerAward,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
 import {
@@ -12,6 +13,11 @@ const jingggCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "Reality Rift",
+      joinedAt: "2020-11",
+      leftAt: "2021-03",
+    },
+    {
       teamName: "Team SMG",
       joinedAt: "2021-06",
       leftAt: "2021-09",
@@ -21,31 +27,104 @@ const jingggCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2022,
-      title: "VALORANT Masters Copenhagen",
+      title: "VALORANT Masters Reykjavík 2022",
+      result: "4위",
+    },
+    {
+      year: 2022,
+      title: "VALORANT Masters Copenhagen 2022",
       result: "준우승",
     },
     {
       year: 2023,
-      title: "VCT Pacific",
+      title: "VCT 2023: Pacific League",
       result: "우승",
     },
     {
       year: 2023,
-      title: "VALORANT Champions Los Angeles",
+      title: "VALORANT Masters Tokyo 2023",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions 2023",
       result: "준우승",
     },
     {
+      year: 2024,
+      title: "VALORANT Masters Madrid 2024",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 2",
+      result: "3위",
+    },
+    {
       year: 2025,
-      title: "VALORANT Masters Toronto",
+      title: "VCT 2025: Pacific Stage 1",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto 2025",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Radiant International Invitational",
       result: "우승",
     },
     {
       year: 2026,
-      title: "VALORANT Masters London",
+      title: "VCT 2026: Pacific Kickoff",
+      result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London 2026",
       result: "준우승",
     },
   ],
 };
+
+const jingggAwards: ProPlayerAward[] = [
+  {
+    year: 2021,
+    title: "The Esports Club Showdown",
+    result: "MVP",
+  },
+  {
+    year: 2024,
+    title: "VCT 2024: Pacific Stage 1",
+    result: "결승 MVP",
+  },
+];
 
 export const jinggg: ProPlayer = {
   id: "player-jinggg",
@@ -67,22 +146,24 @@ export const jinggg: ProPlayer = {
   primaryRole: "Duelist",
   roles: createRoles("Duelist", ["Controller"]),
 
-  mainAgents: ["Raze", "Neon", "Omen"],
+  mainAgents: ["Raze", "Harbor", "Omen"],
 
   riotAccounts: [
     {
       name: "PRX Jinggg",
       tag: "Jing",
+
       verification: {
-        verifiedAt: "2026-08-14",
-        sourceName: "Tracker Network",
+        verifiedAt: "2026-08-24",
+        sourceName: "OP.GG",
         sourceUrl:
-           "https://tracker.gg/valorant/crosshairs/gallery?page=6",
+          "https://op.gg/valorant/profile/PRX%20Jinggg-Jing",
       },
     },
   ],
 
   career: jingggCareer,
+  awards: jingggAwards,
 
   settings: {
     dpi: 1600,
@@ -94,8 +175,8 @@ export const jinggg: ProPlayer = {
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings.net / BestGamers",
       sourceUrl: "https://prosettings.net/players/jinggg/",
     },
   },
@@ -107,33 +188,33 @@ export const jinggg: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/jinggg/",
     },
   },
 
   gear: {
-    mouse: "Pulsar Jinggg-X",
-    mousepad: "Artisan Hayate Otsu V2 XSoft Black",
-    keyboard: "Wooting 60He v2 Silver",
-    monitor: "ZOWIE XL2566K+",
+    mouse: "Pulsar Pro Series Jinggg-X",
+    mousepad: "ARTISAN NINJA FX Hayate Otsu V2 XSoft Black",
+    keyboard: "Wooting 60HE v2 Silver",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-jinggg/",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings.net / BestGamers",
+      sourceUrl: "https://prosettings.net/players/jinggg/",
     },
   },
 
   stats: {
-    rating: 1.22,
-    acs: 247.8,
-    kd: 1.24,
-    kast: 74,
-    adr: 159.6,
+    rating: 0.91,
+    acs: 192,
+    kd: 0.89,
+    kast: 72,
+    adr: 128.8,
     hs: 27,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

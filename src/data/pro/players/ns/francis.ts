@@ -12,7 +12,11 @@ const francisCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
-      teamName: "Gwangju Shadow",
+      teamName: "Our Growth Story",
+      leftAt: "2023-09",
+    },
+    {
+      teamName: "Shadow Corporation",
       joinedAt: "2023-09",
       leftAt: "2023-12",
     },
@@ -49,6 +53,11 @@ const francisCareer: ProPlayerCareer = {
       title: "VALORANT Masters Santiago 2026",
       result: "우승",
     },
+    {
+      year: 2026,
+      title: "Esports World Cup 2026",
+      result: "3위",
+    },
   ],
 };
 
@@ -69,63 +78,67 @@ export const francis: ProPlayer = {
 
   team: getRequiredTeam("nongshim-redforce"),
 
-  primaryRole: "Initiator",
-  roles: createRoles("Initiator", ["Flex"]),
+  primaryRole: "Flex",
+  roles: createRoles("Flex", [
+    "Initiator",
+    "Controller",
+    "Duelist",
+  ]),
 
-  mainAgents: ["Sova", "Fade", "Skye"],
+  mainAgents: ["Sova", "Omen", "Yoru"],
 
   career: francisCareer,
 
   settings: {
     dpi: 800,
-    sensitivity: 0.27,
+    sensitivity: 0.4,
     scopedSensitivity: 0.85,
     adsSensitivity: 0.9,
-    edpi: 216,
+    edpi: 320,
     pollingRate: 2000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/francis/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-francis/",
     },
   },
 
   crosshair: {
-    code: "0;P;c;1;o;1;d;1;0b;0;1b;0",
-    color: "Green",
-    outlines: true,
-    centerDot: true,
+    code: null,
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/francis/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-francis/",
     },
   },
 
   gear: {
     mouse: "Razer Viper V4 Pro White",
-    mousepad: "Artisan Ninja FX Zero Soft Black",
-    keyboard: "IQUNIX EV63 HE",
-    monitor: "ZOWIE XL2546K",
+    mousepad: "ARTISAN NINJA FX Zero Soft XXL",
+    keyboard: "IQUNIX EV63 Ghost in the Shell Edition",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/francis/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-francis/",
     },
   },
 
   stats: {
-    rating: 1.02,
-    acs: 188.8,
-    kd: 0.99,
-    kast: 72.6,
-    adr: 129.3,
-    hs: null,
+    rating: 1.07,
+    acs: 217,
+    kd: 1.06,
+    kast: 74,
+    adr: 142.9,
+    hs: 23,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

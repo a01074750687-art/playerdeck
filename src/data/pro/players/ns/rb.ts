@@ -51,8 +51,18 @@ const rbCareer: ProPlayerCareer = {
     },
     {
       year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "우승",
+    },
+    {
+      year: 2026,
       title: "VALORANT Masters Santiago 2026",
       result: "우승",
+    },
+    {
+      year: 2026,
+      title: "Esports World Cup 2026",
+      result: "3위",
     },
   ],
 };
@@ -75,9 +85,9 @@ export const rb: ProPlayer = {
   team: getRequiredTeam("nongshim-redforce"),
 
   primaryRole: "Controller",
-  roles: createRoles("Controller", ["Flex"]),
+  roles: createRoles("Controller", ["Duelist"]),
 
-  mainAgents: ["Omen", "Harbor", "Astra"],
+  mainAgents: ["Omen", "Harbor", "Yoru"],
 
   career: rbCareer,
 
@@ -87,50 +97,50 @@ export const rb: ProPlayer = {
     scopedSensitivity: 1,
     adsSensitivity: 1,
     edpi: 280,
-    pollingRate: 1000,
+    pollingRate: 4000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-13",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/rb/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-rb/",
     },
   },
 
   crosshair: {
-    code: "0;s;1;P;d;1;0b;0;1b;0;S;o;1",
-    color: "White",
-    outlines: true,
-    centerDot: true,
+    code: null,
+    color: "Cyan",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-07-13",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/rb/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-rb/",
     },
   },
 
   gear: {
     mouse: "Razer Viper V4 Pro White",
-    mousepad: "Artisan Ninja FX Zero Soft Black",
-    keyboard: "Custom Keyboard",
-    monitor: "ZOWIE XL2566K",
+    mousepad: "ARTISAN NINJA FX Zero Soft Black",
+    keyboard: "Wooting 80HE White",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-07-13",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/rb/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-rb/",
     },
   },
 
   stats: {
-    rating: 0.97,
-    acs: 177.1,
-    kd: 0.94,
-    kast: 73.8,
-    adr: 115.2,
-    hs: null,
+    rating: 0.98,
+    acs: 192,
+    kd: 1.00,
+    kast: 74,
+    adr: 117.8,
+    hs: 26,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

@@ -85,9 +85,9 @@ export const jemkin: ProPlayer = {
       tag: "1351",
       verification: {
         verifiedAt: "2026-08-14",
-        sourceName: "OP.GG",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://op.gg/valorant/profile/RRQ%20Jemkin-1351",
+          "https://tracker.gg/valorant/profile/riot/RRQ%20Jemkin%231351/overview",
       },
     },
   ],

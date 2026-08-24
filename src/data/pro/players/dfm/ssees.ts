@@ -9,80 +9,146 @@ import {
 
 const sseesCareer: ProPlayerCareer = {
   joinedAt: "2023-11",
+
   previousTeams: [
-    { teamName: "DNG White", joinedAt: "2021-10", leftAt: "2022-10" },
+    {
+      teamName: "DNG White",
+      joinedAt: "2021-10",
+      leftAt: "2022-10",
+    },
+    {
+      teamName: "VARREL",
+      joinedAt: "2022-12",
+      leftAt: "2023-06",
+    },
   ],
+
   highlights: [
-    { year: 2024, title: "VALORANT Radiant Asia Invitational", result: "준우승" },
-    { year: 2025, title: "VCT Pacific Stage 2", result: "7~8위" },
-    { year: 2026, title: "VCT Pacific Kickoff", result: "5위" },
-    { year: 2026, title: "VCT Pacific Stage 1", result: "7~8위" },
+    {
+      year: 2024,
+      title: "VALORANT Radiant Asia Invitational",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VCT Pacific Stage 2",
+      result: "7~8위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "5위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "7~8위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2",
+      result: "7~8위",
+    },
   ],
 };
 
 export const ssees: ProPlayer = {
   id: "player-ssees",
   slug: "ssees",
+
   nickname: "SSeeS",
   realName: "Tomonori Okimura",
+
   countryCode: "JP",
   countryName: "Japan",
+
   region: "Pacific",
   status: "Active",
+
   profileImageUrl: null,
   team: getRequiredTeam("dfm"),
+
   primaryRole: "Controller",
-  roles: createRoles("Controller"),
-  mainAgents: ["Omen", "Astra"],
+  roles: createRoles("Controller", ["Sentinel"]),
+  mainAgents: ["Omen", "Viper", "Vyse"],
+
+  riotAccounts: [
+    {
+      name: "DFM SSeeS",
+      tag: "0215",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "OP.GG",
+        sourceUrl:
+          "https://op.gg/valorant/profile/DFM%20SSeeS-0215",
+      },
+    },
+    {
+      name: "SSeeS",
+      tag: "DFM",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/premier/standings?division=17&page=1&region=KR_KOREA",
+      },
+    },
+  ],
+
   career: sseesCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
+    dpi: 800,
+    sensitivity: 0.211,
+    scopedSensitivity: 0.95,
+    adsSensitivity: 1,
+    edpi: 168.8,
     pollingRate: null,
-    resolution: null,
+    resolution: "1280x960",
+
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-ssees/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;o;1;0t;1;0l;2;0o;2;0a;1;0f;0;1t;0;1l;0;1o;0;1a;0",
+    color: "White",
+    outlines: true,
+    centerDot: false,
+
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "Better Buy",
+      sourceUrl: "https://better-buy.jp/valorant-crosshair-code/",
     },
   },
 
   gear: {
     mouse: "WLMOUSE Beast X Max White",
-    mousepad: null,
-    keyboard: null,
+    mousepad: "ARTISAN NINJA FX Hayate Otsu V2 Red",
+    keyboard: "HYPESHOP Keyboard",
     monitor: null,
+
     verification: {
-      verifiedAt: "2026-07-17",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-ssees/",
     },
   },
 
   stats: {
-    rating: 0.84,
-    acs: 153.2,
-    kd: 0.76,
-    kast: 72.0,
-    adr: 97.1,
-    hs: null,
+    rating: 0.94,
+    acs: 165,
+    kd: 0.88,
+    kast: 73,
+    adr: 106.6,
+    hs: 25,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

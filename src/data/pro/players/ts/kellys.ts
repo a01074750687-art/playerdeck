@@ -87,6 +87,20 @@ export const kellys: ProPlayer = {
 
   mainAgents: ["Phoenix", "KAY/O", "Viper"],
 
+  riotAccounts: [
+    {
+      name: "Secret kellyS",
+      tag: "MJC",
+
+      verification: {
+        verifiedAt: "2026-08-21",
+        sourceName: "Tracker Network",
+        sourceUrl:
+         "https://tracker.gg/valorant/profile/riot/Secret%20kellyS%23MJC", 
+      },
+    },
+  ],
+
   career: keilysCareer,
 
   settings: {

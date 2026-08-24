@@ -12,6 +12,11 @@ const primmieCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "FW Esports",
+      joinedAt: "2022-01",
+      leftAt: "2023-01",
+    },
+    {
       teamName: "TALON",
       joinedAt: "2024-07",
       leftAt: "2025-11",
@@ -67,21 +72,35 @@ export const primmie: ProPlayer = {
   roles: createRoles("Duelist"),
   mainAgents: ["Jett", "Raze", "Neon"],
 
+  riotAccounts: [
+    {
+      name: "666mirp",
+      tag: "kill",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/666mirp%23kill/overview",
+      },
+    },
+  ],
+
   career: primmieCareer,
 
   settings: {
     dpi: 800,
-    sensitivity: 0.3,
+    sensitivity: 0.31,
     scopedSensitivity: 1,
     adsSensitivity: 1,
-    edpi: 240,
-    pollingRate: 1000,
+    edpi: 248,
+    pollingRate: 2000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-03",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/primmie/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-primmie/",
     },
   },
 
@@ -92,33 +111,33 @@ export const primmie: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-03",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/primmie/",
     },
   },
 
   gear: {
-    mouse: "Razer Viper V3 Pro Faker Edition",
-    mousepad: null,
-    keyboard: "Wooting 60HE v2 Black",
-    monitor: null,
+    mouse: "Razer Viper V3 Pro White",
+    mousepad: "Pulsar eS Saturn Pro Radiant Ruby",
+    keyboard: "Wooting 60HE+",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-03",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/primmie/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-primmie/",
     },
   },
 
   stats: {
-    rating: null,
-    acs: null,
-    kd: null,
-    kast: null,
-    adr: null,
-    hs: null,
+    rating: 1.15,
+    acs: 229,
+    kd: 1.23,
+    kast: 72,
+    adr: 152.6,
+    hs: 30,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

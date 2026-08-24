@@ -74,6 +74,20 @@ export const xffero: ProPlayer = {
 
   mainAgents: ["Cypher", "Viper", "Killjoy"],
 
+  riotAccounts: [
+    {
+      name: "Tehbotol",
+      tag: "bibib",
+
+      verification: {
+        verifiedAt: "2026-08-18",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Tehbotol%23bibib",
+      },
+    },
+  ],
+
   career: xfferoCareer,
 
   settings: {

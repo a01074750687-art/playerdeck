@@ -12,9 +12,14 @@ const raxcalCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "URACHACHA",
+      joinedAt: "2024-09",
+      leftAt: "2024-12",
+    },
+    {
       teamName: "FN Pocheon",
       joinedAt: "2025-01",
-      leftAt: "2025-06",
+      leftAt: "2025-04",
     },
     {
       teamName: "ONSIDE GAMING",
@@ -60,9 +65,9 @@ export const raxcal: ProPlayer = {
   team: getRequiredTeam("gen-g"),
 
   primaryRole: "Flex",
-  roles: createRoles("Flex", ["Duelist", "Initiator"]),
+  roles: createRoles("Flex", ["Duelist", "Sentinel"]),
 
-  mainAgents: ["Phoenix", "Vyse", "Omen"],
+  mainAgents: ["Sage", "Phoenix", "Vyse"],
 
   riotAccounts: [
     {
@@ -81,55 +86,55 @@ export const raxcal: ProPlayer = {
   career: raxcalCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
+    dpi: 400,
+    sensitivity: 0.43,
     scopedSensitivity: null,
     adsSensitivity: null,
-    edpi: null,
+    edpi: 172,
     pollingRate: null,
     resolution: null,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-raxcal/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;c;0;h;0;d;0;f;0;0b;1;0t;2;0l;3;0o;2;0a;1;0m;0;0f;0;1b;0",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-raxcal/",
     },
   },
 
   gear: {
     mouse: "Razer Viper V4 Pro White",
     mousepad: "ARTISAN NINJA FX Type-99 Matcha",
-    keyboard:"Wooting 60HE+",
+    keyboard: "Wooting 60HE+",
     monitor: null,
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-raxcal/",
     },
   },
 
   stats: {
-    rating: 1.18,
-    acs: 235.4,
-    kd: 1.2,
-    kast: 74,
-    adr: 151.8,
-    hs: 27,
+    rating: 1.06,
+    acs: 201,
+    kd: 1.08,
+    kast: 75,
+    adr: 130.4,
+    hs: 25,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

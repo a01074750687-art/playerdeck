@@ -16,27 +16,77 @@ const d4v41Career: ProPlayerCareer = {
   highlights: [
     {
       year: 2022,
-      title: "VALORANT Masters Copenhagen",
+      title: "VALORANT Masters Copenhagen 2022",
       result: "준우승",
     },
     {
       year: 2023,
-      title: "VCT Pacific",
+      title: "VCT 2023: Pacific League",
       result: "우승",
     },
     {
       year: 2023,
-      title: "VALORANT Champions Los Angeles",
+      title: "VALORANT Masters Tokyo 2023",
+      result: "3위",
+    },
+    {
+      year: 2023,
+      title: "VALORANT Champions 2023",
       result: "준우승",
     },
     {
+      year: 2024,
+      title: "VALORANT Masters Madrid 2024",
+      result: "3위",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 2",
+      result: "3위",
+    },
+    {
       year: 2025,
-      title: "VALORANT Masters Toronto",
+      title: "VALORANT Masters Toronto 2025",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Radiant International Invitational",
       result: "우승",
     },
     {
       year: 2026,
-      title: "VALORANT Masters London",
+      title: "VCT 2026: Pacific Kickoff",
+      result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters London 2026",
       result: "준우승",
     },
   ],
@@ -45,8 +95,18 @@ const d4v41Career: ProPlayerCareer = {
 const d4v41Awards: ProPlayerAward[] = [
   {
     year: 2023,
-    title: "VCT Pacific Awards",
+    title: "VCT 2023: Pacific League",
     result: "올해의 척후대",
+  },
+  {
+    year: 2025,
+    title: "VCT 2025: Pacific Stage 2",
+    result: "올해의 감시자",
+  },
+  {
+    year: 2025,
+    title: "VALORANT Radiant International Invitational",
+    result: "MVP",
   },
 ];
 
@@ -67,20 +127,21 @@ export const d4v41: ProPlayer = {
 
   team: getRequiredTeam("paper-rex"),
 
-  primaryRole: "Sentinel",
-  roles: createRoles("Sentinel", ["Initiator"]),
+  primaryRole: "Controller",
+  roles: createRoles("Controller", ["Sentinel", "Initiator"]),
 
-  mainAgents: ["Killjoy", "Vyse", "Chamber"],
+  mainAgents: ["Viper", "Chamber", "Killjoy"],
 
   riotAccounts: [
     {
       name: "PRX d4v41",
       tag: "556",
+
       verification: {
         verifiedAt: "2026-08-16",
         sourceName: "Tracker Network",
         sourceUrl:
-           "https://tracker.gg/valorant/profile/riot/PRX%20d4v41%23556/overview",
+          "https://tracker.gg/valorant/profile/riot/PRX%20d4v41%23556/overview",
       },
     },
   ],
@@ -98,8 +159,8 @@ export const d4v41: ProPlayer = {
     resolution: "1280x1024",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings.net / BestGamers",
       sourceUrl: "https://prosettings.net/players/d4v41/",
     },
   },
@@ -111,7 +172,7 @@ export const d4v41: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/d4v41/",
     },
@@ -121,23 +182,23 @@ export const d4v41: ProPlayer = {
     mouse: "VAXEE ZYGEN NP-01S V2 Wireless Fluorescent Green",
     mousepad: "Pulsar Pro Series D4v41",
     keyboard: "Arbiter Studio Polar 65",
-    monitor: "ZOWIE XL2566K+",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/d4v41/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-d4v41/",
     },
   },
 
   stats: {
-    rating: 1.1,
-    acs: 205.9,
-    kd: 1.09,
-    kast: 76,
-    adr: 134.4,
-    hs: 31,
+    rating: 1.09,
+    acs: 206,
+    kd: 1.23,
+    kast: 75,
+    adr: 135.1,
+    hs: 33,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

@@ -32,36 +32,81 @@ const meteorCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2022,
-      title: "VCT Japan Stage 2 Challengers",
+      title: "VCT 2022: Japan Stage 2 Challengers",
       result: "우승",
     },
     {
       year: 2024,
-      title: "VCT Pacific Kickoff",
+      title: "VCT 2024: Pacific Kickoff",
       result: "우승",
     },
     {
       year: 2024,
-      title: "Masters Madrid",
+      title: "VALORANT Masters Madrid 2024",
       result: "준우승",
     },
     {
       year: 2024,
-      title: "Masters Shanghai",
+      title: "VCT 2024: Pacific Stage 1",
+      result: "준우승",
+    },
+    {
+      year: 2024,
+      title: "VALORANT Masters Shanghai 2024",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 2",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Masters Bangkok",
+      title: "VCT 2025: Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Bangkok 2025",
       result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
+      result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Kickoff",
+      result: "준우승",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Masters Santiago 2026",
+      result: "9~10위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "4위",
     },
   ],
 };
 
 const meteorAwards: ProPlayerAward[] = [
   {
+    year: 2024,
+    title: "VCT 2024: Pacific Stage 2",
+    result: "올해의 감시자",
+  },
+  {
     year: 2025,
-    title: "Masters Bangkok",
+    title: "VALORANT Masters Bangkok 2025",
     result: "결승 MVP",
   },
 ];
@@ -86,16 +131,17 @@ export const meteor: ProPlayer = {
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Duelist"]),
 
-  mainAgents: ["Vyse", "Chamber", "Jett"],
+  mainAgents: ["Chamber", "Yoru", "Jett"],
 
   riotAccounts: [
     {
       name: "T1 Meteor",
       tag: "0617",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
-        sourceUrl: 
+        sourceUrl:
           "https://tracker.gg/valorant/profile/riot/T1%20Meteor%230617/overview",
       },
     },
@@ -106,54 +152,54 @@ export const meteor: ProPlayer = {
 
   settings: {
     dpi: 800,
-    sensitivity: 0.25,
-    scopedSensitivity: 1.2,
+    sensitivity: 0.2,
+    scopedSensitivity: 1.3,
     adsSensitivity: 1,
-    edpi: 200,
+    edpi: 160,
     pollingRate: 4000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-meteor/",
+      sourceUrl: "https://b-gamers.net/valorant-Meteor/",
     },
   },
 
   crosshair: {
-    code: "0;s;1;P;o;1;d;1;f;0;0t;4;0l;1;0o;0;0a;1;0f;0;1b;0;S;c;0;o;1",
-    color: "White",
-    outlines: true,
-    centerDot: true,
+    code: "0;P;c;5;h;0;d;0;f;0;0b;1;0a;1;0l;4;0t;2;0o;2;0m;0;0f;0;1b;0",
+    color: "Cyan",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/meteor/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-Meteor/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
-    mousepad: "Artisan Hayate Otsu V2 Soft Wine Red",
+    mouse: "Logitech G Pro X Superlight 2 Cyan",
+    mousepad: "ARTISAN NINJA FX Hayate Otsu Soft Wine Red",
     keyboard: "Wooting 60HE+",
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers / ProSettings.net",
-      sourceUrl: "https://b-gamers.net/valorant-meteor/",
+      sourceUrl: "https://b-gamers.net/valorant-Meteor/",
     },
   },
 
   stats: {
-    rating: 1.2,
-    acs: 222.8,
-    kd: 1.24,
-    kast: 76,
-    adr: 145.2,
-    hs: 30,
+    rating: 1.11,
+    acs: 232,
+    kd: 1.19,
+    kast: 71,
+    adr: 149.6,
+    hs: 28,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

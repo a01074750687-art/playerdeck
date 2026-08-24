@@ -44,6 +44,11 @@ const sugarz3roCareer: ProPlayerCareer = {
       title: "VCT Pacific Last Chance Qualifier",
       result: "우승",
     },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2 Play-Ins",
+      result: "7~8위",
+    },
   ],
 };
 
@@ -69,21 +74,35 @@ export const sugarz3ro: ProPlayer = {
 
   mainAgents: ["Omen", "Harbor"],
 
+  riotAccounts: [
+    {
+      name: "ZETA SugarZ3ro",
+      tag: "UMARU",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/ZETA%20SugarZ3ro%23UMARU/overview",
+      },
+    },
+  ],
+
   career: sugarz3roCareer,
 
   settings: {
     dpi: 800,
     sensitivity: 0.225,
-    scopedSensitivity: 0.9,
-    adsSensitivity: null,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
     edpi: 180,
-    pollingRate: 1000,
+    pollingRate: 2000,
     resolution: "1440x1080",
 
     verification: {
-      verifiedAt: "2026-07-13",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/sugarz3ro/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-sugarz3ro/",
     },
   },
 
@@ -94,33 +113,33 @@ export const sugarz3ro: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-07-13",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/sugarz3ro/",
     },
   },
 
   gear: {
-    mouse: "Razer Viper V4 Pro Black",
-    mousepad: "Pulsar eS Saturn Pro Black",
+    mouse: "Logitech G Pro X Superlight 2 Black",
+    mousepad: "ZOWIE H-SR-SE Rouge II",
     keyboard: "Wooting 60HE v2 Black",
-    monitor: "SONY INZONE M10S",
+    monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-07-13",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/sugarz3ro/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-sugarz3ro/",
     },
   },
 
   stats: {
-    rating: 0.92,
-    acs: 166.5,
-    kd: 0.91,
-    kast: 75.8,
-    adr: 104.3,
-    hs: null,
+    rating: 0.84,
+    acs: 166,
+    kd: 0.75,
+    kast: 72,
+    adr: 110.8,
+    hs: 28,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

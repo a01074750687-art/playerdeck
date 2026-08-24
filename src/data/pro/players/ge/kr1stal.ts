@@ -83,47 +83,61 @@ export const kr1stal: ProPlayer = {
 
   mainAgents: ["Sova", "Killjoy", "Fade"],
 
+  riotAccounts: [
+    {
+      name: "GE Kr1stal",
+      tag: "5252",
+
+      verification:{
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/GE%20Kr1stal%235252/overview",
+      },
+    },
+  ],
+
   career: kr1stalCareer,
 
   settings: {
     dpi: 1600,
     sensitivity: 0.21,
-    scopedSensitivity: 1,
+    scopedSensitivity: 0.9,
     adsSensitivity: 0.9,
     edpi: 336,
-    pollingRate: null,
-    resolution: null,
+    pollingRate: 4000,
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/kr1stal/",
     },
   },
 
   crosshair: {
-    code: null,
+    code: "0;s;1;P;o;1;d;1;0l;2;0o;0;0a;1;0f;0;1t;0;1l;0;1o;0;1a;0;1m;0;1f;0;S;s;0.6;o;1",
     color: "White",
     outlines: true,
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/kr1stal/",
     },
   },
 
   gear: {
-    mouse: "ZOWIE EC2-DW Black",
-    mousepad: "ARTISAN NINJA FX Zero Daidai XSoft",
-    keyboard: "SteelSeries Apex Pro TKL",
-    monitor: null,
+    mouse: "VAXEE XE V2 Black",
+    mousepad: "Pulsar eS Saturn Pro Black",
+    keyboard: "Wooting 60HE v2 Black",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-kr1stal/",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/kr1stal/",
     },
   },
 

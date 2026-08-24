@@ -54,6 +54,11 @@ const xdllCareer: ProPlayerCareer = {
       title: "Red Bull Home Ground 2025",
       result: "3위",
     },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2 Play-Ins",
+      result: "7~8위",
+    },
   ],
 };
 
@@ -77,23 +82,37 @@ export const xdll: ProPlayer = {
   primaryRole: "Initiator",
   roles: createRoles("Initiator", ["Sentinel"]),
 
-  mainAgents: ["Sova", "Sage", "Skye"],
+  mainAgents: ["Sage", "Sova", "Skye"],
+
+  riotAccounts: [
+    {
+      name: "ZETA Xdll",
+      tag: "mizo",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/ZETA%20Xdll%23mizo/overview",
+      },
+    },
+  ],
 
   career: xdllCareer,
 
   settings: {
     dpi: 800,
-    sensitivity: 0.235,
-    scopedSensitivity: 1,
-    adsSensitivity: null,
-    edpi: 188,
-    pollingRate: 4000,
+    sensitivity: 0.175,
+    scopedSensitivity: 0.9,
+    adsSensitivity: 1,
+    edpi: 140,
+    pollingRate: null,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-23",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/xdll/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-Xdll/",
     },
   },
 
@@ -104,7 +123,7 @@ export const xdll: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-07-23",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/xdll/",
     },
@@ -117,20 +136,20 @@ export const xdll: ProPlayer = {
     monitor: "SONY INZONE M10S",
 
     verification: {
-      verifiedAt: "2026-07-23",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/xdll/",
     },
   },
 
   stats: {
-    rating: 0.94,
-    acs: 176.7,
-    kd: 0.95,
-    kast: 72.2,
-    adr: 106.7,
-    hs: null,
+    rating: 0.91,
+    acs: 170,
+    kd: 0.90,
+    kast: 68,
+    adr: 112.8,
+    hs: 28,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

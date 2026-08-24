@@ -58,6 +58,20 @@ export const xan: ProPlayer = {
 
   mainAgents: ["Neon"],
 
+  riotAccounts: [
+    {
+      name: "RRQ Xan",
+      tag: "mitzi",
+
+      verification: {
+        verifiedAt: "2026-08-21",
+        sourceName: "Tracker Network",
+        sourceUrl: 
+          "https://tracker.gg/valorant/profile/riot/Vigil%23Pray",
+      },
+    },
+  ],
+
   career: xanCareer,
 
   settings: {

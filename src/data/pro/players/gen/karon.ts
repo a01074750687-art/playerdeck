@@ -9,9 +9,15 @@ import {
 } from "../../common/helpers";
 
 const karonCareer: ProPlayerCareer = {
-  joinedAt: "2023-11",
+  joinedAt: "2025-10",
 
-  previousTeams: [],
+  previousTeams: [
+    {
+      teamName: "Gen.G Esports",
+      joinedAt: "2023-11",
+      leftAt: "2025-10",
+    },
+  ],
 
   highlights: [
     {
@@ -36,6 +42,16 @@ const karonCareer: ProPlayerCareer = {
     },
     {
       year: 2025,
+      title: "VCT 2025: Pacific Stage 1",
+      result: "준우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Masters Toronto 2025",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
       title: "Esports World Cup 2025",
       result: "3위",
     },
@@ -51,7 +67,7 @@ const karonAwards: ProPlayerAward[] = [
   {
     year: 2024,
     title: "VCT 2024: Pacific Stage 2",
-    result: "올해의 연막",
+    result: "Controller of the Year",
   },
 ];
 
@@ -75,17 +91,18 @@ export const karon: ProPlayer = {
   primaryRole: "Controller",
   roles: createRoles("Controller"),
 
-  mainAgents: ["Omen", "Viper", "Astra"],
+  mainAgents: ["Omen", "Astra", "Harbor"],
 
   riotAccounts: [
     {
       name: "Jotaro Kujo",
       tag: "星の白金",
+
       verification: {
-        verifiedAt: "2026-08-14",
+        verifiedAt: "2026-08-24",
         sourceName: "나무위키",
         sourceUrl:
-             "https://namu.moe/w/%EA%B9%80%EC%9B%90%ED%83%9C(2002)",
+          "https://www.namu.moe/w/%EA%B9%80%EC%9B%90%ED%83%9C%282002%29",
       },
     },
   ],
@@ -99,13 +116,13 @@ export const karon: ProPlayer = {
     scopedSensitivity: 1,
     adsSensitivity: 1,
     edpi: 160,
-    pollingRate: 1000,
+    pollingRate: null,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-07-28",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/karon/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-karon/",
     },
   },
 
@@ -116,33 +133,33 @@ export const karon: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-07-28",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/karon/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-karon/",
     },
   },
 
   gear: {
     mouse: "Logitech G Pro X Superlight Magenta",
-    mousepad: "X-raypad Aqua Control+ Wave Black",
-    keyboard: "Wooting 60HE+",
+    mousepad: "X-raypad Aqua Control Plus Wave Night",
+    keyboard: "Wooting 60HE+ White",
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-07-28",
-      sourceName: "ProSettings.net",
+      verifiedAt: "2026-08-24",
+      sourceName: "ProSettings.net / BestGamers",
       sourceUrl: "https://prosettings.net/players/karon/",
     },
   },
 
   stats: {
-    rating: 1.16,
-    acs: 205.7,
-    kd: 1.18,
-    kast: 78,
-    adr: 132.6,
-    hs: 32,
+    rating: 1.12,
+    acs: 206,
+    kd: 1.12,
+    kast: 74,
+    adr: 129.3,
+    hs: 38,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

@@ -17,6 +17,11 @@ const flickerCareer: ProPlayerCareer = {
       leftAt: "2025-07",
     },
     {
+      teamName: "DRX",
+      joinedAt: "2025-07",
+      leftAt: "2026-01",
+    },
+    {
       teamName: "CREST GAMING Zst",
       joinedAt: "2026-01",
       leftAt: "2026-07",
@@ -41,12 +46,12 @@ const flickerCareer: ProPlayerCareer = {
     },
     {
       year: 2026,
-      title: "Challengers Japan Split 1",
+      title: "VALORANT Challengers 2026 Japan: Split 1",
       result: "우승",
     },
     {
       year: 2026,
-      title: "Challengers Japan Split 2",
+      title: "VALORANT Challengers 2026 Japan: Split 2",
       result: "5~6위",
     },
   ],
@@ -69,19 +74,20 @@ export const flicker: ProPlayer = {
 
   team: getRequiredTeam("krx"),
 
-  primaryRole: "Flex",
-  roles: createRoles("Flex", ["Initiator", "Sentinel"]),
+  primaryRole: "Duelist",
+  roles: createRoles("Duelist"),
 
-  mainAgents: ["Breach", "Fade", "Cypher"],
+  mainAgents: ["Waylay", "Neon"],
 
   riotAccounts: [
     {
       name: "DRX Flicker",
       tag: "V S",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
-        sourceUrl: 
+        sourceUrl:
           "https://tracker.gg/valorant/profile/riot/DRX%20Flicker%23V%20S/overview",
       },
     },
@@ -92,16 +98,16 @@ export const flicker: ProPlayer = {
   settings: {
     dpi: 1600,
     sensitivity: 0.1,
-    scopedSensitivity: 0.9,
+    scopedSensitivity: 1,
     adsSensitivity: 1,
     edpi: 160,
     pollingRate: 4000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/flicker/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-flicker/",
     },
   },
 
@@ -112,7 +118,7 @@ export const flicker: ProPlayer = {
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/flicker/",
     },
@@ -125,20 +131,20 @@ export const flicker: ProPlayer = {
     monitor: "ZOWIE XL2546K",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/flicker/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-flicker/",
     },
   },
 
   stats: {
-    rating: 1.07,
-    acs: 201.5,
-    kd: 1.05,
-    kast: 75,
-    adr: 131.6,
-    hs: 32,
+    rating: 0.67,
+    acs: 149,
+    kd: 0.63,
+    kast: 65,
+    adr: 104.1,
+    hs: 22,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

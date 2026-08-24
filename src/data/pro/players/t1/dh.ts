@@ -1,5 +1,6 @@
 import type {
   ProPlayer,
+  ProPlayerAward,
   ProPlayerCareer,
 } from "../../../../types/proPlayer";
 import {
@@ -12,14 +13,19 @@ const dhCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "Nongshim RedForce",
+      joinedAt: "2022-12",
+      leftAt: "2023-01",
+    },
+    {
       teamName: "REIGNITE",
-      joinedAt: "2024",
-      leftAt: "2024-04",
+      joinedAt: "2023-12",
+      leftAt: "2024-02",
     },
     {
       teamName: "CREST GAMING Zst",
       joinedAt: "2024-04",
-      leftAt: "2024-09",
+      leftAt: "2024-08",
     },
     {
       teamName: "T1 Academy",
@@ -41,21 +47,39 @@ const dhCareer: ProPlayerCareer = {
   highlights: [
     {
       year: 2025,
-      title: "Challengers Korea Stage 1",
+      title: "VALORANT Challengers 2025 Korea: Stage 1",
       result: "3위",
     },
     {
       year: 2025,
-      title: "VCT Pacific Stage 2",
+      title: "VALORANT Challengers 2025 Korea: Stage 2",
+      result: "3위",
+    },
+    {
+      year: 2025,
+      title: "VCT 2025: Pacific Stage 2",
       result: "4위",
     },
     {
       year: 2025,
-      title: "Champions Paris",
+      title: "VALORANT Champions 2025",
       result: "9~12위",
+    },
+    {
+      year: 2026,
+      title: "VALORANT Challengers 2026 Korea: Split 1",
+      result: "3위",
     },
   ],
 };
+
+const dhAwards: ProPlayerAward[] = [
+  {
+    year: 2026,
+    title: "VALORANT Challengers 2026 Korea: Split 1",
+    result: "스플릿 MVP",
+  },
+];
 
 export const dh: ProPlayer = {
   id: "player-dh",
@@ -75,14 +99,15 @@ export const dh: ProPlayer = {
   team: getRequiredTeam("t1"),
 
   primaryRole: "Controller",
-  roles: createRoles("Controller", ["Initiator"]),
+  roles: createRoles("Controller", ["Sentinel"]),
 
-  mainAgents: ["Omen", "Viper", "Astra"],
+  mainAgents: ["Omen", "Cypher", "Viper"],
 
   riotAccounts: [
     {
       name: "T1 Joshua",
       tag: "2006",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
@@ -93,6 +118,7 @@ export const dh: ProPlayer = {
   ],
 
   career: dhCareer,
+  awards: dhAwards,
 
   settings: {
     dpi: 1600,
@@ -100,50 +126,50 @@ export const dh: ProPlayer = {
     scopedSensitivity: 1,
     adsSensitivity: 1,
     edpi: 160,
-    pollingRate: 1000,
+    pollingRate: null,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "SPECS.GG / BestGamers",
-      sourceUrl: "https://specs.gg/DH",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-dh/",
     },
   },
 
   crosshair: {
-    code: "0;s;1;P;o;1;d;1;f;0;0t;4;0l;1;0o;0;0a;1;0f;0;1b;0;S;c;0;o;1",
+    code: "0;P;c;0;h;0;d;0;f;0;0b;1;0a;1;0l;2;0t;2;0o;1;0m;0;0f;0;1b;0",
     color: "White",
-    outlines: true,
-    centerDot: true,
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/dh/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-dh/",
     },
   },
 
   gear: {
-    mouse: "Pulsar X2 V3 Mini T1 Edition",
-    mousepad: "SteelSeries QcK Performance Speed",
-    keyboard: "Wooting 60HE+",
+    mouse: "Razer Viper V4 Pro White",
+    mousepad: "ARTISAN NINJA FX Zero",
+    keyboard: "SteelSeries Apex Pro TKL Gen 3 White",
     monitor: "ZOWIE XL2566X+",
 
     verification: {
-      verifiedAt: "2026-08-14",
-      sourceName: "SPECS.GG",
-      sourceUrl: "https://specs.gg/DH",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-dh/",
     },
   },
 
   stats: {
-    rating: 1.11,
-    acs: 223.6,
-    kd: 1.1,
-    kast: 73,
-    adr: 146.7,
-    hs: 34,
+    rating: 0.88,
+    acs: 173,
+    kd: 0.84,
+    kast: 72,
+    adr: 115.2,
+    hs: 27,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

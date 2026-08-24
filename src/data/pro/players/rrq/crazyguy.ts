@@ -87,7 +87,21 @@ export const crazyguy: ProPlayer = {
   primaryRole: "Initiator",
   roles: createRoles("Initiator"),
 
-  mainAgents: ["Breach", "Sova", "KAY/O"],
+  mainAgents: ["Fade", "Sova", "KAY/O"],
+
+  riotAccounts: [
+    {
+      name: "crazyguy",
+      tag: "nunca",
+
+      verification: {
+        verifiedAt: "2026-08-18",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/crazyguy%23nunca/overview",
+      },
+    },
+  ],
 
   career: crazyguyCareer,
 

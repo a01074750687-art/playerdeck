@@ -12,6 +12,16 @@ const efinaCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "Vision Strikers",
+      joinedAt: "2020-06",
+      leftAt: "2020-06",
+    },
+    {
+      teamName: "Quantum Strikers",
+      joinedAt: "2020-06",
+      leftAt: "2020-11",
+    },
+    {
       teamName: "TNL Esports",
       joinedAt: "2020-11",
       leftAt: "2021-02",
@@ -22,8 +32,8 @@ const efinaCareer: ProPlayerCareer = {
       leftAt: "2021-10",
     },
     {
-      teamName: "Team IAM",
-      joinedAt: "2024",
+      teamName: "IAM",
+      joinedAt: "2023-04",
       leftAt: "2025-01",
     },
     {
@@ -32,8 +42,13 @@ const efinaCareer: ProPlayerCareer = {
       leftAt: "2025-11",
     },
     {
+      teamName: "Rookies",
+      joinedAt: "2026-01",
+      leftAt: "2026-05",
+    },
+    {
       teamName: "X-CAST",
-      joinedAt: "2026",
+      joinedAt: "2026-06",
       leftAt: "2026-07",
     },
   ],
@@ -85,22 +100,24 @@ export const efina: ProPlayer = {
   team: getRequiredTeam("gen-g"),
 
   primaryRole: "Initiator",
-  roles: createRoles("Initiator", ["Sentinel"]),
+  roles: createRoles("Initiator"),
 
-  mainAgents: ["Sova", "Fade", "Skye"],
+  mainAgents: ["Fade", "Sova", "Skye"],
 
   riotAccounts: [
     {
       name: "GEN Efina",
       tag: "0527",
+
       verification: {
-        verifiedAt: "2026-08-14",
+        verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
           "https://tracker.gg/valorant/profile/riot/GEN%20Efina%230527/overview",
       },
     },
   ],
+
   career: efinaCareer,
 
   settings: {
@@ -110,49 +127,49 @@ export const efina: ProPlayer = {
     adsSensitivity: 1,
     edpi: 200,
     pollingRate: null,
-    resolution:"1920x1080",
+    resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-efina/",
     },
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;P;h;0;0l;4;0o;2;0a;1;0f;0;1b;0",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers (설정 기반 변환)",
+      sourceUrl: "https://b-gamers.net/valorant-efina/",
     },
   },
 
   gear: {
     mouse: "Logitech G PRO X SUPERLIGHT 2c Pink",
-    mousepad: "Pulsar eS Saturn Pro Red",
+    mousepad: "Pulsar eS Saturn Pro Soft Red",
     keyboard: "Geon Venom TKL HE",
     monitor: "BenQ ZOWIE XL2586X",
 
     verification: {
-      verifiedAt: "2026-08-14",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-efina/",
     },
   },
 
   stats: {
-    rating: 1.07,
-    acs: 193.8,
-    kd: 1.04,
-    kast: 75,
-    adr: 127.5,
-    hs: 31,
+    rating: 0.78,
+    acs: 149,
+    kd: 0.75,
+    kast: 71,
+    adr: 101.7,
+    hs: 18,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

@@ -79,47 +79,61 @@ export const xavi8k: ProPlayer = {
 
   mainAgents: ["Omen", "Astra", "Sova"],
 
+  riotAccounts: [
+    {
+      name: "GE xavi8k",
+      tag: "xoxo",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/GE%20xavi8k%23xoxo/overview",
+      },
+    },
+  ],
+
   career: xavi8kCareer,
 
   settings: {
     dpi: 1600,
-    sensitivity: 0.102,
-    scopedSensitivity: 1,
+    sensitivity: 0.101,
+    scopedSensitivity: 0.9,
     adsSensitivity: 1,
-    edpi: 163.2,
-    pollingRate: null,
+    edpi: 161.6,
+    pollingRate: 1000,
     resolution: "1920x1080",
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-xavi8k/",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/xavi8k/",
     },
   },
 
   crosshair: {
-    code: null,
+    code: "0;s;1;P;o;1;d;1;z;1;0t;1;0l;1;0o;0;0a;1;0f;0;1b;0;S;c;5;s;1.3;o;1",
     color: "White",
-    outlines: false,
-    centerDot: false,
+    outlines: true,
+    centerDot: true,
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-xavi8k/",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/xavi8k/",
     },
   },
 
   gear: {
-    mouse: "Razer Viper V4 Pro White",
-    mousepad: "ARTISAN NINJA FX Hien Red",
-    keyboard: "Wooting 60HE+",
-    monitor: null,
+    mouse: "Razer Viper V4 Pro Black",
+    mousepad: "Artisan FX Hien Soft Black",
+    keyboard: "Wooting 60HE v2 Black",
+    monitor: "ZOWIE XL2566X+",
 
     verification: {
       verifiedAt: "2026-08-09",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-xavi8k/",
+      sourceName: "ProSettings",
+      sourceUrl: "https://prosettings.net/players/xavi8k/",
     },
   },
 

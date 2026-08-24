@@ -67,7 +67,21 @@ export const kushy: ProPlayer = {
   primaryRole: "Initiator",
   roles: createRoles("Initiator"),
 
-  mainAgents: ["Sova", "Fade"],
+  mainAgents: ["Sova", "Fade", "Skye"],
+
+  riotAccounts: [
+    {
+      name: "Vigil",
+      tag: "Pray",
+
+      verification: {
+        verifiedAt: "2026-08-21",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Vigil%23Pray",
+      },
+    },
+  ],
 
   career: kushyCareer,
 
@@ -88,15 +102,15 @@ export const kushy: ProPlayer = {
   },
 
   crosshair: {
-    code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    code: "0;s;1;P;u;0000FFFF;h;0;0l;2;0v;2;0o;1;0a;1;0f;0;1b;0;S;o;1",
+    color: "White",
+    outlines: false,
+    centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-21",
+      sourceName: "E-Sports_GG",
+      sourceUrl: "https://e-sportsgg.com/News/LkF_bE1B",
     },
   },
 

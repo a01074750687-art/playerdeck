@@ -9,33 +9,98 @@ import {
 
 const yatsukaCareer: ProPlayerCareer = {
   joinedAt: "2026-01",
+
   previousTeams: [
-    { teamName: "ZETA DIVISION Academy", joinedAt: "2022-03", leftAt: "2023-12" },
-    { teamName: "RIDDLE ORDER", joinedAt: "2023-12", leftAt: "2026-01" },
+    {
+      teamName: "ZETA DIVISION Academy",
+      joinedAt: "2022-03",
+      leftAt: "2023-12",
+    },
+    {
+      teamName: "RIDDLE ORDER",
+      joinedAt: "2023-12",
+      leftAt: "2026-01",
+    },
   ],
+
   highlights: [
-    { year: 2024, title: "Challengers League Japan Split 2", result: "우승" },
-    { year: 2024, title: "VCT Ascension Pacific", result: "4위" },
-    { year: 2025, title: "Challengers Japan Stage 1", result: "우승" },
-    { year: 2025, title: "Challengers Japan Stage 2", result: "우승" },
-    { year: 2025, title: "Challengers League Japan Season Finals", result: "우승" },
+    {
+      year: 2024,
+      title: "Challengers League Japan Split 2",
+      result: "우승",
+    },
+    {
+      year: 2024,
+      title: "VCT Ascension Pacific",
+      result: "4위",
+    },
+    {
+      year: 2025,
+      title: "Challengers Japan Stage 1",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers Japan Stage 2",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "Challengers League Japan Season Finals",
+      result: "우승",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Kickoff",
+      result: "5위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 1",
+      result: "7~8위",
+    },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2",
+      result: "7~8위",
+    },
   ],
 };
 
 export const yatsuka: ProPlayer = {
   id: "player-yatsuka",
   slug: "yatsuka",
+
   nickname: "yatsuka",
   realName: "Kazuya Ikeda",
+
   countryCode: "JP",
   countryName: "Japan",
+
   region: "Pacific",
   status: "Active",
+
   profileImageUrl: null,
   team: getRequiredTeam("dfm"),
-  primaryRole: "Flex",
-  roles: createRoles("Flex", ["Duelist", "Initiator", "Sentinel"]),
-  mainAgents: ["Sage", "Neon", "Raze"],
+
+  primaryRole: "Duelist",
+  roles: createRoles("Duelist", ["Initiator", "Sentinel"]),
+  mainAgents: ["Neon", "Raze", "Phoenix"],
+
+  riotAccounts: [
+    {
+      name: "DFM yatsuka",
+      tag: "397",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/DFM%20yatsuka%23397/overview",
+      },
+    },
+  ],
+
   career: yatsukaCareer,
 
   settings: {
@@ -46,22 +111,25 @@ export const yatsuka: ProPlayer = {
     edpi: 128,
     pollingRate: 4000,
     resolution: "1920x1080",
+
     verification: {
-      verifiedAt: "2026-08-01",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-yatsuka/",
     },
   },
 
   crosshair: {
-    code: null,
+    code: "0;p;0;s;1;P;c;1;o;1;d;1;0b;0;1b;0;A;o;1;d;1;z;1;0b;0;1b;0;S;c;1;s;0.298;o;1",
     color: "Green",
     outlines: true,
     centerDot: true,
+
     verification: {
-      verifiedAt: "2026-08-01",
-      sourceName: "BestGamers",
-      sourceUrl: "https://b-gamers.net/valorant-yatsuka/",
+      verifiedAt: "2026-08-24",
+      sourceName: "GameLens",
+      sourceUrl:
+        "https://mediator-net.jp/players/valorant/yatsuka/",
     },
   },
 
@@ -70,21 +138,22 @@ export const yatsuka: ProPlayer = {
     mousepad: "WALLHACK SP-004 Hatsune Miku",
     keyboard: "HYPESHOP Keyboard",
     monitor: "ZOWIE XL2566X+",
+
     verification: {
-      verifiedAt: "2026-08-01",
+      verifiedAt: "2026-08-24",
       sourceName: "BestGamers",
       sourceUrl: "https://b-gamers.net/valorant-yatsuka/",
     },
   },
 
   stats: {
-    rating: 1.00,
-    acs: 198.0,
+    rating: 0.93,
+    acs: 198,
     kd: 0.89,
-    kast: 66.1,
-    adr: 132.8,
-    hs: null,
+    kast: 70,
+    adr: 131.8,
+    hs: 28,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

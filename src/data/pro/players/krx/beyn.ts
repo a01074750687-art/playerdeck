@@ -31,33 +31,63 @@ const beynCareer: ProPlayerCareer = {
       joinedAt: "2023-06",
       leftAt: "2024-03",
     },
+    {
+      teamName: "DRX",
+      joinedAt: "2024-03",
+      leftAt: "2024-11",
+    },
   ],
 
   highlights: [
     {
       year: 2023,
-      title: "Challengers Korea Split 1",
+      title: "VALORANT Challengers 2023 Korea: Split 1",
       result: "3위",
     },
     {
       year: 2023,
-      title: "Challengers Korea Split 2",
+      title: "VALORANT Challengers 2023 Korea: Split 2",
       result: "3위",
     },
     {
       year: 2024,
-      title: "VCT Pacific Stage 2",
+      title: "VCT 2024: Pacific Stage 1",
+      result: "4위",
+    },
+    {
+      year: 2024,
+      title: "VCT 2024: Pacific Stage 2",
       result: "준우승",
     },
     {
+      year: 2024,
+      title: "VALORANT Champions 2024",
+      result: "5~6위",
+    },
+    {
       year: 2025,
-      title: "VCT Pacific Kickoff",
+      title: "VCT 2025: Pacific Kickoff",
       result: "우승",
     },
     {
       year: 2025,
-      title: "Champions Paris",
+      title: "VALORANT Masters Bangkok 2025",
+      result: "5~6위",
+    },
+    {
+      year: 2025,
+      title: "Asian Champions League 2025",
+      result: "우승",
+    },
+    {
+      year: 2025,
+      title: "VALORANT Champions 2025",
       result: "3위",
+    },
+    {
+      year: 2026,
+      title: "VCT 2026: Pacific Stage 1",
+      result: "5~6위",
     },
   ],
 };
@@ -80,7 +110,7 @@ export const beyn: ProPlayer = {
   team: getRequiredTeam("krx"),
 
   primaryRole: "Initiator",
-  roles: createRoles("Initiator", ["Controller"]),
+  roles: createRoles("Initiator"),
 
   mainAgents: ["Sova", "Fade", "Skye"],
 
@@ -88,6 +118,7 @@ export const beyn: ProPlayer = {
     {
       name: "DRX Beyn",
       tag: "V S",
+
       verification: {
         verifiedAt: "2026-08-14",
         sourceName: "Tracker Network",
@@ -100,55 +131,55 @@ export const beyn: ProPlayer = {
   career: beynCareer,
 
   settings: {
-    dpi: 800,
-    sensitivity: 0.2,
-    scopedSensitivity: 1,
+    dpi: 400,
+    sensitivity: 0.4,
+    scopedSensitivity: 0.9,
     adsSensitivity: 1,
     edpi: 160,
-    pollingRate: 8000,
+    pollingRate: 1000,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/beyn/",
     },
   },
 
   crosshair: {
-    code: "0;P;c;5;h;0;0l;2;0o;1;0a;1;0f;0;1b;0",
+    code: "0;P;c;5;h;0;0l;3;0o;2;0a;1;0f;0;1b;0",
     color: "Cyan",
     outlines: false,
     centerDot: false,
 
     verification: {
-      verifiedAt: "2026-08-02",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/beyn/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 Superlight",
-    mousepad: "Pulsar Hyperion",
-    keyboard: "Wooting 60HE Black",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
+    mousepad: "ARTISAN NINJA FX Zero XSoft Black",
+    keyboard: "Wooting 80HE Black",
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-02",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/beyn/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers / ProSettings.net",
+      sourceUrl: "https://b-gamers.net/valorant-beyn/",
     },
   },
 
   stats: {
-    rating: 1.1,
-    acs: 202.5,
-    kd: 1.08,
-    kast: 76,
-    adr: 132.1,
-    hs: 29,
+    rating: 1.01,
+    acs: 187,
+    kd: 0.97,
+    kast: 73,
+    adr: 124.9,
+    hs: 30,
   },
 
-  updatedAt: null,
+  updatedAt: "2026-08-24",
 };

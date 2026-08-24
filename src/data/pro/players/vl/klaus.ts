@@ -12,6 +12,11 @@ const klausCareer: ProPlayerCareer = {
 
   previousTeams: [
     {
+      teamName: "T1 Rookies",
+      joinedAt: "2024-07",
+      leftAt: "2024-10",
+    },
+    {
       teamName: "SLT Seongnam",
       joinedAt: "2024-10",
       leftAt: "2025-12",
@@ -44,72 +49,102 @@ const klausCareer: ProPlayerCareer = {
       title: "VCT Ascension Pacific",
       result: "우승",
     },
+    {
+      year: 2025,
+      title: "SOOP VALORANT League",
+      result: "3~4위",
+    },
   ],
 };
 
 export const klaus: ProPlayer = {
   id: "player-klaus",
   slug: "klaus",
+
   nickname: "Klaus",
   realName: "Kim Min-hyuk",
+
   countryCode: "KR",
   countryName: "South Korea",
+
   region: "Pacific",
   status: "Active",
+
   profileImageUrl: null,
+
   team: getRequiredTeam("varrel"),
-  primaryRole: "Flex",
-  roles: createRoles("Flex", ["Controller", "Duelist"]),
-  mainAgents: ["Omen", "Raze"],
+
+  primaryRole: "Controller",
+  roles: createRoles("Controller", ["Duelist"]),
+
+  mainAgents: ["Omen", "Raze", "Neon"],
+
+  riotAccounts: [
+    {
+      name: "VARREL Klaus",
+      tag: "1337",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "NamuWiki",
+        sourceUrl:
+          "https://namu.moe/w/%EA%B9%80%EB%AF%BC%ED%98%81(2007)",
+      },
+    },
+  ],
+
   career: klausCareer,
 
   settings: {
-    dpi: null,
-    sensitivity: null,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: null,
+    dpi: 800,
+    sensitivity: 0.2,
+    scopedSensitivity: 0.7,
+    adsSensitivity: 0.7,
+    edpi: 160,
     pollingRate: null,
-    resolution: null,
+    resolution: "1920x1080",
+
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-klaus/",
     },
   },
 
   crosshair: {
     code: null,
-    color: null,
-    outlines: null,
-    centerDot: null,
+    color: "White",
+    outlines: false,
+    centerDot: false,
+
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-klaus/",
     },
   },
 
   gear: {
-    mouse: null,
-    mousepad: null,
-    keyboard: null,
+    mouse: "Logitech G PRO X2 SUPERSTRIKE",
+    mousepad: "STEADY WINNERS MAGEN",
+    keyboard: "Geon Venom 60 HE",
     monitor: null,
+
     verification: {
-      verifiedAt: "2026-08-09",
-      sourceName: "공개 정보 없음",
-      sourceUrl: "",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-klaus/",
     },
   },
 
   stats: {
-    rating: 1.44,
-    acs: 235.0,
-    kd: 1.40,
-    kast: 70,
-    adr: 138.5,
-    hs: null,
+    rating: 1.01,
+    acs: 177,
+    kd: 1.01,
+    kast: 76,
+    adr: 111.1,
+    hs: 36,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };

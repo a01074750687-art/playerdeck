@@ -72,6 +72,20 @@ export const zeus: ProPlayer = {
 
   mainAgents: ["Neon", "Raze", "Jett"],
 
+  riotAccounts: [
+    {
+      name: "Secret Zeus",
+      tag:  "ela",
+
+      verification: {
+        verifiedAt: "2026-08-21",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Secret%20Zeus%23ela/overview",
+      },
+    },
+  ],
+
   career: zeusCareer,
 
   settings: {
@@ -91,7 +105,7 @@ export const zeus: ProPlayer = {
   },
 
   crosshair: {
-    code: null,
+    code: "0;s;1;P;o;1;d;1;0b;0;1b;0;S;d;0",
     color: "White",
     outlines: true,
     centerDot: true,

@@ -22,6 +22,11 @@ const syoutaCareer: ProPlayerCareer = {
       leftAt: "2024-10",
     },
     {
+      teamName: "ZETA DIVISION",
+      joinedAt: "2024-10",
+      leftAt: "2025-06",
+    },
+    {
       teamName: "Murash Gaming",
       joinedAt: "2025-06",
       leftAt: "2025-12",
@@ -54,6 +59,11 @@ const syoutaCareer: ProPlayerCareer = {
       title: "Red Bull Home Ground 2025 Japan Qualifier",
       result: "준우승",
     },
+    {
+      year: 2026,
+      title: "VCT Pacific Stage 2 Play-Ins",
+      result: "7~8위",
+    },
   ],
 };
 
@@ -77,23 +87,23 @@ export const syouta: ProPlayer = {
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Controller"]),
 
-  mainAgents: ["Cypher", "Vyse", "Viper"],
+  mainAgents: ["Cypher", "Viper", "Vyse"],
 
   career: syoutaCareer,
 
   settings: {
     dpi: 800,
-    sensitivity: 0.355,
-    scopedSensitivity: null,
-    adsSensitivity: null,
-    edpi: 284,
+    sensitivity: 0.4,
+    scopedSensitivity: 1,
+    adsSensitivity: 1,
+    edpi: 320,
     pollingRate: null,
     resolution: "1920x1080",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/syouta/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-syouta/",
     },
   },
 
@@ -104,33 +114,33 @@ export const syouta: ProPlayer = {
     centerDot: true,
 
     verification: {
-      verifiedAt: "2026-08-05",
+      verifiedAt: "2026-08-24",
       sourceName: "ProSettings.net",
       sourceUrl: "https://prosettings.net/players/syouta/",
     },
   },
 
   gear: {
-    mouse: "Logitech G Pro X2 SUPERSTRIKE",
+    mouse: "Logitech G Pro X2 SUPERSTRIKE Lunar Eclipse",
     mousepad: "Pulsar eS PD170",
     keyboard: "Razer Huntsman V3 Pro TKL Black",
     monitor: "ZOWIE XL2566K",
 
     verification: {
-      verifiedAt: "2026-08-05",
-      sourceName: "ProSettings.net",
-      sourceUrl: "https://prosettings.net/players/syouta/",
+      verifiedAt: "2026-08-24",
+      sourceName: "BestGamers",
+      sourceUrl: "https://b-gamers.net/valorant-syouta/",
     },
   },
 
   stats: {
-    rating: 1.11,
-    acs: 207.3,
-    kd: 1.15,
-    kast: 76.2,
-    adr: 143.6,
-    hs: null,
+    rating: 0.97,
+    acs: 199,
+    kd: 0.95,
+    kast: 69,
+    adr: 137.0,
+    hs: 35,
   },
 
-  updatedAt: "2026-08-09",
+  updatedAt: "2026-08-24",
 };
