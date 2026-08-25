@@ -91,10 +91,15 @@ export const mockPlayer: PlayerData = {
       mode: "competitive",
       agent: "Jett",
       map: "Ascent",
+
       kills: 24,
       deaths: 15,
       assists: 6,
+
       acs: 278,
+      hsRate: 34,
+      rounds: [],
+
       playedAt: null,
 
       score: {
@@ -123,15 +128,21 @@ export const mockPlayer: PlayerData = {
         },
       ],
     },
+
     {
       result: "Lose",
       mode: "unrated",
       agent: "Raze",
       map: "Bind",
+
       kills: 18,
       deaths: 17,
       assists: 5,
+
       acs: 231,
+      hsRate: 28,
+      rounds: [],
+
       playedAt: null,
 
       score: {
@@ -160,15 +171,21 @@ export const mockPlayer: PlayerData = {
         },
       ],
     },
+
     {
       result: "Win",
       mode: "swiftplay",
       agent: "Omen",
       map: "Haven",
+
       kills: 20,
       deaths: 14,
       assists: 9,
+
       acs: 244,
+      hsRate: 30,
+      rounds: [],
+
       playedAt: null,
 
       score: {

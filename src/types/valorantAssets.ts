@@ -11,7 +11,10 @@ export type ValorantAgentAsset = {
   role: ValorantAgentRole | null;
 };
 
-export type AgentAssetMap = Record<string, ValorantAgentAsset>;
+export type AgentAssetMap = Record<
+  string,
+  ValorantAgentAsset
+>;
 
 export type ValorantMapAsset = {
   uuid: string;
@@ -19,7 +22,10 @@ export type ValorantMapAsset = {
   splash: string | null;
 };
 
-export type MapAssetMap = Record<string, ValorantMapAsset>;
+export type MapAssetMap = Record<
+  string,
+  ValorantMapAsset
+>;
 
 export type ValorantRankAsset = {
   tier: number;
@@ -28,7 +34,10 @@ export type ValorantRankAsset = {
   smallIcon: string | null;
 };
 
-export type RankAssetMap = Record<string, ValorantRankAsset>;
+export type RankAssetMap = Record<
+  string,
+  ValorantRankAsset
+>;
 
 export type ValorantWeaponAsset = {
   uuid: string;
@@ -36,7 +45,10 @@ export type ValorantWeaponAsset = {
   displayIcon: string | null;
 };
 
-export type WeaponAssetMap = Record<string, ValorantWeaponAsset>;
+export type WeaponAssetMap = Record<
+  string,
+  ValorantWeaponAsset
+>;
 
 export type ValorantPlayerCardAsset = {
   uuid: string;
@@ -46,7 +58,10 @@ export type ValorantPlayerCardAsset = {
   wideArt: string | null;
 };
 
-export type PlayerCardAssetMap = Record<string, ValorantPlayerCardAsset>;
+export type PlayerCardAssetMap = Record<
+  string,
+  ValorantPlayerCardAsset
+>;
 
 export type ValorantActAsset = {
   uuid: string;
@@ -58,4 +73,3 @@ export type ValorantActAsset = {
   endTime: string | null;
   isActive: boolean;
 };
-
