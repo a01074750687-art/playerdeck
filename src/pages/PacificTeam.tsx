@@ -336,101 +336,314 @@ const PacificTeam = () => {
           id="rosters"
           className="mt-6 grid scroll-mt-24 gap-4 lg:grid-cols-2"
         >
+          {/* Pacific Teams */}
           <a
             href="#teams"
             className="
-              group relative overflow-hidden
+              group relative flex min-h-[220px]
+              flex-col overflow-hidden
               rounded-3xl
-              border border-white/10
-              bg-white/[0.035]
+              border border-white/[0.09]
+              bg-[#090b18]/85
               p-6
-              transition duration-300
+              shadow-[0_18px_55px_rgba(0,0,0,0.2)]
+              transition-all duration-300
               hover:-translate-y-1
-              hover:border-red-400/30
-              hover:bg-red-400/[0.06]
+              hover:border-red-400/25
+              hover:shadow-[0_24px_70px_rgba(0,0,0,0.3)]
               sm:p-7
             "
           >
+            {/* Background */}
             <div
               aria-hidden="true"
-              className="absolute -right-20 -top-24 h-52 w-52 rounded-full bg-red-500/10 blur-[80px]"
-            />
+              className="pointer-events-none absolute inset-0"
+            >
+              <div
+                className="
+                  absolute -right-20 -top-24
+                  h-56 w-56
+                  rounded-full
+                  bg-red-500/[0.08]
+                  opacity-70
+                  blur-[85px]
+                  transition-opacity duration-300
+                  group-hover:opacity-100
+                "
+              />
 
-            <div className="relative flex items-start justify-between gap-6">
-              <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-400/20 bg-red-400/10 text-red-200">
-                  <Shield size={23} />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(239,68,68,0.025),transparent_45%,rgba(255,255,255,0.005))]" />
+
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-400/30 to-transparent" />
+            </div>
+
+            <div className="relative flex flex-1 flex-col">
+              {/* Header */}
+              <div className="flex items-start justify-between gap-4">
+                <div
+                  className="
+                    flex h-12 w-12
+                    items-center justify-center
+                    rounded-2xl
+                    border border-red-400/20
+                    bg-red-400/[0.08]
+                    text-red-200
+                  "
+                >
+                  <Shield size={22} />
                 </div>
 
-                <p className="mt-6 text-xs font-black tracking-[0.14em] text-red-300">
+                <span
+                  className="
+                    inline-flex items-center
+                    rounded-full
+                    border border-white/[0.08]
+                    bg-white/[0.03]
+                    px-3 py-1.5
+                    text-[10px] font-black
+                    text-slate-400
+                  "
+                >
+                  {pacificTeams.length}개 팀
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="mt-6">
+                <p
+                  className="
+                    text-[10px] font-black
+                    tracking-[0.16em]
+                    text-red-300
+                  "
+                >
                   팀
                 </p>
 
-                <h2 className="mt-2 text-2xl font-black tracking-[-0.035em] text-white">
+                <h2
+                  className="
+                    mt-2
+                    text-2xl font-black
+                    tracking-[-0.04em]
+                    text-white
+                    sm:text-[1.65rem]
+                  "
+                >
                   Pacific 프로 팀
                 </h2>
 
-                <p className="mt-3 max-w-md text-sm leading-6 text-slate-500">
-                  VCT Pacific에 참가하는 프로 팀과
-                  팀별 로스터를 확인하세요.
+                <p
+                  className="
+                    mt-3 max-w-lg
+                    text-[13px] font-medium
+                    leading-6 text-slate-500
+                    sm:text-sm
+                  "
+                >
+                  VCT Pacific 참가 팀과 현재 등록된
+                  팀별 선수 로스터를 확인하세요.
                 </p>
               </div>
 
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-400 transition duration-300 group-hover:border-red-400/30 group-hover:bg-red-400/10 group-hover:text-red-200">
-                <ArrowRight
-                  size={18}
-                  className="transition duration-300 group-hover:translate-x-0.5"
-                />
+              {/* Footer */}
+              <div
+                className="
+                  mt-auto flex
+                  items-center justify-between
+                  border-t border-white/[0.07]
+                  pt-4
+                "
+              >
+                <span
+                  className="
+                    text-[11px] font-bold
+                    text-slate-500
+                    transition-colors duration-300
+                    group-hover:text-slate-300
+                  "
+                >
+                  팀 둘러보기
+                </span>
+
+                <div
+                  className="
+                    flex h-9 w-9
+                    items-center justify-center
+                    rounded-full
+                    border border-white/[0.08]
+                    bg-white/[0.035]
+                    text-slate-500
+                    transition-all duration-300
+                    group-hover:border-red-400/25
+                    group-hover:bg-red-400/[0.08]
+                    group-hover:text-red-200
+                  "
+                >
+                  <ArrowRight
+                    size={16}
+                    className="
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-0.5
+                    "
+                  />
+                </div>
               </div>
             </div>
           </a>
 
+          {/* Pro Players */}
           <Link
             to="/valorant/pros"
             className="
-              group relative overflow-hidden
+              group relative flex min-h-[220px]
+              flex-col overflow-hidden
               rounded-3xl
-              border border-white/10
-              bg-white/[0.035]
+              border border-white/[0.09]
+              bg-[#090b18]/85
               p-6
-              transition duration-300
+              shadow-[0_18px_55px_rgba(0,0,0,0.2)]
+              transition-all duration-300
               hover:-translate-y-1
-              hover:border-blue-400/30
-              hover:bg-blue-400/[0.05]
+              hover:border-blue-400/25
+              hover:shadow-[0_24px_70px_rgba(0,0,0,0.3)]
               sm:p-7
             "
           >
+            {/* Background */}
             <div
               aria-hidden="true"
-              className="absolute -right-20 -top-24 h-52 w-52 rounded-full bg-blue-500/10 blur-[80px]"
-            />
+              className="pointer-events-none absolute inset-0"
+            >
+              <div
+                className="
+                  absolute -right-20 -top-24
+                  h-56 w-56
+                  rounded-full
+                  bg-blue-500/[0.08]
+                  opacity-70
+                  blur-[85px]
+                  transition-opacity duration-300
+                  group-hover:opacity-100
+                "
+              />
 
-            <div className="relative flex items-start justify-between gap-6">
-              <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-400/10 text-blue-200">
-                  <Users size={23} />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.025),transparent_45%,rgba(255,255,255,0.005))]" />
+
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+            </div>
+
+            <div className="relative flex flex-1 flex-col">
+              {/* Header */}
+              <div className="flex items-start justify-between gap-4">
+                <div
+                  className="
+                    flex h-12 w-12
+                    items-center justify-center
+                    rounded-2xl
+                    border border-blue-400/20
+                    bg-blue-400/[0.08]
+                    text-blue-200
+                  "
+                >
+                  <Users size={22} />
                 </div>
 
-                <p className="mt-6 text-xs font-black tracking-[0.14em] text-blue-300">
+                <span
+                  className="
+                    inline-flex items-center
+                    rounded-full
+                    border border-white/[0.08]
+                    bg-white/[0.03]
+                    px-3 py-1.5
+                    text-[10px] font-black
+                    text-slate-400
+                  "
+                >
+                  {totalPlayers}명
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="mt-6">
+                <p
+                  className="
+                    text-[10px] font-black
+                    tracking-[0.16em]
+                    text-blue-300
+                  "
+                >
                   선수
                 </p>
 
-                <h2 className="mt-2 text-2xl font-black tracking-[-0.035em] text-white">
+                <h2
+                  className="
+                    mt-2
+                    text-2xl font-black
+                    tracking-[-0.04em]
+                    text-white
+                    sm:text-[1.65rem]
+                  "
+                >
                   프로 선수 로스터
                 </h2>
 
-                <p className="mt-3 max-w-md text-sm leading-6 text-slate-500">
-                  VCT Pacific 선수 전체 목록에서
-                  팀, 역할과 선수 프로필을
-                  확인하세요.
+                <p
+                  className="
+                    mt-3 max-w-lg
+                    text-[13px] font-medium
+                    leading-6 text-slate-500
+                    sm:text-sm
+                  "
+                >
+                  VCT Pacific 선수의 소속 팀, 역할과
+                  상세 프로필을 확인하세요.
                 </p>
               </div>
 
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-400 transition duration-300 group-hover:border-blue-400/30 group-hover:bg-blue-400/10 group-hover:text-blue-200">
-                <ArrowRight
-                  size={18}
-                  className="transition duration-300 group-hover:translate-x-0.5"
-                />
+              {/* Footer */}
+              <div
+                className="
+                  mt-auto flex
+                  items-center justify-between
+                  border-t border-white/[0.07]
+                  pt-4
+                "
+              >
+                <span
+                  className="
+                    text-[11px] font-bold
+                    text-slate-500
+                    transition-colors duration-300
+                    group-hover:text-slate-300
+                  "
+                >
+                  선수 둘러보기
+                </span>
+
+                <div
+                  className="
+                    flex h-9 w-9
+                    items-center justify-center
+                    rounded-full
+                    border border-white/[0.08]
+                    bg-white/[0.035]
+                    text-slate-500
+                    transition-all duration-300
+                    group-hover:border-blue-400/25
+                    group-hover:bg-blue-400/[0.08]
+                    group-hover:text-blue-200
+                  "
+                >
+                  <ArrowRight
+                    size={16}
+                    className="
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-0.5
+                    "
+                  />
+                </div>
               </div>
             </div>
           </Link>
