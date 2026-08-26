@@ -39,6 +39,61 @@ type MatchStatItemProps = {
 
 const INITIAL_MATCH_COUNT = 5;
 
+const GAME_MODE_ICON_PATHS: Partial<Record<GameMode, string>> = {
+  competitive:
+    "/GameModes/96BD3920-4F36-D026-2B28-C683EB0BCAC5.png",
+  unrated:
+    "/GameModes/96BD3920-4F36-D026-2B28-C683EB0BCAC5.png",
+  swiftplay:
+    "/GameModes/5D0F264B-4EBE-CC63-C147-809E1374484B.png",
+  spikerush:
+    "/GameModes/E921D1E6-416B-C31F-1291-74930C330B7B.png",
+  deathmatch:
+    "/GameModes/A8790EC5-4237-F2F0-E93B-08A8E89865B2.png",
+  teamdeathmatch:
+    "/GameModes/1A4A3FD5-4966-62CB-7FE4-15B0317F5C80.png",
+};
+
+function getGameModeLabel(mode: GameMode) {
+  return (
+    GAME_MODES.find((item) => item.value === mode)?.label ?? mode
+  );
+}
+
+function GameModeIcon({
+  mode,
+  className = "h-4 w-4",
+}: {
+  mode: GameMode;
+  className?: string;
+}) {
+  const iconPath = GAME_MODE_ICON_PATHS[mode];
+
+  if (!iconPath) {
+    return (
+      <span
+        aria-hidden="true"
+        className={`grid grid-cols-2 gap-[2px] ${className}`}
+      >
+        <span className="rounded-[1px] bg-current" />
+        <span className="rounded-[1px] bg-current" />
+        <span className="rounded-[1px] bg-current" />
+        <span className="rounded-[1px] bg-current" />
+      </span>
+    );
+  }
+
+  return (
+    <img
+      src={iconPath}
+      alt=""
+      aria-hidden="true"
+      className={`${className} object-contain`}
+    />
+  );
+}
+
+
 function getSelectedActLabel(
   acts: ValorantActAsset[],
   selectedAct: string
@@ -279,7 +334,13 @@ export default function RecentMatches({
                       : "shrink-0 rounded-xl border border-white/10 bg-slate-800/70 px-2.5 py-2 text-left text-xs font-bold text-slate-400 transition hover:border-red-400 hover:bg-slate-800 hover:text-white lg:w-full lg:px-3 lg:text-sm"
                   }
                 >
-                  {mode.label}
+                  <span className="flex items-center gap-2">
+                    <GameModeIcon
+                      mode={mode.value}
+                      className="h-5 w-5 shrink-0 opacity-90"
+                    />
+                    <span>{mode.label}</span>
+                  </span>
                 </button>
               );
             })}
@@ -364,7 +425,16 @@ export default function RecentMatches({
                               }
                             />
 
-                            {match.mode}
+                            <GameModeIcon
+                              mode={match.mode}
+                              className="h-4 w-4 shrink-0 opacity-90 sm:h-[18px] sm:w-[18px]"
+                            />
+
+                            <span>
+                              {getGameModeLabel(
+                                match.mode
+                              )}
+                            </span>
 
                             <span className="text-slate-600">
                               •

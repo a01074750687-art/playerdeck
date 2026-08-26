@@ -164,6 +164,8 @@ type ParsedMatch = {
   rounds: number;
 };
 
+
+
 type CalculatedPlayerStats = {
   kd: number;
   winRate: string;
@@ -794,6 +796,7 @@ function parseMatch(
   playerName: string,
   playerTag: string
 ): ParsedMatch | null {
+
   const targetPlayer =
     match.players?.all_players?.find((player) =>
       isSamePlayer(player, playerName, playerTag)

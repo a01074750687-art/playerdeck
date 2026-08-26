@@ -15,7 +15,9 @@ type Props = {
   onRefresh?: () => void;
 };
 
-function formatLastUpdated(lastUpdated: Date | null | undefined) {
+function formatLastUpdated(
+  lastUpdated: Date | null | undefined,
+) {
   if (!lastUpdated) {
     return "갱신 기록 없음";
   }
@@ -46,65 +48,243 @@ export default function PlayerHeader({
   const isRefreshDisabled =
     isRefreshing || refreshCooldown > 0 || !onRefresh;
 
-  const playerCardImage = player.playerCard?.wideArt ?? null;
+  const playerCardImage =
+    player.playerCard?.wideArt ?? null;
 
   return (
-    <section className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-2xl shadow-black/20">
+    <section
+      className="
+        relative
+        mt-8
+        overflow-hidden
+        rounded-[28px]
+        border border-white/[0.08]
+        bg-[#070b18]
+        shadow-2xl shadow-black/20
+      "
+    >
+      {/* Background */}
       {playerCardImage && (
         <>
           <img
             src={playerCardImage}
             alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-35 sm:opacity-45"
+            className="
+              pointer-events-none
+              absolute inset-0
+              h-full w-full
+              object-cover
+              object-center
+              opacity-[0.36]
+            "
           />
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/20" />
+          <div
+            className="
+              pointer-events-none
+              absolute inset-0
+              bg-gradient-to-r
+              from-[#070b18]
+              via-[#070b18]/85
+              to-[#070b18]/45
+            "
+          />
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/45" />
+          <div
+            className="
+              pointer-events-none
+              absolute inset-0
+              bg-gradient-to-t
+              from-[#070b18]
+              via-[#070b18]/10
+              to-[#070b18]/45
+            "
+          />
         </>
       )}
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-400/80 to-transparent" />
+      {/* subtle accent */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-x-0 top-0
+          h-px
+          bg-gradient-to-r
+          from-transparent
+          via-red-400/80
+          to-transparent
+        "
+      />
 
-      <div className="relative z-10 p-5 sm:p-6 lg:p-8">
-        <div className="mb-7 flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div
+        className="
+          pointer-events-none
+          absolute -right-32 -top-32
+          h-80 w-80
+          rounded-full
+          bg-red-500/[0.05]
+          blur-3xl
+        "
+      />
+
+      <div className="relative z-10 p-5 sm:p-7 lg:p-8">
+        {/* Top */}
+        <div
+          className="
+            flex flex-col gap-4
+            border-b border-white/[0.07]
+            pb-6
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+          "
+        >
           <div>
-            <div className="flex items-center gap-3">
-              <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2
+                className="
+                  text-2xl
+                  font-black
+                  tracking-[-0.04em]
+                  text-white
+                  sm:text-3xl
+                "
+              >
                 Deck
                 <span className="text-red-400">.GG</span>
               </h2>
 
-              <span className="rounded-full border border-red-400/30 bg-red-400/10 px-2.5 py-1 text-[10px] font-black tracking-[0.18em] text-red-300">
-                VALORANT
+              <span
+                className="
+                  inline-flex
+                  items-center
+                  rounded-full
+                  border border-red-400/25
+                  bg-red-400/[0.08]
+                  px-2.5 py-1
+                  text-[9px]
+                  font-black
+                  uppercase
+                  tracking-[0.18em]
+                  text-red-300
+                "
+              >
+                Valorant
               </span>
             </div>
 
-            <p className="mt-1.5 text-sm font-medium text-slate-400">
+            <p
+              className="
+                mt-1.5
+                text-xs
+                font-medium
+                text-slate-500
+                sm:text-sm
+              "
+            >
               Competitive Valorant Stats
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+          <div
+            className="
+              inline-flex
+              w-fit
+              items-center
+              gap-2
+              rounded-full
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3 py-2
+              text-[10px]
+              font-bold
+              text-slate-400
+            "
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span
+                className="
+                  absolute
+                  inline-flex
+                  h-full w-full
+                  animate-ping
+                  rounded-full
+                  bg-emerald-400
+                  opacity-40
+                "
+              />
+
+              <span
+                className="
+                  relative
+                  inline-flex
+                  h-1.5 w-1.5
+                  rounded-full
+                  bg-emerald-400
+                "
+              />
             </span>
 
-            <span>Player Profile</span>
+            플레이어 프로필
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:gap-8">
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
+        {/* Main */}
+        <div
+          className="
+            mt-7
+            grid
+            gap-6
+            lg:grid-cols-[minmax(0,1fr)_320px]
+            lg:gap-8
+          "
+        >
+          {/* Player */}
+          <div className="min-w-0">
+            <div
+              className="
+                flex
+                flex-col
+                gap-6
+                xl:flex-row
+                xl:items-start
+                xl:justify-between
+              "
+            >
               <div className="min-w-0">
-                <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-red-300">
+                <p
+                  className="
+                    text-[10px]
+                    font-black
+                    uppercase
+                    tracking-[0.22em]
+                    text-red-300
+                  "
+                >
                   Riot ID
                 </p>
 
-                <div className="flex flex-wrap items-center gap-3">
-                  <h1 className="break-words text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <div
+                  className="
+                    mt-2
+                    flex
+                    flex-wrap
+                    items-center
+                    gap-3
+                  "
+                >
+                  <h1
+                    className="
+                      break-words
+                      text-4xl
+                      font-black
+                      leading-none
+                      tracking-[-0.045em]
+                      text-white
+                      sm:text-5xl
+                      lg:text-[56px]
+                    "
+                  >
                     {player.name}
                   </h1>
 
@@ -113,47 +293,146 @@ export default function PlayerHeader({
                       to={`/valorant/pros/${proPlayer.slug}`}
                       title={`${proPlayer.nickname} 프로 선수 프로필 보기`}
                       aria-label={`${proPlayer.nickname} 프로 선수 프로필 보기`}
-                      className="inline-flex shrink-0 items-center rounded-lg border border-amber-300/40 bg-amber-300/15 px-2.5 py-1.5 text-xs font-black tracking-[0.14em] text-amber-200 shadow-lg shadow-amber-950/10 transition duration-200 hover:-translate-y-0.5 hover:border-amber-200/70 hover:bg-amber-300/25 hover:text-amber-100"
+                      className="
+                        inline-flex
+                        shrink-0
+                        items-center
+                        rounded-lg
+                        border border-amber-300/30
+                        bg-amber-300/10
+                        px-2.5 py-1.5
+                        text-[10px]
+                        font-black
+                        tracking-[0.14em]
+                        text-amber-200
+                        transition
+                        hover:border-amber-200/50
+                        hover:bg-amber-300/15
+                      "
                     >
                       PRO
                     </Link>
                   )}
                 </div>
 
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <div className="min-w-[112px] rounded-2xl border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-sm">
-                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                      Level
-                    </p>
+                {/* Basic info */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <div
+                    className="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      border border-white/[0.08]
+                      bg-white/[0.03]
+                      px-3 py-2
+                    "
+                  >
+                    <span
+                      className="
+                        text-[9px]
+                        font-black
+                        uppercase
+                        tracking-[0.14em]
+                        text-slate-500
+                      "
+                    >
+                      레벨
+                    </span>
 
-                    <p className="mt-1 text-lg font-black text-slate-100">
+                    <span
+                      className="
+                        text-sm
+                        font-black
+                        text-slate-200
+                      "
+                    >
                       {player.level}
-                    </p>
+                    </span>
                   </div>
 
-                  <div className="min-w-[112px] rounded-2xl border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-sm">
-                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                      Region
-                    </p>
+                  <div
+                    className="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      border border-white/[0.08]
+                      bg-white/[0.03]
+                      px-3 py-2
+                    "
+                  >
+                    <span
+                      className="
+                        text-[9px]
+                        font-black
+                        uppercase
+                        tracking-[0.14em]
+                        text-slate-500
+                      "
+                    >
+                      지역
+                    </span>
 
-                    <p className="mt-1 text-lg font-black uppercase text-slate-100">
+                    <span
+                      className="
+                        text-sm
+                        font-black
+                        uppercase
+                        text-slate-200
+                      "
+                    >
                       {player.region}
-                    </p>
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <div className="shrink-0 xl:pr-4 xl:pt-1">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-3 backdrop-blur-sm">
-                  <p className="mb-2 text-xs font-medium text-slate-500 xl:text-right">
-                    최근 갱신 · {formatLastUpdated(lastUpdated)}
+              {/* Refresh */}
+              <div className="shrink-0">
+                <div
+                  className="
+                    flex
+                    flex-col
+                    gap-2
+                    xl:items-end
+                  "
+                >
+                  <p
+                    className="
+                      text-[10px]
+                      font-medium
+                      text-slate-500
+                    "
+                  >
+                    최근 갱신 ·{" "}
+                    {formatLastUpdated(lastUpdated)}
                   </p>
 
                   <button
                     type="button"
                     onClick={onRefresh}
                     disabled={isRefreshDisabled}
-                    className="group w-full min-w-[160px] rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm font-black text-red-200 shadow-lg shadow-red-950/10 transition duration-200 hover:-translate-y-0.5 hover:border-red-300/70 hover:bg-red-500/20 hover:text-white disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-50 xl:w-auto"
+                    className="
+                      group
+                      inline-flex
+                      min-w-[132px]
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border border-white/[0.09]
+                      bg-white/[0.035]
+                      px-4 py-2.5
+                      text-xs
+                      font-black
+                      text-slate-300
+                      transition
+                      hover:border-red-400/30
+                      hover:bg-red-400/[0.07]
+                      hover:text-white
+                      disabled:cursor-not-allowed
+                      disabled:opacity-40
+                    "
                   >
                     <span
                       className={
@@ -166,106 +445,237 @@ export default function PlayerHeader({
                     </span>
 
                     <span className="ml-2">
-                      {isRefreshing ? "갱신 중..." : "전적 갱신"}
+                      {isRefreshing
+                        ? "갱신 중..."
+                        : "전적 갱신"}
                     </span>
                   </button>
 
                   {refreshCooldown > 0 && (
-                    <p className="mt-2 text-xs font-medium text-red-300/70 xl:text-right">
-                      {refreshCooldown}초 후에 다시 시도하세요.
+                    <p
+                      className="
+                        text-[10px]
+                        font-medium
+                        text-red-300/70
+                      "
+                    >
+                      {refreshCooldown}초 후 다시 갱신할 수
+                      있습니다.
                     </p>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="mt-7">
-              <ActPeakRanks actPeakRanks={player.actPeakRanks} />
+            {/* Act Peak */}
+            <div
+              className="
+                mt-8
+                border-t border-white/[0.06]
+                pt-6
+              "
+            >
+              <ActPeakRanks
+                actPeakRanks={player.actPeakRanks}
+              />
             </div>
+          </div>
 
-            {/* 모바일 Current Rank */}
-            <div className="mt-6 rounded-3xl border border-red-400/25 bg-gradient-to-br from-red-500/15 to-slate-950/70 p-5 shadow-xl shadow-red-950/10 backdrop-blur-md lg:hidden">
-              <div className="flex items-center gap-4">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-2">
-                  <RankIcon rankName={player.rank} size="lg" />
-                </div>
+          {/* Current Rank */}
+          <aside
+            className="
+              relative
+              overflow-hidden
+              rounded-3xl
+              border border-red-400/20
+              bg-gradient-to-br
+              from-red-500/[0.10]
+              via-white/[0.035]
+              to-white/[0.02]
+              p-5
+              sm:p-6
+            "
+          >
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -right-16 -top-16
+                h-40 w-40
+                rounded-full
+                bg-red-400/[0.08]
+                blur-3xl
+              "
+            />
 
-                <div className="min-w-0 flex-1">
-                  <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-red-300">
-                    Current Rank
+            <div className="relative">
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+                  gap-3
+                "
+              >
+                <div>
+                  <p
+                    className="
+                      text-[10px]
+                      font-black
+                      uppercase
+                      tracking-[0.2em]
+                      text-red-300
+                    "
+                  >
+                    Competitive
                   </p>
 
-                  <h2 className="break-words text-2xl font-black leading-tight text-white">
+                  <p
+                    className="
+                      mt-1
+                      text-xs
+                      font-semibold
+                      text-slate-500
+                    "
+                  >
+                    현재 경쟁전 랭크
+                  </p>
+                </div>
+
+                <span
+                  className="
+                    rounded-full
+                    border border-red-400/20
+                    bg-red-400/[0.07]
+                    px-2.5 py-1
+                    text-[9px]
+                    font-black
+                    uppercase
+                    tracking-[0.14em]
+                    text-red-300
+                  "
+                >
+                  Current
+                </span>
+              </div>
+
+              <div className="mt-5 flex items-center gap-4">
+                <div
+                  className="
+                    flex
+                    h-[82px] w-[82px]
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    border border-white/[0.08]
+                    bg-black/20
+                  "
+                >
+                  <RankIcon
+                    rankName={player.rank}
+                    size="lg"
+                  />
+                </div>
+
+                <div className="min-w-0">
+                  <h2
+                    className="
+                      break-words
+                      text-2xl
+                      font-black
+                      leading-tight
+                      tracking-tight
+                      text-white
+                      sm:text-3xl
+                    "
+                  >
                     {player.rank}
                   </h2>
 
-                  <p className="mt-1 text-sm font-black text-red-300">
+                  <p
+                    className="
+                      mt-1.5
+                      text-base
+                      font-black
+                      text-red-300
+                    "
+                  >
                     {player.rr} RR
                   </p>
                 </div>
               </div>
 
-              <div className="my-5 h-px bg-white/10" />
+              <div
+                className="
+                  my-5
+                  h-px
+                  bg-white/[0.08]
+                "
+              />
 
               <div>
-                <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                  Peak Rank
+                <p
+                  className="
+                    text-[9px]
+                    font-black
+                    uppercase
+                    tracking-[0.18em]
+                    text-slate-500
+                  "
+                >
+                  최고 랭크
                 </p>
 
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl border border-white/10 bg-black/20 p-1.5">
-                    <RankIcon rankName={player.peakRank} size="sm" />
+                <div
+                  className="
+                    mt-3
+                    flex
+                    items-center
+                    gap-3
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-11 w-11
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border border-white/[0.08]
+                      bg-white/[0.025]
+                    "
+                  >
+                    <RankIcon
+                      rankName={player.peakRank}
+                      size="sm"
+                    />
                   </div>
 
-                  <p className="text-sm font-black text-slate-100">
-                    {player.peakRank}
-                  </p>
+                  <div>
+                    <p
+                      className="
+                        text-sm
+                        font-black
+                        text-slate-100
+                      "
+                    >
+                      {player.peakRank}
+                    </p>
+
+                    <p
+                      className="
+                        mt-0.5
+                        text-[10px]
+                        font-medium
+                        text-slate-500
+                      "
+                    >
+                      최고 기록
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 데스크톱 Current Rank */}
-          <aside className="group hidden h-fit min-w-[290px] rounded-3xl border border-red-400/25 bg-gradient-to-br from-red-500/15 to-slate-950/75 p-6 shadow-2xl shadow-red-950/10 backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-red-300/40 lg:block">
-            <p className="mb-5 text-xs font-black uppercase tracking-[0.2em] text-red-300">
-              Competitive Rank
-            </p>
-
-            <div className="flex items-center gap-5">
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-2 transition duration-300 group-hover:scale-105">
-                <RankIcon rankName={player.rank} size="lg" />
-              </div>
-
-              <div className="min-w-0">
-                <p className="mb-1 text-sm font-semibold text-red-300">
-                  Current Rank
-                </p>
-
-                <h2 className="break-words text-3xl font-black leading-tight text-white">
-                  {player.rank}
-                </h2>
-
-                <p className="mt-2 text-base font-black text-red-300">
-                  {player.rr} RR
-                </p>
-              </div>
-            </div>
-
-            <div className="my-5 h-px bg-white/10" />
-
-            <div>
-              <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                Peak Rank
-              </p>
-
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl border border-white/10 bg-black/20 p-1.5">
-                  <RankIcon rankName={player.peakRank} size="sm" />
-                </div>
-
-                <p className="font-black text-slate-100">
-                  {player.peakRank}
-                </p>
               </div>
             </div>
           </aside>
