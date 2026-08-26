@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import type { WeeklyPick as WeeklyPickData } from "../../data/weeklyPick";
 import type { ProPlayerRole } from "../../types/proPlayer";
+import { getAgentLabel } from "../../utils/agentLabels";
 
 interface WeeklyPickProps {
   pick: WeeklyPickData;
@@ -211,7 +212,7 @@ const WeeklyPick = ({ pick }: WeeklyPickProps) => {
                       key={agent}
                       className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[10px] font-bold text-slate-400 transition-colors hover:border-white/[0.13] hover:bg-white/[0.055] hover:text-slate-300"
                     >
-                      {agent}
+                      {getAgentLabel(agent)}
                     </span>
                   ))
               ) : (

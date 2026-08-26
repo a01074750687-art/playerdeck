@@ -4,8 +4,6 @@ import {
   Crosshair,
   Shield,
   Star,
-  Target,
-  Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -17,90 +15,154 @@ import type {
   ProPlayerRole,
 } from "../../types/proPlayer";
 
+import { getAgentLabel } from "../../utils/agentLabels";
+
 interface ProPlayerCardProps {
   player: ProPlayer;
 }
 
-const ROLE_LABELS: Record<ProPlayerRole, string> = {
-  Duelist: "DUELIST",
-  Initiator: "INITIATOR",
-  Controller: "CONTROLLER",
-  Sentinel: "SENTINEL",
-  Flex: "FLEX",
+interface WatermarkTheme {
+  opacity: string;
+  size: string;
+  position: string;
+  filter: string;
+}
+
+const STATUS_LABELS: Record<string, string> = {
+  Active: "현역",
+  Retired: "은퇴",
 };
 
-const ROLE_STYLES: Record<ProPlayerRole, string> = {
+const ROLE_LABELS: Record<
+  ProPlayerRole,
+  string
+> = {
+  Duelist: "타격대",
+  Initiator: "척후대",
+  Controller: "전략가",
+  Sentinel: "감시자",
+  Flex: "플렉스",
+};
+
+const ROLE_STYLES: Record<
+  ProPlayerRole,
+  string
+> = {
   Duelist:
-    "border-red-400/30 bg-red-400/10 text-red-200",
+    "border-red-400/25 bg-red-400/[0.09] text-red-200",
   Initiator:
-    "border-sky-400/30 bg-sky-400/10 text-sky-200",
+    "border-sky-400/25 bg-sky-400/[0.09] text-sky-200",
   Controller:
-    "border-violet-400/30 bg-violet-400/10 text-violet-200",
+    "border-violet-400/25 bg-violet-400/[0.09] text-violet-200",
   Sentinel:
-    "border-emerald-400/30 bg-emerald-400/10 text-emerald-200",
+    "border-emerald-400/25 bg-emerald-400/[0.09] text-emerald-200",
   Flex:
-    "border-amber-400/30 bg-amber-400/10 text-amber-200",
+    "border-amber-400/25 bg-amber-400/[0.09] text-amber-200",
 };
 
-/**
- * 팀별 배경 워터마크 투명도입니다.
- *
- * 로고 모양과 원본 이미지 밝기가 팀마다 다르기 때문에
- * 모든 팀에 같은 투명도를 적용하지 않고 개별 관리합니다.
- */
-const WATERMARK_OPACITY: Record<string, string> = {
-  T1: "opacity-[0.20]",
-
-  GEN: "opacity-[0.08]",
-  KRX: "opacity-[0.08]",
-  PRX: "opacity-[0.08]",
-  RRQ: "opacity-[0.08]",
-  TS: "opacity-[0.08]",
-  GE: "opacity-[0.08]",
-  FS: "opacity-[0.08]",
-  DFM: "opacity-[0.08]",
-  ZETA: "opacity-[0.08]",
-  NS: "opacity-[0.08]",
-  VL: "opacity-[0.08]",
+const DEFAULT_WATERMARK_THEME: WatermarkTheme = {
+  opacity: "opacity-[0.06]",
+  size: "h-56 w-56",
+  position: "-right-10 top-14",
+  filter: "grayscale",
 };
 
-/**
- * 팀별 배경 워터마크 이미지 필터입니다.
- *
- * T1 로고는 선 형태의 빨간색 로고라서 grayscale을 적용하면
- * 어두운 배경에서 지나치게 흐려집니다.
- *
- * 따라서 T1만 원본 색상을 유지하면서 밝기와 채도를 보정합니다.
- */
-const WATERMARK_FILTER: Record<string, string> = {
-  T1: "grayscale-0 brightness-150 saturate-200",
+const TEAM_WATERMARK_THEME: Record<
+  string,
+  Partial<WatermarkTheme>
+> = {
+  T1: {
+    opacity: "opacity-[0.16]",
+    position: "-right-7 top-12",
+    filter:
+      "grayscale-0 brightness-150 saturate-200",
+  },
 
-  GEN: "grayscale",
-  KRX: "grayscale",
-  PRX: "grayscale",
-  RRQ: "grayscale",
-  TS: "grayscale",
-  GE: "grayscale",
-  FS: "grayscale",
-  DFM: "grayscale",
-  ZETA: "grayscale",
-  NS: "grayscale",
-  VL: "grayscale",
+  GEN: {
+    opacity: "opacity-[0.08]",
+  },
+
+  KRX: {
+    opacity: "opacity-[0.08]",
+  },
+
+  PRX: {
+    opacity: "opacity-[0.08]",
+  },
+
+  RRQ: {
+    size: "h-52 w-52",
+  },
+
+  TS: {
+    size: "h-52 w-52",
+  },
+
+  GE: {
+    size: "h-52 w-52",
+  },
+
+  DFM: {
+    size: "h-52 w-52",
+  },
+
+  NS: {
+    size: "h-52 w-52",
+  },
 };
 
 const formatStat = (
   value: number | null,
   maximumFractionDigits = 2,
 ): string => {
-    if (value === null) {
-      return "공개 정보 없음";
-    }
+  if (value === null) {
+    return "-";
+  }
 
-    return new Intl.NumberFormat("en-US", {
-      minimumFractionDigits: 0,
-      maximumFractionDigits,
-    }).format(value);
-   };
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits,
+  }).format(value);
+};
+
+const getCountryFlag = (
+  countryCode: string,
+): string => {
+  switch (countryCode) {
+    case "KR":
+      return "🇰🇷";
+
+    case "JP":
+      return "🇯🇵";
+
+    case "ID":
+      return "🇮🇩";
+
+    case "SG":
+      return "🇸🇬";
+
+    case "PH":
+      return "🇵🇭";
+
+    case "TH":
+      return "🇹🇭";
+
+    case "MY":
+      return "🇲🇾";
+
+    case "CN":
+      return "🇨🇳";
+
+    case "AU":
+      return "🇦🇺";
+
+    case "RU":
+      return "🇷🇺";
+
+    default:
+      return "🌐";
+  }
+};
 
 const ProPlayerCard = ({
   player,
@@ -113,26 +175,29 @@ const ProPlayerCard = ({
 
   const team = player.team;
 
-  const teamName = team?.name ?? "Free Agent";
-  const teamShortName = team?.shortName ?? "FA";
-  const teamLogoUrl = team?.logoUrl ?? null;
+  const teamName =
+    team?.name ?? "Free Agent";
 
-  const teamPrimaryColor =
+  const teamShortName =
+    team?.shortName ?? "FA";
+
+  const teamLogoUrl =
+    team?.logoUrl ?? null;
+
+  const primaryColor =
     team?.primaryColor ?? "#64748B";
 
-  const teamSecondaryColor =
+  const secondaryColor =
     team?.secondaryColor ?? "#0F172A";
 
-  const logoOpacity =
-    WATERMARK_OPACITY[teamShortName] ??
-    "opacity-[0.06]";
-
-  const logoFilter =
-    WATERMARK_FILTER[teamShortName] ??
-    "grayscale";
+  const watermarkTheme: WatermarkTheme = {
+    ...DEFAULT_WATERMARK_THEME,
+    ...TEAM_WATERMARK_THEME[teamShortName],
+  };
 
   const canShowTeamLogo =
-    Boolean(teamLogoUrl) && !hasTeamLogoError;
+    Boolean(teamLogoUrl) &&
+    !hasTeamLogoError;
 
   const favoritePlayer: FavoriteProPlayer = {
     type: "pro-player",
@@ -145,314 +210,552 @@ const ProPlayerCard = ({
   const playerIsFavorite =
     isFavorite(favoritePlayer);
 
+  const mainAgents =
+    player.mainAgents.slice(0, 3);
+
   return (
-    <Link
-      to={`/valorant/pros/${player.slug}`}
-      aria-label={`${player.nickname} 선수 상세 페이지로 이동`}
-      className="group block h-full"
+    <article
+      className="
+        group relative h-full
+        overflow-hidden
+        rounded-[1.5rem]
+        border border-white/[0.085]
+        bg-[#080b18]/90
+        shadow-[0_20px_65px_rgba(0,0,0,0.28)]
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:border-white/[0.15]
+        hover:shadow-[0_28px_85px_rgba(0,0,0,0.38)]
+      "
     >
-      <article className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 shadow-[0_24px_80px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_28px_100px_rgba(0,0,0,0.45)]">
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-35 blur-3xl transition-opacity duration-300 group-hover:opacity-50"
-          style={{
-            background: `linear-gradient(135deg, ${teamPrimaryColor}, ${teamSecondaryColor})`,
-          }}
-        />
+      {/* Full Card Link */}
+      <Link
+        to={`/valorant/pros/${player.slug}`}
+        aria-label={`${player.nickname} 선수 상세 페이지로 이동`}
+        className="
+          absolute inset-0 z-20
+          rounded-[1.5rem]
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-white/50
+          focus-visible:ring-inset
+        "
+      />
 
-        <div
-          className="absolute inset-x-0 top-0 h-1"
-          style={{
-            background: `linear-gradient(90deg, ${teamPrimaryColor}, ${teamSecondaryColor})`,
-          }}
-        />
+      {/* Top Color Line */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px"
+        style={{
+          background: `linear-gradient(
+            90deg,
+            transparent,
+            ${primaryColor},
+            ${secondaryColor},
+            transparent
+          )`,
+        }}
+      />
 
-        <div className="relative flex h-full flex-col">
-          <div className="relative min-h-[270px] overflow-hidden border-b border-white/10 bg-slate-900">
-            <div
-              className="absolute inset-0 opacity-50"
-              style={{
-                background: `
-                  radial-gradient(
-                    circle at 20% 20%,
-                    ${teamPrimaryColor}55 0%,
-                    transparent 48%
-                  ),
-                  linear-gradient(
-                    145deg,
-                    ${teamSecondaryColor} 0%,
-                    #020617 72%
-                  )
-                `,
-              }}
+      {/* Visual */}
+      <div
+        className="
+          relative min-h-[285px]
+          overflow-hidden
+          border-b border-white/[0.07]
+          bg-slate-950
+        "
+      >
+        {/* Background */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+        >
+          <div
+            className="absolute inset-0 opacity-45"
+            style={{
+              background: `
+                radial-gradient(
+                  circle at 15% 15%,
+                  ${primaryColor}44 0%,
+                  transparent 42%
+                ),
+                linear-gradient(
+                  145deg,
+                  ${secondaryColor}33 0%,
+                  #020617 70%
+                )
+              `,
+            }}
+          />
+
+          <div
+            className="
+              absolute -left-20 -top-20
+              h-52 w-52
+              rounded-full
+              opacity-[0.12]
+              blur-[80px]
+            "
+            style={{
+              backgroundColor: primaryColor,
+            }}
+          />
+
+          {canShowTeamLogo && (
+            <img
+              src={teamLogoUrl ?? undefined}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className={`
+                absolute object-contain
+                transition-transform duration-500
+                group-hover:scale-[1.035]
+                ${watermarkTheme.opacity}
+                ${watermarkTheme.size}
+                ${watermarkTheme.position}
+                ${watermarkTheme.filter}
+              `}
             />
+          )}
 
-            {canShowTeamLogo && (
-              <img
-                src={teamLogoUrl ?? undefined}
-                alt=""
-                aria-hidden="true"
-                className={`pointer-events-none absolute -right-8 top-10 h-52 w-52 object-contain transition-opacity duration-300 ${logoOpacity} ${logoFilter}`}
-              />
-            )}
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_32%,rgba(2,6,23,0.18)_52%,rgba(2,6,23,0.96)_100%)]" />
+        </div>
 
-            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_35%,rgba(2,6,23,0.92)_100%)]" />
-
-            <div className="absolute left-5 top-5 z-20 flex items-center gap-2">
-              <span className="rounded-full border border-white/10 bg-slate-950/75 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
-                {player.region}
-              </span>
-
-              <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-md">
-                {player.status}
-              </span>
-            </div>
-
-            <div className="absolute right-5 top-5 z-20">
-              <div className="flex h-11 min-w-11 items-center justify-center rounded-xl border border-white/10 bg-slate-950/70 px-3 text-xs font-black tracking-[0.12em] text-white backdrop-blur-md">
-                {teamShortName}
-              </div>
-            </div>
-
-            <div className="absolute inset-x-0 bottom-0 top-12 z-10 flex items-end justify-center">
-              {player.profileImageUrl ? (
-                <img
-                  src={player.profileImageUrl}
-                  alt={`${player.nickname} 프로필`}
-                  loading="lazy"
-                  className="h-full w-full object-contain object-bottom transition duration-500 group-hover:scale-[1.03]"
-                />
-              ) : (
-                <div className="mb-9 flex h-40 w-40 items-center justify-center transition duration-500 group-hover:scale-105">
-                  {canShowTeamLogo ? (
-                    <img
-                      src={teamLogoUrl ?? undefined}
-                      alt={`${teamName} 팀 로고`}
-                      loading="lazy"
-                      onError={() =>
-                        setHasTeamLogoError(true)
-                      }
-                      className="max-h-32 max-w-32 object-contain drop-shadow-[0_18px_35px_rgba(0,0,0,0.55)]"
-                    />
-                  ) : (
-                    <div
-                      className="flex h-32 w-32 items-center justify-center rounded-full border border-white/15 bg-slate-950/45 px-4 text-center text-3xl font-black tracking-[-0.04em] text-white shadow-2xl backdrop-blur-md"
-                      style={{
-                        boxShadow: `0 20px 50px ${teamPrimaryColor}33`,
-                      }}
-                    >
-                      {teamShortName}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            <button
-              type="button"
-              aria-label={
-                playerIsFavorite
-                  ? `${player.nickname} 즐겨찾기 해제`
-                  : `${player.nickname} 즐겨찾기 추가`
-              }
-              aria-pressed={playerIsFavorite}
-              title={
-                playerIsFavorite
-                  ? "즐겨찾기 해제"
-                  : "즐겨찾기 추가"
-              }
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                toggleFavorite(favoritePlayer);
-              }}
-              className={`absolute bottom-[118px] left-5 z-30 flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md transition duration-200 ${
-                playerIsFavorite
-                  ? "border-amber-300/40 bg-amber-300/15 text-amber-200"
-                  : "border-white/10 bg-slate-950/70 text-slate-400 hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-amber-200"
-              }`}
+        {/* Top Badges */}
+        <div
+          className="
+            absolute left-5 right-5 top-5
+            z-10 flex
+            items-start justify-between
+            gap-3
+          "
+        >
+          <div className="flex flex-wrap gap-1.5">
+            <span
+              className="
+                inline-flex items-center
+                rounded-full
+                border border-white/[0.08]
+                bg-slate-950/55
+                px-2.5 py-1.5
+                text-[9px] font-black
+                uppercase tracking-[0.14em]
+                text-slate-300
+                backdrop-blur-md
+              "
             >
-              <Star
-                size={18}
-                strokeWidth={2}
-                fill={
-                  playerIsFavorite
-                    ? "currentColor"
-                    : "none"
-                }
-              />
-            </button>
+              {player.region}
+            </span>
 
-            <div className="absolute inset-x-0 bottom-0 z-20 px-5 pb-5">
-              <div className="flex items-end justify-between gap-4">
-                <div className="min-w-0">
-                  <p className="mb-1 truncate text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                    {teamName}
-                  </p>
-
-                  <h2 className="truncate text-3xl font-black tracking-[-0.04em] text-white">
-                    {player.nickname}
-                  </h2>
-
-                  <p className="mt-1 truncate text-sm text-slate-400">
-                    {player.realName}
-                  </p>
-                </div>
-
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition duration-300 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white">
-                  <ArrowUpRight
-                    size={18}
-                    strokeWidth={2}
-                  />
-                </div>
-              </div>
-            </div>
+            <span
+              className="
+                inline-flex items-center
+                rounded-full
+                border border-emerald-400/20
+                bg-emerald-400/[0.08]
+                px-2.5 py-1.5
+                text-[9px] font-black
+                text-emerald-200
+                backdrop-blur-md
+              "
+            >
+              {STATUS_LABELS[player.status] ?? player.status}
+            </span>
           </div>
 
-          <div className="flex flex-1 flex-col p-5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-black tracking-[0.14em] ${
-                  ROLE_STYLES[player.primaryRole]
-                }`}
+          {/* Favorite */}
+          <button
+            type="button"
+            aria-label={
+              playerIsFavorite
+                ? `${player.nickname} 즐겨찾기 해제`
+                : `${player.nickname} 즐겨찾기 추가`
+            }
+            aria-pressed={playerIsFavorite}
+            title={
+              playerIsFavorite
+                ? "즐겨찾기 해제"
+                : "즐겨찾기 추가"
+            }
+            onClick={() =>
+              toggleFavorite(favoritePlayer)
+            }
+            className={`
+              relative z-30
+              flex h-9 w-9 shrink-0
+              items-center justify-center
+              rounded-xl border
+              backdrop-blur-md
+              transition-all duration-200
+              ${
+                playerIsFavorite
+                  ? "border-amber-300/35 bg-amber-300/15 text-amber-200"
+                  : "border-white/[0.08] bg-slate-950/55 text-slate-500 hover:border-amber-300/25 hover:bg-amber-300/10 hover:text-amber-200"
+              }
+            `}
+          >
+            <Star
+              size={16}
+              strokeWidth={2}
+              fill={
+                playerIsFavorite
+                  ? "currentColor"
+                  : "none"
+              }
+            />
+          </button>
+        </div>
+
+        {/* Player / Team Visual */}
+        <div
+          className="
+            absolute inset-x-0
+            bottom-0 top-12
+            z-[1]
+            flex items-end
+            justify-center
+          "
+        >
+          {player.profileImageUrl ? (
+            <img
+              src={player.profileImageUrl}
+              alt={`${player.nickname} 프로필`}
+              loading="lazy"
+              className="
+                h-full w-full
+                object-contain object-bottom
+                transition-transform duration-500
+                group-hover:scale-[1.025]
+              "
+            />
+          ) : (
+            <div
+              className="
+                mb-16
+                flex h-36 w-36
+                items-center justify-center
+                rounded-[1.75rem]
+                border border-white/[0.075]
+                bg-slate-950/30
+                p-4
+                shadow-[0_20px_55px_rgba(0,0,0,0.32)]
+                backdrop-blur-sm
+                transition-transform duration-500
+                group-hover:scale-[1.035]
+              "
+            >
+              {canShowTeamLogo ? (
+                <img
+                  src={teamLogoUrl ?? undefined}
+                  alt={`${teamName} 팀 로고`}
+                  loading="lazy"
+                  onError={() =>
+                    setHasTeamLogoError(true)
+                  }
+                  className="
+                    max-h-full max-w-full
+                    object-contain
+                    drop-shadow-[0_16px_28px_rgba(0,0,0,0.5)]
+                  "
+                />
+              ) : (
+                <span
+                  className="
+                    text-center text-3xl
+                    font-black
+                    tracking-[-0.05em]
+                    text-white
+                  "
+                  style={{
+                    textShadow: `0 12px 30px ${primaryColor}66`,
+                  }}
+                >
+                  {teamShortName}
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Player Identity */}
+        <div
+          className="
+            absolute inset-x-0 bottom-0
+            z-10
+            px-5 pb-5
+          "
+        >
+          <div className="flex items-end justify-between gap-4">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <p
+                  className="
+                    truncate
+                    text-[10px] font-black
+                    uppercase tracking-[0.16em]
+                    text-slate-400
+                  "
+                >
+                  {teamName}
+                </p>
+
+                <span className="text-[9px] font-black text-slate-600">
+                  {teamShortName}
+                </span>
+              </div>
+
+              <h2
+                className="
+                  mt-1 truncate
+                  text-[1.85rem] font-black
+                  leading-tight
+                  tracking-[-0.045em]
+                  text-white
+                "
               >
-                <Shield size={13} />
+                {player.nickname}
+              </h2>
 
-                {ROLE_LABELS[player.primaryRole]}
-              </span>
-
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300">
-                <span className="text-base leading-none">
-                  {player.countryCode === "KR"
-                    ? "🇰🇷"
-                    : player.countryCode === "ID"
-                      ? "🇮🇩"
-                      : player.countryCode === "RU"
-                        ? "🇷🇺"
-                        : "🌐"}
-                </span>
-
-                {player.countryName}
-              </span>
+              <p
+                className="
+                  mt-1 truncate
+                  text-xs font-medium
+                  text-slate-500
+                "
+              >
+                {player.realName}
+              </p>
             </div>
 
-            <div className="mt-5">
-              <div className="mb-2 flex items-center gap-2">
-                <Users
-                  size={15}
-                  className="text-slate-500"
-                />
-
-                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-slate-500">
-                  Roles
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {player.roles.map((role) => (
-                  <span
-                    key={role}
-                    className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-xs font-semibold text-slate-300"
-                  >
-                    {role}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5">
-              <div className="mb-2 flex items-center gap-2">
-                <Crosshair
-                  size={15}
-                  className="text-slate-500"
-                />
-
-                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-slate-500">
-                  Main Agents
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {player.mainAgents.map((agent) => (
-                  <span
-                    key={agent}
-                    className="rounded-lg border border-white/10 bg-slate-900/80 px-2.5 py-1.5 text-xs font-semibold text-slate-200"
-                  >
-                    {agent}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500">
-                  Rating
-                </p>
-
-                <p className="mt-1 text-lg font-black text-white">
-                  {formatStat(player.stats.rating)}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500">
-                  ACS
-                </p>
-
-                <p className="mt-1 text-lg font-black text-white">
-                  {formatStat(player.stats.acs, 1)}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500">
-                  K/D
-                </p>
-
-                <p className="mt-1 text-lg font-black text-white">
-                  {formatStat(player.stats.kd)}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500">
-                  HS%
-                </p>
-
-                <p className="mt-1 text-lg font-black text-white">
-                  {player.stats.hs === null
-                    ? "공개 정보 없음"
-                    : `${formatStat(
-                        player.stats.hs,
-                        1,
-                      )}%`}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-              <div className="flex items-center gap-2 text-xs text-slate-500">
-                <Target size={14} />
-
-                <span>
-                  eDPI{" "}
-                  <strong className="font-bold text-slate-300">
-                    {formatStat(
-                      player.settings.edpi,
-                      1,
-                    )}
-                  </strong>
-                </span>
-              </div>
-
-              <span className="text-xs font-bold text-slate-400 transition-colors duration-300 group-hover:text-white">
-                View Profile
-              </span>
+            <div
+              className="
+                flex h-9 w-9 shrink-0
+                items-center justify-center
+                rounded-full
+                border border-white/[0.08]
+                bg-white/[0.035]
+                text-slate-500
+                transition-all duration-300
+                group-hover:border-white/[0.15]
+                group-hover:bg-white/[0.07]
+                group-hover:text-white
+              "
+            >
+              <ArrowUpRight
+                size={16}
+                className="
+                  transition-transform duration-300
+                  group-hover:-translate-y-0.5
+                  group-hover:translate-x-0.5
+                "
+              />
             </div>
           </div>
         </div>
-      </article>
-    </Link>
+      </div>
+
+      {/* Player Info */}
+      <div className="relative z-10 p-5">
+        {/* Role / Country */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span
+            className={`
+              inline-flex items-center gap-1.5
+              rounded-full border
+              px-3 py-1.5
+              text-[10px] font-black
+              ${ROLE_STYLES[player.primaryRole]}
+            `}
+          >
+            <Shield size={11} />
+
+            {ROLE_LABELS[player.primaryRole]}
+          </span>
+
+          <span
+            className="
+              inline-flex items-center gap-1.5
+              rounded-full
+              border border-white/[0.08]
+              bg-white/[0.025]
+              px-3 py-1.5
+              text-[10px] font-bold
+              text-slate-400
+            "
+          >
+            <span className="text-sm leading-none">
+              {getCountryFlag(
+                player.countryCode,
+              )}
+            </span>
+
+            {player.countryName}
+          </span>
+        </div>
+
+        {/* Main Agents */}
+        <div className="mt-5">
+          <div className="mb-2.5 flex items-center gap-2">
+            <Crosshair
+              size={13}
+              className="text-slate-600"
+            />
+
+            <p
+              className="
+                text-[9px] font-black
+                uppercase tracking-[0.17em]
+                text-slate-600
+              "
+            >
+              대표 요원
+            </p>
+          </div>
+
+          <div className="flex min-h-7 flex-wrap gap-1.5">
+            {mainAgents.length > 0 ? (
+              mainAgents.map((agent) => (
+                <span
+                  key={agent}
+                  className="
+                    rounded-lg
+                    border border-white/[0.075]
+                    bg-white/[0.025]
+                    px-2.5 py-1.5
+                    text-[10px] font-semibold
+                    text-slate-400
+                  "
+                >
+                  {getAgentLabel(agent)}
+                </span>
+              ))
+            ) : (
+              <span className="text-[10px] text-slate-600">
+                등록된 대표 요원이 없습니다
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="mt-5 grid grid-cols-4 gap-2">
+          <div
+            className="
+              rounded-xl
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3 py-3
+            "
+          >
+            <p className="text-[8px] font-black uppercase tracking-[0.13em] text-slate-600">
+              Rating
+            </p>
+
+            <p className="mt-1.5 text-base font-black text-white">
+              {formatStat(
+                player.stats.rating,
+              )}
+            </p>
+          </div>
+
+          <div
+            className="
+              rounded-xl
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3 py-3
+            "
+          >
+            <p className="text-[8px] font-black uppercase tracking-[0.13em] text-slate-600">
+              ACS
+            </p>
+
+            <p className="mt-1.5 text-base font-black text-white">
+              {formatStat(
+                player.stats.acs,
+                1,
+              )}
+            </p>
+          </div>
+
+          <div
+            className="
+              rounded-xl
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3 py-3
+            "
+          >
+            <p className="text-[8px] font-black uppercase tracking-[0.13em] text-slate-600">
+              K/D
+            </p>
+
+            <p className="mt-1.5 text-base font-black text-white">
+              {formatStat(
+                player.stats.kd,
+              )}
+            </p>
+          </div>
+
+          <div
+            className="
+              rounded-xl
+              border border-white/[0.07]
+              bg-white/[0.025]
+              px-3 py-3
+            "
+          >
+            <p className="text-[8px] font-black uppercase tracking-[0.13em] text-slate-600">
+              HS%
+            </p>
+
+            <p className="mt-1.5 text-base font-black text-white">
+              {player.stats.hs === null
+                ? "-"
+                : `${formatStat(
+                    player.stats.hs,
+                    1,
+                  )}%`}
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div
+          className="
+            mt-5 flex
+            items-center justify-between
+            border-t border-white/[0.07]
+            pt-4
+          "
+        >
+          <span
+            className="
+              text-[10px] font-medium
+              text-slate-600
+            "
+          >
+            선수 상세 정보
+          </span>
+
+          <span
+            className="
+              inline-flex items-center gap-1.5
+              text-[10px] font-bold
+              text-slate-500
+              transition-colors duration-300
+              group-hover:text-slate-200
+            "
+          >
+            프로필 보기
+
+            <ArrowUpRight size={12} />
+          </span>
+        </div>
+      </div>
+    </article>
   );
 };
 
