@@ -75,7 +75,9 @@ export const meiy: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/dfm/meiy.png",
+
   team: getRequiredTeam("dfm"),
 
   primaryRole: "Duelist",
@@ -84,25 +86,14 @@ export const meiy: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "DFM Meiy",
-      tag: "0325",
+      name: "Meiy",
+      tag: "B3L",
 
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/profile/riot/DFM%20Meiy%230325/overview",
-      },
-    },
-    {
-      name: "Meiy",
-      tag: "DFMS2",
-
-      verification: {
-        verifiedAt:"2026-08-24",
-        sourceName: "Tracker Network",
-        sourceUrl:
-        "https://tracker.gg/valorant/profile/riot/Meiy%23DFMS2/overview",
+          "https://tracker.gg/valorant/profile/riot/Meiy%23B3L/",
       },
     },
   ],

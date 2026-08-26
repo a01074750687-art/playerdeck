@@ -124,7 +124,8 @@ export const meteor: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/t1/meteor.png",
 
   team: getRequiredTeam("t1"),
 

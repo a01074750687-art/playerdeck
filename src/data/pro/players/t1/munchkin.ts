@@ -119,7 +119,8 @@ export const munchkin: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/t1/munchkin.png",
 
   team: getRequiredTeam("t1"),
 

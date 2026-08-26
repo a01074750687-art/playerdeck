@@ -75,7 +75,8 @@ export const xdll: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/zeta/xdll.png",
 
   team: getRequiredTeam("zeta"),
 

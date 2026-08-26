@@ -70,7 +70,8 @@ export const klaus: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/vl/klaus.png",
 
   team: getRequiredTeam("varrel"),
 

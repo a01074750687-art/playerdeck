@@ -65,7 +65,8 @@ export const sugarz3ro: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/zeta/sugarz3ro.png",
 
   team: getRequiredTeam("zeta"),
 
@@ -76,14 +77,14 @@ export const sugarz3ro: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "ZETA SugarZ3ro",
-      tag: "UMARU",
+      name: "SugarZ3ro",
+      tag: "397",
 
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/profile/riot/ZETA%20SugarZ3ro%23UMARU/overview",
+          "https://tracker.gg/valorant/profile/riot/SugarZ3ro%23397/",
       },
     },
   ],

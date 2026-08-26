@@ -104,7 +104,8 @@ export const jemkin: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/rrq/jemkin.png",
 
   team: getRequiredTeam("rrq"),
 

@@ -70,7 +70,8 @@ export const yong: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/krx/yong.png",
 
   team: getRequiredTeam("krx"),
 

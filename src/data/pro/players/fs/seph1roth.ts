@@ -75,7 +75,9 @@ export const seph1roth: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/fs/seph1roth.png",
+
   team: getRequiredTeam("full-sense"),
 
   primaryRole: "Sentinel",

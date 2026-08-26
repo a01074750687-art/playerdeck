@@ -111,7 +111,7 @@ export const monyet: ProPlayer = {
   slug: "monyet",
 
   nickname: "Monyet",
-  realName: "I Made Adhi Cahya Nugraha",
+  realName: "Cahya Nugraha",
 
   countryCode: "ID",
   countryName: "Indonesia",
@@ -119,7 +119,8 @@ export const monyet: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/rrq/monyet.png",
 
   team: getRequiredTeam("rrq"),
 

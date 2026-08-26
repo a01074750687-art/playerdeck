@@ -69,7 +69,8 @@ export const xross: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ns/xross.png",
 
   team: getRequiredTeam("nongshim-redforce"),
 

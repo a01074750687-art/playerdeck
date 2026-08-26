@@ -84,7 +84,8 @@ export const hyunmin: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/krx/hyunmin.png",
 
   team: getRequiredTeam("krx"),
 

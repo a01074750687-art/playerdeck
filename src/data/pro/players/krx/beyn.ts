@@ -105,7 +105,9 @@ export const beyn: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/krx/beyn.png",
+
 
   team: getRequiredTeam("krx"),
 

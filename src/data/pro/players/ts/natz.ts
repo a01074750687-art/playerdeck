@@ -115,7 +115,8 @@ export const natz: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ts/natz.png",
 
   team: getRequiredTeam("team-secret"),
 

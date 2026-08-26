@@ -95,7 +95,8 @@ export const xan: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/rrq/xan.png",
 
   team: getRequiredTeam("rrq"),
 

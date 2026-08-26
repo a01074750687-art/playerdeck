@@ -149,19 +149,20 @@ export const something: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/prx/something.png",
+
 
   team: getRequiredTeam("paper-rex"),
 
-  primaryRole: "Flex",
-  roles: createRoles("Flex", [
-    "Duelist",
+  primaryRole: "Duelist",
+  roles: createRoles("Duelist", [
     "Controller",
     "Sentinel",
     "Initiator",
   ]),
 
-  mainAgents: ["Yoru", "Sage", "Viper"],
+  mainAgents: ["Yoru", "Jett", "Gekko"],
 
   riotAccounts: [
     {

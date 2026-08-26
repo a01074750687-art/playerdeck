@@ -90,7 +90,8 @@ export const autumn: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ge/autumn.png",
 
   team: getRequiredTeam("global-esports"),
 

@@ -80,7 +80,9 @@ export const yatsuka: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/dfm/yatsuka.png",
+
   team: getRequiredTeam("dfm"),
 
   primaryRole: "Duelist",

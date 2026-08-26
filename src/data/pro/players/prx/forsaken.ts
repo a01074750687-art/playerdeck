@@ -138,7 +138,8 @@ export const forsaken: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/prx/forsaken.png",
 
   team: getRequiredTeam("paper-rex"),
 
@@ -149,7 +150,7 @@ export const forsaken: ProPlayer = {
     "Duelist",
   ]),
 
-  mainAgents: ["Omen", "Harbor", "Gekko"],
+  mainAgents: ["Omen", "Harbor", "Yoru"],
 
   riotAccounts: [
     {

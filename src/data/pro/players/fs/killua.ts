@@ -80,7 +80,9 @@ export const killua: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/fs/killua.png",
+
   team: getRequiredTeam("full-sense"),
 
   primaryRole: "Initiator",

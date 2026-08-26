@@ -95,7 +95,8 @@ export const free1ng: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/krx/free1ng.png",
 
   team: getRequiredTeam("krx"),
 

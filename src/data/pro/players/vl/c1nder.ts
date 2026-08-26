@@ -80,7 +80,8 @@ export const c1nder: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/vl/c1nder.png",
 
   team: getRequiredTeam("varrel"),
 

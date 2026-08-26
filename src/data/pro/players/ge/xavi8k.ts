@@ -100,7 +100,8 @@ export const xavi8k: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ge/xavi8k.png",
 
   team: getRequiredTeam("global-esports"),
 

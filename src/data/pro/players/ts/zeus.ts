@@ -75,7 +75,8 @@ export const zeus: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ts/zeus.png",
 
   team: getRequiredTeam("team-secret"),
 

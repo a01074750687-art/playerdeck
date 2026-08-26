@@ -65,7 +65,9 @@ export const primmie: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/fs/primmie.png",
+
   team: getRequiredTeam("full-sense"),
 
   primaryRole: "Duelist",

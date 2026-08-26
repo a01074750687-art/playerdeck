@@ -94,7 +94,8 @@ export const dh: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/t1/dh.png",
 
   team: getRequiredTeam("t1"),
 

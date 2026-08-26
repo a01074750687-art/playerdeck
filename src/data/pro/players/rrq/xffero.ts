@@ -95,7 +95,8 @@ export const xffero: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/rrq/xffero.png",
 
   team: getRequiredTeam("rrq"),
 

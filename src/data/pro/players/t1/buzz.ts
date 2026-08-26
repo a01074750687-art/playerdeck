@@ -100,7 +100,8 @@ export const buzz: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/t1/buzz.png",
 
   team: getRequiredTeam("t1"),
 

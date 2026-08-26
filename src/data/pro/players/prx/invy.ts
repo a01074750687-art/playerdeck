@@ -90,7 +90,8 @@ export const invy: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/prx/invy.png",
 
   team: getRequiredTeam("paper-rex"),
 

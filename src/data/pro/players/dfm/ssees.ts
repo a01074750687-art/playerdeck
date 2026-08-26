@@ -65,7 +65,9 @@ export const ssees: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/dfm/ssees.png",
+    
   team: getRequiredTeam("dfm"),
 
   primaryRole: "Controller",
@@ -85,14 +87,14 @@ export const ssees: ProPlayer = {
       },
     },
     {
-      name: "SSeeS",
-      tag: "DFM",
+      name: "DFM SSeeS",
+      tag: "0215",
 
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/premier/standings?division=17&page=1&region=KR_KOREA",
+          "https://tracker.gg/valorant/profile/riot/DFM%20SSeeS%230215"
       },
     },
   ],

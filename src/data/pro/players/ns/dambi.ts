@@ -83,7 +83,8 @@ export const dambi: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ns/dambi.png",
 
   team: getRequiredTeam("nongshim-redforce"),
 

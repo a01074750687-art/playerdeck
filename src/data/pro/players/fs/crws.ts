@@ -70,7 +70,9 @@ export const crws: ProPlayer = {
   region: "Pacific",
   status: "Retired",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/fs/crws.png",
+    
   team: null,
 
   primaryRole: "Flex",

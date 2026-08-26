@@ -89,7 +89,8 @@ export const t3xture: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/gen/t3xture.png",
 
   team: getRequiredTeam("gen-g"),
 

@@ -99,7 +99,8 @@ export const kushy: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/rrq/kushy.png",
 
   team: getRequiredTeam("rrq"),
 

@@ -90,7 +90,9 @@ export const eko: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/zeta/eko.png",
+    
   team: getRequiredTeam("zeta"),
 
   primaryRole: "Initiator",

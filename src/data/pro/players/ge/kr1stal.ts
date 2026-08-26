@@ -80,7 +80,8 @@ export const kr1stal: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ge/kr1stal.png",
 
   team: getRequiredTeam("global-esports"),
 

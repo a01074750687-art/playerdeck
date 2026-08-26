@@ -70,12 +70,28 @@ export const caedye: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/dfm/caedye.png",
+
   team: getRequiredTeam("dfm"),
 
   primaryRole: "Sentinel",
   roles: createRoles("Sentinel", ["Controller"]),
   mainAgents: ["Cypher", "Viper", "Vyse"],
+
+  riotAccounts: [
+    {
+      name: "Caedye",
+      tag: "noroc",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/Caedye%23noroc/",
+      },
+    },
+  ],
 
   career: caedyeCareer,
 

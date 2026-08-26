@@ -95,7 +95,8 @@ export const efina: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/gen/efina.png",
 
   team: getRequiredTeam("gen-g"),
 

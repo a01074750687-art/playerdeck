@@ -70,7 +70,9 @@ export const absol: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/zeta/absol.png",
+
   team: getRequiredTeam("zeta"),
 
   primaryRole: "Duelist",

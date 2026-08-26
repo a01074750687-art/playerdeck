@@ -78,7 +78,9 @@ export const akame: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/dfm/akame.png",
+
   team: getRequiredTeam("dfm"),
 
   primaryRole: "Initiator",

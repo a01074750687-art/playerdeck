@@ -84,7 +84,8 @@ export const kellys: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ts/kellys.png",
 
   team: getRequiredTeam("team-secret"),
 

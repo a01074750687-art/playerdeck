@@ -74,7 +74,8 @@ export const ivy: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ns/ivy.png",
 
   team: getRequiredTeam("nongshim-redforce"),
 

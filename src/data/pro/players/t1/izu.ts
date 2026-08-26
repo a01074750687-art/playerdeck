@@ -85,7 +85,8 @@ export const izu: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/t1/izu.png",
 
   team: getRequiredTeam("t1"),
 

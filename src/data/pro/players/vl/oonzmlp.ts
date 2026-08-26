@@ -80,7 +80,8 @@ export const oonzmlp: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/vl/oonzmlp.png",
 
   team: getRequiredTeam("varrel"),
 

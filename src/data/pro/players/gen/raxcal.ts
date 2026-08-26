@@ -60,7 +60,8 @@ export const raxcal: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/gen/raxcal.png",
 
   team: getRequiredTeam("gen-g"),
 

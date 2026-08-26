@@ -129,7 +129,8 @@ export const stax: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/t1/stax.png",
 
   team: getRequiredTeam("t1"),
 

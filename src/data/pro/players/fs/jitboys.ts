@@ -65,7 +65,9 @@ export const jitboys: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl: 
+    "/images/valorant/players/fs/jitboys.png",
+
   team: getRequiredTeam("full-sense"),
 
   primaryRole: "Flex",

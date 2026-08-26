@@ -139,7 +139,9 @@ export const mako: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/krx/mako.png",
+
 
   team: getRequiredTeam("krx"),
 

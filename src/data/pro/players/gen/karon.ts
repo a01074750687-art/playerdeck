@@ -84,7 +84,8 @@ export const karon: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/gen/karon.png",
 
   team: getRequiredTeam("gen-g"),
 
@@ -95,14 +96,14 @@ export const karon: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "Jotaro Kujo",
-      tag: "星の白金",
+      name: "Peter Parker",
+      tag: "karon",
 
       verification: {
         verifiedAt: "2026-08-24",
-        sourceName: "나무위키",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://www.namu.moe/w/%EA%B9%80%EC%9B%90%ED%83%9C%282002%29",
+          "https://tracker.gg/valorant/profile/riot/Peter%20Parker%23Karon"
       },
     },
   ],

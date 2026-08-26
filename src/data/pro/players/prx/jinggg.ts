@@ -139,14 +139,15 @@ export const jinggg: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/prx/jinggg.png",
 
   team: getRequiredTeam("paper-rex"),
 
   primaryRole: "Duelist",
   roles: createRoles("Duelist", ["Controller"]),
 
-  mainAgents: ["Raze", "Harbor", "Omen"],
+  mainAgents: ["Raze", "Sage", "Omen"],
 
   riotAccounts: [
     {

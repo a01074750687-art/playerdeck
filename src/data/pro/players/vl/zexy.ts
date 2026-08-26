@@ -75,7 +75,8 @@ export const zexy: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/vl/zexy.png",
 
   team: getRequiredTeam("varrel"),
 

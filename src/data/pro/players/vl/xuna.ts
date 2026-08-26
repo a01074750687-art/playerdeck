@@ -70,7 +70,8 @@ export const xuna: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/vl/xuna.png",
 
   team: getRequiredTeam("varrel"),
 

@@ -115,7 +115,7 @@ export const d4v41: ProPlayer = {
   slug: "d4v41",
 
   nickname: "d4v41",
-  realName: "Khalish Rusyaidee",
+  realName: "Ahmad Khalish Rusyaidee bin Nordin",
 
   countryCode: "MY",
   countryName: "Malaysia",
@@ -123,12 +123,13 @@ export const d4v41: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/prx/d4v41.png",
 
   team: getRequiredTeam("paper-rex"),
 
-  primaryRole: "Controller",
-  roles: createRoles("Controller", ["Sentinel", "Initiator"]),
+  primaryRole: "Sentinel",
+  roles: createRoles("Sentinel", ["Initiator"]),
 
   mainAgents: ["Viper", "Chamber", "Killjoy"],
 

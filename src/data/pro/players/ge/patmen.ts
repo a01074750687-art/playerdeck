@@ -124,7 +124,8 @@ export const patmen: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ge/patmen.png",
 
   team: getRequiredTeam("global-esports"),
 

@@ -105,7 +105,8 @@ export const styron: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ts/styron.png",
 
   team: getRequiredTeam("team-secret"),
 

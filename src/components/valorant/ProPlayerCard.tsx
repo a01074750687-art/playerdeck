@@ -14,7 +14,6 @@ import type {
   ProPlayer,
   ProPlayerRole,
 } from "../../types/proPlayer";
-
 import { getAgentLabel } from "../../utils/agentLabels";
 
 interface ProPlayerCardProps {
@@ -167,8 +166,10 @@ const getCountryFlag = (
 const ProPlayerCard = ({
   player,
 }: ProPlayerCardProps) => {
-  const [hasTeamLogoError, setHasTeamLogoError] =
-    useState(false);
+  const [
+    hasTeamLogoError,
+    setHasTeamLogoError,
+  ] = useState(false);
 
   const { isFavorite, toggleFavorite } =
     useFavorites();
@@ -245,7 +246,11 @@ const ProPlayerCard = ({
       {/* Top Color Line */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px"
+        className="
+          pointer-events-none
+          absolute inset-x-0 top-0
+          z-10 h-px
+        "
         style={{
           background: `linear-gradient(
             90deg,
@@ -302,6 +307,7 @@ const ProPlayerCard = ({
             }}
           />
 
+          {/* Team Watermark */}
           {canShowTeamLogo && (
             <img
               src={teamLogoUrl ?? undefined}
@@ -333,6 +339,7 @@ const ProPlayerCard = ({
           "
         >
           <div className="flex flex-wrap gap-1.5">
+            {/* Region */}
             <span
               className="
                 inline-flex items-center
@@ -349,6 +356,7 @@ const ProPlayerCard = ({
               {player.region}
             </span>
 
+            {/* Status */}
             <span
               className="
                 inline-flex items-center
@@ -357,11 +365,13 @@ const ProPlayerCard = ({
                 bg-emerald-400/[0.08]
                 px-2.5 py-1.5
                 text-[9px] font-black
+                tracking-[0.14em]
                 text-emerald-200
                 backdrop-blur-md
               "
             >
-              {STATUS_LABELS[player.status] ?? player.status}
+              {STATUS_LABELS[player.status] ??
+                player.status}
             </span>
           </div>
 
@@ -416,20 +426,67 @@ const ProPlayerCard = ({
             z-[1]
             flex items-end
             justify-center
+            overflow-hidden
           "
         >
           {player.profileImageUrl ? (
-            <img
-              src={player.profileImageUrl}
-              alt={`${player.nickname} 프로필`}
-              loading="lazy"
-              className="
-                h-full w-full
-                object-contain object-bottom
-                transition-transform duration-500
-                group-hover:scale-[1.025]
-              "
-            />
+            <>
+              {/* Player Glow */}
+              <div
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute bottom-1 left-1/2
+                  h-52 w-52
+                  -translate-x-1/2
+                  rounded-full
+                  opacity-[0.18]
+                  blur-[70px]
+                "
+                style={{
+                  backgroundColor:
+                    primaryColor,
+                }}
+              />
+
+              {/* Player Secondary Glow */}
+              <div
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute bottom-0 left-[56%]
+                  h-36 w-36
+                  -translate-x-1/2
+                  rounded-full
+                  opacity-[0.08]
+                  blur-[60px]
+                "
+                style={{
+                  backgroundColor:
+                    secondaryColor,
+                }}
+              />
+
+              {/* Player Image */}
+              <img
+                src={player.profileImageUrl}
+                alt={`${player.nickname} 프로필`}
+                loading="lazy"
+                className="
+                  relative z-[2]
+                  h-[96%] w-auto
+                  max-w-[80%]
+                  translate-x-4
+                  translate-y-1
+                  object-contain
+                  object-bottom
+                  drop-shadow-[0_18px_26px_rgba(0,0,0,0.42)]
+                  transition-all
+                  duration-500
+                  group-hover:scale-[1.025]
+                "
+              />
+            </>
           ) : (
             <div
               className="
@@ -478,6 +535,23 @@ const ProPlayerCard = ({
             </div>
           )}
         </div>
+
+        {/* Player Bottom Fade */}
+        {player.profileImageUrl && (
+          <div
+            aria-hidden="true"
+            className="
+              pointer-events-none
+              absolute inset-x-0 bottom-0
+              z-[4]
+              h-24
+              bg-gradient-to-t
+              from-slate-950
+              via-slate-950/65
+              to-transparent
+            "
+          />
+        )}
 
         {/* Player Identity */}
         <div
@@ -606,7 +680,7 @@ const ProPlayerCard = ({
             <p
               className="
                 text-[9px] font-black
-                uppercase tracking-[0.17em]
+                tracking-[0.17em]
                 text-slate-600
               "
             >
@@ -731,12 +805,7 @@ const ProPlayerCard = ({
             pt-4
           "
         >
-          <span
-            className="
-              text-[10px] font-medium
-              text-slate-600
-            "
-          >
+          <span className="text-[10px] font-medium text-slate-600">
             선수 상세 정보
           </span>
 

@@ -83,7 +83,8 @@ export const udotan: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ge/udotan.png",
 
   team: getRequiredTeam("global-esports"),
 

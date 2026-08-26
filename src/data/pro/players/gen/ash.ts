@@ -94,7 +94,8 @@ export const ash: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/gen/ash.png",
 
   team: getRequiredTeam("gen-g"),
 

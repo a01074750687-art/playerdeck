@@ -80,7 +80,8 @@ export const syouta: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/zeta/syouta.png",
 
   team: getRequiredTeam("zeta"),
 
@@ -88,6 +89,20 @@ export const syouta: ProPlayer = {
   roles: createRoles("Sentinel", ["Controller"]),
 
   mainAgents: ["Cypher", "Viper", "Vyse"],
+
+  riotAccounts: [
+    {
+      name: "下 忍",
+      tag: "手裏剣",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/%E4%B8%8B%20%20%20%E5%BF%8D%23%E6%89%8B%E8%A3%8F%E5%89%A3/",
+      },
+    },
+  ],
 
   career: syoutaCareer,
 

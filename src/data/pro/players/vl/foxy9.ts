@@ -90,7 +90,8 @@ export const foxy9: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/vl/foxy9.png",
 
   team: getRequiredTeam("varrel"),
 

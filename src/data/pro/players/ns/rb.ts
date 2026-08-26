@@ -80,7 +80,8 @@ export const rb: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/ns/rb.png",
 
   team: getRequiredTeam("nongshim-redforce"),
 
@@ -88,6 +89,20 @@ export const rb: ProPlayer = {
   roles: createRoles("Controller", ["Duelist"]),
 
   mainAgents: ["Omen", "Harbor", "Yoru"],
+
+  riotAccounts: [
+    {
+      name: "NS Rb",
+      tag: "0712",
+
+      verification: {
+        verifiedAt: "2026-08-24",
+        sourceName: "Tracker Network",
+        sourceUrl:
+          "https://tracker.gg/valorant/profile/riot/NS%20Rb%230712/",
+      },
+    },
+  ],
 
   career: rbCareer,
 

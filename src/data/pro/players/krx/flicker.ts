@@ -70,7 +70,8 @@ export const flicker: ProPlayer = {
   region: "Pacific",
   status: "Active",
 
-  profileImageUrl: null,
+  profileImageUrl:
+    "/images/valorant/players/krx/flicker.png",
 
   team: getRequiredTeam("krx"),
 
