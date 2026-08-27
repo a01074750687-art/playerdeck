@@ -15,8 +15,12 @@ export const mockPlayer: PlayerData = {
   winRate: "58%",
   hsRate: "31%",
   acs: 256,
-
   adr: 168,
+
+  games: 3,
+  firstKills: 4,
+  firstDeaths: 3,
+  
   kills: 21.3,
   deaths: 15.8,
   assists: 6.4,
