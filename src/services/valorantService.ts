@@ -162,9 +162,10 @@ type ParsedMatch = {
 
   damageDealt: number;
   rounds: number;
+
+  firstKills: number;
+  firstDeaths: number;
 };
-
-
 
 type CalculatedPlayerStats = {
   kd: number;
@@ -172,6 +173,10 @@ type CalculatedPlayerStats = {
   hsRate: string;
   acs: number;
   adr: number;
+
+  games: number;
+  firstKills: number;
+  firstDeaths: number;
 
   kills: number;
   deaths: number;
@@ -458,6 +463,130 @@ function getNestedObject(
   }
 
   return null;
+}
+
+function getNumberValue(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value)
+    ? value
+    : null;
+}
+
+function getKillRound(kill: HenrikKillEvent): number | null {
+  return (
+    getNumberValue(kill.round) ??
+    getNumberValue(kill.round_number) ??
+    getNumberValue(kill.roundNumber)
+  );
+}
+
+function getKillTimeInRound(
+  kill: HenrikKillEvent
+): number | null {
+  return (
+    getNumberValue(kill.kill_time_in_round) ??
+    getNumberValue(kill.killTimeInRound)
+  );
+}
+
+function getKillEventRiotId(
+  kill: HenrikKillEvent,
+  role: "killer" | "victim"
+): string | null {
+  const directDisplayName =
+    role === "killer"
+      ? getStringValue(kill.killer_display_name) ??
+        getStringValue(kill.killerDisplayName) ??
+        getStringValue(kill.killer_name)
+      : getStringValue(kill.victim_display_name) ??
+        getStringValue(kill.victimDisplayName) ??
+        getStringValue(kill.victim_name);
+
+  if (directDisplayName) {
+    return directDisplayName.toLowerCase();
+  }
+
+  const playerObject = getNestedObject(kill[role]);
+
+  if (!playerObject) {
+    return null;
+  }
+
+  const name = getStringValue(playerObject.name);
+  const tag = getStringValue(playerObject.tag);
+
+  if (!name || !tag) {
+    return null;
+  }
+
+  return `${name}#${tag}`.toLowerCase();
+}
+
+function getFirstDuelStats(
+  match: HenrikMatch,
+  playerName: string,
+  playerTag: string
+): {
+  firstKills: number;
+  firstDeaths: number;
+} {
+  const targetRiotId =
+    `${playerName}#${playerTag}`.toLowerCase();
+
+  const firstKillByRound = new Map<
+    number,
+    {
+      kill: HenrikKillEvent;
+      time: number;
+    }
+  >();
+
+  (match.kills ?? []).forEach((kill) => {
+    const round = getKillRound(kill);
+    const time = getKillTimeInRound(kill);
+
+    if (round === null || time === null) {
+      return;
+    }
+
+    const current = firstKillByRound.get(round);
+
+    if (!current || time < current.time) {
+      firstKillByRound.set(round, {
+        kill,
+        time,
+      });
+    }
+  });
+
+  let firstKills = 0;
+  let firstDeaths = 0;
+
+  firstKillByRound.forEach(({ kill }) => {
+    const killerRiotId =
+      getKillEventRiotId(kill, "killer");
+    const victimRiotId =
+      getKillEventRiotId(kill, "victim");
+
+    if (
+      killerRiotId === targetRiotId &&
+      victimRiotId !== targetRiotId
+    ) {
+      firstKills += 1;
+      return;
+    }
+
+    if (
+      victimRiotId === targetRiotId &&
+      killerRiotId !== targetRiotId
+    ) {
+      firstDeaths += 1;
+    }
+  });
+
+  return {
+    firstKills,
+    firstDeaths,
+  };
 }
 
 function getWeaponName(kill: HenrikKillEvent): string {
@@ -844,6 +973,12 @@ function parseMatch(
 
   const mvpInfo = getMvpInfo(match, targetPlayer);
 
+  const firstDuelStats = getFirstDuelStats(
+    match,
+    playerName,
+    playerTag
+  );
+
   const teams = getMatchPlayers(
     match,
     targetPlayer,
@@ -900,6 +1035,8 @@ function parseMatch(
     hasWon,
     damageDealt,
     rounds,
+    firstKills: firstDuelStats.firstKills,
+    firstDeaths: firstDuelStats.firstDeaths,
   };
 }
 
@@ -910,6 +1047,10 @@ function createEmptyPlayerStats(): CalculatedPlayerStats {
     hsRate: "0%",
     acs: 0,
     adr: 0,
+
+    games: 0,
+    firstKills: 0,
+    firstDeaths: 0,
 
     kills: 0,
     deaths: 0,
@@ -1012,6 +1153,16 @@ function calculatePlayerStats(
     0
   );
 
+  const firstKills = statMatches.reduce(
+    (sum, match) => sum + match.firstKills,
+    0
+  );
+
+  const firstDeaths = statMatches.reduce(
+    (sum, match) => sum + match.firstDeaths,
+    0
+  );
+
   return {
     kd: Number(
       (
@@ -1040,6 +1191,10 @@ function calculatePlayerStats(
             ).toFixed(1)
           )
         : 0,
+
+    games: statMatches.length,
+    firstKills,
+    firstDeaths,
 
     kills: average(kills),
     deaths: average(deaths),
@@ -1290,6 +1445,10 @@ export async function getPlayerProfile(
     acs: matchStats.acs,
 
     adr: matchStats.adr,
+    games: matchStats.games,
+    firstKills: matchStats.firstKills,
+    firstDeaths: matchStats.firstDeaths,
+
     kills: matchStats.kills,
     deaths: matchStats.deaths,
     assists: matchStats.assists,

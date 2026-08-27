@@ -450,25 +450,25 @@ export default function PlayerProfile() {
                 />
 
                 <StatCard
-                  title="Kills"
+                  title="Games"
                   value={
                     hasMatchData
-                      ? player.kills
+                      ? player.games
                       : "-"
                   }
                 />
 
                 <StatCard
-                  title="Deaths"
+                  title="FK/FD"
                   value={
                     hasMatchData
-                      ? player.deaths
+                      ? `${player.firstKills} / ${player.firstDeaths}`
                       : "-"
                   }
                 />
 
                 <StatCard
-                  title="Assists"
+                  title="Avg Assists"
                   value={
                     hasMatchData
                       ? player.assists

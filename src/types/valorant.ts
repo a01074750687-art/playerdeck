@@ -49,6 +49,7 @@ export type MatchPlayer = {
 export type RecentMatch = {
   result: MatchResult;
   mode: GameMode;
+
   agent: string;
   map: string;
 
@@ -73,6 +74,7 @@ export type RecentMatch = {
   enemyTeam: MatchPlayer[];
 
   weaponKills?: WeaponKill[];
+
   rounds: RoundResult[];
 };
 
@@ -91,14 +93,21 @@ export type PlayerData = {
   winRate: string;
   hsRate: string;
   acs: number;
-
   adr: number;
+
+  games: number;
+  firstKills: number;
+  firstDeaths: number;
+
   kills: number;
   deaths: number;
   assists: number;
 
   topAgents: TopAgentStat[];
+
   weaponKills: WeaponKill[];
+
   actPeakRanks: ActPeakRank[];
+
   recentMatches: RecentMatch[];
 };

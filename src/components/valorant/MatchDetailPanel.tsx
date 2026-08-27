@@ -97,6 +97,11 @@ function RoundTimeline({
             type="detonation"
             label="폭발"
           />
+
+          <RoundLegend
+            type="time"
+            label="시간"
+          />
         </div>
       </div>
 
@@ -230,20 +235,22 @@ function RoundMarker({
 
   const markerClassName =
     variant === "ally"
-      ? "border-cyan-300/20 bg-cyan-300/[0.04] text-cyan-200"
-      : "border-rose-300/20 bg-rose-300/[0.04] text-rose-200";
+      ? "text-cyan-200"
+      : "text-rose-200";
 
   return (
     <div
       title={title}
       className={`
-        flex h-7 w-7
+        flex h-9 w-9
         items-center justify-center
-        rounded-lg border
         ${markerClassName}
       `}
     >
-      <RoundOutcomeIcon type={outcome} />
+      <RoundOutcomeIcon
+        type={outcome}
+        className="h-[28px] w-[28px]"
+      />
     </div>
   );
 }
@@ -257,8 +264,11 @@ function RoundLegend({
 }) {
   return (
     <div className="hidden items-center gap-1.5 sm:flex">
-      <span className="flex h-5 w-5 items-center justify-center rounded-md border border-white/[0.07] bg-white/[0.035] text-slate-400">
-        <RoundOutcomeIcon type={type} />
+      <span className="flex h-6 w-6 items-center justify-center text-slate-400">
+        <RoundOutcomeIcon
+          type={type}
+          className="h-[24px] w-[24px]"
+        />
       </span>
 
       <span>{label}</span>
@@ -362,190 +372,48 @@ function isSameTeam(
 /* Round Icons                                                                */
 /* -------------------------------------------------------------------------- */
 
+const ROUND_OUTCOME_ICON_PATHS: Partial<
+  Record<RoundOutcome, string>
+> = {
+  elimination: "/RoundIcons/elimination.png",
+  defuse: "/RoundIcons/defuse.png",
+  detonation: "/RoundIcons/detonation.png",
+  time: "/RoundIcons/time.png",
+};
+
 function RoundOutcomeIcon({
   type,
+  className = "h-4 w-4",
 }: {
   type: RoundOutcome;
+  className?: string;
 }) {
-  switch (type) {
-    case "defuse":
-      return <DefuseIcon />;
+  const iconPath = ROUND_OUTCOME_ICON_PATHS[type];
 
-    case "detonation":
-      return <DetonationIcon />;
-
-    case "time":
-      return <TimeIcon />;
-
-    case "elimination":
-      return <EliminationIcon />;
-
-    default:
-      return <DefaultRoundIcon />;
+  if (!iconPath) {
+    return (
+      <span
+        aria-hidden="true"
+        className="block h-1.5 w-1.5 rounded-full bg-current"
+      />
+    );
   }
-}
 
-/*
- * 전멸
- * 기존 X 모양 대신 조준점 + 중앙 다이아 형태.
- * 작은 크기에서도 "킬로 라운드 종료"가 바로 구분되도록
- * 선을 굵고 단순하게 유지한다.
- */
-function EliminationIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[15px] w-[15px]"
-      fill="none"
+    <span
       aria-hidden="true"
-    >
-      <path
-        d="M12 2.75v3M12 18.25v3M2.75 12h3M18.25 12h3"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M12 7.1 16.9 12 12 16.9 7.1 12 12 7.1Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-
-      <circle
-        cx="12"
-        cy="12"
-        r="1.35"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-/*
- * 해체
- * 스파이크를 연상시키는 세로형 다이아 + 체크.
- */
-function DefuseIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[16px] w-[16px]"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M12 2.8 17.6 8.4 12 14 6.4 8.4 12 2.8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-
-      <path
-        d="M8.7 16.1 11 18.4l4.7-5"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-
-      <path
-        d="M12 5.9v4.4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-/*
- * 폭발
- * 중앙 스파이크 + 바깥쪽 폭발선을 분리해
- * 해체 아이콘과 실루엣 자체가 다르게 보이도록 한다.
- */
-function DetonationIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[16px] w-[16px]"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M12 6.2 15.8 10 12 13.8 8.2 10 12 6.2Z"
-        fill="currentColor"
-      />
-
-      <path
-        d="M12 2.7v2M12 15.5v2M4.7 10h2M17.3 10h2M6.85 4.85l1.4 1.4M15.75 13.75l1.4 1.4M17.15 4.85l-1.4 1.4M8.25 13.75l-1.4 1.4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M9.8 18.2h4.4"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-/*
- * 시간 종료
- * 최대한 단순한 타이머 형태.
- */
-function TimeIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[15px] w-[15px]"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle
-        cx="12"
-        cy="12.5"
-        r="7"
-        stroke="currentColor"
-        strokeWidth="1.9"
-      />
-
-      <path
-        d="M12 8.4v4.4l3 1.8M9.5 3.5h5"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/*
- * API에서 종료 방식을 특정할 수 없는 승리.
- * 기존 빈 다이아보다 작은 V 형태로 처리한다.
- */
-function DefaultRoundIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[14px] w-[14px]"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="m5.5 12 4.1 4.1L18.5 7.8"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+      className={`block shrink-0 bg-current ${className}`}
+      style={{
+        WebkitMaskImage: `url("${iconPath}")`,
+        maskImage: `url("${iconPath}")`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+      }}
+    />
   );
 }
 
@@ -598,7 +466,7 @@ function TeamTable({
             PLAYER
           </p>
 
-          <p className="text-right sm:text-center">
+          <p className="text-right sm:hidden">
             KDA
           </p>
 
