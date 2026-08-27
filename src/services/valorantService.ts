@@ -12,8 +12,6 @@ import type {
 
 import type { ValorantActAsset } from "../types/valorantAssets";
 
-const API_KEY = import.meta.env.VITE_HENRIK_API_KEY;
-
 const STAT_MATCH_LIMIT = 20;
 const RECENT_MATCH_LIMIT = 10;
 const ACT_PEAK_LIMIT = 4;
@@ -201,13 +199,18 @@ function splitPlayer(player: string) {
 }
 
 async function fetchWithAuth<T>(url: string): Promise<T> {
-  if (!API_KEY) {
-    throw new Error("Henrik API Key가 설정되지 않았습니다.");
+  const targetUrl = new URL(url);
+
+  if (targetUrl.hostname !== "api.henrikdev.xyz") {
+    throw new Error("허용되지 않은 API 주소입니다.");
   }
 
-  const response = await fetch(url, {
+  const path = `${targetUrl.pathname}${targetUrl.search}`;
+  const proxyUrl = `/api/henrik?path=${encodeURIComponent(path)}`;
+
+  const response = await fetch(proxyUrl, {
+    method: "GET",
     headers: {
-      Authorization: API_KEY,
       Accept: "application/json",
     },
   });
@@ -215,7 +218,15 @@ async function fetchWithAuth<T>(url: string): Promise<T> {
   const result: unknown = await response.json().catch(() => null);
 
   if (!response.ok) {
-    throw new Error(`API 요청 실패: ${response.status}`);
+    const errorMessage =
+      result &&
+      typeof result === "object" &&
+      "error" in result &&
+      typeof result.error === "string"
+        ? result.error
+        : `API 요청 실패: ${response.status}`;
+
+    throw new Error(errorMessage);
   }
 
   return result as T;
