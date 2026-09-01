@@ -60,15 +60,22 @@ type ValorantWeaponApiResponse = {
   }[];
 };
 
+type ValorantPlayerCardData = {
+  uuid: string;
+  displayName: string;
+  smallArt: string | null;
+  largeArt: string | null;
+  wideArt: string | null;
+};
+
 type ValorantPlayerCardApiResponse = {
   status: number;
-  data: {
-    uuid: string;
-    displayName: string;
-    smallArt: string | null;
-    largeArt: string | null;
-    wideArt: string | null;
-  }[];
+  data: ValorantPlayerCardData[];
+};
+
+type ValorantSinglePlayerCardApiResponse = {
+  status: number;
+  data: ValorantPlayerCardData;
 };
 
 type ValorantSeason = {
@@ -90,6 +97,16 @@ let cachedRankAsset: RankAssetMap | null = null;
 let cachedWeaponAsset: WeaponAssetMap | null = null;
 let cachedPlayerCardAsset: PlayerCardAssetMap | null = null;
 let cachedActs: ValorantActAsset[] | null = null;
+
+const cachedPlayerCardsByUuid = new Map<
+  string,
+  ValorantPlayerCardAsset | null
+>();
+
+const playerCardRequestCache = new Map<
+  string,
+  Promise<ValorantPlayerCardAsset | null>
+>();
 
 export async function getAgentAssetMap(): Promise<AgentAssetMap> {
   if (cachedAgentMap) return cachedAgentMap;
@@ -276,9 +293,101 @@ export async function getPlayerCardAssetMap(): Promise<PlayerCardAssetMap> {
 export async function getPlayerCardAssetByUuid(
   cardUuid: string
 ): Promise<ValorantPlayerCardAsset | null> {
-  const playerCardMap = await getPlayerCardAssetMap();
+  const normalizedUuid = cardUuid.toLowerCase();
 
-  return playerCardMap[cardUuid.toLowerCase()] ?? null;
+  const mapCachedCard =
+    cachedPlayerCardAsset?.[normalizedUuid];
+
+  if (mapCachedCard) {
+    return mapCachedCard;
+  }
+
+  if (
+    cachedPlayerCardsByUuid.has(
+      normalizedUuid
+    )
+  ) {
+    return (
+      cachedPlayerCardsByUuid.get(
+        normalizedUuid
+      ) ?? null
+    );
+  }
+
+  const pendingRequest =
+    playerCardRequestCache.get(
+      normalizedUuid
+    );
+
+  if (pendingRequest) {
+    return pendingRequest;
+  }
+
+  const request = (async () => {
+    const response = await fetch(
+      `https://valorant-api.com/v1/playercards/${encodeURIComponent(
+        cardUuid
+      )}`
+    );
+
+    if (response.status === 404) {
+      cachedPlayerCardsByUuid.set(
+        normalizedUuid,
+        null
+      );
+
+      return null;
+    }
+
+    if (!response.ok) {
+      throw new Error(
+        "플레이어 카드 정보를 불러오지 못했습니다."
+      );
+    }
+
+    const result: ValorantSinglePlayerCardApiResponse =
+      await response.json();
+
+    const card: ValorantPlayerCardAsset = {
+      uuid: result.data.uuid,
+      displayName: result.data.displayName,
+      smallArt: result.data.smallArt,
+      largeArt: result.data.largeArt,
+      wideArt: result.data.wideArt,
+    };
+
+    cachedPlayerCardsByUuid.set(
+      normalizedUuid,
+      card
+    );
+
+    if (cachedPlayerCardAsset) {
+      cachedPlayerCardAsset[
+        normalizedUuid
+      ] = card;
+    }
+
+    return card;
+  })();
+
+  playerCardRequestCache.set(
+    normalizedUuid,
+    request
+  );
+
+  try {
+    return await request;
+  } finally {
+    if (
+      playerCardRequestCache.get(
+        normalizedUuid
+      ) === request
+    ) {
+      playerCardRequestCache.delete(
+        normalizedUuid
+      );
+    }
+  }
 }
 
 function isActSeason(season: ValorantSeason) {

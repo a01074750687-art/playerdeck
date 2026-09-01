@@ -15,7 +15,10 @@ import { getProPlayerByRiotId } from "../data/pro";
 import useFavorites, {
   type FavoriteValorantAccount,
 } from "../hooks/useFavorites";
-import { getPlayerProfile } from "../services/valorantService";
+import {
+  getPlayerProfile,
+  prefetchPlayerProfile,
+} from "../services/valorantService";
 
 import type { PlayerData } from "../types/valorant";
 import type { ValorantActAsset } from "../types/valorantAssets";
@@ -98,8 +101,6 @@ export default function PlayerProfile() {
 
   const [loading, setLoading] = useState(true);
   const [actLoading, setActLoading] = useState(true);
-  const [matchLoading, setMatchLoading] =
-    useState(false);
   const [refreshing, setRefreshing] =
     useState(false);
 
@@ -112,6 +113,8 @@ export default function PlayerProfile() {
   const [error, setError] = useState("");
 
   const requestIdRef = useRef(0);
+  const loadedPlayerNameRef =
+    useRef<string | null>(null);
 
   const updateSearchParams = (
     nextParams: Record<string, string | null>,
@@ -150,22 +153,18 @@ export default function PlayerProfile() {
 
   const fetchPlayerData = async ({
     showPageLoading = false,
-    showMatchLoading = false,
     showRefreshLoading = false,
+    forceRefresh = false,
   }: {
     showPageLoading?: boolean;
-    showMatchLoading?: boolean;
     showRefreshLoading?: boolean;
+    forceRefresh?: boolean;
   } = {}) => {
     const requestId = ++requestIdRef.current;
 
     try {
       if (showPageLoading) {
         setLoading(true);
-      }
-
-      if (showMatchLoading) {
-        setMatchLoading(true);
       }
 
       if (showRefreshLoading) {
@@ -179,6 +178,9 @@ export default function PlayerProfile() {
         selectedMode,
         selectedAct,
         acts,
+        {
+          forceRefresh,
+        },
       );
 
       if (requestId !== requestIdRef.current) {
@@ -186,7 +188,12 @@ export default function PlayerProfile() {
       }
 
       setPlayer(data);
-      setLastUpdated(new Date());
+      loadedPlayerNameRef.current =
+        decodedPlayerName;
+
+      if (showPageLoading || showRefreshLoading) {
+        setLastUpdated(new Date());
+      }
 
       return true;
     } catch (error) {
@@ -211,10 +218,6 @@ export default function PlayerProfile() {
           setLoading(false);
         }
 
-        if (showMatchLoading) {
-          setMatchLoading(false);
-        }
-
         if (showRefreshLoading) {
           setRefreshing(false);
         }
@@ -229,6 +232,7 @@ export default function PlayerProfile() {
 
     const success = await fetchPlayerData({
       showRefreshLoading: true,
+      forceRefresh: true,
     });
 
     if (!success) {
@@ -239,6 +243,17 @@ export default function PlayerProfile() {
       REFRESH_COOLDOWN_SECONDS,
     );
   };
+
+  useEffect(() => {
+    prefetchPlayerProfile(
+      decodedPlayerName,
+    ).catch((error) => {
+      console.error(
+        "PLAYER PREFETCH ERROR:",
+        error,
+      );
+    });
+  }, [decodedPlayerName]);
 
   useEffect(() => {
     async function fetchActs() {
@@ -267,11 +282,11 @@ export default function PlayerProfile() {
     }
 
     const isInitialLoading =
-      player === null;
+      loadedPlayerNameRef.current !==
+      decodedPlayerName;
 
     fetchPlayerData({
       showPageLoading: isInitialLoading,
-      showMatchLoading: !isInitialLoading,
     });
   }, [
     decodedPlayerName,
@@ -516,13 +531,6 @@ export default function PlayerProfile() {
             </div>
           )}
 
-          {matchLoading && (
-            <div className="fixed bottom-6 left-3 right-3 z-50 rounded-2xl border border-white/10 bg-slate-900/95 px-5 py-3 text-center shadow-2xl backdrop-blur sm:left-auto sm:right-6 sm:text-left">
-              <p className="text-sm font-bold text-slate-300">
-                전적을 불러오는 중...
-              </p>
-            </div>
-          )}
         </section>
       </main>
     </div>

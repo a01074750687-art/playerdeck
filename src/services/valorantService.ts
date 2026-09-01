@@ -185,6 +185,31 @@ type CalculatedPlayerStats = {
   recentMatches: RecentMatch[];
 };
 
+type PlayerProfileSource = {
+  account: NonNullable<HenrikAccountResponse["data"]>;
+  region: string;
+  playerCard: PlayerData["playerCard"];
+  mmrResult: HenrikMmrV3Response | null;
+  matches: HenrikMatch[];
+  statsCache: Map<string, CalculatedPlayerStats>;
+};
+
+type GetPlayerProfileOptions = {
+  forceRefresh?: boolean;
+};
+
+const PLAYER_PROFILE_CACHE_LIMIT = 20;
+
+const playerProfileCache = new Map<
+  string,
+  PlayerProfileSource
+>();
+
+const playerProfileRequestCache = new Map<
+  string,
+  Promise<PlayerProfileSource>
+>();
+
 function splitPlayer(player: string) {
   const [name, tag] = player.split("#");
 
@@ -1332,15 +1357,44 @@ function buildActPeakRanks(
     );
 }
 
-export async function getPlayerProfile(
-  playerName: string,
-  selectedMode: GameMode = "all",
-  selectedAct: string = "current",
-  acts: ValorantActAsset[] = []
-): Promise<PlayerData> {
-  const { name, tag } =
-    splitPlayer(playerName);
+function getPlayerProfileCacheKey(
+  name: string,
+  tag: string
+) {
+  return `${name.trim().toLowerCase()}#${tag
+    .trim()
+    .toLowerCase()}`;
+}
 
+function rememberPlayerProfileSource(
+  cacheKey: string,
+  source: PlayerProfileSource
+) {
+  if (playerProfileCache.has(cacheKey)) {
+    playerProfileCache.delete(cacheKey);
+  }
+
+  playerProfileCache.set(cacheKey, source);
+
+  while (
+    playerProfileCache.size >
+    PLAYER_PROFILE_CACHE_LIMIT
+  ) {
+    const oldestKey =
+      playerProfileCache.keys().next().value;
+
+    if (typeof oldestKey !== "string") {
+      break;
+    }
+
+    playerProfileCache.delete(oldestKey);
+  }
+}
+
+async function requestPlayerProfileSource(
+  name: string,
+  tag: string
+): Promise<PlayerProfileSource> {
   const accountResult =
     await fetchWithAuth<HenrikAccountResponse>(
       `https://api.henrikdev.xyz/valorant/v2/account/${encodeURIComponent(
@@ -1354,101 +1408,191 @@ export async function getPlayerProfile(
     );
   }
 
-  let playerCard: PlayerData["playerCard"] = null;
+  const account = accountResult.data;
+  const region = account.region ?? "Unknown";
 
-  if (accountResult.data.card) {
-    try {
-      playerCard =
-        await getPlayerCardAssetByUuid(
-          accountResult.data.card
-        );
-    } catch (error) {
-      console.error(
-        "PLAYER CARD ASSET ERROR:",
-        error
-      );
+  const playerCardPromise: Promise<
+    PlayerData["playerCard"]
+  > = account.card
+    ? getPlayerCardAssetByUuid(account.card).catch(
+        (error) => {
+          console.error(
+            "PLAYER CARD ASSET ERROR:",
+            error
+          );
+
+          return null;
+        }
+      )
+    : Promise.resolve(null);
+
+  const mmrPromise =
+    fetchWithAuth<HenrikMmrV3Response>(
+      `https://api.henrikdev.xyz/valorant/v3/mmr/${encodeURIComponent(
+        region
+      )}/pc/${encodeURIComponent(
+        name
+      )}/${encodeURIComponent(tag)}`
+    ).catch((error) => {
+      console.error("MMR API ERROR:", error);
+
+      return null;
+    });
+
+  const matchesPromise =
+    fetchWithAuth<HenrikMatchesResponse>(
+      `https://api.henrikdev.xyz/valorant/v3/matches/${encodeURIComponent(
+        region
+      )}/${encodeURIComponent(
+        name
+      )}/${encodeURIComponent(
+        tag
+      )}?size=${STAT_MATCH_LIMIT}`
+    ).catch((error) => {
+      console.error("MATCH API ERROR:", error);
+
+      return null;
+    });
+
+  const [
+    playerCard,
+    mmrResult,
+    matchesResult,
+  ] = await Promise.all([
+    playerCardPromise,
+    mmrPromise,
+    matchesPromise,
+  ]);
+
+  return {
+    account,
+    region,
+    playerCard,
+    mmrResult,
+    matches: matchesResult?.data ?? [],
+    statsCache: new Map(),
+  };
+}
+
+async function loadPlayerProfileSource(
+  playerName: string,
+  forceRefresh = false
+): Promise<PlayerProfileSource> {
+  const { name, tag } =
+    splitPlayer(playerName);
+
+  const cacheKey =
+    getPlayerProfileCacheKey(name, tag);
+
+  if (!forceRefresh) {
+    const cachedSource =
+      playerProfileCache.get(cacheKey);
+
+    if (cachedSource) {
+      return cachedSource;
+    }
+
+    const pendingRequest =
+      playerProfileRequestCache.get(cacheKey);
+
+    if (pendingRequest) {
+      return pendingRequest;
     }
   }
 
-  const region =
-    accountResult.data.region ?? "Unknown";
-
-  let mmrResult: HenrikMmrV3Response | null =
-    null;
-
-  let matchesResult:
-    | HenrikMatchesResponse
-    | null = null;
-
-  try {
-    mmrResult =
-      await fetchWithAuth<HenrikMmrV3Response>(
-        `https://api.henrikdev.xyz/valorant/v3/mmr/${encodeURIComponent(
-          region
-        )}/pc/${encodeURIComponent(
-          name
-        )}/${encodeURIComponent(tag)}`
-      );
-  } catch (error) {
-    console.error("MMR API ERROR:", error);
-  }
-
-  try {
-    matchesResult =
-      await fetchWithAuth<HenrikMatchesResponse>(
-        `https://api.henrikdev.xyz/valorant/v3/matches/${encodeURIComponent(
-          region
-        )}/${encodeURIComponent(
-          name
-        )}/${encodeURIComponent(
-          tag
-        )}?size=${STAT_MATCH_LIMIT}`
-      );
-  } catch (error) {
-    console.error("MATCH API ERROR:", error);
-  }
-
-  const matchStats = calculatePlayerStats(
+  const request = requestPlayerProfileSource(
     name,
-    tag,
-    matchesResult?.data ?? [],
-    selectedMode,
-    selectedAct,
-    acts
+    tag
   );
 
+  if (!forceRefresh) {
+    playerProfileRequestCache.set(
+      cacheKey,
+      request
+    );
+  }
+
+  try {
+    const source = await request;
+
+    rememberPlayerProfileSource(
+      cacheKey,
+      source
+    );
+
+    return source;
+  } finally {
+    if (
+      playerProfileRequestCache.get(
+        cacheKey
+      ) === request
+    ) {
+      playerProfileRequestCache.delete(cacheKey);
+    }
+  }
+}
+
+function buildPlayerProfile(
+  source: PlayerProfileSource,
+  selectedMode: GameMode,
+  selectedAct: string,
+  acts: ValorantActAsset[]
+): PlayerData {
+  const accountName =
+    source.account.name ?? "Unknown";
+  const accountTag =
+    source.account.tag ?? "Unknown";
+
+  const statsCacheKey =
+    `${selectedMode}:${selectedAct}`;
+
+  let matchStats =
+    source.statsCache.get(statsCacheKey);
+
+  if (!matchStats) {
+    matchStats = calculatePlayerStats(
+      accountName,
+      accountTag,
+      source.matches,
+      selectedMode,
+      selectedAct,
+      acts
+    );
+
+    source.statsCache.set(
+      statsCacheKey,
+      matchStats
+    );
+  }
+
   const actPeakRanks = buildActPeakRanks(
-    mmrResult?.data?.seasonal,
+    source.mmrResult?.data?.seasonal,
     acts
   );
 
   return {
-    name: `${
-      accountResult.data.name ?? name
-    }#${
-      accountResult.data.tag ?? tag
-    }`,
+    name: `${accountName}#${accountTag}`,
 
     level:
-      accountResult.data.account_level ?? 0,
+      source.account.account_level ?? 0,
 
-    region,
+    region: source.region,
 
-    playerCard,
+    playerCard: source.playerCard,
 
     rank:
-      mmrResult?.data?.current?.tier?.name ??
-      "Unrated",
+      source.mmrResult?.data?.current?.tier
+        ?.name ?? "Unrated",
 
     rr:
-      mmrResult?.data?.current?.rr ??
-      mmrResult?.data?.current
+      source.mmrResult?.data?.current?.rr ??
+      source.mmrResult?.data?.current
         ?.ranking_in_tier ??
       0,
 
     peakRank:
-      mmrResult?.data?.peak?.tier?.name ??
-      "Unrated",
+      source.mmrResult?.data?.peak?.tier
+        ?.name ?? "Unrated",
 
     kd: matchStats.kd,
     winRate: matchStats.winRate,
@@ -1469,4 +1613,31 @@ export async function getPlayerProfile(
     actPeakRanks,
     recentMatches: matchStats.recentMatches,
   };
+}
+
+export async function prefetchPlayerProfile(
+  playerName: string
+): Promise<void> {
+  await loadPlayerProfileSource(playerName);
+}
+
+export async function getPlayerProfile(
+  playerName: string,
+  selectedMode: GameMode = "all",
+  selectedAct: string = "current",
+  acts: ValorantActAsset[] = [],
+  options: GetPlayerProfileOptions = {}
+): Promise<PlayerData> {
+  const source =
+    await loadPlayerProfileSource(
+      playerName,
+      options.forceRefresh ?? false
+    );
+
+  return buildPlayerProfile(
+    source,
+    selectedMode,
+    selectedAct,
+    acts
+  );
 }
