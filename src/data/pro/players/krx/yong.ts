@@ -84,6 +84,7 @@ export const yong: ProPlayer = {
     {
       name: "DRX Yong",
       tag: "V S",
+      puuid: "97f17224-12f6-5a67-a565-91e2265786d9",
 
       verification: {
         verifiedAt: "2026-08-14",

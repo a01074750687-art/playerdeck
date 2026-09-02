@@ -119,6 +119,7 @@ export const styron: ProPlayer = {
     {
       name: "Secret STYRON",
       tag: "bibi",
+      puuid: "d94dbb76-9480-5eba-8b1f-88ab2e99e439",
 
       verification: {
         verifiedAt: "2026-08-25",

@@ -94,6 +94,7 @@ export const kr1stal: ProPlayer = {
     {
       name: "GE Kr1stal",
       tag: "5252",
+      puuid: "93a4bd9b-4a7e-5eae-a018-8b73574c7eb3",
 
       verification: {
         verifiedAt: "2026-08-24",

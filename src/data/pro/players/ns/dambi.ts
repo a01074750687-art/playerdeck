@@ -97,6 +97,7 @@ export const dambi: ProPlayer = {
     {
       name: "NS Dambi",
       tag: "1117",
+      puuid: "558fe545-214b-5fcd-9de1-de078c0c722f",
 
       verification: {
         verifiedAt: "2026-08-24",

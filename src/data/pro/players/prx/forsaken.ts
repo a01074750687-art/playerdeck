@@ -156,6 +156,7 @@ export const forsaken: ProPlayer = {
     {
       name: "PRX f0rsakeN",
       tag: "bibii",
+      puuid: "9f245fd0-1813-546a-be01-08c2145c7dd2",
 
       verification: {
         verifiedAt: "2026-08-24",

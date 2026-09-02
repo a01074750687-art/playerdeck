@@ -98,6 +98,7 @@ export const hyunmin: ProPlayer = {
     {
       name: "DRX HYUNMIN",
       tag: "V S",
+      puuid: "38ee87b4-4313-5e70-bc8c-1f5a7d3d161c",
 
       verification: {
         verifiedAt: "2026-08-14",

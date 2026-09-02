@@ -84,6 +84,7 @@ export const xuna: ProPlayer = {
     {
       name: "VARREL XuNa",
       tag: "2007",
+      puuid: "ac4cc93e-e8b1-5949-8fd6-051242f229e9",
 
       verification: {
         verifiedAt: "2026-08-24",

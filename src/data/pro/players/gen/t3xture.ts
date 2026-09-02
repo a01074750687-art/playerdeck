@@ -103,6 +103,7 @@ export const t3xture: ProPlayer = {
     {
       name: "WelcometotheShow",
       tag: "1111",
+      puuid: "a43bf7f7-c60a-54b6-99fc-60517d1e13e8",
 
       verification: {
         verifiedAt: "2026-08-16",

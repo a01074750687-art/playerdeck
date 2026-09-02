@@ -104,6 +104,7 @@ export const invy: ProPlayer = {
     {
       name: "PRX invy",
       tag: "jia",
+      puuid: "1a9d2a8b-2860-5106-9789-e584f83684a2",
 
       verification: {
         verifiedAt: "2026-08-24",

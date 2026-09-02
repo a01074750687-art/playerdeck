@@ -109,6 +109,7 @@ export const free1ng: ProPlayer = {
     {
       name: "DRX free1ng",
       tag: "KJS",
+      puuid: "97f28b25-5058-5706-a415-9771df82b393",
 
       verification: {
         verifiedAt: "2026-08-14",

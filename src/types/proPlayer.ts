@@ -73,6 +73,15 @@ export interface ProPlayerRiotAccount {
   tag: string;
 
   /**
+   * Riot 계정의 고유 식별자
+   *
+   * Riot ID(name/tag)가 변경되어도
+   * 같은 계정이면 PUUID는 유지되므로
+   * 이후 계정 추적의 기준으로 사용
+   */
+  puuid?: string;
+
+  /**
    * 해당 Riot ID가 실제 선수 계정임을 확인한 출처
    *
    * 검증되지 않은 계정은 riotAccounts에 추가하지 않음
@@ -172,6 +181,9 @@ export interface ProPlayer {
    *
    * 한 선수가 여러 계정을 사용할 수 있어 배열로 관리
    * 검증되지 않은 계정은 입력하지 않음
+   *
+   * PUUID가 확보된 계정은
+   * Riot ID가 변경되어도 같은 계정으로 추적 가능
    */
   riotAccounts?: ProPlayerRiotAccount[];
 

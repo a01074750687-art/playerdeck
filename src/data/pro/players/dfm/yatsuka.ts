@@ -93,6 +93,7 @@ export const yatsuka: ProPlayer = {
     {
       name: "DFM yatsuka",
       tag: "397",
+      puuid: "cd3478ea-b5ed-567b-abe5-a26518d34c91",
 
       verification: {
         verifiedAt: "2026-08-24",

@@ -98,6 +98,7 @@ export const karon: ProPlayer = {
     {
       name: "Peter Parker",
       tag: "karon",
+      puuid: "0c3015b5-c323-5622-bf53-c06a510969bb",
 
       verification: {
         verifiedAt: "2026-08-24",

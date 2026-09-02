@@ -91,6 +91,7 @@ export const akame: ProPlayer = {
     {
       name: "호랑수월가",
       tag: "0124",
+      puuid: "66fac698-fd90-5b89-a6da-495fd0dd02cd",
 
       verification: {
         verifiedAt: "2026-08-24",

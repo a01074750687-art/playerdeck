@@ -108,6 +108,7 @@ export const dh: ProPlayer = {
     {
       name: "T1 Joshua",
       tag: "2006",
+      puuid: "71d6dca5-0e5d-583c-9555-49d522bd149f",
 
       verification: {
         verifiedAt: "2026-08-14",

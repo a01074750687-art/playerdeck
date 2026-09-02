@@ -119,6 +119,7 @@ export const sylvan: ProPlayer = {
     {
       name: "Secret Sylvan",
       tag: "1004",
+      puuid: "41457026-d60b-5f8f-9a96-d0d39782cdd2",
 
       verification: {
         verifiedAt: "2026-08-21",

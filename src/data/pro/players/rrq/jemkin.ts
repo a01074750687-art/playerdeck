@@ -118,6 +118,7 @@ export const jemkin: ProPlayer = {
     {
       name: "RRQ Jemkin",
       tag: "1351",
+      puuid: "44bcbccf-80f3-5fa4-bd47-4dee3fa70f7e",
 
       verification: {
         verifiedAt: "2026-08-14",

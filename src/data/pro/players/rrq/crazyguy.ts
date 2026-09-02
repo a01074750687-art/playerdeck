@@ -153,6 +153,7 @@ export const crazyguy: ProPlayer = {
     {
       name: "crazyguy",
       tag: "nunca",
+      puuid: "29572377-6291-5d76-bfef-ab90218e23e4",
 
       verification: {
         verifiedAt: "2026-08-18",

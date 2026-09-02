@@ -108,6 +108,7 @@ export const ash: ProPlayer = {
     {
       name: "GEN Ash",
       tag: "7777",
+      puuid: "94c091f7-9b80-54a1-930c-85cd3604c837",
 
       verification: {
         verifiedAt: "2026-08-24",

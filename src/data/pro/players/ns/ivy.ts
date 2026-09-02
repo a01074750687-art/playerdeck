@@ -88,6 +88,7 @@ export const ivy: ProPlayer = {
     {
       name: "NS Ivy",
       tag: "0520",
+      puuid: "996cc6b6-4e8e-5bfe-a6b3-38c74ff3d47a",
 
       verification: {
         verifiedAt: "2026-08-24",

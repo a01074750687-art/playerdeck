@@ -109,6 +109,7 @@ export const xan: ProPlayer = {
     {
       name: "RRQ Xan",
       tag: "mitzi",
+      puuid: "bccfedf5-c798-56c7-93f8-700131a33f13",
 
       verification: {
         verifiedAt: "2026-08-25",

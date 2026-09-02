@@ -153,6 +153,7 @@ export const jinggg: ProPlayer = {
     {
       name: "PRX Jinggg",
       tag: "Jing",
+      puuid: "9ac13b84-e393-5327-8b8b-d30998fba73d",
 
       verification: {
         verifiedAt: "2026-08-24",

@@ -97,6 +97,7 @@ export const udotan: ProPlayer = {
     {
       name: "GE UdoTan",
       tag: "GOOSE",
+      puuid: "763976bf-3b63-5335-bf31-cb6f3c89011d",
 
       verification: {
         verifiedAt: "2026-08-24",

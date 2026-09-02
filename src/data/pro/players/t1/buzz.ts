@@ -114,6 +114,7 @@ export const buzz: ProPlayer = {
     {
       name: "PulsarBuZz Mouse",
       tag: "BUYIT",
+      puuid: "2feab5c1-ad3e-5d47-aec3-1d725212f18c",
 
       verification: {
         verifiedAt: "2026-08-16",

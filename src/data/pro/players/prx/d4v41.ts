@@ -137,6 +137,7 @@ export const d4v41: ProPlayer = {
     {
       name: "PRX d4v41",
       tag: "556",
+      puuid: "0b623576-b272-5fd1-bc6a-088a9fbdbb7f",
 
       verification: {
         verifiedAt: "2026-08-16",

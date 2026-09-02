@@ -138,6 +138,7 @@ export const meteor: ProPlayer = {
     {
       name: "T1 Meteor",
       tag: "0617",
+      puuid: "d062d4df-27e5-57cd-9eaa-237a84c5eff8",
 
       verification: {
         verifiedAt: "2026-08-14",

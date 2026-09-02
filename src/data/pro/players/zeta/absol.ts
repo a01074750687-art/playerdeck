@@ -83,6 +83,7 @@ export const absol: ProPlayer = {
     {
       name: "Absol",
       tag: "1321",
+      puuid: "4af4b440-0ad0-5489-a875-72da885956a7",
 
       verification: {
         verifiedAt: "2026-08-24",

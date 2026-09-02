@@ -117,6 +117,7 @@ export const kushy: ProPlayer = {
     {
       name: "Vigil",
       tag: "Pray",
+      puuid: "980e8089-534b-578d-839e-06065067ebe1",
 
       verification: {
         verifiedAt: "2026-08-21",

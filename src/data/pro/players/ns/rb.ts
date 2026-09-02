@@ -94,6 +94,7 @@ export const rb: ProPlayer = {
     {
       name: "NS Rb",
       tag: "0712",
+      puuid: "48fc555b-5760-5b12-a04c-812c6a0dd5c3",
 
       verification: {
         verifiedAt: "2026-08-24",

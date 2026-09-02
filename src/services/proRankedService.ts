@@ -4,11 +4,33 @@ const LEADERBOARD_REGIONS = [
   "ap",
 ] as const;
 
-const LEADERBOARD_PAGE_SIZE = 1000;
-const MAX_PLAYERS_PER_REGION = 5000;
+/**
+ * 우선 한 번에 최대 5000명을 요청한다.
+ *
+ * API가 요청 크기를 제한해서 더 적게 반환하면
+ * 아래 FALLBACK_PAGE_SIZE 단위로 나머지만 이어서 조회한다.
+ */
+const LEADERBOARD_TARGET_SIZE = 5000;
+const LEADERBOARD_FALLBACK_PAGE_SIZE = 1000;
 
+/**
+ * 10분 동안은 API를 다시 호출하지 않고
+ * 저장된 최신 랭킹을 그대로 사용한다.
+ */
 const RANK_CACHE_DURATION =
-  5 * 60 * 1000;
+  10 * 60 * 1000;
+
+/**
+ * 최신 캐시가 만료됐더라도 최대 6시간까지는
+ * 이전 성공 데이터를 즉시 화면에 보여준다.
+ *
+ * 그 뒤 백그라운드에서 최신 데이터를 받아 교체한다.
+ */
+const RANK_STALE_CACHE_DURATION =
+  6 * 60 * 60 * 1000;
+
+const RANK_STORAGE_KEY =
+  "deckgg_pro_ranked_cache_v1";
 
 type LeaderboardRegion =
   (typeof LEADERBOARD_REGIONS)[number];
@@ -21,6 +43,8 @@ type HenrikLeaderboardTier =
     };
 
 type HenrikLeaderboardPlayer = {
+  puuid?: string;
+
   name?: string;
   tag?: string;
 
@@ -54,9 +78,16 @@ type ProAccountOwner = {
   teamShortName: string | null;
 };
 
-type RankScore = {
-  tierOrder: number;
-  rr: number;
+type ProAccountMaps = {
+  byPuuid: Map<
+    string,
+    ProAccountOwner
+  >;
+
+  byRiotIdFallback: Map<
+    string,
+    ProAccountOwner
+  >;
 };
 
 export type ProRankedEntry = {
@@ -78,19 +109,27 @@ export type ProRankedEntry = {
   leaderboardRank: number | null;
 };
 
-type RegionState = {
-  region: LeaderboardRegion;
-
-  startIndex: number;
-  done: boolean;
-
-  boundary: RankScore | null;
-};
-
 type CachedRanking = {
+  savedAt: number;
   expiresAt: number;
   entries: ProRankedEntry[];
 };
+
+class LeaderboardRequestError extends Error {
+  status: number;
+
+  constructor(
+    status: number,
+    message: string,
+  ) {
+    super(message);
+
+    this.name =
+      "LeaderboardRequestError";
+
+    this.status = status;
+  }
+}
 
 const TIER_NAMES: Record<
   number,
@@ -140,16 +179,18 @@ const TIER_ORDER_BY_NAME: Record<
   TIER_NAMES,
 ).reduce<Record<string, number>>(
   (result, [id, name]) => {
-    result[name.toLowerCase()] =
-      Number(id);
+    result[
+      name.toLowerCase()
+    ] = Number(id);
 
     return result;
   },
   {},
 );
 
-let rankingCache: CachedRanking | null =
-  null;
+let rankingCache:
+  | CachedRanking
+  | null = null;
 
 let pendingRankingRequest:
   | Promise<ProRankedEntry[]>
@@ -159,15 +200,29 @@ function normalizeRiotId(
   name: string,
   tag: string,
 ) {
-  return `${name.trim().toLowerCase()}#${tag
+  return `${name
+    .trim()
+    .toLowerCase()}#${tag
     .trim()
     .toLowerCase()}`;
 }
 
+function normalizePuuid(
+  puuid: string,
+) {
+  return puuid
+    .trim()
+    .toLowerCase();
+}
+
 function getTierId(
-  tier: HenrikLeaderboardTier | undefined,
+  tier:
+    | HenrikLeaderboardTier
+    | undefined,
 ): number {
-  if (typeof tier === "number") {
+  if (
+    typeof tier === "number"
+  ) {
     return tier;
   }
 
@@ -179,19 +234,25 @@ function getTierId(
   }
 
   const tierName =
-    tier?.name?.trim().toLowerCase();
+    tier?.name
+      ?.trim()
+      .toLowerCase();
 
   if (!tierName) {
     return 0;
   }
 
   return (
-    TIER_ORDER_BY_NAME[tierName] ?? 0
+    TIER_ORDER_BY_NAME[
+      tierName
+    ] ?? 0
   );
 }
 
 function getTierName(
-  tier: HenrikLeaderboardTier | undefined,
+  tier:
+    | HenrikLeaderboardTier
+    | undefined,
 ): string {
   if (
     tier &&
@@ -201,7 +262,8 @@ function getTierName(
     return tier.name;
   }
 
-  const tierId = getTierId(tier);
+  const tierId =
+    getTierId(tier);
 
   return (
     TIER_NAMES[tierId] ??
@@ -209,21 +271,9 @@ function getTierName(
   );
 }
 
-function getPlayerRankScore(
-  player: HenrikLeaderboardPlayer,
-): RankScore {
-  return {
-    tierOrder: getTierId(player.tier),
-    rr:
-      typeof player.rr === "number"
-        ? player.rr
-        : 0,
-  };
-}
-
-function compareRankScore(
-  first: RankScore,
-  second: RankScore,
+function compareRankedEntries(
+  first: ProRankedEntry,
+  second: ProRankedEntry,
 ) {
   if (
     first.tierOrder !==
@@ -235,27 +285,8 @@ function compareRankScore(
     );
   }
 
-  return second.rr - first.rr;
-}
-
-function compareRankedEntries(
-  first: ProRankedEntry,
-  second: ProRankedEntry,
-) {
-  const rankComparison =
-    compareRankScore(
-      {
-        tierOrder: first.tierOrder,
-        rr: first.rr,
-      },
-      {
-        tierOrder: second.tierOrder,
-        rr: second.rr,
-      },
-    );
-
-  if (rankComparison !== 0) {
-    return rankComparison;
+  if (first.rr !== second.rr) {
+    return second.rr - first.rr;
   }
 
   return first.nickname.localeCompare(
@@ -263,55 +294,359 @@ function compareRankedEntries(
   );
 }
 
-function createProAccountMap() {
-  const accountMap = new Map<
+function isProRankedEntry(
+  value: unknown,
+): value is ProRankedEntry {
+  if (
+    !value ||
+    typeof value !== "object"
+  ) {
+    return false;
+  }
+
+  const entry =
+    value as Partial<ProRankedEntry>;
+
+  return (
+    typeof entry.rank ===
+      "number" &&
+    typeof entry.playerId ===
+      "string" &&
+    typeof entry.playerSlug ===
+      "string" &&
+    typeof entry.nickname ===
+      "string" &&
+    (typeof entry.teamShortName ===
+      "string" ||
+      entry.teamShortName ===
+        null) &&
+    typeof entry.tier ===
+      "string" &&
+    typeof entry.tierOrder ===
+      "number" &&
+    typeof entry.rr ===
+      "number" &&
+    typeof entry.riotId ===
+      "string" &&
+    entry.leaderboardRegion ===
+      "ap" &&
+    (typeof entry.leaderboardRank ===
+      "number" ||
+      entry.leaderboardRank ===
+        null)
+  );
+}
+
+function readStoredRanking(
+  allowStale: boolean,
+): CachedRanking | null {
+  if (
+    typeof window ===
+    "undefined"
+  ) {
+    return null;
+  }
+
+  try {
+    const raw =
+      window.localStorage.getItem(
+        RANK_STORAGE_KEY,
+      );
+
+    if (!raw) {
+      return null;
+    }
+
+    const parsed: unknown =
+      JSON.parse(raw);
+
+    if (
+      !parsed ||
+      typeof parsed !== "object"
+    ) {
+      window.localStorage.removeItem(
+        RANK_STORAGE_KEY,
+      );
+
+      return null;
+    }
+
+    const cache =
+      parsed as Partial<CachedRanking>;
+
+    if (
+      typeof cache.savedAt !==
+        "number" ||
+      typeof cache.expiresAt !==
+        "number" ||
+      !Array.isArray(
+        cache.entries,
+      ) ||
+      !cache.entries.every(
+        isProRankedEntry,
+      )
+    ) {
+      window.localStorage.removeItem(
+        RANK_STORAGE_KEY,
+      );
+
+      return null;
+    }
+
+    const now = Date.now();
+
+    if (
+      now - cache.savedAt >
+      RANK_STALE_CACHE_DURATION
+    ) {
+      window.localStorage.removeItem(
+        RANK_STORAGE_KEY,
+      );
+
+      return null;
+    }
+
+    if (
+      !allowStale &&
+      cache.expiresAt <= now
+    ) {
+      return null;
+    }
+
+    return {
+      savedAt:
+        cache.savedAt,
+
+      expiresAt:
+        cache.expiresAt,
+
+      entries:
+        cache.entries,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function saveRanking(
+  entries: ProRankedEntry[],
+) {
+  const now = Date.now();
+
+  const cache: CachedRanking = {
+    savedAt: now,
+
+    expiresAt:
+      now +
+      RANK_CACHE_DURATION,
+
+    entries,
+  };
+
+  rankingCache = cache;
+
+  if (
+    typeof window ===
+    "undefined"
+  ) {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(
+      RANK_STORAGE_KEY,
+      JSON.stringify(cache),
+    );
+  } catch {
+    // localStorage 사용이 불가능한 환경에서는
+    // 메모리 캐시만 사용한다.
+  }
+}
+
+/**
+ * 화면 최초 렌더링에서 사용할 수 있는
+ * 마지막 성공 랭킹.
+ *
+ * 최대 6시간까지 stale 데이터를 허용한다.
+ */
+export function getCachedProRankedTop10(): ProRankedEntry[] {
+  const now = Date.now();
+
+  if (
+    rankingCache &&
+    now - rankingCache.savedAt <=
+      RANK_STALE_CACHE_DURATION
+  ) {
+    return rankingCache.entries;
+  }
+
+  const stored =
+    readStoredRanking(true);
+
+  if (!stored) {
+    return [];
+  }
+
+  rankingCache = stored;
+
+  return stored.entries;
+}
+
+function createProAccountMaps(): ProAccountMaps {
+  const byPuuid = new Map<
     string,
     ProAccountOwner
   >();
 
+  const byRiotIdFallback =
+    new Map<
+      string,
+      ProAccountOwner
+    >();
+
   proPlayers
     .filter(
       (player) =>
-        player.region === "Pacific" &&
-        (player.status === "Active" ||
+        player.region ===
+          "Pacific" &&
+        (player.status ===
+          "Active" ||
           player.status ===
             "Substitute") &&
-        (player.riotAccounts?.length ??
-          0) > 0,
+        (player.riotAccounts
+          ?.length ?? 0) > 0,
     )
     .forEach((player) => {
       player.riotAccounts?.forEach(
         (account) => {
+          const owner: ProAccountOwner =
+            {
+              playerId:
+                player.id,
+
+              playerSlug:
+                player.slug,
+
+              nickname:
+                player.nickname,
+
+              teamShortName:
+                player.team
+                  ?.shortName ??
+                null,
+            };
+
+          const puuid =
+            account.puuid
+              ?.trim();
+
+          if (puuid) {
+            const normalizedPuuid =
+              normalizePuuid(
+                puuid,
+              );
+
+            const existingOwner =
+              byPuuid.get(
+                normalizedPuuid,
+              );
+
+            if (
+              existingOwner &&
+              existingOwner.playerId !==
+                owner.playerId
+            ) {
+              console.warn(
+                "[PRO RANKED] 중복 PUUID:",
+                puuid,
+                existingOwner.nickname,
+                owner.nickname,
+              );
+
+              return;
+            }
+
+            byPuuid.set(
+              normalizedPuuid,
+              owner,
+            );
+
+            return;
+          }
+
           const riotId =
             normalizeRiotId(
               account.name,
               account.tag,
             );
 
-          accountMap.set(riotId, {
-            playerId: player.id,
-            playerSlug: player.slug,
-            nickname:
-              player.nickname,
-            teamShortName:
-              player.team?.shortName ??
-              null,
-          });
+          byRiotIdFallback.set(
+            riotId,
+            owner,
+          );
         },
       );
     });
 
-  return accountMap;
+  return {
+    byPuuid,
+    byRiotIdFallback,
+  };
+}
+
+function findProAccountOwner(
+  leaderboardPlayer:
+    HenrikLeaderboardPlayer,
+
+  accountMaps: ProAccountMaps,
+): ProAccountOwner | null {
+  const puuid =
+    leaderboardPlayer.puuid
+      ?.trim();
+
+  if (puuid) {
+    const owner =
+      accountMaps.byPuuid.get(
+        normalizePuuid(
+          puuid,
+        ),
+      );
+
+    if (owner) {
+      return owner;
+    }
+  }
+
+  if (
+    !leaderboardPlayer.name ||
+    !leaderboardPlayer.tag
+  ) {
+    return null;
+  }
+
+  const riotId =
+    normalizeRiotId(
+      leaderboardPlayer.name,
+      leaderboardPlayer.tag,
+    );
+
+  return (
+    accountMaps
+      .byRiotIdFallback
+      .get(riotId) ??
+    null
+  );
 }
 
 async function fetchLeaderboardPage(
   region: LeaderboardRegion,
   startIndex: number,
+  size: number,
 ): Promise<HenrikLeaderboardResponse> {
   const path =
     `/valorant/v3/leaderboard/` +
     `${region}/pc` +
-    `?size=${LEADERBOARD_PAGE_SIZE}` +
+    `?size=${size}` +
     `&start_index=${startIndex}`;
 
   const response = await fetch(
@@ -320,8 +655,10 @@ async function fetchLeaderboardPage(
     )}`,
     {
       method: "GET",
+
       headers: {
-        Accept: "application/json",
+        Accept:
+          "application/json",
       },
     },
   );
@@ -334,153 +671,357 @@ async function fetchLeaderboardPage(
   if (!response.ok) {
     const errorMessage =
       result &&
-      typeof result === "object" &&
+      typeof result ===
+        "object" &&
       "error" in result &&
-      typeof result.error === "string"
+      typeof result.error ===
+        "string"
         ? result.error
         : `리더보드 요청 실패: ${response.status}`;
 
-    throw new Error(errorMessage);
+    throw new LeaderboardRequestError(
+      response.status,
+      errorMessage,
+    );
   }
 
   return result as HenrikLeaderboardResponse;
 }
 
-function addLeaderboardPlayers(
-  players: HenrikLeaderboardPlayer[],
+function responseHasMore(
+  response:
+    HenrikLeaderboardResponse,
+
+  playerCount: number,
+  requestedSize: number,
+) {
+  if (
+    typeof response.results
+      ?.after === "number"
+  ) {
+    return (
+      response.results.after > 0
+    );
+  }
+
+  return (
+    playerCount ===
+    requestedSize
+  );
+}
+
+async function fetchLeaderboardPaginated(
   region: LeaderboardRegion,
-  accountMap: Map<
-    string,
-    ProAccountOwner
-  >,
+): Promise<
+  HenrikLeaderboardPlayer[]
+> {
+  const allPlayers:
+    HenrikLeaderboardPlayer[] = [];
+
+  let startIndex = 1;
+
+  while (
+    allPlayers.length <
+    LEADERBOARD_TARGET_SIZE
+  ) {
+    const remaining =
+      LEADERBOARD_TARGET_SIZE -
+      allPlayers.length;
+
+    const size = Math.min(
+      LEADERBOARD_FALLBACK_PAGE_SIZE,
+      remaining,
+    );
+
+    const response =
+      await fetchLeaderboardPage(
+        region,
+        startIndex,
+        size,
+      );
+
+    const players =
+      response.data?.players ?? [];
+
+    if (players.length === 0) {
+      break;
+    }
+
+    allPlayers.push(
+      ...players,
+    );
+
+    if (
+      !responseHasMore(
+        response,
+        players.length,
+        size,
+      )
+    ) {
+      break;
+    }
+
+    startIndex +=
+      players.length;
+  }
+
+  return allPlayers.slice(
+    0,
+    LEADERBOARD_TARGET_SIZE,
+  );
+}
+
+async function fetchLeaderboardPlayers(
+  region: LeaderboardRegion,
+): Promise<
+  HenrikLeaderboardPlayer[]
+> {
+  try {
+    /**
+     * 가장 빠른 경로:
+     * 5000명을 한 번에 요청.
+     */
+    const firstResponse =
+      await fetchLeaderboardPage(
+        region,
+        1,
+        LEADERBOARD_TARGET_SIZE,
+      );
+
+    const firstPlayers =
+      firstResponse.data
+        ?.players ?? [];
+
+    if (
+      firstPlayers.length === 0
+    ) {
+      return [];
+    }
+
+    /**
+     * 실제로 5000명을 받았거나
+     * API상 다음 데이터가 없다면 끝.
+     */
+    if (
+      firstPlayers.length >=
+        LEADERBOARD_TARGET_SIZE ||
+      !responseHasMore(
+        firstResponse,
+        firstPlayers.length,
+        LEADERBOARD_TARGET_SIZE,
+      )
+    ) {
+      return firstPlayers.slice(
+        0,
+        LEADERBOARD_TARGET_SIZE,
+      );
+    }
+
+    /**
+     * API가 size=5000을 받았지만
+     * 내부적으로 더 작은 크기로 제한해 반환한 경우.
+     *
+     * 이미 받은 데이터는 재요청하지 않고
+     * 나머지만 1000명 단위로 이어서 받는다.
+     */
+    const allPlayers = [
+      ...firstPlayers,
+    ];
+
+    let startIndex =
+      firstPlayers.length + 1;
+
+    while (
+      allPlayers.length <
+      LEADERBOARD_TARGET_SIZE
+    ) {
+      const remaining =
+        LEADERBOARD_TARGET_SIZE -
+        allPlayers.length;
+
+      const size = Math.min(
+        LEADERBOARD_FALLBACK_PAGE_SIZE,
+        remaining,
+      );
+
+      const response =
+        await fetchLeaderboardPage(
+          region,
+          startIndex,
+          size,
+        );
+
+      const players =
+        response.data?.players ??
+        [];
+
+      if (
+        players.length === 0
+      ) {
+        break;
+      }
+
+      allPlayers.push(
+        ...players,
+      );
+
+      if (
+        !responseHasMore(
+          response,
+          players.length,
+          size,
+        )
+      ) {
+        break;
+      }
+
+      startIndex +=
+        players.length;
+    }
+
+    return allPlayers.slice(
+      0,
+      LEADERBOARD_TARGET_SIZE,
+    );
+  } catch (error) {
+    /**
+     * API가 size=5000 자체를 허용하지 않는 경우
+     * 기존 방식인 1000명 페이지 조회로 자동 fallback.
+     *
+     * 429는 fallback하지 않는다.
+     * 요청을 더 보내면 rate limit이 악화되기 때문.
+     */
+    if (
+      error instanceof
+        LeaderboardRequestError &&
+      (error.status === 400 ||
+        error.status === 422)
+    ) {
+      return fetchLeaderboardPaginated(
+        region,
+      );
+    }
+
+    throw error;
+  }
+}
+
+function addLeaderboardPlayers(
+  players:
+    HenrikLeaderboardPlayer[],
+
+  region:
+    LeaderboardRegion,
+
+  accountMaps:
+    ProAccountMaps,
+
   bestPlayerEntries: Map<
     string,
     ProRankedEntry
   >,
 ) {
-  players.forEach((leaderboardPlayer) => {
-    if (
-      !leaderboardPlayer.name ||
-      !leaderboardPlayer.tag
-    ) {
-      return;
-    }
+  players.forEach(
+    (leaderboardPlayer) => {
+      const owner =
+        findProAccountOwner(
+          leaderboardPlayer,
+          accountMaps,
+        );
 
-    const riotId =
-      normalizeRiotId(
-        leaderboardPlayer.name,
-        leaderboardPlayer.tag,
-      );
+      if (!owner) {
+        return;
+      }
 
-    const owner =
-      accountMap.get(riotId);
+      if (
+        !leaderboardPlayer.name ||
+        !leaderboardPlayer.tag
+      ) {
+        return;
+      }
 
-    if (!owner) {
-      return;
-    }
+      const tierOrder =
+        getTierId(
+          leaderboardPlayer.tier,
+        );
 
-    const tierOrder = getTierId(
-      leaderboardPlayer.tier,
-    );
+      if (
+        tierOrder <= 0
+      ) {
+        return;
+      }
 
-    if (tierOrder <= 0) {
-      return;
-    }
+      const candidate:
+        ProRankedEntry = {
+        rank: 0,
 
-    const candidate: ProRankedEntry = {
-      rank: 0,
+        playerId:
+          owner.playerId,
 
-      playerId: owner.playerId,
-      playerSlug: owner.playerSlug,
-      nickname: owner.nickname,
+        playerSlug:
+          owner.playerSlug,
 
-      teamShortName:
-        owner.teamShortName,
+        nickname:
+          owner.nickname,
 
-      tier: getTierName(
-        leaderboardPlayer.tier,
-      ),
+        teamShortName:
+          owner.teamShortName,
 
-      tierOrder,
+        tier:
+          getTierName(
+            leaderboardPlayer.tier,
+          ),
 
-      rr:
-        typeof leaderboardPlayer.rr ===
-        "number"
-          ? leaderboardPlayer.rr
-          : 0,
+        tierOrder,
 
-      riotId: `${leaderboardPlayer.name}#${leaderboardPlayer.tag}`,
+        rr:
+          typeof leaderboardPlayer
+            .rr === "number"
+            ? leaderboardPlayer.rr
+            : 0,
 
-      leaderboardRegion: region,
+        riotId:
+          `${leaderboardPlayer.name}` +
+          `#${leaderboardPlayer.tag}`,
 
-      leaderboardRank:
-        typeof leaderboardPlayer.leaderboard_rank ===
-        "number"
-          ? leaderboardPlayer.leaderboard_rank
-          : null,
-    };
+        leaderboardRegion:
+          region,
 
-    const previous =
-      bestPlayerEntries.get(
-        owner.playerId,
-      );
+        leaderboardRank:
+          typeof leaderboardPlayer
+            .leaderboard_rank ===
+          "number"
+            ? leaderboardPlayer
+                .leaderboard_rank
+            : null,
+      };
 
-    if (
-      !previous ||
-      compareRankedEntries(
-        candidate,
-        previous,
-      ) < 0
-    ) {
-      bestPlayerEntries.set(
-        owner.playerId,
-        candidate,
-      );
-    }
-  });
+      const previous =
+        bestPlayerEntries.get(
+          owner.playerId,
+        );
+
+      if (
+        !previous ||
+        compareRankedEntries(
+          candidate,
+          previous,
+        ) < 0
+      ) {
+        bestPlayerEntries.set(
+          owner.playerId,
+          candidate,
+        );
+      }
+    },
+  );
 }
 
-function getLeaderboardBoundary(
-  players: HenrikLeaderboardPlayer[],
-): RankScore | null {
-  for (
-    let index = players.length - 1;
-    index >= 0;
-    index -= 1
-  ) {
-    const player = players[index];
-
-    const score =
-      getPlayerRankScore(player);
-
-    if (score.tierOrder > 0) {
-      return score;
-    }
-  }
-
-  return null;
-}
-
-function isBoundaryBelowTopTen(
-  boundary: RankScore,
-  tenthPlace: ProRankedEntry,
-) {
-  const comparison =
-    compareRankScore(
-      boundary,
-      {
-        tierOrder:
-          tenthPlace.tierOrder,
-        rr: tenthPlace.rr,
-      },
-    );
-
-  return comparison >= 0;
-}
-
-async function requestProRankedTop10() {
-  const accountMap =
-    createProAccountMap();
+async function requestProRankedTop10(): Promise<
+  ProRankedEntry[]
+> {
+  const accountMaps =
+    createProAccountMaps();
 
   const bestPlayerEntries =
     new Map<
@@ -488,139 +1029,87 @@ async function requestProRankedTop10() {
       ProRankedEntry
     >();
 
-  const regionStates =
-    LEADERBOARD_REGIONS.map<RegionState>(
-      (region) => ({
+  const regionResults =
+    await Promise.all(
+      LEADERBOARD_REGIONS.map(
+        async (region) => ({
+          region,
+
+          players:
+            await fetchLeaderboardPlayers(
+              region,
+            ),
+        }),
+      ),
+    );
+
+  regionResults.forEach(
+    ({
+      region,
+      players,
+    }) => {
+      addLeaderboardPlayers(
+        players,
         region,
-        startIndex: 1,
-        done: false,
-        boundary: null,
-      }),
-    );
-
-  while (
-    regionStates.some(
-      (state) => !state.done,
-    )
-  ) {
-    const activeStates =
-      regionStates.filter(
-        (state) => !state.done,
+        accountMaps,
+        bestPlayerEntries,
       );
-
-    const responses =
-      await Promise.all(
-        activeStates.map(
-          async (state) => ({
-            state,
-            response:
-              await fetchLeaderboardPage(
-                state.region,
-                state.startIndex,
-              ),
-          }),
-        ),
-      );
-
-    responses.forEach(
-      ({ state, response }) => {
-        const players =
-          response.data?.players ?? [];
-
-        addLeaderboardPlayers(
-          players,
-          state.region,
-          accountMap,
-          bestPlayerEntries,
-        );
-
-        state.boundary =
-          getLeaderboardBoundary(
-            players,
-          );
-
-        const hasMoreByApi =
-          typeof response.results?.after ===
-          "number"
-            ? response.results.after > 0
-            : players.length ===
-              LEADERBOARD_PAGE_SIZE;
-
-        const nextStartIndex =
-          state.startIndex +
-          LEADERBOARD_PAGE_SIZE;
-
-        const reachedLimit =
-          nextStartIndex >
-          MAX_PLAYERS_PER_REGION;
-
-        if (
-          !hasMoreByApi ||
-          players.length === 0 ||
-          reachedLimit
-        ) {
-          state.done = true;
-          return;
-        }
-
-        state.startIndex =
-          nextStartIndex;
-      },
-    );
-
-    const currentTopTen = [
-      ...bestPlayerEntries.values(),
-    ]
-      .sort(compareRankedEntries)
-      .slice(0, 10);
-
-    if (currentTopTen.length < 10) {
-      continue;
-    }
-
-    const tenthPlace =
-      currentTopTen[9];
-
-    const canStop =
-      regionStates.every(
-        (state) =>
-          state.done ||
-          (state.boundary !== null &&
-            isBoundaryBelowTopTen(
-              state.boundary,
-              tenthPlace,
-            )),
-      );
-
-    if (canStop) {
-      break;
-    }
-  }
+    },
+  );
 
   return [
     ...bestPlayerEntries.values(),
   ]
-    .sort(compareRankedEntries)
+    .sort(
+      compareRankedEntries,
+    )
     .slice(0, 10)
-    .map((entry, index) => ({
-      ...entry,
-      rank: index + 1,
-    }));
+    .map(
+      (entry, index) => ({
+        ...entry,
+
+        rank:
+          index + 1,
+      }),
+    );
 }
 
+/**
+ * 최신 랭킹을 가져온다.
+ *
+ * 1. 메모리의 10분 캐시
+ * 2. localStorage의 10분 캐시
+ * 3. API 요청
+ *
+ * 순서로 동작한다.
+ */
 export async function getProRankedTop10(): Promise<
   ProRankedEntry[]
 > {
-  const now = Date.now();
+  const now =
+    Date.now();
 
   if (
     rankingCache &&
-    rankingCache.expiresAt > now
+    rankingCache.expiresAt >
+      now
   ) {
     return rankingCache.entries;
   }
 
-  if (pendingRankingRequest) {
+  const storedFresh =
+    readStoredRanking(false);
+
+  if (storedFresh) {
+    rankingCache =
+      storedFresh;
+
+    return storedFresh.entries;
+  }
+
+  if (
+    pendingRankingRequest
+  ) {
     return pendingRankingRequest;
   }
 
@@ -631,15 +1120,27 @@ export async function getProRankedTop10(): Promise<
     const entries =
       await pendingRankingRequest;
 
-    rankingCache = {
-      entries,
-      expiresAt:
-        Date.now() +
-        RANK_CACHE_DURATION,
-    };
+    saveRanking(entries);
 
     return entries;
+  } catch (error) {
+    /**
+     * 최신 데이터 요청에 실패했더라도
+     * 최근 6시간 이내 성공 데이터가 있으면
+     * 티커를 없애지 않고 기존 랭킹을 유지한다.
+     */
+    const stale =
+      readStoredRanking(true);
+
+    if (stale) {
+      rankingCache = stale;
+
+      return stale.entries;
+    }
+
+    throw error;
   } finally {
-    pendingRankingRequest = null;
+    pendingRankingRequest =
+      null;
   }
 }

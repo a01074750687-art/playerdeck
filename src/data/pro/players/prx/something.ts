@@ -168,6 +168,7 @@ export const something: ProPlayer = {
     {
       name: "PRX something",
       tag: "112",
+      puuid: "28bccc07-1105-5f75-9fae-3992a8661be0",
 
       verification: {
         verifiedAt: "2026-08-14",

@@ -88,6 +88,7 @@ export const meiy: ProPlayer = {
     {
       name: "Meiy",
       tag: "B3L",
+      puuid: "71bedae8-34a7-599b-b927-0b956f6ddf25",
 
       verification: {
         verifiedAt: "2026-08-24",

@@ -114,6 +114,7 @@ export const xavi8k: ProPlayer = {
     {
       name: "GE xavi8k",
       tag: "xoxo",
+      puuid: "932f3388-add1-5fd3-91af-2cb239d57154",
 
       verification: {
         verifiedAt: "2026-08-24",

@@ -83,6 +83,7 @@ export const xross: ProPlayer = {
     {
       name: "NS Xross",
       tag: "2012y",
+      puuid: "ffa83fe7-411e-56ab-835a-84ccc5d7dd2d",
 
       verification: {
         verifiedAt: "2026-08-24",

@@ -17,6 +17,7 @@ import useFavorites, {
   type FavoriteValorantAccount,
 } from "../hooks/useFavorites";
 import {
+  getCachedProRankedTop10,
   getProRankedTop10,
   type ProRankedEntry,
 } from "../services/proRankedService";
@@ -87,7 +88,9 @@ export default function Valorant() {
   const [
     proRankedPlayers,
     setProRankedPlayers,
-  ] = useState<ProRankedEntry[]>([]);
+  ] = useState<ProRankedEntry[]>(
+    () => getCachedProRankedTop10(),
+  );
 
   const [
     activeRankIndex,
@@ -226,6 +229,7 @@ export default function Valorant() {
       alert(
         "라이엇 ID 또는 프로 선수 닉네임을 입력해 주세요.",
       );
+
       return;
     }
 
@@ -534,9 +538,7 @@ export default function Valorant() {
                                     </span>
 
                                     <ArrowUpRight
-                                      size={
-                                        12
-                                      }
+                                      size={12}
                                       className="text-red-400"
                                     />
                                   </button>

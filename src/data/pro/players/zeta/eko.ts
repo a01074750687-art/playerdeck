@@ -103,6 +103,7 @@ export const eko: ProPlayer = {
     {
       name: "ZETA eKo",
       tag: "twoSu",
+      puuid: "f9a2940b-cda2-5ba8-b4d3-10f26136adb7",
 
       verification: {
         verifiedAt: "2026-08-24",

@@ -99,6 +99,7 @@ export const izu: ProPlayer = {
     {
       name: "T1 izu",
       tag: "1223",
+      puuid: "1cddc74c-f452-5949-bd98-96883cc4b0cb",
 
       verification: {
         verifiedAt: "2026-08-14",

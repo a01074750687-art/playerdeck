@@ -94,6 +94,7 @@ export const syouta: ProPlayer = {
     {
       name: "下 忍",
       tag: "手裏剣",
+      puuid: "3c8214a1-b8d7-5faa-bb5a-6f5fb6afa479",
 
       verification: {
         verifiedAt: "2026-08-24",

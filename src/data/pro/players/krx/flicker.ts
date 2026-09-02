@@ -84,6 +84,7 @@ export const flicker: ProPlayer = {
     {
       name: "DRX Flicker",
       tag: "V S",
+      puuid: "2a4d29cc-ff2c-500a-9553-e6af6f6c2717",
 
       verification: {
         verifiedAt: "2026-08-14",

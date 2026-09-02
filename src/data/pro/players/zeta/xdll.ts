@@ -89,6 +89,7 @@ export const xdll: ProPlayer = {
     {
       name: "ZETA Xdll",
       tag: "mizo",
+      puuid: "75565677-b76c-5476-abaa-9927faad5bfa",
 
       verification: {
         verifiedAt: "2026-08-24",

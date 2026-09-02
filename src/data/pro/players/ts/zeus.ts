@@ -89,6 +89,7 @@ export const zeus: ProPlayer = {
     {
       name: "Secret Zeus",
       tag: "ela",
+      puuid: "57101dd8-4766-52e9-b560-c024de07ee43",
 
       verification: {
         verifiedAt: "2026-08-21",

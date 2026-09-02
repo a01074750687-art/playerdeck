@@ -109,6 +109,7 @@ export const efina: ProPlayer = {
     {
       name: "GEN Efina",
       tag: "0527",
+      puuid: "a499d364-4bd1-57a0-a01f-c410eb41a8f2",
 
       verification: {
         verifiedAt: "2026-08-24",

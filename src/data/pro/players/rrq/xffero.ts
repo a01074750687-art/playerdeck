@@ -109,6 +109,7 @@ export const xffero: ProPlayer = {
     {
       name: "Tehbotol",
       tag: "bibib",
+      puuid: "96150c52-ed20-5e1a-addd-9ef02d46efb1",
 
       verification: {
         verifiedAt: "2026-08-18",

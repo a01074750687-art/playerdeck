@@ -78,18 +78,8 @@ export const ssees: ProPlayer = {
     {
       name: "DFM SSeeS",
       tag: "0215",
-
-      verification: {
-        verifiedAt: "2026-08-24",
-        sourceName: "OP.GG",
-        sourceUrl:
-          "https://op.gg/valorant/profile/DFM%20SSeeS-0215",
-      },
-    },
-    {
-      name: "DFM SSeeS",
-      tag: "0215",
-
+      puuid: "a67e9192-ce6c-5e52-aabd-b85d65389679",
+      
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",

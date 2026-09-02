@@ -154,6 +154,7 @@ export const mako: ProPlayer = {
     {
       name: "DRX Mako",
       tag: "V S",
+      puuid: "84ee1311-4c39-5d40-8440-717461bbf29f",
 
       verification: {
         verifiedAt: "2026-08-14",

@@ -120,6 +120,7 @@ export const beyn: ProPlayer = {
     {
       name: "DRX Beyn",
       tag: "V S",
+      puuid: "a5cecee8-316c-54b0-9a71-fba36554b029",
 
       verification: {
         verifiedAt: "2026-08-14",

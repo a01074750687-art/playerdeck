@@ -133,6 +133,7 @@ export const munchkin: ProPlayer = {
     {
       name: "Munchkin",
       tag: "98327",
+      puuid: "8222e419-13c1-59c7-8025-942ef0295866",
 
       verification: {
         verifiedAt: "2026-08-14",

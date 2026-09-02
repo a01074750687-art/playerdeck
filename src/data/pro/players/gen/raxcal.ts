@@ -74,6 +74,7 @@ export const raxcal: ProPlayer = {
     {
       name: "LEV Sato",
       tag: "락스칼이다",
+      puuid: "6639d262-b70d-554e-9cbd-5d1fb5df307f",
 
       verification: {
         verifiedAt: "2026-08-16",

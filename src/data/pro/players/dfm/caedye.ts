@@ -83,6 +83,7 @@ export const caedye: ProPlayer = {
     {
       name: "Caedye",
       tag: "noroc",
+      puuid: "5425a8f9-8f61-5cd1-bf01-8f0970073d11",
 
       verification: {
         verifiedAt: "2026-08-24",

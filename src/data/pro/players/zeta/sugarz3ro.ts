@@ -79,6 +79,7 @@ export const sugarz3ro: ProPlayer = {
     {
       name: "SugarZ3ro",
       tag: "397",
+      puuid: "8e799465-6290-5c0a-b67b-15c32ed0083b",
 
       verification: {
         verifiedAt: "2026-08-24",

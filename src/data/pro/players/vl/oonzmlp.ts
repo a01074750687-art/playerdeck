@@ -98,6 +98,7 @@ export const oonzmlp: ProPlayer = {
     {
       name: "VARREL oonzmlp",
       tag: "0o0",
+      puuid: "528047a9-d896-559e-999c-ca306e134262",
 
       verification: {
         verifiedAt: "2026-08-24",

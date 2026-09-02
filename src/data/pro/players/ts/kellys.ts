@@ -103,6 +103,7 @@ export const kellys: ProPlayer = {
     {
       name: "Secret kellyS",
       tag: "MJC",
+      puuid: "b727dbbe-98a5-5f47-a67a-e4a251bfecaa",
 
       verification: {
         verifiedAt: "2026-08-25",

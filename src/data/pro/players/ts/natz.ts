@@ -129,6 +129,7 @@ export const natz: ProPlayer = {
     {
       name: "Secret natz",
       tag: "0108",
+      puuid: "3f6614ba-2a74-51ec-bc3d-81927de92472",
 
       verification: {
         verifiedAt: "2026-08-24",
