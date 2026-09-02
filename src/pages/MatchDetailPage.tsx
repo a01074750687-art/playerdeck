@@ -49,16 +49,16 @@ function DetailStatCard({
   description,
 }: DetailStatCardProps) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-4">
-      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+    <div className="rounded-xl border border-white/10 bg-slate-900/80 px-3 py-3 sm:rounded-2xl sm:px-4 sm:py-4">
+      <p className="text-[9px] font-black uppercase tracking-[0.16em] text-slate-500 sm:text-[10px] sm:tracking-[0.18em]">
         {label}
       </p>
 
-      <p className="mt-2 text-2xl font-black tracking-tight text-white">
+      <p className="mt-1.5 text-xl font-black tracking-tight text-white sm:mt-2 sm:text-2xl">
         {value}
       </p>
 
-      <p className="mt-1 text-xs font-medium text-slate-500">
+      <p className="mt-0.5 text-[10px] font-medium text-slate-500 sm:mt-1 sm:text-xs">
         {description}
       </p>
     </div>
@@ -209,8 +209,6 @@ export default function MatchDetailPage() {
       ? player?.recentMatches[parsedMatchIndex] ?? null
       : null;
 
-  console.log("ROUND DATA", selectedMatch?.rounds);
-
   const totalMatches =
     player?.recentMatches.length ?? 0;
 
@@ -304,7 +302,7 @@ export default function MatchDetailPage() {
     <div className="min-h-screen bg-slate-950 text-white">
       <Header />
 
-      <main className="w-full px-3 py-8 sm:px-6 sm:py-10">
+      <main className="w-full px-3 py-5 sm:px-6 sm:py-10">
         <section className="mx-auto w-full max-w-6xl">
           <Link
             to={profilePath}
@@ -389,7 +387,7 @@ export default function MatchDetailPage() {
             !error &&
             player &&
             selectedMatch && (
-              <div className="mt-6 space-y-6">
+              <div className="mt-4 space-y-4 sm:mt-6 sm:space-y-6">
                 <MatchNavigation
                   currentIndex={parsedMatchIndex}
                   totalMatches={totalMatches}
@@ -406,7 +404,7 @@ export default function MatchDetailPage() {
                       : "overflow-hidden rounded-3xl border border-red-400/20 bg-slate-900 shadow-2xl shadow-red-950/20"
                   }
                 >
-                  <div className="relative h-64 overflow-hidden sm:h-80">
+                  <div className="relative h-72 overflow-hidden sm:h-80">
                     <div className="h-full w-full">
                       <MapThumbnail
                         mapName={selectedMatch.map}
@@ -437,7 +435,7 @@ export default function MatchDetailPage() {
                           Match Detail
                         </p>
 
-                        <h1 className="mt-2 text-4xl font-black tracking-tight text-white sm:text-5xl">
+                        <h1 className="mt-1.5 text-3xl font-black tracking-tight text-white sm:mt-2 sm:text-5xl">
                           {selectedMatch.map}
                         </h1>
 
@@ -480,7 +478,7 @@ export default function MatchDetailPage() {
 
                   <div className="p-4 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
-                      <div className="rounded-3xl border border-white/10 bg-slate-950/45 p-5">
+                      <div className="rounded-2xl border border-white/10 bg-slate-950/45 p-4 sm:rounded-3xl sm:p-5">
                         <div className="flex items-start gap-4">
                           <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950 p-2">
                             <AgentIcon
@@ -506,12 +504,12 @@ export default function MatchDetailPage() {
                           </div>
                         </div>
 
-                        <div className="mt-6 border-t border-white/10 pt-5">
+                        <div className="mt-4 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
                           <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
                             K / D / A
                           </p>
 
-                          <p className="mt-2 text-3xl font-black tracking-tight text-white">
+                          <p className="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl">
                             {selectedMatch.kills}
 
                             <span className="mx-2 text-slate-600">

@@ -1,7 +1,9 @@
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
   CalendarDays,
+  ChevronDown,
   Globe2,
   Shield,
   Trophy,
@@ -52,48 +54,62 @@ const getTeamOrderIndex = (
     : index;
 };
 
-const createPacificTeams = (): GroupedTeam[] => {
-  return proTeams
-    .filter(
-      (team) => team.region === "Pacific",
-    )
-    .map((team) => {
-      const rosterCount = proPlayers.filter(
-        (player) =>
-          player.team?.slug === team.slug,
-      ).length;
+const createPacificTeams =
+  (): GroupedTeam[] => {
+    return proTeams
+      .filter(
+        (team) =>
+          team.region === "Pacific",
+      )
+      .map((team) => {
+        const rosterCount =
+          proPlayers.filter(
+            (player) =>
+              player.team?.slug ===
+              team.slug,
+          ).length;
 
-      return {
-        team,
-        rosterCount,
-      };
-    })
-    .sort((firstTeam, secondTeam) => {
-      const firstOrder = getTeamOrderIndex(
-        firstTeam.team.shortName,
+        return {
+          team,
+          rosterCount,
+        };
+      })
+      .sort(
+        (firstTeam, secondTeam) => {
+          const firstOrder =
+            getTeamOrderIndex(
+              firstTeam.team.shortName,
+            );
+
+          const secondOrder =
+            getTeamOrderIndex(
+              secondTeam.team.shortName,
+            );
+
+          if (
+            firstOrder !== secondOrder
+          ) {
+            return (
+              firstOrder - secondOrder
+            );
+          }
+
+          return firstTeam.team.name.localeCompare(
+            secondTeam.team.name,
+          );
+        },
       );
+  };
 
-      const secondOrder = getTeamOrderIndex(
-        secondTeam.team.shortName,
-      );
+const pacificTeams =
+  createPacificTeams();
 
-      if (firstOrder !== secondOrder) {
-        return firstOrder - secondOrder;
-      }
-
-      return firstTeam.team.name.localeCompare(
-        secondTeam.team.name,
-      );
-    });
-};
-
-const pacificTeams = createPacificTeams();
-
-const totalPlayers = pacificTeams.reduce(
-  (total, currentTeam) =>
-    total + currentTeam.rosterCount,
-  0,
-);
+const totalPlayers =
+  pacificTeams.reduce(
+    (total, currentTeam) =>
+      total + currentTeam.rosterCount,
+    0,
+  );
 
 const featuredTeam =
   pacificTeams.find(
@@ -103,6 +119,11 @@ const featuredTeam =
   ) ?? pacificTeams[0];
 
 const PacificTeam = () => {
+  const [
+    mobileTeamsOpen,
+    setMobileTeamsOpen,
+  ] = useState(false);
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
       {/* Page Background */}
@@ -121,23 +142,12 @@ const PacificTeam = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.6)_72%,rgba(2,6,23,0.95)_100%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 py-4 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
         {/* Back */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-4 sm:mb-8">
           <Link
             to="/valorant"
-            className="
-              inline-flex items-center gap-2
-              rounded-full
-              border border-transparent
-              px-1 py-1
-              text-sm font-semibold
-              text-slate-400
-              transition duration-200
-              hover:text-white
-              focus-visible:border-white/20
-              focus-visible:outline-none
-            "
+            className="inline-flex items-center gap-2 rounded-full border border-transparent px-1 py-1 text-sm font-semibold text-slate-400 transition duration-200 hover:text-white focus-visible:border-white/20 focus-visible:outline-none"
           >
             <ArrowLeft size={17} />
 
@@ -146,20 +156,7 @@ const PacificTeam = () => {
         </div>
 
         {/* Hero */}
-        <section
-          className="
-            relative overflow-hidden
-            rounded-[1.75rem]
-            border border-white/10
-            bg-slate-950/65
-            px-5 py-8
-            shadow-[0_30px_100px_rgba(0,0,0,0.35)]
-            backdrop-blur-xl
-            sm:rounded-[2rem]
-            sm:px-8 sm:py-10
-            lg:px-12 lg:py-14
-          "
-        >
+        <section className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/65 px-5 py-8 shadow-[0_30px_100px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:rounded-[2rem] sm:px-8 sm:py-10 lg:px-12 lg:py-14">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
@@ -198,53 +195,29 @@ const PacificTeam = () => {
                 </h1>
 
                 <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-400 sm:text-base">
-                  VCT Pacific 프로 팀과 선수
-                  정보를 한 곳에서 확인하세요.
-                  참가 팀과 소속 로스터를 살펴보고
-                  각 팀의 상세 페이지로 이동할 수
+                  VCT Pacific 프로 팀과
+                  선수 정보를 한 곳에서
+                  확인하세요. 참가 팀과 소속
+                  로스터를 살펴보고 각 팀의
+                  상세 페이지로 이동할 수
                   있습니다.
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a
                     href="#teams"
-                    className="
-                      inline-flex items-center gap-2
-                      rounded-xl
-                      bg-red-500
-                      px-5 py-3
-                      text-sm font-black
-                      text-white
-                      transition duration-200
-                      hover:bg-red-400
-                      focus-visible:outline-none
-                      focus-visible:ring-2
-                      focus-visible:ring-red-300
-                    "
+                    className="inline-flex items-center gap-2 rounded-xl bg-red-500 px-5 py-3 text-sm font-black text-white transition duration-200 hover:bg-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
                   >
                     팀 둘러보기
 
-                    <ArrowRight size={17} />
+                    <ArrowRight
+                      size={17}
+                    />
                   </a>
 
                   <Link
                     to="/valorant/pros"
-                    className="
-                      inline-flex items-center gap-2
-                      rounded-xl
-                      border border-white/10
-                      bg-white/[0.04]
-                      px-5 py-3
-                      text-sm font-black
-                      text-slate-200
-                      transition duration-200
-                      hover:border-white/20
-                      hover:bg-white/[0.08]
-                      hover:text-white
-                      focus-visible:outline-none
-                      focus-visible:ring-2
-                      focus-visible:ring-white/30
-                    "
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-slate-200 transition duration-200 hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                   >
                     선수 로스터 보기
 
@@ -255,7 +228,7 @@ const PacificTeam = () => {
 
               {/* Hero Stats */}
               <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 xl:w-auto xl:min-w-[660px]">
-                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 backdrop-blur-md">
+                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-3 backdrop-blur-md sm:p-4">
                   <div className="flex items-center gap-2 text-slate-500">
                     <Shield size={16} />
 
@@ -264,8 +237,10 @@ const PacificTeam = () => {
                     </p>
                   </div>
 
-                  <p className="mt-3 text-3xl font-black tracking-[-0.04em] text-white">
-                    {pacificTeams.length}
+                  <p className="mt-2 text-2xl font-black tracking-[-0.04em] text-white sm:mt-3 sm:text-3xl">
+                    {
+                      pacificTeams.length
+                    }
                   </p>
 
                   <p className="mt-1 text-xs text-slate-500">
@@ -273,7 +248,7 @@ const PacificTeam = () => {
                   </p>
                 </article>
 
-                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 backdrop-blur-md">
+                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-3 backdrop-blur-md sm:p-4">
                   <div className="flex items-center gap-2 text-slate-500">
                     <Users size={16} />
 
@@ -282,7 +257,7 @@ const PacificTeam = () => {
                     </p>
                   </div>
 
-                  <p className="mt-3 text-3xl font-black tracking-[-0.04em] text-white">
+                  <p className="mt-2 text-2xl font-black tracking-[-0.04em] text-white sm:mt-3 sm:text-3xl">
                     {totalPlayers}
                   </p>
 
@@ -291,7 +266,7 @@ const PacificTeam = () => {
                   </p>
                 </article>
 
-                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 backdrop-blur-md">
+                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-3 backdrop-blur-md sm:p-4">
                   <div className="flex items-center gap-2 text-slate-500">
                     <Globe2 size={16} />
 
@@ -300,7 +275,7 @@ const PacificTeam = () => {
                     </p>
                   </div>
 
-                  <p className="mt-3 text-3xl font-black tracking-[-0.04em] text-white">
+                  <p className="mt-2 text-2xl font-black tracking-[-0.04em] text-white sm:mt-3 sm:text-3xl">
                     VCT
                   </p>
 
@@ -309,16 +284,18 @@ const PacificTeam = () => {
                   </p>
                 </article>
 
-                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 backdrop-blur-md">
+                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-3 backdrop-blur-md sm:p-4">
                   <div className="flex items-center gap-2 text-slate-500">
-                    <CalendarDays size={16} />
+                    <CalendarDays
+                      size={16}
+                    />
 
                     <p className="text-[10px] font-black tracking-[0.12em]">
                       시즌
                     </p>
                   </div>
 
-                  <p className="mt-3 text-3xl font-black tracking-[-0.04em] text-white">
+                  <p className="mt-2 text-2xl font-black tracking-[-0.04em] text-white sm:mt-3 sm:text-3xl">
                     2026
                   </p>
 
@@ -339,38 +316,13 @@ const PacificTeam = () => {
           {/* Pacific Teams */}
           <a
             href="#teams"
-            className="
-              group relative flex min-h-[220px]
-              flex-col overflow-hidden
-              rounded-3xl
-              border border-white/[0.09]
-              bg-[#090b18]/85
-              p-6
-              shadow-[0_18px_55px_rgba(0,0,0,0.2)]
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:border-red-400/25
-              hover:shadow-[0_24px_70px_rgba(0,0,0,0.3)]
-              sm:p-7
-            "
+            className="group relative flex min-h-[180px] flex-col overflow-hidden rounded-2xl border border-white/[0.09] bg-[#090b18]/85 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-1 hover:border-red-400/25 hover:shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:min-h-[220px] sm:rounded-3xl sm:p-7"
           >
-            {/* Background */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0"
             >
-              <div
-                className="
-                  absolute -right-20 -top-24
-                  h-56 w-56
-                  rounded-full
-                  bg-red-500/[0.08]
-                  opacity-70
-                  blur-[85px]
-                  transition-opacity duration-300
-                  group-hover:opacity-100
-                "
-              />
+              <div className="absolute -right-20 -top-24 h-56 w-56 rounded-full bg-red-500/[0.08] opacity-70 blur-[85px] transition-opacity duration-300 group-hover:opacity-100" />
 
               <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(239,68,68,0.025),transparent_45%,rgba(255,255,255,0.005))]" />
 
@@ -378,115 +330,40 @@ const PacificTeam = () => {
             </div>
 
             <div className="relative flex flex-1 flex-col">
-              {/* Header */}
               <div className="flex items-start justify-between gap-4">
-                <div
-                  className="
-                    flex h-12 w-12
-                    items-center justify-center
-                    rounded-2xl
-                    border border-red-400/20
-                    bg-red-400/[0.08]
-                    text-red-200
-                  "
-                >
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-red-400/20 bg-red-400/[0.08] text-red-200 sm:h-12 sm:w-12">
                   <Shield size={22} />
                 </div>
 
-                <span
-                  className="
-                    inline-flex items-center
-                    rounded-full
-                    border border-white/[0.08]
-                    bg-white/[0.03]
-                    px-3 py-1.5
-                    text-[10px] font-black
-                    text-slate-400
-                  "
-                >
-                  {pacificTeams.length}개 팀
+                <span className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[10px] font-black text-slate-400">
+                  {pacificTeams.length}개
+                  팀
                 </span>
               </div>
 
-              {/* Content */}
-              <div className="mt-6">
-                <p
-                  className="
-                    text-[10px] font-black
-                    tracking-[0.16em]
-                    text-red-300
-                  "
-                >
+              <div className="mt-4 sm:mt-6">
+                <p className="text-[10px] font-black tracking-[0.16em] text-red-300">
                   팀
                 </p>
 
-                <h2
-                  className="
-                    mt-2
-                    text-2xl font-black
-                    tracking-[-0.04em]
-                    text-white
-                    sm:text-[1.65rem]
-                  "
-                >
+                <h2 className="mt-2 text-xl font-black tracking-[-0.04em] text-white sm:text-[1.65rem]">
                   Pacific 프로 팀
                 </h2>
 
-                <p
-                  className="
-                    mt-3 max-w-lg
-                    text-[13px] font-medium
-                    leading-6 text-slate-500
-                    sm:text-sm
-                  "
-                >
-                  VCT Pacific 참가 팀과 현재 등록된
-                  팀별 선수 로스터를 확인하세요.
+                <p className="mt-2 max-w-lg text-[13px] font-medium leading-6 text-slate-500 sm:mt-3 sm:text-sm">
+                  VCT Pacific 참가 팀과
+                  현재 등록된 팀별 선수
+                  로스터를 확인하세요.
                 </p>
               </div>
 
-              {/* Footer */}
-              <div
-                className="
-                  mt-auto flex
-                  items-center justify-between
-                  border-t border-white/[0.07]
-                  pt-4
-                "
-              >
-                <span
-                  className="
-                    text-[11px] font-bold
-                    text-slate-500
-                    transition-colors duration-300
-                    group-hover:text-slate-300
-                  "
-                >
+              <div className="mt-auto flex items-center justify-between border-t border-white/[0.07] pt-3 sm:pt-4">
+                <span className="text-[11px] font-bold text-slate-500 transition-colors duration-300 group-hover:text-slate-300">
                   팀 둘러보기
                 </span>
 
-                <div
-                  className="
-                    flex h-9 w-9
-                    items-center justify-center
-                    rounded-full
-                    border border-white/[0.08]
-                    bg-white/[0.035]
-                    text-slate-500
-                    transition-all duration-300
-                    group-hover:border-red-400/25
-                    group-hover:bg-red-400/[0.08]
-                    group-hover:text-red-200
-                  "
-                >
-                  <ArrowRight
-                    size={16}
-                    className="
-                      transition-transform
-                      duration-300
-                      group-hover:translate-x-0.5
-                    "
-                  />
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.035] text-slate-500 transition-all duration-300 group-hover:border-red-400/25 group-hover:bg-red-400/[0.08] group-hover:text-red-200">
+                  <ArrowRight size={16} />
                 </div>
               </div>
             </div>
@@ -495,38 +372,13 @@ const PacificTeam = () => {
           {/* Pro Players */}
           <Link
             to="/valorant/pros"
-            className="
-              group relative flex min-h-[220px]
-              flex-col overflow-hidden
-              rounded-3xl
-              border border-white/[0.09]
-              bg-[#090b18]/85
-              p-6
-              shadow-[0_18px_55px_rgba(0,0,0,0.2)]
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:border-blue-400/25
-              hover:shadow-[0_24px_70px_rgba(0,0,0,0.3)]
-              sm:p-7
-            "
+            className="group relative flex min-h-[180px] flex-col overflow-hidden rounded-2xl border border-white/[0.09] bg-[#090b18]/85 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/25 hover:shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:min-h-[220px] sm:rounded-3xl sm:p-7"
           >
-            {/* Background */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0"
             >
-              <div
-                className="
-                  absolute -right-20 -top-24
-                  h-56 w-56
-                  rounded-full
-                  bg-blue-500/[0.08]
-                  opacity-70
-                  blur-[85px]
-                  transition-opacity duration-300
-                  group-hover:opacity-100
-                "
-              />
+              <div className="absolute -right-20 -top-24 h-56 w-56 rounded-full bg-blue-500/[0.08] opacity-70 blur-[85px] transition-opacity duration-300 group-hover:opacity-100" />
 
               <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.025),transparent_45%,rgba(255,255,255,0.005))]" />
 
@@ -534,115 +386,39 @@ const PacificTeam = () => {
             </div>
 
             <div className="relative flex flex-1 flex-col">
-              {/* Header */}
               <div className="flex items-start justify-between gap-4">
-                <div
-                  className="
-                    flex h-12 w-12
-                    items-center justify-center
-                    rounded-2xl
-                    border border-blue-400/20
-                    bg-blue-400/[0.08]
-                    text-blue-200
-                  "
-                >
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-400/[0.08] text-blue-200 sm:h-12 sm:w-12">
                   <Users size={22} />
                 </div>
 
-                <span
-                  className="
-                    inline-flex items-center
-                    rounded-full
-                    border border-white/[0.08]
-                    bg-white/[0.03]
-                    px-3 py-1.5
-                    text-[10px] font-black
-                    text-slate-400
-                  "
-                >
+                <span className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[10px] font-black text-slate-400">
                   {totalPlayers}명
                 </span>
               </div>
 
-              {/* Content */}
-              <div className="mt-6">
-                <p
-                  className="
-                    text-[10px] font-black
-                    tracking-[0.16em]
-                    text-blue-300
-                  "
-                >
+              <div className="mt-4 sm:mt-6">
+                <p className="text-[10px] font-black tracking-[0.16em] text-blue-300">
                   선수
                 </p>
 
-                <h2
-                  className="
-                    mt-2
-                    text-2xl font-black
-                    tracking-[-0.04em]
-                    text-white
-                    sm:text-[1.65rem]
-                  "
-                >
+                <h2 className="mt-2 text-xl font-black tracking-[-0.04em] text-white sm:text-[1.65rem]">
                   프로 선수 로스터
                 </h2>
 
-                <p
-                  className="
-                    mt-3 max-w-lg
-                    text-[13px] font-medium
-                    leading-6 text-slate-500
-                    sm:text-sm
-                  "
-                >
-                  VCT Pacific 선수의 소속 팀, 역할과
-                  상세 프로필을 확인하세요.
+                <p className="mt-2 max-w-lg text-[13px] font-medium leading-6 text-slate-500 sm:mt-3 sm:text-sm">
+                  VCT Pacific 선수의 소속
+                  팀, 역할과 상세 프로필을
+                  확인하세요.
                 </p>
               </div>
 
-              {/* Footer */}
-              <div
-                className="
-                  mt-auto flex
-                  items-center justify-between
-                  border-t border-white/[0.07]
-                  pt-4
-                "
-              >
-                <span
-                  className="
-                    text-[11px] font-bold
-                    text-slate-500
-                    transition-colors duration-300
-                    group-hover:text-slate-300
-                  "
-                >
+              <div className="mt-auto flex items-center justify-between border-t border-white/[0.07] pt-3 sm:pt-4">
+                <span className="text-[11px] font-bold text-slate-500 transition-colors duration-300 group-hover:text-slate-300">
                   선수 둘러보기
                 </span>
 
-                <div
-                  className="
-                    flex h-9 w-9
-                    items-center justify-center
-                    rounded-full
-                    border border-white/[0.08]
-                    bg-white/[0.035]
-                    text-slate-500
-                    transition-all duration-300
-                    group-hover:border-blue-400/25
-                    group-hover:bg-blue-400/[0.08]
-                    group-hover:text-blue-200
-                  "
-                >
-                  <ArrowRight
-                    size={16}
-                    className="
-                      transition-transform
-                      duration-300
-                      group-hover:translate-x-0.5
-                    "
-                  />
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.035] text-slate-500 transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-400/[0.08] group-hover:text-blue-200">
+                  <ArrowRight size={16} />
                 </div>
               </div>
             </div>
@@ -650,13 +426,13 @@ const PacificTeam = () => {
         </section>
 
         {/* Weekly Pick */}
-        <div className="mt-6">
+        <div className="mt-4 sm:mt-6">
           <WeeklyPick pick={weeklyPick} />
         </div>
 
         {/* Featured Team */}
         {featuredTeam && (
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-6">
             <FeaturedTeam
               team={featuredTeam.team}
               rosterCount={
@@ -669,9 +445,9 @@ const PacificTeam = () => {
         {/* Teams */}
         <section
           id="teams"
-          className="mt-12 scroll-mt-24 lg:mt-16"
+          className="mt-8 scroll-mt-24 sm:mt-12 lg:mt-16"
         >
-          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-black tracking-[0.14em] text-red-300">
                 공식 팀
@@ -682,37 +458,114 @@ const PacificTeam = () => {
               </h2>
 
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
-                팀 카드를 선택하면 해당 팀의 상세
-                정보와 등록된 프로 선수 로스터를
-                확인할 수 있습니다.
+                팀 카드를 선택하면 해당
+                팀의 상세 정보와 등록된 프로
+                선수 로스터를 확인할 수
+                있습니다.
               </p>
             </div>
 
-            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm font-semibold text-slate-400">
+            <div className="flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm font-semibold text-slate-400">
               <Shield size={15} />
 
-              {pacificTeams.length}개 팀 · 선수{" "}
-              {totalPlayers}명
+              {pacificTeams.length}개 팀 ·
+              선수 {totalPlayers}명
             </div>
           </div>
 
           {pacificTeams.length > 0 ? (
-            <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {pacificTeams.map(
-                ({
-                  team,
-                  rosterCount,
-                }) => (
-                  <ProTeamCard
-                    key={team.slug}
-                    team={team}
-                    rosterCount={
-                      rosterCount
+            <>
+              {/* Mobile Team Toggle */}
+              <button
+                type="button"
+                onClick={() =>
+                  setMobileTeamsOpen(
+                    (current) =>
+                      !current,
+                  )
+                }
+                aria-expanded={
+                  mobileTeamsOpen
+                }
+                aria-controls="pacific-team-list"
+                className="mb-4 flex w-full items-center justify-between rounded-2xl border border-white/10 bg-[#090b18] px-4 py-4 text-left transition-colors hover:border-white/20 md:hidden"
+              >
+                <div>
+                  <p className="text-sm font-black text-white">
+                    {mobileTeamsOpen
+                      ? "팀 목록 접기"
+                      : "팀 목록 펼쳐보기"}
+                  </p>
+
+                  <p className="mt-1 text-xs text-slate-500">
+                    VCT Pacific{" "}
+                    {
+                      pacificTeams.length
                     }
+                    개 팀
+                  </p>
+                </div>
+
+                <span
+                  className={[
+                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] text-slate-400 transition-transform duration-200",
+                    mobileTeamsOpen
+                      ? "rotate-180"
+                      : "",
+                  ].join(" ")}
+                >
+                  <ChevronDown
+                    size={18}
                   />
-                ),
+                </span>
+              </button>
+
+              {/* Team List */}
+              <div
+                id="pacific-team-list"
+                className={[
+                  "grid-cols-1 items-stretch gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3",
+                  mobileTeamsOpen
+                    ? "grid"
+                    : "hidden md:grid",
+                ].join(" ")}
+              >
+                {pacificTeams.map(
+                  ({
+                    team,
+                    rosterCount,
+                  }) => (
+                    <ProTeamCard
+                      key={team.slug}
+                      team={team}
+                      rosterCount={
+                        rosterCount
+                      }
+                    />
+                  ),
+                )}
+              </div>
+
+              {/* Mobile Collapse Button */}
+              {mobileTeamsOpen && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobileTeamsOpen(
+                      false,
+                    )
+                  }
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.025] px-4 py-3 text-sm font-bold text-slate-400 transition-colors hover:border-white/20 hover:text-white md:hidden"
+                >
+                  팀 목록 접기
+
+                  <ChevronDown
+                    size={16}
+                    className="rotate-180"
+                  />
+                </button>
               )}
-            </div>
+            </>
           ) : (
             <div className="flex min-h-[360px] flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/[0.025] px-6 text-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-400">
@@ -720,13 +573,14 @@ const PacificTeam = () => {
               </div>
 
               <h3 className="mt-5 text-xl font-black text-white">
-                등록된 Pacific 팀이 없습니다
+                등록된 Pacific 팀이
+                없습니다
               </h3>
 
               <p className="mt-2 max-w-md text-sm leading-6 text-slate-500">
-                proTeams 데이터에 Pacific 팀을
-                추가하면 이 페이지에 자동으로
-                표시됩니다.
+                proTeams 데이터에 Pacific
+                팀을 추가하면 이 페이지에
+                자동으로 표시됩니다.
               </p>
             </div>
           )}

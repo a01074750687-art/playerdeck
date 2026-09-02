@@ -169,7 +169,7 @@ export default function Valorant() {
     <div className="min-h-screen bg-slate-950 text-white">
       <Header />
 
-      <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden px-5 py-12 sm:px-8 sm:py-16">
+      <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden px-5 py-8 sm:px-8 sm:py-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-[-320px] h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-red-500/10 blur-[140px]"
@@ -181,7 +181,7 @@ export default function Valorant() {
         />
 
         <section className="relative mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-3xl flex-col justify-center">
-          <header className="mb-12 text-center sm:mb-14">
+          <header className="mb-9 text-center sm:mb-14">
             <h1 className="text-5xl font-black tracking-[-0.06em] sm:text-6xl md:text-7xl">
               <span className="text-white">
                 Deck
@@ -193,11 +193,15 @@ export default function Valorant() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg font-bold leading-8 text-slate-200 sm:text-xl md:text-2xl">
-              전적 조회부터 내가 좋아하는{" "}
-              <span className="text-red-400">
+              <span className="block sm:inline">
+              전적 조회부터 내가 좋아하는
+              </span>{" "}
+
+              <span className="block whitespace-nowrap text-red-400 sm:inline">
                 선수와 팀 정보까지.
               </span>
             </p>
+
           </header>
 
           <div className="rounded-3xl border border-white/10 bg-slate-900/80 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:border-red-400/30 sm:p-7">
@@ -227,7 +231,7 @@ export default function Valorant() {
                     searchPlayer();
                   }
                 }}
-                placeholder="라이엇 ID 또는 선수 닉네임을 입력하세요"
+                placeholder="라이엇 ID 또는 선수 닉네임"
                 className="h-14 min-w-0 flex-1 rounded-2xl border border-white/10 bg-slate-950/90 px-5 text-base text-white outline-none transition-all duration-300 placeholder:text-slate-600 focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
               />
 

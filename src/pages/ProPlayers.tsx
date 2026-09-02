@@ -1,4 +1,5 @@
 import {
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Search,
@@ -58,6 +59,11 @@ const ProPlayers = () => {
 
   const [sortOption, setSortOption] =
     useState<SortOption>("default");
+
+  const [
+    mobilePlayersOpen,
+    setMobilePlayersOpen,
+  ] = useState(false);
 
   const filteredPlayers = useMemo(() => {
     const searchedPlayers = searchProPlayers(
@@ -338,9 +344,9 @@ const ProPlayers = () => {
                 </h1>
 
                 <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-slate-400 sm:text-base">
-                  VCT Pacific 프로 선수의 소속
-                  팀, 역할, 대표 요원과 핵심 경기
-                  통계를 확인하세요.
+                  VCT Pacific 프로 선수의
+                  소속 팀, 역할, 대표 요원과
+                  핵심 경기 통계를 확인하세요.
                 </p>
               </div>
 
@@ -415,7 +421,8 @@ const ProPlayers = () => {
 
           {/* Players */}
           <div className="mt-10">
-            {filteredPlayers.length > 0 ? (
+            {filteredPlayers.length >
+            0 ? (
               <>
                 {/* List Header */}
                 <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -434,7 +441,9 @@ const ProPlayers = () => {
 
                     <p className="mt-2 text-xs font-medium text-slate-500">
                       총{" "}
-                      {filteredPlayers.length}
+                      {
+                        filteredPlayers.length
+                      }
                       명의 선수를 확인할 수
                       있습니다.
                     </p>
@@ -452,7 +461,10 @@ const ProPlayers = () => {
                         sm:inline-flex
                       "
                     >
-                      {filteredPlayers.length}명
+                      {
+                        filteredPlayers.length
+                      }
+                      명
                     </span>
 
                     <select
@@ -498,8 +510,61 @@ const ProPlayers = () => {
                   </div>
                 </div>
 
+                {/* Mobile Player Toggle */}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobilePlayersOpen(
+                      (current) =>
+                        !current,
+                    )
+                  }
+                  aria-expanded={
+                    mobilePlayersOpen
+                  }
+                  aria-controls="pro-player-list"
+                  className="mb-4 flex w-full items-center justify-between rounded-2xl border border-white/10 bg-[#090b18] px-4 py-4 text-left transition-colors hover:border-white/20 md:hidden"
+                >
+                  <div>
+                    <p className="text-sm font-black text-white">
+                      {mobilePlayersOpen
+                        ? "선수 목록 접기"
+                        : "선수 목록 펼쳐보기"}
+                    </p>
+
+                    <p className="mt-1 text-xs text-slate-500">
+                      현재 조건{" "}
+                      {
+                        filteredPlayers.length
+                      }
+                      명
+                    </p>
+                  </div>
+
+                  <span
+                    className={[
+                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] text-slate-400 transition-transform duration-200",
+                      mobilePlayersOpen
+                        ? "rotate-180"
+                        : "",
+                    ].join(" ")}
+                  >
+                    <ChevronDown
+                      size={18}
+                    />
+                  </span>
+                </button>
+
                 {/* Player Grid */}
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                <div
+                  id="pro-player-list"
+                  className={[
+                    "grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3",
+                    mobilePlayersOpen
+                      ? "grid"
+                      : "hidden md:grid",
+                  ].join(" ")}
+                >
                   {sortedPlayers.map(
                     (player) => (
                       <ProPlayerCard
@@ -509,6 +574,26 @@ const ProPlayers = () => {
                     ),
                   )}
                 </div>
+
+                {/* Mobile Collapse Button */}
+                {mobilePlayersOpen && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMobilePlayersOpen(
+                        false,
+                      )
+                    }
+                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.025] px-4 py-3 text-sm font-bold text-slate-400 transition-colors hover:border-white/20 hover:text-white md:hidden"
+                  >
+                    선수 목록 접기
+
+                    <ChevronDown
+                      size={16}
+                      className="rotate-180"
+                    />
+                  </button>
+                )}
               </>
             ) : (
               <div
