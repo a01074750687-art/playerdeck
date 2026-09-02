@@ -1,5 +1,14 @@
-import { ArrowUpRight, Star, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import {
+  ArrowUpRight,
+  Search,
+  Star,
+  X,
+} from "lucide-react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/common/Header";
@@ -61,7 +70,6 @@ export default function Valorant() {
   const [playerName, setPlayerName] =
     useState("");
 
-
   const proPlayerResults = useMemo(() => {
     const keyword = playerName.trim();
 
@@ -75,7 +83,8 @@ export default function Valorant() {
     return searchProPlayers(keyword)
       .filter(
         (player) =>
-          (player.riotAccounts?.length ?? 0) > 0,
+          (player.riotAccounts?.length ??
+            0) > 0,
       )
       .slice(0, 3);
   }, [playerName]);
@@ -122,6 +131,7 @@ export default function Valorant() {
       alert(
         "라이엇 ID 또는 프로 선수 닉네임을 입력해 주세요.",
       );
+
       return;
     }
 
@@ -159,10 +169,6 @@ export default function Valorant() {
 
   const clearRecentSearches = () => {
     setRecentSearches([]);
-
-    localStorage.removeItem(
-      RECENT_SEARCHES_STORAGE_KEY,
-    );
   };
 
   return (
@@ -181,8 +187,9 @@ export default function Valorant() {
         />
 
         <section className="relative mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-3xl flex-col justify-center">
+          {/* Hero */}
           <header className="mb-9 text-center sm:mb-14">
-            <h1 className="text-5xl font-black tracking-[-0.06em] sm:text-6xl md:text-7xl">
+            <h1 className="text-5xl font-black tracking-[-0.035em] sm:text-6xl md:text-7xl">
               <span className="text-white">
                 Deck
               </span>
@@ -194,62 +201,95 @@ export default function Valorant() {
 
             <p className="mx-auto mt-6 max-w-2xl text-lg font-bold leading-8 text-slate-200 sm:text-xl md:text-2xl">
               <span className="block sm:inline">
-              전적 조회부터 내가 좋아하는
+                전적 조회부터 내가 좋아하는
               </span>{" "}
 
               <span className="block whitespace-nowrap text-red-400 sm:inline">
                 선수와 팀 정보까지.
               </span>
             </p>
-
           </header>
 
-          <div className="rounded-3xl border border-white/10 bg-slate-900/80 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:border-red-400/30 sm:p-7">
-            <label
-              htmlFor="riot-id"
-              className="mb-3 block text-sm font-bold text-slate-300"
-            >
-              라이엇 ID 또는 프로 선수
-            </label>
+          {/* Search */}
+          <div className="rounded-2xl border border-white/[0.09] bg-[#080c17] p-4 sm:p-5">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-red-300">
+                <Search size={18} />
+              </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <input
-                id="riot-id"
-                type="text"
-                autoComplete="off"
-                spellCheck={false}
-                value={playerName}
-                onChange={(event) =>
-                  setPlayerName(
-                    event.target.value,
-                  )
-                }
-                onKeyDown={(event) => {
-                  if (
-                    event.key === "Enter"
-                  ) {
-                    searchPlayer();
+              <div className="min-w-0">
+                <p className="text-[9px] font-black tracking-[0.16em] text-red-300">
+                  PLAYER SEARCH
+                </p>
+
+                <h2 className="mt-1 text-sm font-black text-white sm:text-base">
+                  라이엇 ID 또는 프로 선수 검색
+                </h2>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <div className="relative min-w-0 flex-1">
+                <Search
+                  size={17}
+                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-600"
+                />
+
+                <input
+                  id="riot-id"
+                  type="text"
+                  autoComplete="off"
+                  spellCheck={false}
+                  aria-label="라이엇 ID 또는 프로 선수 닉네임"
+                  value={playerName}
+                  onChange={(event) =>
+                    setPlayerName(
+                      event.target.value,
+                    )
                   }
-                }}
-                placeholder="라이엇 ID 또는 선수 닉네임"
-                className="h-14 min-w-0 flex-1 rounded-2xl border border-white/10 bg-slate-950/90 px-5 text-base text-white outline-none transition-all duration-300 placeholder:text-slate-600 focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
-              />
+                  onKeyDown={(event) => {
+                    if (
+                      event.key === "Enter"
+                    ) {
+                      searchPlayer();
+                    }
+                  }}
+                  placeholder="라이엇 ID 또는 선수 닉네임"
+                  className="h-14 w-full rounded-xl border border-white/[0.09] bg-slate-950 px-4 pl-11 text-[15px] font-medium text-white outline-none transition-colors placeholder:text-slate-600 focus:border-red-400/50"
+                />
+              </div>
 
               <button
                 type="button"
                 onClick={searchPlayer}
-                className="h-14 shrink-0 rounded-2xl bg-red-500 px-8 text-sm font-black text-white shadow-lg shadow-red-950/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-400 active:translate-y-0 sm:min-w-40"
+                className="inline-flex h-14 shrink-0 items-center justify-center gap-2 rounded-xl bg-red-500 px-6 text-sm font-black text-white transition-colors hover:bg-red-400 sm:min-w-[132px]"
               >
                 전적 검색
+
+                <ArrowUpRight
+                  size={16}
+                />
               </button>
             </div>
 
-            <p className="mt-3 text-xs text-slate-600">
-              라이엇 ID는 게임 이름과 태그를 함께 입력해 주세요.
-              예: TenZ#NA1 · 프로 선수는 닉네임으로 검색할 수 있습니다.
-            </p>
+            <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 px-1 text-[11px] font-medium text-slate-600">
+              <span>
+                예: TenZ#NA1
+              </span>
 
-            {proPlayerResults.length > 0 && (
+              <span
+                aria-hidden="true"
+                className="hidden h-3 w-px bg-white/10 sm:block"
+              />
+
+              <span>
+                프로 선수는 닉네임으로 검색
+              </span>
+            </div>
+
+            {/* Pro Player Search Results */}
+            {proPlayerResults.length >
+              0 && (
               <div className="mt-5 border-t border-white/10 pt-5">
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
@@ -257,113 +297,132 @@ export default function Valorant() {
                   </p>
 
                   <span className="text-xs font-bold text-slate-600">
-                    {proPlayerResults.length}명
+                    {
+                      proPlayerResults.length
+                    }
+                    명
                   </span>
                 </div>
 
                 <div className="space-y-3">
-                  {proPlayerResults.map((proPlayer) => (
-                    <div
-                      key={proPlayer.id}
-                      className="rounded-2xl border border-blue-400/15 bg-slate-950/70 p-4 transition-all duration-200 hover:border-blue-400/30"
-                    >
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            navigate(
-                              `/valorant/pros/${proPlayer.slug}`,
-                            )
-                          }
-                          className="group min-w-0 text-left"
-                        >
-                          <div className="flex flex-wrap items-center gap-2.5">
-                            <span className="inline-flex -skew-x-12 items-center bg-blue-600 px-2.5 py-1 shadow-[0_0_14px_rgba(37,99,235,0.22)]">
-                              <span className="skew-x-12 text-[10px] font-black italic tracking-[-0.04em] text-white">
-                                PRO
+                  {proPlayerResults.map(
+                    (proPlayer) => (
+                      <div
+                        key={proPlayer.id}
+                        className="rounded-2xl border border-blue-400/15 bg-slate-950/70 p-4 transition-colors hover:border-blue-400/30"
+                      >
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              navigate(
+                                `/valorant/pros/${proPlayer.slug}`,
+                              )
+                            }
+                            className="group min-w-0 text-left"
+                          >
+                            <div className="flex flex-wrap items-center gap-2.5">
+                              <span className="inline-flex -skew-x-12 items-center bg-blue-600 px-2.5 py-1">
+                                <span className="skew-x-12 text-[10px] font-black italic tracking-[-0.04em] text-white">
+                                  PRO
+                                </span>
                               </span>
-                            </span>
 
-                            <span className="text-lg font-black text-white transition group-hover:text-blue-200">
-                              {proPlayer.nickname}
-                            </span>
-
-                            {proPlayer.team && (
-                              <span className="text-xs font-bold text-slate-500">
-                                {proPlayer.team.shortName}
+                              <span className="text-lg font-black text-white transition-colors group-hover:text-blue-200">
+                                {
+                                  proPlayer.nickname
+                                }
                               </span>
-                            )}
 
-                            <ArrowUpRight
-                              size={15}
-                              className="text-slate-600 transition group-hover:text-blue-300"
-                            />
-                          </div>
-
-                          <p className="mt-1.5 text-xs font-semibold text-slate-500">
-                            {proPlayer.primaryRole}
-                            {proPlayer.realName
-                              ? ` · ${proPlayer.realName}`
-                              : ""}
-                          </p>
-                        </button>
-
-                        <div className="flex flex-wrap gap-2">
-                          {proPlayer.riotAccounts?.map(
-                            (account) => {
-                              const riotId = `${account.name}#${account.tag}`;
-
-                              return (
-                                <button
-                                  key={riotId.toLowerCase()}
-                                  type="button"
-                                  onClick={() =>
-                                    moveToPlayerProfile(
-                                      riotId,
-                                    )
+                              {proPlayer.team && (
+                                <span className="text-xs font-bold text-slate-500">
+                                  {
+                                    proPlayer
+                                      .team
+                                      .shortName
                                   }
-                                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm font-bold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-400/40 hover:bg-red-500/10 hover:text-white"
-                                >
-                                  <span>{riotId}</span>
+                                </span>
+                              )}
 
-                                  <span className="text-[10px] font-black text-red-300">
-                                    전적 보기
-                                  </span>
-                                </button>
-                              );
-                            },
-                          )}
+                              <ArrowUpRight
+                                size={15}
+                                className="text-slate-600 transition-colors group-hover:text-blue-300"
+                              />
+                            </div>
+
+                            <p className="mt-1.5 text-xs font-semibold text-slate-500">
+                              {
+                                proPlayer.primaryRole
+                              }
+
+                              {proPlayer.realName
+                                ? ` · ${proPlayer.realName}`
+                                : ""}
+                            </p>
+                          </button>
+
+                          <div className="flex flex-wrap gap-2">
+                            {proPlayer.riotAccounts?.map(
+                              (account) => {
+                                const riotId = `${account.name}#${account.tag}`;
+
+                                return (
+                                  <button
+                                    key={riotId.toLowerCase()}
+                                    type="button"
+                                    onClick={() =>
+                                      moveToPlayerProfile(
+                                        riotId,
+                                      )
+                                    }
+                                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm font-bold text-slate-200 transition-colors hover:border-red-400/40 hover:bg-red-500/10 hover:text-white"
+                                  >
+                                    <span>
+                                      {
+                                        riotId
+                                      }
+                                    </span>
+
+                                    <span className="text-[10px] font-black text-red-300">
+                                      전적 보기
+                                    </span>
+                                  </button>
+                                );
+                              },
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ),
+                  )}
                 </div>
               </div>
             )}
           </div>
 
-          <section className="mt-6 rounded-3xl border border-amber-300/10 bg-slate-900/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-300/20 sm:p-7">
-            <div className="mb-5 flex items-center gap-2">
-              <Star
-                size={18}
-                className="text-amber-200"
-                fill="currentColor"
-              />
+          {/* Favorites */}
+          {valorantAccountFavorites.length >
+            0 && (
+            <section className="mt-6 rounded-2xl border border-white/[0.09] bg-[#080c17] p-5 transition-colors hover:border-amber-300/20 sm:p-7">
+              <div className="mb-5 flex items-center gap-2">
+                <Star
+                  size={18}
+                  className="text-amber-200"
+                  fill="currentColor"
+                />
 
-              <h2 className="text-lg font-black tracking-tight text-white">
-                즐겨찾기
-              </h2>
+                <h2 className="text-lg font-black tracking-tight text-white">
+                  즐겨찾기
+                </h2>
 
-              <span className="ml-auto text-xs font-bold text-slate-500">
-                {
-                  valorantAccountFavorites.length
-                }
-                명
-              </span>
-            </div>
+                <span className="ml-auto text-xs font-bold text-slate-500">
+                  {
+                    valorantAccountFavorites.length
+                  }
+                  명
+                </span>
+              </div>
 
-            {valorantAccountFavorites.length >
-            0 ? (
               <div className="flex flex-wrap gap-3">
                 {valorantAccountFavorites.map(
                   (favorite) => {
@@ -384,7 +443,7 @@ export default function Valorant() {
                               riotId,
                             )
                           }
-                          className="px-4 py-2.5 text-sm font-bold text-amber-100 transition hover:bg-amber-300/10"
+                          className="px-4 py-2.5 text-sm font-bold text-amber-100 transition-colors hover:bg-amber-300/10"
                         >
                           {riotId}
                         </button>
@@ -398,7 +457,7 @@ export default function Valorant() {
                               favorite,
                             )
                           }
-                          className="flex h-full items-center border-l border-amber-300/15 px-3 text-amber-200/60 transition hover:bg-amber-300/10 hover:text-amber-100"
+                          className="flex h-full items-center border-l border-amber-300/15 px-3 text-amber-200/60 transition-colors hover:bg-amber-300/10 hover:text-amber-100"
                         >
                           <X size={14} />
                         </button>
@@ -407,47 +466,28 @@ export default function Valorant() {
                   },
                 )}
               </div>
-            ) : (
-              <div className="rounded-2xl border border-dashed border-white/10 bg-slate-950/40 px-5 py-8 text-center">
-                <Star
-                  size={22}
-                  className="mx-auto text-slate-600"
-                />
+            </section>
+          )}
 
-                <p className="mt-3 text-sm text-slate-500">
-                  즐겨찾기한 라이엇 ID가
-                  없습니다.
-                </p>
+          {/* Recent Searches */}
+          {recentSearches.length > 0 && (
+            <section className="mt-6 rounded-2xl border border-white/[0.09] bg-[#080c17] p-5 transition-colors hover:border-red-400/20 sm:p-7">
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <h2 className="text-lg font-black tracking-tight text-white">
+                  최근 검색
+                </h2>
 
-                <p className="mt-1 text-xs text-slate-600">
-                  전적 페이지에서 별을 눌러
-                  자주 보는 계정을 저장해
-                  보세요.
-                </p>
-              </div>
-            )}
-          </section>
-
-          <section className="mt-6 rounded-3xl border border-white/10 bg-slate-900/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-red-400/20 sm:p-7">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <h2 className="text-lg font-black tracking-tight text-white">
-                최근 검색
-              </h2>
-
-              {recentSearches.length > 0 && (
                 <button
                   type="button"
                   onClick={
                     clearRecentSearches
                   }
-                  className="rounded-lg px-2 py-1 text-xs font-bold text-slate-500 transition-colors duration-300 hover:text-red-400"
+                  className="rounded-lg px-2 py-1 text-xs font-bold text-slate-500 transition-colors hover:text-red-400"
                 >
                   전체 삭제
                 </button>
-              )}
-            </div>
+              </div>
 
-            {recentSearches.length > 0 ? (
               <div className="flex flex-wrap gap-3">
                 {recentSearches.map(
                   (name) => (
@@ -459,21 +499,15 @@ export default function Valorant() {
                           name,
                         )
                       }
-                      className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2.5 text-sm font-bold text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-400/60 hover:text-white"
+                      className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2.5 text-sm font-bold text-slate-300 transition-colors hover:border-red-400/60 hover:text-white"
                     >
                       {name}
                     </button>
                   ),
                 )}
               </div>
-            ) : (
-              <div className="rounded-2xl border border-dashed border-white/10 bg-slate-950/40 px-5 py-8 text-center">
-                <p className="text-sm text-slate-500">
-                  최근 검색 기록이 없습니다.
-                </p>
-              </div>
-            )}
-          </section>
+            </section>
+          )}
         </section>
       </main>
     </div>

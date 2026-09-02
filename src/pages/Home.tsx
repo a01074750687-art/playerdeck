@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-white px-6 py-10">
       <section className="max-w-6xl mx-auto">
-        <p className="text-red-400 font-bold mb-3">PLAYERDECK</p>
+        <p className="text-red-400 font-bold mb-3">Deck.GG</p>
 
         <h1 className="text-5xl font-black mb-4">
           Track Your Game Data
