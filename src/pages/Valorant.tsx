@@ -16,6 +16,10 @@ import { searchProPlayers } from "../data/pro";
 import useFavorites, {
   type FavoriteValorantAccount,
 } from "../hooks/useFavorites";
+import {
+  getProRankedTop10,
+  type ProRankedEntry,
+} from "../services/proRankedService";
 
 const RECENT_SEARCHES_STORAGE_KEY =
   "valorant_recent_searches";
@@ -25,6 +29,9 @@ const DEFAULT_RECENT_SEARCHES = [
   "aspas#BR1",
   "Meteor#KR1",
 ];
+
+const RANK_ROTATION_INTERVAL = 3500;
+const RANK_FADE_DURATION = 220;
 
 function loadRecentSearches(): string[] {
   try {
@@ -70,6 +77,28 @@ export default function Valorant() {
   const [playerName, setPlayerName] =
     useState("");
 
+  const [
+    recentSearches,
+    setRecentSearches,
+  ] = useState<string[]>(
+    loadRecentSearches,
+  );
+
+  const [
+    proRankedPlayers,
+    setProRankedPlayers,
+  ] = useState<ProRankedEntry[]>([]);
+
+  const [
+    activeRankIndex,
+    setActiveRankIndex,
+  ] = useState(0);
+
+  const [
+    isRankVisible,
+    setIsRankVisible,
+  ] = useState(true);
+
   const proPlayerResults = useMemo(() => {
     const keyword = playerName.trim();
 
@@ -89,12 +118,10 @@ export default function Valorant() {
       .slice(0, 3);
   }, [playerName]);
 
-  const [
-    recentSearches,
-    setRecentSearches,
-  ] = useState<string[]>(
-    loadRecentSearches,
-  );
+  const activeRankedPlayer =
+    proRankedPlayers[
+      activeRankIndex
+    ] ?? null;
 
   useEffect(() => {
     localStorage.setItem(
@@ -102,6 +129,74 @@ export default function Valorant() {
       JSON.stringify(recentSearches),
     );
   }, [recentSearches]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadProRankedTop10 =
+      async () => {
+        try {
+          const ranking =
+            await getProRankedTop10();
+
+          if (cancelled) {
+            return;
+          }
+
+          setProRankedPlayers(ranking);
+          setActiveRankIndex(0);
+          setIsRankVisible(true);
+        } catch (error) {
+          console.error(
+            "PRO RANKED TOP 10 ERROR:",
+            error,
+          );
+        }
+      };
+
+    void loadProRankedTop10();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      proRankedPlayers.length <= 1
+    ) {
+      return;
+    }
+
+    let fadeTimeout:
+      | ReturnType<typeof setTimeout>
+      | undefined;
+
+    const rotationInterval =
+      setInterval(() => {
+        setIsRankVisible(false);
+
+        fadeTimeout = setTimeout(() => {
+          setActiveRankIndex(
+            (previousIndex) =>
+              (previousIndex + 1) %
+              proRankedPlayers.length,
+          );
+
+          setIsRankVisible(true);
+        }, RANK_FADE_DURATION);
+      }, RANK_ROTATION_INTERVAL);
+
+    return () => {
+      clearInterval(
+        rotationInterval,
+      );
+
+      if (fadeTimeout) {
+        clearTimeout(fadeTimeout);
+      }
+    };
+  }, [proRankedPlayers.length]);
 
   const addRecentSearch = (
     name: string,
@@ -131,7 +226,6 @@ export default function Valorant() {
       alert(
         "라이엇 ID 또는 프로 선수 닉네임을 입력해 주세요.",
       );
-
       return;
     }
 
@@ -187,8 +281,7 @@ export default function Valorant() {
         />
 
         <section className="relative mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-3xl flex-col justify-center">
-          {/* Hero */}
-          <header className="mb-9 text-center sm:mb-14">
+          <header className="mb-5 text-center sm:mb-6">
             <h1 className="text-5xl font-black tracking-[-0.035em] sm:text-6xl md:text-7xl">
               <span className="text-white">
                 Deck
@@ -199,7 +292,7 @@ export default function Valorant() {
               </span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg font-bold leading-8 text-slate-200 sm:text-xl md:text-2xl">
+            <p className="mx-auto mt-5 max-w-2xl text-lg font-bold leading-8 text-slate-200 sm:mt-6 sm:text-xl md:text-2xl">
               <span className="block sm:inline">
                 전적 조회부터 내가 좋아하는
               </span>{" "}
@@ -210,25 +303,92 @@ export default function Valorant() {
             </p>
           </header>
 
-          {/* Search */}
+          {activeRankedPlayer && (
+            <button
+              type="button"
+              onClick={() =>
+                navigate(
+                  `/valorant/pros/${activeRankedPlayer.playerSlug}`,
+                )
+              }
+              className="mx-auto mb-5 flex h-11 w-full max-w-[620px] items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-[#080c17] px-3 transition-colors hover:border-red-400/30 sm:mb-6 sm:px-4"
+            >
+              <div
+                className={`flex w-full min-w-0 items-center justify-center gap-1.5 whitespace-nowrap transition-all duration-200 sm:gap-2 ${
+                  isRankVisible
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-1 opacity-0"
+                }`}
+              >
+                <span className="shrink-0 text-[9px] font-black uppercase tracking-[0.14em] text-red-400 sm:text-[10px]">
+                  PRO RANKED
+                </span>
+
+                <span className="shrink-0 text-xs font-black text-slate-500">
+                  #{activeRankedPlayer.rank}
+                </span>
+
+                <span className="min-w-0 truncate text-sm font-black text-white">
+                  {
+                    activeRankedPlayer.nickname
+                  }
+                </span>
+
+                {activeRankedPlayer.teamShortName && (
+                  <span className="hidden shrink-0 text-[11px] font-bold text-slate-600 sm:inline">
+                    {
+                      activeRankedPlayer.teamShortName
+                    }
+                  </span>
+                )}
+
+                <span className="shrink-0 text-slate-700">
+                  ·
+                </span>
+
+                <span className="shrink-0 text-xs font-bold text-slate-300 sm:text-sm">
+                  {
+                    activeRankedPlayer.tier
+                  }
+                </span>
+
+                <span className="shrink-0 text-xs font-black text-red-300 sm:text-sm">
+                  {
+                    activeRankedPlayer.rr
+                  }{" "}
+                  RR
+                </span>
+
+                <ArrowUpRight
+                  size={13}
+                  className="hidden shrink-0 text-slate-600 sm:block"
+                />
+              </div>
+            </button>
+          )}
+
           <div className="rounded-2xl border border-white/[0.09] bg-[#080c17] p-4 sm:p-5">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-red-300">
-                <Search size={18} />
+            <div className="mb-4 flex items-start gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-slate-950">
+                <Search
+                  size={17}
+                  className="text-red-400"
+                />
               </div>
 
-              <div className="min-w-0">
-                <p className="text-[9px] font-black tracking-[0.16em] text-red-300">
-                  PLAYER SEARCH
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400">
+                  Player Search
                 </p>
 
-                <h2 className="mt-1 text-sm font-black text-white sm:text-base">
-                  라이엇 ID 또는 프로 선수 검색
+                <h2 className="mt-1 text-base font-black text-white sm:text-lg">
+                  라이엇 ID 또는 프로 선수
+                  검색
                 </h2>
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <div className="relative min-w-0 flex-1">
                 <Search
                   size={17}
@@ -240,7 +400,6 @@ export default function Valorant() {
                   type="text"
                   autoComplete="off"
                   spellCheck={false}
-                  aria-label="라이엇 ID 또는 프로 선수 닉네임"
                   value={playerName}
                   onChange={(event) =>
                     setPlayerName(
@@ -272,31 +431,24 @@ export default function Valorant() {
               </button>
             </div>
 
-            <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 px-1 text-[11px] font-medium text-slate-600">
+            <div className="mt-3 flex flex-col gap-1 text-[11px] font-medium text-slate-600 sm:flex-row sm:items-center sm:justify-between">
               <span>
                 예: TenZ#NA1
               </span>
-
-              <span
-                aria-hidden="true"
-                className="hidden h-3 w-px bg-white/10 sm:block"
-              />
 
               <span>
                 프로 선수는 닉네임으로 검색
               </span>
             </div>
 
-            {/* Pro Player Search Results */}
-            {proPlayerResults.length >
-              0 && (
-              <div className="mt-5 border-t border-white/10 pt-5">
+            {proPlayerResults.length > 0 && (
+              <div className="mt-5 border-t border-white/[0.08] pt-4">
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                    프로 선수 검색 결과
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                    Pro Players
                   </p>
 
-                  <span className="text-xs font-bold text-slate-600">
+                  <span className="text-[11px] font-bold text-slate-600">
                     {
                       proPlayerResults.length
                     }
@@ -304,14 +456,14 @@ export default function Valorant() {
                   </span>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {proPlayerResults.map(
                     (proPlayer) => (
                       <div
                         key={proPlayer.id}
-                        className="rounded-2xl border border-blue-400/15 bg-slate-950/70 p-4 transition-colors hover:border-blue-400/30"
+                        className="rounded-xl border border-white/[0.08] bg-slate-950/70 p-4 transition-colors hover:border-white/[0.14]"
                       >
-                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                           <button
                             type="button"
                             onClick={() =>
@@ -321,21 +473,19 @@ export default function Valorant() {
                             }
                             className="group min-w-0 text-left"
                           >
-                            <div className="flex flex-wrap items-center gap-2.5">
-                              <span className="inline-flex -skew-x-12 items-center bg-blue-600 px-2.5 py-1">
-                                <span className="skew-x-12 text-[10px] font-black italic tracking-[-0.04em] text-white">
-                                  PRO
-                                </span>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="rounded-md bg-red-500 px-2 py-1 text-[9px] font-black uppercase tracking-[0.1em] text-white">
+                                Pro
                               </span>
 
-                              <span className="text-lg font-black text-white transition-colors group-hover:text-blue-200">
+                              <span className="text-base font-black text-white transition-colors group-hover:text-red-300">
                                 {
                                   proPlayer.nickname
                                 }
                               </span>
 
                               {proPlayer.team && (
-                                <span className="text-xs font-bold text-slate-500">
+                                <span className="text-[11px] font-bold text-slate-500">
                                   {
                                     proPlayer
                                       .team
@@ -345,12 +495,12 @@ export default function Valorant() {
                               )}
 
                               <ArrowUpRight
-                                size={15}
-                                className="text-slate-600 transition-colors group-hover:text-blue-300"
+                                size={14}
+                                className="text-slate-600 transition-colors group-hover:text-red-300"
                               />
                             </div>
 
-                            <p className="mt-1.5 text-xs font-semibold text-slate-500">
+                            <p className="mt-1.5 text-[11px] font-semibold text-slate-600">
                               {
                                 proPlayer.primaryRole
                               }
@@ -375,7 +525,7 @@ export default function Valorant() {
                                         riotId,
                                       )
                                     }
-                                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm font-bold text-slate-200 transition-colors hover:border-red-400/40 hover:bg-red-500/10 hover:text-white"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs font-bold text-slate-300 transition-colors hover:border-red-400/30 hover:text-white"
                                   >
                                     <span>
                                       {
@@ -383,9 +533,12 @@ export default function Valorant() {
                                       }
                                     </span>
 
-                                    <span className="text-[10px] font-black text-red-300">
-                                      전적 보기
-                                    </span>
+                                    <ArrowUpRight
+                                      size={
+                                        12
+                                      }
+                                      className="text-red-400"
+                                    />
                                   </button>
                                 );
                               },
@@ -400,18 +553,17 @@ export default function Valorant() {
             )}
           </div>
 
-          {/* Favorites */}
           {valorantAccountFavorites.length >
             0 && (
             <section className="mt-6 rounded-2xl border border-white/[0.09] bg-[#080c17] p-5 transition-colors hover:border-amber-300/20 sm:p-7">
               <div className="mb-5 flex items-center gap-2">
                 <Star
-                  size={18}
+                  size={17}
                   className="text-amber-200"
                   fill="currentColor"
                 />
 
-                <h2 className="text-lg font-black tracking-tight text-white">
+                <h2 className="text-base font-black tracking-tight text-white">
                   즐겨찾기
                 </h2>
 
@@ -434,7 +586,7 @@ export default function Valorant() {
                     return (
                       <div
                         key={riotId.toLowerCase()}
-                        className="inline-flex items-center overflow-hidden rounded-xl border border-amber-300/20 bg-amber-300/[0.06]"
+                        className="inline-flex items-center overflow-hidden rounded-xl border border-amber-300/20 bg-amber-300/[0.05]"
                       >
                         <button
                           type="button"
@@ -443,7 +595,7 @@ export default function Valorant() {
                               riotId,
                             )
                           }
-                          className="px-4 py-2.5 text-sm font-bold text-amber-100 transition-colors hover:bg-amber-300/10"
+                          className="px-4 py-2.5 text-sm font-bold text-amber-100 transition-colors hover:bg-amber-300/[0.08]"
                         >
                           {riotId}
                         </button>
@@ -457,7 +609,7 @@ export default function Valorant() {
                               favorite,
                             )
                           }
-                          className="flex h-full items-center border-l border-amber-300/15 px-3 text-amber-200/60 transition-colors hover:bg-amber-300/10 hover:text-amber-100"
+                          className="flex h-full items-center border-l border-amber-300/15 px-3 text-amber-200/60 transition-colors hover:bg-amber-300/[0.08] hover:text-amber-100"
                         >
                           <X size={14} />
                         </button>
@@ -469,11 +621,10 @@ export default function Valorant() {
             </section>
           )}
 
-          {/* Recent Searches */}
           {recentSearches.length > 0 && (
             <section className="mt-6 rounded-2xl border border-white/[0.09] bg-[#080c17] p-5 transition-colors hover:border-red-400/20 sm:p-7">
               <div className="mb-5 flex items-center justify-between gap-4">
-                <h2 className="text-lg font-black tracking-tight text-white">
+                <h2 className="text-base font-black tracking-tight text-white">
                   최근 검색
                 </h2>
 
@@ -499,7 +650,7 @@ export default function Valorant() {
                           name,
                         )
                       }
-                      className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2.5 text-sm font-bold text-slate-300 transition-colors hover:border-red-400/60 hover:text-white"
+                      className="rounded-full border border-white/[0.09] bg-slate-950 px-4 py-2.5 text-sm font-bold text-slate-300 transition-colors hover:border-red-400/40 hover:text-white"
                     >
                       {name}
                     </button>
