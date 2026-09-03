@@ -86,14 +86,14 @@ export const seph1roth: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "Fs seph1roth",
-      tag: "mumg",
+      name: "Anakin Skywalker",
+      tag: "Mkfer",
 
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/leaderboards/ranked/all/default?act=4f0864e2-40af-28a4-de2c-0e9e64e75f23&page=21&platform=pc&region=global",
+          "https://tracker.gg/valorant/profile/riot/Anakin%20Skywalker%23Mkfer/overview",
       },
     },
   ],

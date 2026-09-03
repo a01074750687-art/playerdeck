@@ -76,14 +76,15 @@ export const primmie: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "666mirp",
-      tag: "kill",
+      name: "loopy",
+      tag: "bibi",
+      puuid: "ff90a205-5ac9-55dd-9f3f-0d3e7f44fbb3",
 
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/profile/riot/666mirp%23kill/overview",
+          "https://tracker.gg/valorant/profile/riot/loopy%23bibi/overview",
       },
     },
   ],

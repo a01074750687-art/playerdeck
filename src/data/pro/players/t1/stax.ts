@@ -141,14 +141,15 @@ export const stax: ProPlayer = {
 
   riotAccounts: [
     {
-      name: "Señor Vac",
-      tag: "prime",
+      name: "Spear of Shojin",
+      tag: "LOL",
+      puuid: "4188b8b8-bea1-5cac-8d33-1a4d5ccbce66",
 
       verification: {
-        verifiedAt: "2026-08-14",
-        sourceName: "Tracker Network / 나무위키",
+        verifiedAt: "2026-09-03",
+        sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/profile/riot/Se%C3%B1or%20Vac%23prime/overview",
+          "https://tracker.gg/valorant/profile/riot/Spear%20of%20Shojin%23LOL/"
       },
     },
   ],

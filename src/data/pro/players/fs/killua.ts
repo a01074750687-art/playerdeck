@@ -92,13 +92,14 @@ export const killua: ProPlayer = {
   riotAccounts: [
     {
       name: "Fs killua",
-      tag: "hrdm",
+      tag: "2009",
+      puuid: "26a4631e-67d6-5e7b-a504-bcf2e52dc077",
 
       verification: {
         verifiedAt: "2026-08-24",
         sourceName: "Tracker Network",
         sourceUrl:
-          "https://tracker.gg/valorant/leaderboards/ranked/pc/default?act=dcde7346-4085-de4f-c463-2489ed47983b&page=1&platform=pc&region=ap",
+          "https://tracker.gg/valorant/profile/riot/FS%20Killua%232009/overview",
       },
     },
   ],
